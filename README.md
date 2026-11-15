@@ -11,6 +11,10 @@ Prospector is a decision-support tool for farmers and advisors. You draw a field
 
 The plan is shown on the 3D terrain month by month, in a dry, a normal and a wet year taken from the real record. Every number shows its source. The tool supports the farmer's decision; it does not replace local agronomic advice.
 
+![Prospector: 3D terrain, suitability and the step-by-step panel](docs/img/app_overview.jpg)
+
+The side panel is a sequence of collapsible steps; only three map layers are shown at first, the rest sit under "More layers". Light and dark themes. The screenshots below were taken with the earlier dark layout.
+
 ![3D terrain](docs/img/terreno3d_alta_resolucion.jpg)
 
 | Where cultivation is possible | Field split into plots |

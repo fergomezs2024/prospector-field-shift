@@ -7,28 +7,40 @@
 <link rel="stylesheet" href="vendor/maplibre-gl.css">
 <script type="importmap">{"imports": {"three": "./vendor/three.module.js"}}</script>
 <style>
-  :root { --bg:#101412; --panel:#171c19; --linea:#2a322d; --tinta:#e9ede9; --tenue:#9aa59d; --verde:#3fbf7f; --verde-o:#2a8f5c; --ambar:#e0a100; }
+  :root { --bg:#101412; --panel:#171c19; --linea:#2a322d; --tinta:#e9ede9; --tenue:#9aa59d; --verde:#3fbf7f; --verde-o:#2a8f5c; --ambar:#e0a100; --flot:rgba(16,20,18,.92); --campo:#1f2622; --hundido:#131815; --barra:#232b26; --sel:#1b2a22; --sombra:0 6px 20px rgba(0,0,0,.35); }
+  body.claro { --bg:#f3f5f2; --panel:#ffffff; --linea:#dfe5df; --tinta:#1d2521; --tenue:#627067; --verde:#1c9459; --verde-o:#23875a; --flot:rgba(255,255,255,.95); --campo:#f2f5f2; --hundido:#f6f8f6; --barra:#e4e9e4; --sel:#e2f3e9; --sombra:0 4px 16px rgba(20,40,30,.14); }
   * { box-sizing: border-box; }
   html, body { margin:0; height:100%; background:var(--bg); color:var(--tinta); font:14px/1.45 Inter, "Noto Sans", system-ui, sans-serif; }
   #app { display:grid; grid-template-columns: 1fr 430px; height:100%; }
   #escena { position:relative; min-width:0; }
   #mapa, #tres { position:absolute; inset:0; }
-  #tres { display:none; background:#0b0e0c; }
+  #tres { display:none; background:#0b0e0c; } body.claro #tres { background:#dde4df; }
   #tres canvas { display:block; }
-  #probar { position:absolute; right:14px; top:176px; z-index:5; width:270px; max-height:calc(100% - 300px); overflow:auto; background:rgba(16,20,18,.93); border:1px solid var(--linea); border-radius:10px; padding:10px 14px; font-size:13px; }
-  #obra { position:absolute; left:50%; transform:translateX(-50%); top:58px; z-index:6; max-width:60%; background:rgba(16,20,18,.95); border:1px solid #8fd694; border-radius:10px; padding:9px 16px; font-size:14px; text-align:center; } #obra b { display:block; font-size:16px; color:#8fd694; }
+  #probar { position:absolute; right:14px; top:176px; z-index:5; width:270px; max-height:calc(100% - 300px); overflow:auto; background:var(--flot); border:1px solid var(--linea); border-radius:10px; padding:10px 14px; font-size:13px; }
+  #obra { position:absolute; left:50%; transform:translateX(-50%); top:58px; z-index:6; max-width:60%; background:var(--flot); border:1px solid var(--verde); border-radius:10px; padding:9px 16px; font-size:14px; text-align:center; } #obra b { display:block; font-size:16px; color:var(--verde); }
   #probar select { width:100%; margin:3px 0 8px; } #probar h4 { margin:0 0 6px; font-size:14px; }
   .etq::after { content:''; position:absolute; left:50%; top:100%; width:1.5px; height:var(--tallo, 12px); background:rgba(255,255,255,.8); }
   .etq { position:absolute; transform:translate(-50%, -100%); z-index:4; pointer-events:none; background:rgba(16,20,18,.9); border:1px solid rgba(255,255,255,.35); border-radius:10px; padding:5px 9px; font-size:11.5px; line-height:1.35; color:#e8ece8; white-space:nowrap; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,.45); }
   .etq b { display:block; font-size:14px; color:#fff; } .etq span { display:block; color:#b9c4bb; } .etq i { color:#e6c95a; font-style:normal; } .etq .rot { margin-top:3px; font-size:11.5px; } .etq u { color:#8fd694; text-decoration:none; font-weight:600; }
   aside { background:var(--panel); border-left:1px solid var(--linea); overflow-y:auto; padding:18px 18px 28px; }
   h1 { font-size:19px; margin:0 0 2px; letter-spacing:.2px; }
-  h2 { font-size:12px; text-transform:uppercase; letter-spacing:.9px; color:var(--tenue); margin:22px 0 8px; font-weight:600; }
+  h2 { font-size:15px; margin:0; font-weight:600; }
+  details.sec { border-top:1px solid var(--linea); } details.sec > summary { padding:13px 0; } details.sec > .cuerpo { padding:0 0 16px; }
+  summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:8px; } summary::-webkit-details-marker { display:none; }
+  summary::after { content:'▾'; margin-left:auto; color:var(--tenue); transition:transform .15s; } details:not([open]) > summary::after { transform:rotate(-90deg); }
+  details.cultivoFila > summary b { font-weight:600; } details.cultivoFila .porque { color:var(--tenue); margin-top:5px; }
+  details.zona > summary h3 { margin:0; } details.grupo { margin-top:10px; } details.grupo > summary { font-weight:600; }
+  #ficha h4, #probar h4 { cursor:pointer; display:flex; align-items:center; } #ficha h4::after, #probar h4::after { content:'▾'; margin-left:auto; color:var(--tenue); }
+  #ficha.min > :not(h4), #probar.min > :not(h4) { display:none; } #ficha.min h4, #probar.min h4 { margin:0; } #ficha.min h4::after, #probar.min h4::after { transform:rotate(-90deg); }
+  #ficha, #leyenda, #probar, #simFlot, #mesFlot, #tarjeta, #ayuda, #obra { box-shadow:var(--sombra); }
+  body:not(.tecnico) .etq span, body:not(.tecnico) .etq .rot { display:none; }
+  #masCapas { display:none; flex-wrap:wrap; gap:6px; flex-basis:100%; } #masCapas.ab { display:flex; }
+  .encab { display:flex; align-items:center; gap:8px; } .encab h1 { flex:1; }
   p.sub { color:var(--tenue); margin:0 0 6px; }
-  button, select, input[type=text] { font:inherit; color:var(--tinta); background:#1f2622; border:1px solid var(--linea); border-radius:8px; padding:8px 12px; }
+  button, select, input[type=text] { font:inherit; color:var(--tinta); background:var(--campo); border:1px solid var(--linea); border-radius:8px; padding:8px 12px; }
   button { cursor:pointer; }
   button:hover { border-color:#47554c; }
-  button.pri { background:var(--verde-o); border-color:var(--verde-o); font-weight:600; }
+  button.pri { background:var(--verde-o); border-color:var(--verde-o); font-weight:600; color:#fff; }
   button.pri:hover { background:var(--verde); }
   button:disabled { opacity:.45; cursor:default; }
   .fila { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
@@ -36,49 +48,49 @@
   .dato { display:grid; grid-template-columns: 1fr auto; gap:2px 12px; padding:7px 0; border-bottom:1px solid var(--linea); }
   .dato b { font-variant-numeric: tabular-nums; font-weight:600; }
   .dato span { color:var(--tenue); }
-  .barra { height:8px; border-radius:4px; background:#232b26; overflow:hidden; margin:3px 0 8px; }
+  .barra { height:8px; border-radius:4px; background:var(--barra); overflow:hidden; margin:3px 0 8px; }
   .barra i { display:block; height:100%; background:var(--verde); }
   .mini { font-size:12px; color:var(--tenue); }
-  #log { font:12px/1.5 ui-monospace, monospace; color:var(--tenue); background:#0f1311; border:1px solid var(--linea); border-radius:8px; padding:10px; max-height:150px; overflow:auto; white-space:pre-wrap; }
+  #log { font:12px/1.5 ui-monospace, monospace; color:var(--tenue); background:var(--hundido); border:1px solid var(--linea); border-radius:8px; padding:10px; max-height:150px; overflow:auto; white-space:pre-wrap; }
   .chip { display:inline-block; padding:3px 9px; border:1px solid var(--linea); border-radius:999px; margin:0 6px 6px 0; cursor:pointer; font-size:12.5px; }
   .chip:hover { border-color:var(--verde); }
   #flot { position:absolute; left:14px; top:14px; right:14px; display:flex; gap:8px; z-index:5; align-items:flex-start; pointer-events:none; }
   #flot > * { pointer-events:auto; } #flot .sepv { width:1px; height:34px; background:var(--linea); margin:0 4px; }
-  #capas { display:flex; flex-wrap:wrap; gap:6px; } #capas button { padding:7px 11px; font-size:13px; background:rgba(16,20,18,.88); }
+  #capas { display:flex; flex-wrap:wrap; gap:6px; } #capas button { padding:7px 11px; font-size:13px; background:var(--flot); }
   #capas button.act { border-color:var(--verde); color:var(--verde); } #capas button:disabled { opacity:.4; }
-  #mesFlot { position:absolute; left:50%; transform:translateX(-50%); bottom:54px; z-index:5; background:rgba(16,20,18,.9); border:1px solid var(--linea); border-radius:10px; padding:8px 14px; display:flex; gap:12px; align-items:center; width:min(420px, 70%); }
+  #mesFlot { position:absolute; left:50%; transform:translateX(-50%); bottom:54px; z-index:5; background:var(--flot); border:1px solid var(--linea); border-radius:10px; padding:8px 14px; display:flex; gap:12px; align-items:center; width:min(420px, 70%); }
   #mesFlot span { min-width:84px; }
-  #flot button { background:rgba(16,20,18,.88); backdrop-filter: blur(4px); }
+  #flot button { background:var(--flot); backdrop-filter: blur(4px); box-shadow:var(--sombra); }
   #flot button.act, button.herr.act { border-color:var(--verde); color:var(--verde); }
-  #ficha { position:absolute; left:14px; top:60px; z-index:5; width:300px; background:rgba(16,20,18,.9); border:1px solid var(--linea); border-radius:10px; padding:10px 14px; font-size:13px; }
+  #ficha { position:absolute; left:14px; top:60px; z-index:5; width:300px; background:var(--flot); border:1px solid var(--linea); border-radius:10px; padding:10px 14px; font-size:13px; }
   #ficha h4 { margin:0 0 6px; font-size:14.5px; } #ficha .dato { padding:3px 0; border-bottom:0; } #ficha .sep { border-top:1px solid var(--linea); margin:6px 0; }
-  #ayuda { position:absolute; left:14px; bottom:14px; z-index:5; background:rgba(16,20,18,.88); padding:8px 12px; border-radius:8px; border:1px solid var(--linea); max-width:60%; }
+  #ayuda { position:absolute; left:14px; bottom:14px; z-index:5; background:var(--flot); padding:8px 12px; border-radius:8px; border:1px solid var(--linea); max-width:60%; }
   input[type=range] { width:100%; accent-color: var(--verde); }
   .oculto { display:none !important; }
-  #leyenda { position:absolute; right:14px; top:60px; z-index:5; background:rgba(16,20,18,.9); border:1px solid var(--linea); border-radius:10px; padding:10px 14px; font-size:13.5px; }
+  #leyenda { position:absolute; right:14px; top:60px; z-index:5; background:var(--flot); border:1px solid var(--linea); border-radius:10px; padding:10px 14px; font-size:13.5px; }
   #leyenda div { display:flex; align-items:center; gap:8px; padding:2px 0; } #leyenda i, .cuad { display:inline-block; width:13px; height:13px; border-radius:3px; flex:none; }
-  #tarjeta { position:absolute; right:14px; bottom:120px; z-index:6; width:min(420px, 80%); background:rgba(16,20,18,.95); border:1px solid var(--linea); border-radius:12px; padding:14px 16px; }
+  #tarjeta { position:absolute; right:14px; bottom:120px; z-index:6; width:min(420px, 80%); background:var(--flot); border:1px solid var(--linea); border-radius:12px; padding:14px 16px; }
   #tarjeta h3 { margin:0 0 6px; font-size:17px; display:flex; align-items:center; gap:8px; } #tarjeta p { margin:0 0 8px; font-size:14.5px; line-height:1.5; }
   #tarjeta ul { margin:0; padding-left:18px; color:var(--tenue); font-size:12.5px; } #tarjeta .x { position:absolute; right:10px; top:6px; cursor:pointer; color:var(--tenue); font-size:18px; }
-  #pasos { margin-top:12px; border:1px solid var(--linea); border-radius:10px; padding:12px 14px; background:#131815; }
+  #pasos { margin-top:12px; border:1px solid var(--linea); border-radius:10px; padding:12px 14px; background:var(--hundido); }
   #pasos .tit { font-weight:600; margin-bottom:8px; } .paso { padding:7px 0; } .paso + .paso { border-top:1px solid var(--linea); }
   .paso .cab { display:flex; justify-content:space-between; gap:10px; align-items:baseline; } .paso .cab b { font-weight:500; } .paso .cab span { color:var(--tenue); font-size:12.5px; font-variant-numeric:tabular-nums; white-space:nowrap; }
   .paso.pendiente .cab b { color:var(--tenue); } .paso.listo .cab b::before { content:'✓ '; color:var(--verde); } .paso.error .cab b::before { content:'✕ '; color:#e0694f; }
   .paso .barra { margin:6px 0 0; height:6px; } .paso.corriendo .barra i { background:var(--verde); transition:width 1.2s linear; } .paso.pendiente .barra { display:none; } .paso.listo .barra { display:none; }
   body:not(.tecnico) .tec { display:none !important; }
   .conm { display:inline-flex; border:1px solid var(--linea); border-radius:8px; overflow:hidden; margin-top:8px; } .conm button { border:0; border-radius:0; padding:6px 12px; background:transparent; font-size:13px; }
-  .conm button.act { background:var(--verde-o); font-weight:600; }
+  .conm button.act { background:var(--verde-o); font-weight:600; color:#fff; }
   .hist { display:grid; grid-template-columns:1fr auto; gap:0 10px; padding:8px 10px; border:1px solid var(--linea); border-radius:8px; margin-bottom:6px; cursor:pointer; }
   .hist:hover { border-color:var(--verde); } .hist b { font-weight:600; } .hist span { color:var(--tenue); font-size:12px; } .hist .der { text-align:right; white-space:nowrap; }
   #guardadas { max-height:230px; overflow-y:auto; }
   .tecbox { border-left:2px solid var(--linea); padding-left:10px; margin:8px 0; font-size:12.5px; color:var(--tenue); }
-  #simFlot { position:absolute; left:50%; transform:translateX(-50%); bottom:54px; z-index:5; width:min(760px, 92%); background:rgba(16,20,18,.94); border:1px solid var(--linea); border-radius:12px; padding:12px 16px; }
+  #simFlot { position:absolute; left:50%; transform:translateX(-50%); bottom:54px; z-index:5; width:min(760px, 92%); background:var(--flot); border:1px solid var(--linea); border-radius:12px; padding:12px 16px; }
   #simTit { font-weight:600; font-size:15px; margin-bottom:4px; } #simTxt { font-size:13.5px; color:var(--tinta); line-height:1.5; } #simTxt span { color:var(--tenue); }
   .chipv { display:inline-block; padding:1px 8px; border-radius:999px; font-size:11.5px; font-weight:600; margin-left:6px; vertical-align:middle; }
   .v0 { background:#1f5a3a; color:#bff0d2; } .v1 { background:#5a4b12; color:#f3e2a0; } .v2 { background:#123f5a; color:#b9e1f7; } .v3 { background:#4a2a25; color:#f0c0b6; }
   .zona { border:1px solid var(--linea); border-radius:10px; padding:10px 12px; margin:10px 0; } .zona h3 { margin:0 0 4px; font-size:15px; }
   .zona table { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:8px; } .zona th { text-align:right; color:var(--tenue); font-weight:500; padding:3px 4px; } .zona th:first-child, .zona td:first-child { text-align:left; }
-  .zona td { text-align:right; padding:5px 4px; border-top:1px solid var(--linea); font-variant-numeric:tabular-nums; } .zona tr.sel td { background:#1b2a22; } .zona tr { cursor:pointer; }
+  .zona td { text-align:right; padding:5px 4px; border-top:1px solid var(--linea); font-variant-numeric:tabular-nums; } .zona tr.sel td { background:var(--sel); } .zona tr { cursor:pointer; }
   .tecn { margin:6px 0 0; padding-left:18px; font-size:13px; } .tecn li { margin-bottom:4px; } .cultivoFila { padding:7px 0; border-bottom:1px solid var(--linea); font-size:13.5px; }
   .frase { font-size:15.5px; line-height:1.5; margin:4px 0 10px; }
   .tabla2 { display:grid; grid-template-columns: 1fr 1fr; gap:0 18px; }
@@ -110,9 +122,9 @@
     <div id="ayuda" class="mini">Busca un lugar, pulsa «Marcar terreno» y haz clic en cada esquina. Doble clic para cerrar.</div>
   </div>
   <aside>
-    <h1>Prospector</h1>
-    <p class="sub">Marca un terreno en cualquier parte del mundo y obtén sus dimensiones reales, su relieve y su historia vista desde el espacio.</p>
-    <div class="conm" title="Cómo se explican los resultados"><button id="mSim" class="act">Explicación simple</button><button id="mTec">Explicación técnica</button></div>
+    <div class="encab"><h1>Prospector</h1><button id="bTema" title="Cambiar entre fondo claro y oscuro" style="padding:5px 10px;font-size:12.5px">Oscuro</button></div>
+    <p class="sub">Marca un terreno en cualquier parte del mundo y mira dónde y qué se puede cultivar.</p>
+    <div class="conm" title="Cómo se explican los resultados" style="margin-bottom:14px"><button id="mSim" class="act">Simple</button><button id="mTec">Técnico</button></div>
 
     <h2>1 · Ubicar</h2>
     <div class="fila">
@@ -269,6 +281,23 @@ async function guardadas() {
 }
 const modoTec = v => { document.body.classList.toggle('tecnico', v); $('mTec').classList.toggle('act', v); $('mSim').classList.toggle('act', !v); localStorage.setItem('prospector_tecnico', v ? '1' : '0'); };
 $('mSim').onclick = () => modoTec(false); $('mTec').onclick = () => modoTec(true); modoTec(localStorage.getItem('prospector_tecnico') === '1');
+// ---------- presentación: tema claro/oscuro y secciones plegables (se recuerda qué dejó abierto cada persona)
+const tema = claro => { document.body.classList.toggle('claro', claro); $('bTema').textContent = claro ? 'Oscuro' : 'Claro'; localStorage.setItem('prospector_tema', claro ? 'claro' : 'oscuro'); };
+$('bTema').onclick = () => { tema(!document.body.classList.contains('claro')); if (escena3) escena3.background.set(document.body.classList.contains('claro') ? 0xdde4df : 0x0b0e0c); }; tema(localStorage.getItem('prospector_tema') !== 'oscuro');
+let plegado = {}; try { plegado = JSON.parse(localStorage.getItem('prospector_plegado') || '{}'); } catch (e) {}
+function plegables(raiz) {
+  raiz.querySelectorAll('details[data-k]').forEach(d => { const k = d.dataset.k; d.open = k in plegado ? plegado[k] : d.hasAttribute('data-def');
+    d.ontoggle = () => { plegado[k] = d.open; localStorage.setItem('prospector_plegado', JSON.stringify(plegado)); }; });
+}
+(function plegarPanel() {   // cada título del panel pasa a ser una sección que se abre y se cierra
+  const abiertas = ['1 · Ubicar', '2 · Marcar terreno', '3 · ¿Dónde se puede cultivar?', '4 · Qué cultivar, dónde y cómo'];
+  document.querySelectorAll('aside h2').forEach(h => { const d = document.createElement('details'), su = document.createElement('summary'), cu = document.createElement('div');
+    d.className = 'sec'; cu.className = 'cuerpo'; d.dataset.k = 's-' + h.textContent.trim(); if (abiertas.includes(h.textContent.trim())) d.setAttribute('data-def', '');
+    let n = h.nextSibling; const hijos = []; while (n && !(n.nodeType === 1 && (n.tagName === 'H2' || n.id === 'resultado'))) { hijos.push(n); n = n.nextSibling; }
+    h.parentNode.insertBefore(d, h); su.appendChild(h); d.appendChild(su); d.appendChild(cu); hijos.forEach(x => cu.appendChild(x)); });
+  plegables(document.querySelector('aside'));
+})();
+['ficha', 'probar'].forEach(id => $(id).addEventListener('click', e => { if (e.target.closest('h4')) $(id).classList.toggle('min'); }));
 guardadas(); setTimeout(chips, 0);
 
 const mmss = t => `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, '0')}`;
@@ -356,30 +385,31 @@ function pintarPlan() {
   const p = planDatos, c = p.clima, M = MESES.map(m => m.toLowerCase());
   const clima = `Aquí llueven unos <b>${fmt(c.lluvia_reciente, 0)} mm al año</b>` + (c.lluvia_antes ? ` (entre ${c.periodo_antes[0]} y ${c.periodo_antes[1]} eran ${fmt(c.lluvia_antes, 0)})` : '') +
     `, con unos ${fmt(c.heladas_por_anio, 0)} días de helada y ${fmt(c.dias_calor_35, 0)} días sobre 35 °C al año. El suelo es ${p.suelo.textura}.`;
-  const filaC = x => `<div class="cultivoFila"><b>${x.nombre}</b><span class="chipv ${V[x.veredicto]}">${x.veredicto}</span><br><span style="color:var(--tenue)">${x.porque}</span>` +
+  const filaC = x => `<details class="cultivoFila" data-k="c-${x.clave}"><summary><b>${x.nombre}</b><span class="chipv ${V[x.veredicto]}">${x.veredicto}</span></summary><div class="porque">${x.porque}</div>` +
     (x.siembra_mes ? `<div class="tecbox tec">Siembra tentativa ${M[x.siembra_mes - 1]} → cosecha ${M[x.cosecha_mes - 1]} (${x.ciclo_dias} días) · rendimiento relativo mediano ${x.apto} (con riego ${x.con_riego}, sembrando en ${M[x.siembra_mes_riego - 1]}) · agua del cultivo ${x.agua_mm} mm, la lluvia cubre ${x.lluvia_cubre_pct} %, faltan ${x.riego_mm} mm · factores: agua ${x.tecnico.factor_agua}, temperatura ${x.tecnico.factor_temperatura}, floración ${x.tecnico.factor_floracion}, emergencia ${x.tecnico.factor_emergencia} · prob. helada en floración ${x.tecnico.prob_helada_floracion}, calor ${x.tecnico.prob_calor_floracion}, déficit ${x.tecnico.prob_deficit_hidrico} · Kc ${x.tecnico.parametros.Kc.join('/')}, Ky ${x.tecnico.parametros.Ky}, raíz ${x.tecnico.parametros.raiz_m} m, C ${x.tecnico.parametros.C_erosion}` +
-      (x.calendario ? ` · <b>ajuste local:</b> en la zona ${x.calendario.referencia ? 'la referencia (' + x.calendario.referencia + ')' : 'este cultivo'} se siembra en ${M[x.calendario.siembra_mes - 1]} y se cosecha en ${M[x.calendario.cosecha_mes - 1]} (${x.calendario.ciclo_dias} días); ciclo ajustado a ${x.calendario.grados_dia_local} grados-día (valor general ${x.calendario.grados_dia_general}); diferencia con la siembra simulada ${x.calendario.diferencia_dias} días · ${x.calendario.fuente}` : ' · sin calendario local: parámetros generales') + `</div>` : '') + '</div>';
+      (x.calendario ? ` · <b>ajuste local:</b> en la zona ${x.calendario.referencia ? 'la referencia (' + x.calendario.referencia + ')' : 'este cultivo'} se siembra en ${M[x.calendario.siembra_mes - 1]} y se cosecha en ${M[x.calendario.cosecha_mes - 1]} (${x.calendario.ciclo_dias} días); ciclo ajustado a ${x.calendario.grados_dia_local} grados-día (valor general ${x.calendario.grados_dia_general}); diferencia con la siembra simulada ${x.calendario.diferencia_dias} días · ${x.calendario.fuente}` : ' · sin calendario local: parámetros generales') + `</div>` : '') + '</details>';
   const buenos = p.cultivos.filter(x => x.veredicto.startsWith('se da')), riego = p.cultivos.filter(x => x.veredicto === 'solo con riego'), no = p.cultivos.filter(x => x.veredicto.startsWith('no'));
-  const zonas = p.zonas.map(z => `<div class="zona"><h3>${z.nombre} · ${fmt(z.ha, 1)} ha</h3><div class="mini">${z.descripcion}</div>` +
+  const zonas = p.zonas.map((z, zi) => `<details class="zona" data-k="z-${z.clave}" ${zi === 0 ? 'data-def' : ''}><summary><h3>${z.nombre} · ${fmt(z.ha, 1)} ha</h3></summary><div class="mini" style="margin-top:4px">${z.descripcion}</div>` +
     `<div style="margin-top:6px"><b>Conviene:</b> ${z.recomendados.join(', ')}.` + (z.evitar.length ? ` <b>Mejor evitar:</b> ${z.evitar.join(', ')}.` : '') + '</div>' +
     (z.tecnicas.length ? `<div style="margin-top:8px"><b>Cómo sembrar y proteger</b></div><ul class="tecn">${z.tecnicas.map(t => `<li><b>${t.titulo}.</b> ${t.porque}</li>`).join('')}</ul>` : '') +
     `<table><tr><th>Rotación</th><th title="Años en que el cultivo sale bien">Años buenos</th><th>Agua mm</th><th title="Toneladas de suelo que se pierden por hectárea al año">Suelo perdido</th><th>Meses desnudo</th></tr>` +
-    z.estrategias.map((e, k) => `<tr class="${k === estDe(z) ? 'sel' : ''}" data-est="${k}"><td>${e.nombre}${k === z.mejor ? ' <b style="color:#8fd694">★ la que más rinde</b>' : ''}<div class="mini">${e.nota}</div></td><td>${e.buenos_de_10} de 10</td><td>${e.agua_mm}</td><td>${e.erosion_t_ha} t/ha</td><td>${e.meses_desnudo}</td></tr>`).join('') + '</table>' +
-    `<div class="tecbox tec">Pendiente media ${z.pendiente_media} % · factor LS ${z.factor_ls} · erosión por RUSLE (R de Renard y Freimund 1994, K de Williams 1995, C de Panagos et al. 2015).</div></div>`).join('');
+    z.estrategias.map((e, k) => `<tr class="${k === estDe(z) ? 'sel' : ''}" data-est="${k}"><td>${e.nombre}${k === z.mejor ? ' <b style="color:var(--verde)">★ la que más rinde</b>' : ''}<div class="mini">${e.nota}</div></td><td>${e.buenos_de_10} de 10</td><td>${e.agua_mm}</td><td>${e.erosion_t_ha} t/ha</td><td>${e.meses_desnudo}</td></tr>`).join('') + '</table>' +
+    `<div class="tecbox tec">Pendiente media ${z.pendiente_media} % · factor LS ${z.factor_ls} · erosión por RUSLE (R de Renard y Freimund 1994, K de Williams 1995, C de Panagos et al. 2015).</div></details>`).join('');
   const por = Object.fromEntries(p.cultivos.map(x => [x.clave, x])), zPor = Object.fromEntries(p.zonas.map(z => [z.clave, z]));
-  const reparto = !loteo ? '' : `<div style="margin-top:14px"><b>Cómo repartir el terreno</b></div><p class="frase">De tus <b>${fmt(loteo.total_ha, 1)} ha</b> se siembran <b>${fmt(loteo.usado_ha, 1)} ha</b> (${loteo.pct || 0} %) en ${loteo.lotes.length} lotes. El resto no se ocupa, y abajo dice por qué.</p>` +
+  const reparto = !loteo ? '' : `<details class="grupo" data-k="g-reparto" data-def><summary>Cómo repartir el terreno</summary><p class="frase">De tus <b>${fmt(loteo.total_ha, 1)} ha</b> se siembran <b>${fmt(loteo.usado_ha, 1)} ha</b> (${loteo.pct || 0} %) en ${loteo.lotes.length} lotes. El resto no se ocupa, y abajo dice por qué.</p>` +
     loteo.hallazgos.map(h => `<div class="mini" style="margin-top:8px">${h.pregunta}</div><select data-opc="${h.clave}">${h.opciones.map(([v, n]) => `<option value="${v}" ${v === h.valor ? 'selected' : ''}>${n}</option>`).join('')}</select>`).join('') +
     `<table style="margin-top:10px"><tr><th>Lote</th><th>Terreno</th><th>ha</th><th>Cultivo que más rinde</th></tr>${loteo.lotes.map(l => { const z = zPor[l.zona], e = z && z.estrategias[z.mejor || 0]; return `<tr><td>${l.id}</td><td>${l.zona_nombre}</td><td>${fmt(l.ha, 1)}</td><td>${e ? e.nombres.join(' → ') : ''}</td></tr>`; }).join('')}</table>` +
     `<div style="margin-top:10px">${textoRed()}</div><div style="margin-top:10px"><b>Obras para dejarlo listo</b></div><ol class="tecn" style="padding-left:18px">${(loteo.etapas || []).map(e => `<li><b>${e.titulo}.</b> ${e.detalle}</li>`).join('')}</ol>` +
     (loteo.proyeccion ? `<div style="margin-top:8px"><b>Proyección del terreno</b></div><table><tr><td>Superficie cultivable hoy</td><td>${fmt(loteo.proyeccion.hoy_ha, 1)} ha</td></tr><tr><td>Superficie sembrada con este plan</td><td>${fmt(loteo.proyeccion.plan_ha, 1)} ha</td></tr>` +
       (loteo.proyeccion.despeje_ha ? `<tr><td>Árboles y matorral a despejar</td><td>${fmt(loteo.proyeccion.despeje_ha, 1)} ha</td></tr>` : '') + `<tr><td>Caminos nuevos</td><td>${fmt(loteo.proyeccion.camino_m, 0)} m</td></tr><tr><td>Agua que usan los cultivos al año</td><td>${fmt(loteo.proyeccion.agua_m3_anio, 0)} m³</td></tr><tr><td>Años en que la cosecha sale bien</td><td>${fmt(loteo.proyeccion.buenos_de_10, 0)} de cada 10</td></tr></table>` : '') +
-    `<div style="margin-top:8px"><b>Lo que no se siembra</b></div><table>${loteo.fuera.map(x => `<tr><td>${x.motivo}</td><td>${fmt(x.ha, 1)} ha</td></tr>`).join('')}</table>`;
+    `<div style="margin-top:8px"><b>Lo que no se siembra</b></div><table>${loteo.fuera.map(x => `<tr><td>${x.motivo}</td><td>${fmt(x.ha, 1)} ha</td></tr>`).join('')}</table></details>`;
   $('plan').innerHTML = `<p class="frase">${clima}</p><div class="fila"><span class="mini">Hoy se cultiva aquí:</span><select id="selActual">${p.cultivos.filter(x => x.siembra_mes).map(x => `<option value="${x.clave}" ${x.clave === p.actual ? 'selected' : ''}>${x.nombre}</option>`).join('')}</select></div>` +
-    `<p class="mini" style="margin-top:10px">Se probaron ${p.cultivos.length} cultivos de campo. Existen muchos más (frutales, hortalizas, viñas, forrajeras): que uno no aparezca aquí no significa que no se dé. Las fechas de siembra y cosecha son tentativas; la fecha real depende de la variedad y del año.</p><div style="margin-top:4px"><b>Cultivos que se dan aquí sin riego</b></div>${buenos.map(filaC).join('') || '<p class="mini">Ninguno de la lista se da bien sin riego.</p>'}` +
-    (riego.length ? `<div style="margin-top:10px"><b>Solo con riego</b></div>${riego.map(filaC).join('')}` : '') +
+    `<p class="mini" style="margin-top:10px">Se probaron ${p.cultivos.length} cultivos de campo. Existen muchos más (frutales, hortalizas, viñas, forrajeras): que uno no aparezca aquí no significa que no se dé. Las fechas de siembra y cosecha son tentativas; la fecha real depende de la variedad y del año.</p><details class="grupo" data-k="g-secano" data-def><summary>Se dan aquí sin riego (${buenos.length})</summary>${buenos.map(filaC).join('') || '<p class="mini">Ninguno de la lista se da bien sin riego.</p>'}</details>` +
+    (riego.length ? `<details class="grupo" data-k="g-riego"><summary>Solo con riego (${riego.length})</summary>${riego.map(filaC).join('')}</details>` : '') +
     (no.length ? `<div class="mini" style="margin-top:8px">No se recomiendan: ${no.map(x => x.nombre).join(', ')}.</div>` : '') +
     reparto + `<div style="margin-top:14px"><b>Por zonas del terreno</b> <span class="mini">(toca una rotación para verla simulada en el 3D)</span> <button id="planMejor" class="herr" style="margin-top:6px">Ver en el 3D dónde va cada cultivo</button></div>${zonas}` +
     `<div class="tecbox tec">${p.fuentes.clima}. Método: ${p.fuentes.metodo}. Parámetros: ${p.fuentes.parametros}. Agua útil del suelo ${p.suelo.agua_util_mm_m} mm/m (Saxton y Rawls 2006). ETo anual ${c.eto_anual} mm.</div>`;
+  plegables($('plan'));
   $('selActual').onchange = e => cargarPlan(planId, e.target.value);
   $('plan').querySelectorAll('select[data-opc]').forEach(el => el.onchange = () => { loteoOpc[el.dataset.opc] = el.value; cargarLoteo(planId); });
   const irPlan = est => { sim.est = est; sim.anio = 0; pintarPlan(); $('capa').value = 'plan'; ver3d(); $('capa').onchange(); };
@@ -454,7 +484,7 @@ function pintarCultivo(d, id, soloDatos) {
 let renderer, escena3, camara, ctl, malla, mat, borde, datosMalla, metaActual, uvGrilla, uvHD, fichaBase = '';
 function iniciar3d() {
   const c = $('tres'); renderer = new THREE.WebGLRenderer({ antialias: true }); renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  c.appendChild(renderer.domElement); escena3 = new THREE.Scene(); escena3.background = new THREE.Color(0x0b0e0c);
+  c.appendChild(renderer.domElement); escena3 = new THREE.Scene(); escena3.background = new THREE.Color(document.body.classList.contains('claro') ? 0xdde4df : 0x0b0e0c);
   camara = new THREE.PerspectiveCamera(42, 1, 1, 1e6); ctl = new OrbitControls(camara, renderer.domElement); ctl.maxPolarAngle = Math.PI / 2.05; ctl.enableDamping = true;
   escena3.add(new THREE.AmbientLight(0xffffff, 2.5)); const sol = new THREE.DirectionalLight(0xffffff, 1.4); sol.position.set(-1, 1.4, -0.6); escena3.add(sol);
   const ajustar = () => { const w = c.clientWidth, h = c.clientHeight; if (!w || !h) return; renderer.setSize(w, h); camara.aspect = w / h; camara.updateProjectionMatrix(); };
@@ -766,11 +796,18 @@ async function texturaPlan(o = {}) {
 function ponerMapa(tx) { if (mat.map && mat.map !== tx) { if (mat.map === planTx) planTx = null; mat.map.dispose(); } mat.map = tx; mat.needsUpdate = true; }
 const CAPAS3D = [['hd', 'Imagen'], ['cultivo', 'Cultivable'], ['plan', 'Plan'], ['aptitud', 'Límites'], ['pendiente', 'Pendiente'], ['flujo', 'Agua'], ['humedad', 'Humedad'], ['altitud', 'Altitud'], ['ndvi', 'Verdor'], ['imagen', 'Sentinel-2']];
 const BASES = [['esri', 'Alta resolución'], ['s2', 'Sentinel-2'], ['modis', 'NASA MODIS']];
+let masCapasAb = false;
 function chips() {
   const en3d = $('tres').style.display === 'block', sel = en3d ? $('capa') : $('base'), c = $('capas'); c.innerHTML = '';
   (en3d ? CAPAS3D : BASES).forEach(([k, n]) => { const b = document.createElement('button'), o = sel.querySelector(`option[value=${k}]`);
     b.textContent = n; b.title = o ? o.textContent : n; b.disabled = !!(o && o.disabled); b.classList.toggle('act', sel.value === k);
     b.onclick = () => { sel.value = k; sel.onchange({ target: sel }); chips(); }; c.appendChild(b); });
+  if (en3d) {   // solo tres capas a la vista; el resto queda bajo «Más capas»
+    const bs = [...c.children], extra = bs.slice(3), m = document.createElement('div'), t = document.createElement('button'), act = extra.find(b => b.classList.contains('act'));
+    m.id = 'masCapas'; m.classList.toggle('ab', masCapasAb); extra.forEach(b => m.appendChild(b));
+    t.textContent = (act ? act.textContent + ' · ' : '') + 'Más capas ' + (masCapasAb ? '▴' : '▾'); t.classList.toggle('act', !!act);
+    t.onclick = () => { masCapasAb = !masCapasAb; chips(); }; c.appendChild(t); c.appendChild(m);
+  }
   $('mesFlot').classList.toggle('oculto', !(en3d && $('capa').value === 'ndvi'));
   const enPlan = en3d && $('capa').value === 'plan' && planDatos; $('simFlot').classList.toggle('oculto', !enPlan); $('probar').classList.toggle('oculto', !(enPlan && loteo)); if (!enPlan) pararSim();
   if (en3d && $('capa').value === 'plan') { $('leyenda').innerHTML = [['#967452', 'Suelo sin cultivo'], ['#cdbb85', 'Rastrojo (restos de la cosecha)'], ['#4f9a3a', 'Cultivo creciendo'], ['#dbb045', 'Maduro, o le falta agua']].map(([c, n]) => `<div><i style="background:${c}"></i>${n}</div>`).join(''); $('leyenda').classList.remove('oculto'); if (enPlan) textoSim(); }
