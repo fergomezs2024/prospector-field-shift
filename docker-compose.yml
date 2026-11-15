@@ -1,0 +1,11 @@
+services:
+  prospector:
+    build: .
+    ports: ["8790:8790"]
+    volumes: ["prospector_data:/data"]     # analysed fields (cache) and the global reference data
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits: { cpus: "2", memory: 4g }
+volumes:
+  prospector_data:

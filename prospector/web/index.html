@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prospector · Field Shift</title>
+<link rel="stylesheet" href="vendor/maplibre-gl.css">
+<script type="importmap">{"imports": {"three": "./vendor/three.module.js"}}</script>
+<style>
+  :root { --bg:#101412; --panel:#171c19; --linea:#2a322d; --tinta:#e9ede9; --tenue:#9aa59d; --verde:#3fbf7f; --verde-o:#2a8f5c; --ambar:#e0a100; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--tinta); font:14px/1.45 Inter, "Noto Sans", system-ui, sans-serif; }
+  #app { display:grid; grid-template-columns: 1fr 430px; height:100%; }
+  #escena { position:relative; min-width:0; }
+  #mapa, #tres { position:absolute; inset:0; }
+  #tres { display:none; background:#0b0e0c; }
+  #tres canvas { display:block; }
+  #probar { position:absolute; right:14px; top:176px; z-index:5; width:270px; max-height:calc(100% - 300px); overflow:auto; background:rgba(16,20,18,.93); border:1px solid var(--linea); border-radius:10px; padding:10px 14px; font-size:13px; }
+  #obra { position:absolute; left:50%; transform:translateX(-50%); top:58px; z-index:6; max-width:60%; background:rgba(16,20,18,.95); border:1px solid #8fd694; border-radius:10px; padding:9px 16px; font-size:14px; text-align:center; } #obra b { display:block; font-size:16px; color:#8fd694; }
+  #probar select { width:100%; margin:3px 0 8px; } #probar h4 { margin:0 0 6px; font-size:14px; }
+  .etq::after { content:''; position:absolute; left:50%; top:100%; width:1.5px; height:var(--tallo, 12px); background:rgba(255,255,255,.8); }
+  .etq { position:absolute; transform:translate(-50%, -100%); z-index:4; pointer-events:none; background:rgba(16,20,18,.9); border:1px solid rgba(255,255,255,.35); border-radius:10px; padding:5px 9px; font-size:11.5px; line-height:1.35; color:#e8ece8; white-space:nowrap; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,.45); }
+  .etq b { display:block; font-size:14px; color:#fff; } .etq span { display:block; color:#b9c4bb; } .etq i { color:#e6c95a; font-style:normal; } .etq .rot { margin-top:3px; font-size:11.5px; } .etq u { color:#8fd694; text-decoration:none; font-weight:600; }
+  aside { background:var(--panel); border-left:1px solid var(--linea); overflow-y:auto; padding:18px 18px 28px; }
+  h1 { font-size:19px; margin:0 0 2px; letter-spacing:.2px; }
+  h2 { font-size:12px; text-transform:uppercase; letter-spacing:.9px; color:var(--tenue); margin:22px 0 8px; font-weight:600; }
+  p.sub { color:var(--tenue); margin:0 0 6px; }
+  button, select, input[type=text] { font:inherit; color:var(--tinta); background:#1f2622; border:1px solid var(--linea); border-radius:8px; padding:8px 12px; }
+  button { cursor:pointer; }
+  button:hover { border-color:#47554c; }
+  button.pri { background:var(--verde-o); border-color:var(--verde-o); font-weight:600; }
+  button.pri:hover { background:var(--verde); }
+  button:disabled { opacity:.45; cursor:default; }
+  .fila { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .fila > input[type=text] { flex:1; min-width:0; }
+  .dato { display:grid; grid-template-columns: 1fr auto; gap:2px 12px; padding:7px 0; border-bottom:1px solid var(--linea); }
+  .dato b { font-variant-numeric: tabular-nums; font-weight:600; }
+  .dato span { color:var(--tenue); }
+  .barra { height:8px; border-radius:4px; background:#232b26; overflow:hidden; margin:3px 0 8px; }
+  .barra i { display:block; height:100%; background:var(--verde); }
+  .mini { font-size:12px; color:var(--tenue); }
+  #log { font:12px/1.5 ui-monospace, monospace; color:var(--tenue); background:#0f1311; border:1px solid var(--linea); border-radius:8px; padding:10px; max-height:150px; overflow:auto; white-space:pre-wrap; }
+  .chip { display:inline-block; padding:3px 9px; border:1px solid var(--linea); border-radius:999px; margin:0 6px 6px 0; cursor:pointer; font-size:12.5px; }
+  .chip:hover { border-color:var(--verde); }
+  #flot { position:absolute; left:14px; top:14px; right:14px; display:flex; gap:8px; z-index:5; align-items:flex-start; pointer-events:none; }
+  #flot > * { pointer-events:auto; } #flot .sepv { width:1px; height:34px; background:var(--linea); margin:0 4px; }
+  #capas { display:flex; flex-wrap:wrap; gap:6px; } #capas button { padding:7px 11px; font-size:13px; background:rgba(16,20,18,.88); }
+  #capas button.act { border-color:var(--verde); color:var(--verde); } #capas button:disabled { opacity:.4; }
+  #mesFlot { position:absolute; left:50%; transform:translateX(-50%); bottom:54px; z-index:5; background:rgba(16,20,18,.9); border:1px solid var(--linea); border-radius:10px; padding:8px 14px; display:flex; gap:12px; align-items:center; width:min(420px, 70%); }
+  #mesFlot span { min-width:84px; }
+  #flot button { background:rgba(16,20,18,.88); backdrop-filter: blur(4px); }
+  #flot button.act, button.herr.act { border-color:var(--verde); color:var(--verde); }
+  #ficha { position:absolute; left:14px; top:60px; z-index:5; width:300px; background:rgba(16,20,18,.9); border:1px solid var(--linea); border-radius:10px; padding:10px 14px; font-size:13px; }
+  #ficha h4 { margin:0 0 6px; font-size:14.5px; } #ficha .dato { padding:3px 0; border-bottom:0; } #ficha .sep { border-top:1px solid var(--linea); margin:6px 0; }
+  #ayuda { position:absolute; left:14px; bottom:14px; z-index:5; background:rgba(16,20,18,.88); padding:8px 12px; border-radius:8px; border:1px solid var(--linea); max-width:60%; }
+  input[type=range] { width:100%; accent-color: var(--verde); }
+  .oculto { display:none !important; }
+  #leyenda { position:absolute; right:14px; top:60px; z-index:5; background:rgba(16,20,18,.9); border:1px solid var(--linea); border-radius:10px; padding:10px 14px; font-size:13.5px; }
+  #leyenda div { display:flex; align-items:center; gap:8px; padding:2px 0; } #leyenda i, .cuad { display:inline-block; width:13px; height:13px; border-radius:3px; flex:none; }
+  #tarjeta { position:absolute; right:14px; bottom:120px; z-index:6; width:min(420px, 80%); background:rgba(16,20,18,.95); border:1px solid var(--linea); border-radius:12px; padding:14px 16px; }
+  #tarjeta h3 { margin:0 0 6px; font-size:17px; display:flex; align-items:center; gap:8px; } #tarjeta p { margin:0 0 8px; font-size:14.5px; line-height:1.5; }
+  #tarjeta ul { margin:0; padding-left:18px; color:var(--tenue); font-size:12.5px; } #tarjeta .x { position:absolute; right:10px; top:6px; cursor:pointer; color:var(--tenue); font-size:18px; }
+  #pasos { margin-top:12px; border:1px solid var(--linea); border-radius:10px; padding:12px 14px; background:#131815; }
+  #pasos .tit { font-weight:600; margin-bottom:8px; } .paso { padding:7px 0; } .paso + .paso { border-top:1px solid var(--linea); }
+  .paso .cab { display:flex; justify-content:space-between; gap:10px; align-items:baseline; } .paso .cab b { font-weight:500; } .paso .cab span { color:var(--tenue); font-size:12.5px; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .paso.pendiente .cab b { color:var(--tenue); } .paso.listo .cab b::before { content:'✓ '; color:var(--verde); } .paso.error .cab b::before { content:'✕ '; color:#e0694f; }
+  .paso .barra { margin:6px 0 0; height:6px; } .paso.corriendo .barra i { background:var(--verde); transition:width 1.2s linear; } .paso.pendiente .barra { display:none; } .paso.listo .barra { display:none; }
+  body:not(.tecnico) .tec { display:none !important; }
+  .conm { display:inline-flex; border:1px solid var(--linea); border-radius:8px; overflow:hidden; margin-top:8px; } .conm button { border:0; border-radius:0; padding:6px 12px; background:transparent; font-size:13px; }
+  .conm button.act { background:var(--verde-o); font-weight:600; }
+  .hist { display:grid; grid-template-columns:1fr auto; gap:0 10px; padding:8px 10px; border:1px solid var(--linea); border-radius:8px; margin-bottom:6px; cursor:pointer; }
+  .hist:hover { border-color:var(--verde); } .hist b { font-weight:600; } .hist span { color:var(--tenue); font-size:12px; } .hist .der { text-align:right; white-space:nowrap; }
+  #guardadas { max-height:230px; overflow-y:auto; }
+  .tecbox { border-left:2px solid var(--linea); padding-left:10px; margin:8px 0; font-size:12.5px; color:var(--tenue); }
+  #simFlot { position:absolute; left:50%; transform:translateX(-50%); bottom:54px; z-index:5; width:min(760px, 92%); background:rgba(16,20,18,.94); border:1px solid var(--linea); border-radius:12px; padding:12px 16px; }
+  #simTit { font-weight:600; font-size:15px; margin-bottom:4px; } #simTxt { font-size:13.5px; color:var(--tinta); line-height:1.5; } #simTxt span { color:var(--tenue); }
+  .chipv { display:inline-block; padding:1px 8px; border-radius:999px; font-size:11.5px; font-weight:600; margin-left:6px; vertical-align:middle; }
+  .v0 { background:#1f5a3a; color:#bff0d2; } .v1 { background:#5a4b12; color:#f3e2a0; } .v2 { background:#123f5a; color:#b9e1f7; } .v3 { background:#4a2a25; color:#f0c0b6; }
+  .zona { border:1px solid var(--linea); border-radius:10px; padding:10px 12px; margin:10px 0; } .zona h3 { margin:0 0 4px; font-size:15px; }
+  .zona table { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:8px; } .zona th { text-align:right; color:var(--tenue); font-weight:500; padding:3px 4px; } .zona th:first-child, .zona td:first-child { text-align:left; }
+  .zona td { text-align:right; padding:5px 4px; border-top:1px solid var(--linea); font-variant-numeric:tabular-nums; } .zona tr.sel td { background:#1b2a22; } .zona tr { cursor:pointer; }
+  .tecn { margin:6px 0 0; padding-left:18px; font-size:13px; } .tecn li { margin-bottom:4px; } .cultivoFila { padding:7px 0; border-bottom:1px solid var(--linea); font-size:13.5px; }
+  .frase { font-size:15.5px; line-height:1.5; margin:4px 0 10px; }
+  .tabla2 { display:grid; grid-template-columns: 1fr 1fr; gap:0 18px; }
+  @media (max-width: 900px) { #app { grid-template-columns: 1fr; grid-template-rows: 55% 45%; } aside { border-left:0; border-top:1px solid var(--linea); } }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="escena">
+    <div id="mapa"></div>
+    <div id="tres"></div>
+    <div id="flot">
+      <button id="bMapa" class="act">Mapa satelital</button>
+      <button id="b3d" disabled>Terreno 3D</button>
+      <span class="sepv"></span>
+      <div id="capas"></div>
+    </div>
+    <div id="simFlot" class="oculto">
+      <div id="simTit"></div><div id="simTxt"></div>
+      <div class="fila" style="margin-top:8px"><button id="simPlay">▶ Simular</button><input id="simMes" type="range" min="0" max="35" value="5" style="flex:1">
+        <span class="conm" style="margin:0"><button data-t="seco">Año seco</button><button data-t="normal" class="act">Normal</button><button data-t="lluvioso">Lluvioso</button></span></div>
+    </div>
+    <div id="mesFlot" class="oculto"><span id="mesFlotTxt">Enero</span><input id="mesF" type="range" min="1" max="12" value="1"></div>
+    <div id="ficha" class="oculto"></div>
+    <div id="leyenda" class="oculto"></div>
+    <div id="probar" class="oculto"></div>
+    <div id="obra" class="oculto"></div>
+    <div id="tarjeta" class="oculto"><span class="x" id="tarjX">×</span><h3 id="tarjT"></h3><p id="tarjP"></p><ul id="tarjL"></ul></div>
+    <div id="ayuda" class="mini">Busca un lugar, pulsa «Marcar terreno» y haz clic en cada esquina. Doble clic para cerrar.</div>
+  </div>
+  <aside>
+    <h1>Prospector</h1>
+    <p class="sub">Marca un terreno en cualquier parte del mundo y obtén sus dimensiones reales, su relieve y su historia vista desde el espacio.</p>
+    <div class="conm" title="Cómo se explican los resultados"><button id="mSim" class="act">Explicación simple</button><button id="mTec">Explicación técnica</button></div>
+
+    <h2>1 · Ubicar</h2>
+    <div class="fila">
+      <input id="ir" type="text" placeholder="lat, lon  (ej. 42.03, -93.65)">
+      <button id="bIr">Ir</button>
+    </div>
+    <div class="fila" style="margin-top:8px">
+      <select id="base">
+        <option value="esri">Alta resolución (Esri World Imagery, &lt; 1 m)</option>
+        <option value="s2">Sentinel-2 sin nubes (10 m)</option>
+        <option value="modis">NASA MODIS color real (reciente)</option>
+      </select>
+    </div>
+    <h2>Historial de prospecciones</h2>
+    <div id="guardadas"></div>
+
+    <h2>2 · Marcar terreno</h2>
+    <div class="fila">
+      <button class="herr" data-modo="poligono" title="Haz clic en cada esquina; doble clic para cerrar">Polígono</button>
+      <button class="herr" data-modo="rect" title="Arrastra de una esquina a la opuesta">Rectángulo</button>
+      <button class="herr" data-modo="circulo" title="Arrastra desde el centro hacia afuera">Círculo</button>
+      <button id="bBorrar" disabled>Borrar</button>
+      <span id="areaViva" class="mini"></span>
+    </div>
+    <div class="fila" style="margin-top:8px">
+      <input id="nombre" type="text" placeholder="Nombre del terreno" value="">
+      <button id="bPros" class="pri" disabled>Prospectar</button>
+      <button id="bPausa" class="oculto" title="Detiene el análisis en curso; lo descargado se conserva">Pausar</button>
+    </div>
+    <div id="pasos" class="oculto"></div>
+    <div id="log" class="oculto" style="margin-top:10px"></div>
+
+    <div id="resultado" class="oculto">
+      <h2>3 · ¿Dónde se puede cultivar?</h2>
+      <div id="cult"><p class="mini">Comparando tu terreno con los potreros que hoy se cultivan alrededor…</p></div>
+      <h2>4 · Qué cultivar, dónde y cómo</h2>
+      <div id="plan"><p class="mini">Se calcula cuando termina el paso anterior.</p></div>
+      <h2>Dimensiones del terreno</h2>
+      <div id="dims"></div>
+
+      <h2>Límites físicos del terreno</h2><div id="apt"></div>
+      <h2>Capas sobre el terreno 3D</h2>
+      <select id="capa" style="width:100%">
+        <option value="hd">Imagen de alta resolución (Esri, &lt; 1 m)</option>
+        <option value="cultivo">Dónde se puede cultivar</option>
+        <option value="plan">Simulación del plan de cultivo</option>
+        <option value="aptitud">Límites físicos (pendiente, cauces, cobertura)</option>
+        <option value="imagen">Imagen Sentinel-2 (10 m)</option>
+        <option value="pendiente">Pendiente (%)</option>
+        <option value="flujo">Hacia dónde va el agua</option>
+        <option value="humedad">Zonas que acumulan humedad (índice topográfico)</option>
+        <option value="altitud">Altitud (metros sobre el nivel del mar)</option>
+        <option value="ndvi">Verdor por mes (NDVI, NASA HLS)</option>
+      </select>
+      <div id="ctlMes" class="oculto" style="margin-top:8px">
+        <div class="fila"><span id="mesTxt" style="min-width:90px">Enero</span><input id="mes" type="range" min="1" max="12" value="1"></div>
+      </div>
+      <div style="margin-top:10px" class="mini">Exageración vertical <span id="exTxt">2×</span></div>
+      <input id="exag" type="range" min="1" max="8" step="0.5" value="2">
+
+      <h2>Pendientes</h2><div id="pend"></div>
+      <h2>Orientación de las laderas</h2><div id="orient"></div>
+      <h2>Qué hay dentro y alrededor</h2><div id="cob"></div>
+      <h2>Fuentes de datos</h2><div id="fuentes" class="mini"></div>
+    </div>
+  </aside>
+</div>
+
+<script src="vendor/maplibre-gl.js"></script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from './vendor/OrbitControls.js';
+import { GLTFLoader } from './vendor/loaders/GLTFLoader.js';
+
+const $ = id => document.getElementById(id);
+const fmt = (v, d = 1) => Number(v).toLocaleString('es-CL', { maximumFractionDigits: d });
+const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const hace = new Date(Date.now() - 3 * 864e5).toISOString().slice(0, 10);
+const FUENTES = {
+  esri: { tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'], maxzoom: 18,
+          attribution: 'Esri, Maxar, Earthstar Geographics y la comunidad de usuarios SIG' },
+  s2: { tiles: ['https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2020_3857/default/g/{z}/{y}/{x}.jpg'], maxzoom: 15,
+        attribution: 'Sentinel-2 cloudless 2020 por EOX (contiene datos Copernicus Sentinel modificados)' },
+  modis: { tiles: [`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/${hace}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`],
+           maxzoom: 9, attribution: 'NASA GIBS · MODIS Terra ' + hace },
+};
+const estilo = k => ({ version: 8, sources: { base: { type: 'raster', tileSize: 256, ...FUENTES[k] } }, layers: [{ id: 'base', type: 'raster', source: 'base' }] });
+const mapa = new maplibregl.Map({ container: 'mapa', style: estilo('esri'), center: [10, 20], zoom: 1.6, doubleClickZoom: false });
+mapa.addControl(new maplibregl.NavigationControl(), 'bottom-right');
+mapa.addControl(new maplibregl.ScaleControl({ unit: 'metric' }), 'bottom-left');
+
+let pts = [], dibujando = false, cerrado = false, actual = null, ocupado = false;
+function capasDibujo() {
+  if (mapa.getSource('pol')) return;
+  mapa.addSource('pol', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+  mapa.addLayer({ id: 'polr', type: 'fill', source: 'pol', filter: ['==', '$type', 'Polygon'], paint: { 'fill-color': '#3fbf7f', 'fill-opacity': 0.18 } });
+  mapa.addLayer({ id: 'poll', type: 'line', source: 'pol', paint: { 'line-color': '#3fbf7f', 'line-width': 2.5 } });
+  mapa.addLayer({ id: 'polp', type: 'circle', source: 'pol', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 4, 'circle-color': '#fff', 'circle-stroke-color': '#2a8f5c', 'circle-stroke-width': 2 } });
+  pintar();
+}
+mapa.on('load', capasDibujo);
+mapa.on('styledata', () => { if (mapa.isStyleLoaded()) capasDibujo(); });
+function areaHa(p) {            // área sobre la esfera (aprox. local)
+  if (p.length < 3) return 0; const R = 6371008.8, r = Math.PI / 180; const lat0 = p.reduce((s, q) => s + q[1], 0) / p.length * r;
+  let a = 0; for (let i = 0; i < p.length; i++) { const [x1, y1] = p[i], [x2, y2] = p[(i + 1) % p.length];
+    a += (x1 * r * Math.cos(lat0) * R) * (y2 * r * R) - (x2 * r * Math.cos(lat0) * R) * (y1 * r * R); }
+  return Math.abs(a) / 2 / 1e4;
+}
+function pintar(cursor) {
+  const src = mapa.getSource('pol'); if (!src) return; const f = [];
+  const linea = cerrado ? [...pts, pts[0]] : (cursor ? [...pts, cursor] : pts);
+  if (cerrado && pts.length >= 3) f.push({ type: 'Feature', geometry: { type: 'Polygon', coordinates: [[...pts, pts[0]]] } });
+  else if (linea.length >= 2) f.push({ type: 'Feature', geometry: { type: 'LineString', coordinates: linea } });
+  if (pts.length <= 12) pts.forEach(p => f.push({ type: 'Feature', geometry: { type: 'Point', coordinates: p } }));
+  src.setData({ type: 'FeatureCollection', features: f });
+  const ha = areaHa(cursor && !cerrado ? [...pts, cursor] : pts);
+  $('areaViva').textContent = pts.length >= 2 ? `${ha < 100 ? ha.toFixed(2) : ha.toFixed(0)} ha` : '';
+  $('bPros').disabled = !cerrado || ocupado; $('bPros').textContent = ocupado ? 'Analizando…' : 'Prospectar'; $('bPausa').classList.toggle('oculto', !ocupado); $('bBorrar').disabled = pts.length === 0;
+}
+let modo = null, arrastre = null;
+const AYUDA = { poligono: 'Haz clic en cada esquina del terreno. Doble clic para cerrar.', rect: 'Arrastra de una esquina del terreno a la opuesta.', circulo: 'Arrastra desde el centro del terreno hacia afuera.' };
+function empezar(m) { modo = m; pts = []; cerrado = false; dibujando = true; arrastre = null; mapa.getCanvas().style.cursor = 'crosshair';
+  document.querySelectorAll('.herr').forEach(b => b.classList.toggle('act', b.dataset.modo === m)); verMapa(); $('ayuda').textContent = AYUDA[m]; pintar(); }
+function terminar() { dibujando = false; arrastre = null; modo = null; mapa.getCanvas().style.cursor = ''; mapa.dragPan.enable(); document.querySelectorAll('.herr').forEach(b => b.classList.remove('act')); pintar(); }
+document.querySelectorAll('.herr').forEach(b => b.onclick = () => empezar(b.dataset.modo));
+$('bBorrar').onclick = () => { pts = []; cerrado = false; terminar(); };
+function forma(a, b) {
+  if (modo === 'rect') return [[a.lng, a.lat], [b.lng, a.lat], [b.lng, b.lat], [a.lng, b.lat]];
+  const r = a.distanceTo(b), n = 48, dLat = r / 111320, dLon = r / (111320 * Math.cos(a.lat * Math.PI / 180));
+  return Array.from({ length: n }, (_, k) => [a.lng + dLon * Math.cos(2 * Math.PI * k / n), a.lat + dLat * Math.sin(2 * Math.PI * k / n)]);
+}
+mapa.on('mousedown', e => { if (!dibujando || modo === 'poligono') return; e.preventDefault(); mapa.dragPan.disable(); arrastre = e.lngLat; });
+mapa.on('mousemove', e => {
+  if (!dibujando) return;
+  if (modo === 'poligono') { if (pts.length) pintar([e.lngLat.lng, e.lngLat.lat]); return; }
+  if (arrastre) { pts = forma(arrastre, e.lngLat); cerrado = true; pintar(); cerrado = false; } });
+mapa.on('mouseup', e => { if (!dibujando || modo === 'poligono' || !arrastre) return;
+  if (arrastre.distanceTo(e.lngLat) < 10) { arrastre = null; mapa.dragPan.enable(); pts = []; pintar(); return; }
+  pts = forma(arrastre, e.lngLat); cerrado = true; terminar(); });
+mapa.on('click', e => { if (!dibujando || modo !== 'poligono') return; pts.push([e.lngLat.lng, e.lngLat.lat]); pintar(); });
+mapa.on('dblclick', e => { if (!dibujando || modo !== 'poligono') return; e.preventDefault();
+  if (pts.length >= 2) { const u = pts[pts.length - 1], v = pts[pts.length - 2]; if (Math.abs(u[0] - v[0]) < 1e-7 && Math.abs(u[1] - v[1]) < 1e-7) pts.pop(); }
+  if (pts.length >= 3) { cerrado = true; terminar(); } else pintar(); });
+$('bIr').onclick = () => { const m = $('ir').value.split(/[,\s]+/).map(Number).filter(v => !isNaN(v)); if (m.length >= 2) mapa.flyTo({ center: [m[1], m[0]], zoom: 14 }); };
+$('ir').addEventListener('keydown', e => { if (e.key === 'Enter') $('bIr').click(); });
+$('base').onchange = e => mapa.setStyle(estilo(e.target.value));
+
+async function guardadas() {
+  const a = await (await fetch('api/areas')).json(); const c = $('guardadas'); c.innerHTML = a.length ? '' : '<p class="mini">Aún no hay terrenos prospectados.</p>';
+  a.forEach(x => { const s = document.createElement('div'); s.className = 'hist';
+    s.innerHTML = `<div><b>${x.nombre}</b><br><span>${x.fecha}<span class="tec"> · ${x.centro[1].toFixed(4)}, ${x.centro[0].toFixed(4)}</span>${x.completo ? '' : ' · análisis incompleto'}</span></div>` +
+      `<div class="der"><b>${fmt(x.ha, 1)} ha</b><br><span>${x.cultivable_ha != null ? 'cultivable ' + fmt(x.cultivable_ha, 1) + ' ha' : ''}</span></div>`;
+    s.onclick = () => { pts = x.poligono.slice(0, -1); cerrado = true; dibujando = false; pintar(); mapa.flyTo({ center: x.centro, zoom: 14 }); $('nombre').value = x.nombre; cargar(x.id); }; c.appendChild(s); });
+}
+const modoTec = v => { document.body.classList.toggle('tecnico', v); $('mTec').classList.toggle('act', v); $('mSim').classList.toggle('act', !v); localStorage.setItem('prospector_tecnico', v ? '1' : '0'); };
+$('mSim').onclick = () => modoTec(false); $('mTec').onclick = () => modoTec(true); modoTec(localStorage.getItem('prospector_tecnico') === '1');
+guardadas(); setTimeout(chips, 0);
+
+const mmss = t => `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, '0')}`;
+const aprox = t => t < 90 ? `~${Math.round(t / 5) * 5} s` : `~${Math.round(t / 60)} min`;
+function pintarPasos(e, nombre) {
+  const c = $('pasos'); if (!e.pasos || !e.pasos.length) { c.classList.add('oculto'); return; } c.classList.remove('oculto');
+  const corr = e.estado === 'corriendo';
+  c.innerHTML = `<div class="tit">${corr ? 'Analizando' : (e.estado === 'error' ? 'Se detuvo' : (e.estado === 'pausado' ? 'En pausa' : 'Análisis completo'))}${nombre ? ' «' + nombre + '»' : ''}</div>` + e.pasos.map(p => {
+    const av = p.estado === 'corriendo' ? (p.avance != null && p.avance > 0.02 ? p.avance : Math.min(p.seg / Math.max(p.est, 1), 0.95)) : (p.estado === 'listo' ? 1 : 0);
+    const der = p.estado === 'listo' ? mmss(p.seg) : (p.estado === 'corriendo' ? `${mmss(p.seg)} de ${aprox(p.est)}` : aprox(p.est));
+    return `<div class="paso ${p.estado}"><div class="cab"><b>${p.nombre}</b><span>${der}</span></div><div class="barra"><i style="width:${Math.round(av * 100)}%"></i></div></div>`; }).join('') +
+    (corr ? '<div class="mini" style="margin-top:8px">Puedes mirar el terreno 3D mientras tanto. Para analizar otro terreno antes de que termine, pulsa «Pausar».</div>' : '');
+}
+let sondeo = null, enCurso = null;
+$('bPausa').onclick = () => { if (enCurso) fetch('api/pausar/' + enCurso, { method: 'POST' }); };
+function seguir(id, mostrado, nombre) {
+  if (sondeo) clearInterval(sondeo); ocupado = true; enCurso = id; pintar(); let conRegion = false;
+  const t = sondeo = setInterval(async () => {
+    let e;
+    try { const q = await fetch('api/estado/' + id); if (!q.ok) throw new Error(q.status); e = await q.json(); }
+    catch (err) { clearInterval(t); ocupado = false; pintar(); $('log').classList.remove('oculto'); $('log').textContent = 'Se perdió la conexión con el servidor. Pulsa «Prospectar» otra vez: lo ya descargado se conserva.'; return; }
+    pintarPasos(e, nombre || e.nombre);
+    if (e.estado === 'error') { $('log').classList.remove('oculto'); $('log').textContent = e.log.slice(-3).join('\n'); }
+    if (e.terreno && !mostrado) { mostrado = true; await cargar(id); guardadas(); }
+    if (e.region && !conRegion && mostrado) { conRegion = true; if (actual === id) await cargar(id, true); }
+    if (e.estado !== 'corriendo') { clearInterval(t); ocupado = false; pintar(); if (e.estado === 'listo') { if (actual === id) await cargar(id, true); guardadas(); } }
+  }, 1500);
+}
+function avisoPausa(r) { $('log').classList.toggle('oculto', !r.pausado); if (r.pausado) $('log').textContent = `Se pausó el análisis de «${r.pausado}». Se retoma al volver a abrirlo desde la lista.`; }
+fetch('api/activo').then(q => q.json()).then(o => { if (o.id) seguir(o.id, false, o.nombre); });   // si se recarga la página, se retoma el seguimiento
+$('bPros').onclick = async () => {
+  const geojson = { type: 'Polygon', coordinates: [[...pts, pts[0]]] }, nombre = $('nombre').value || 'Terreno';
+  const r = await (await fetch('api/prospectar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ geojson, nombre }) })).json();
+  avisoPausa(r); seguir(r.id, false, nombre);
+};
+
+function barras(obj) { return Object.entries(obj).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1])
+  .map(([k, v]) => `<div class="dato"><span>${k}</span><b>${fmt(v)} %</b></div><div class="barra"><i style="width:${Math.min(v, 100)}%"></i></div>`).join(''); }
+async function cargar(id, soloDatos) {
+  if (!soloDatos) { pintarCultivo.hecho = false; if (planId !== id) { planDatos = null; planId = null; loteo = null; pararSim(); $('plan').innerHTML = '<p class="mini">Se calcula cuando termina el paso anterior.</p>'; $('capa').querySelector('option[value=plan]').disabled = true; } }
+  const d = await (await fetch('api/terreno/' + id + '?motivo=' + (soloDatos ? 'actualizar' : 'abrir'))).json(); actual = id; const t = d.terreno;
+  const on = $('capa').querySelector('option[value=ndvi]'); on.disabled = !d.vegetacion;
+  on.textContent = d.vegetacion ? 'Verdor por mes (NDVI, NASA HLS)' : 'Verdor por mes (descargando historial…)';
+  $('resultado').classList.remove('oculto');
+  const filas = [['Superficie', `${fmt(t.superficie_ha, 2)} ha  ·  ${fmt(t.superficie_m2, 0)} m²`], ['Perímetro', `${fmt(t.perimetro_m, 0)} m`],
+    ['Largo máximo', `${fmt(t.largo_maximo_m, 0)} m`], ['Altitud (metros sobre el nivel del mar)', `${fmt(t.altitud_min_m)} – ${fmt(t.altitud_max_m)} m`],
+    ['Desnivel dentro del terreno (del punto más bajo al más alto)', `${fmt(t.desnivel_total_m)} m`]].concat(t.margen_altura_m != null ? [['Margen de altura (dos relieves)', `± ${fmt(t.margen_altura_m)} m`]] : []).concat([
+    ['Edificaciones', t.edificaciones ? `${t.edificaciones.dentro} dentro (${fmt(t.edificaciones.superficie_m2, 0)} m²) · ${t.edificaciones.alrededor} alrededor` : '—'], ['Pendiente media', `${fmt(t.pendiente_media_pct)} %  (${fmt(t.pendiente_media_grados)}°)`],
+    ['Pendiente máxima', `${fmt(t.pendiente_max_pct)} %`], ['Laderas miran al', t.orientacion_dominante],
+    ['El agua sale por', `${t.salida_agua.lat}, ${t.salida_agua.lon}`], ['Agua que llega desde fuera', `${fmt(t.agua_que_entra_desde_fuera_ha)} ha drenan hacia el terreno`]]);
+  $('dims').innerHTML = filas.map(([a, b]) => `<div class="dato"><span>${a}</span><b>${b}</b></div>`).join('');
+  fichaBase = `<h4>${d.meta.nombre || 'Terreno'}</h4>` + [['Superficie', `${fmt(t.superficie_ha, 2)} ha`], ['Altitud sobre el nivel del mar', `${fmt(t.altitud_min_m, 0)} – ${fmt(t.altitud_max_m, 0)} m`],
+    ['Desnivel dentro del terreno', `${fmt(t.desnivel_total_m)} m`], ['Pendiente media', `${fmt(t.pendiente_media_pct)} %`], ['Pendiente máxima', `${fmt(t.pendiente_max_pct)} %`],
+    ['Laderas miran al', t.orientacion_dominante], ['Agua que llega de fuera', `${fmt(t.agua_que_entra_desde_fuera_ha)} ha`],
+    ['Edificaciones', t.edificaciones ? `${t.edificaciones.dentro} dentro · ${t.edificaciones.alrededor} alrededor` : '—'], ['Caminos dentro', t.caminos_dentro_m != null ? `${fmt(t.caminos_dentro_m, 0)} m` : '—']].concat(t.margen_altura_m != null ? [['Margen de altura', `± ${fmt(t.margen_altura_m)} m`]] : []).map(([a, b]) => `<div class="dato"><span>${a}</span><b>${b}</b></div>`).join('');
+  $('ficha').innerHTML = fichaBase;
+  metaActual = d.meta; pintarCultivo(d, id, soloDatos);
+  if (d.cultivo && !d.completo && !ocupado && soloDatos === undefined) { const b = document.createElement('button'); b.textContent = 'Completar historial de vegetación y clima';
+    b.style.marginTop = '8px'; b.onclick = async () => { b.remove(); const r = await (await fetch('api/analizar/' + id, { method: 'POST' })).json(); avisoPausa(r); seguir(id, true, d.meta.nombre); }; $('cult').appendChild(b); }
+  $('apt').innerHTML = `<div class="dato"><span>Superficie cultivable</span><b>${fmt(t.cultivable_ha, 2)} ha · ${fmt(t.cultivable_pct)} %</b></div>` +
+    d.aptitud_leyenda.filter(l => t.aptitud_ha[l.nombre] > 0).map(l => `<div class="dato"><span><i style="display:inline-block;width:11px;height:11px;border-radius:3px;background:${l.color};margin-right:7px"></i>${l.nombre}</span><b>${fmt(t.aptitud_ha[l.nombre], 2)} ha</b></div>`).join('');
+  $('pend').innerHTML = barras(t.clases_pendiente_pct); $('orient').innerHTML = barras(t.orientacion_pct);
+  $('cob').innerHTML = '<div class="tabla2"><div><div class="mini">Dentro</div>' + barras(t.cobertura_dentro_pct) + '</div><div><div class="mini">Alrededor</div>' + barras(t.cobertura_alrededor_pct) + '</div></div>';
+  $('fuentes').innerHTML = Object.entries(t.fuentes).map(([k, v]) => `<div class="dato"><span>${k}</span><b style="font-weight:400;text-align:right">${v}</b></div>`).join('') +
+    `<div class="dato"><span>grilla de análisis</span><b style="font-weight:400">${t.resolucion_grilla_m} m · ${fmt(t.celdas, 0)} celdas</b></div>`;
+  $('b3d').disabled = false; if (!soloDatos) { await construir3d(id); ver3d(); }
+}
+
+let pedidoRegion = {}, edifCache = {}, camCache = {}, leyCult = '', planDatos = null, planId = null, sim = { est: -1, anio: 0, mes: 5, tipo: 'normal', timer: null };
+const estDe = z => sim.est < 0 ? (z.mejor || 0) : Math.min(sim.est, z.estrategias.length - 1);   // -1: la mejor rotación de cada zona
+const V = { 'se da bien': 'v0', 'se da, con riesgo': 'v1', 'se da, con cosecha baja': 'v1', 'solo con riego': 'v2', 'no se recomienda': 'v3', 'no se da': 'v3' };
+async function cargarPlan(id, actualC) {
+  const q = await fetch(`api/cultivos/${id}?actual=${actualC || ''}`); if (!q.ok) { $('plan').innerHTML = '<p class="mini">El plan se calcula cuando termina el análisis de dónde se puede cultivar.</p>'; return; }
+  planDatos = await q.json(); planId = id; const pr = planDatos.cultivos.find(x => x.clave === planDatos.actual); if (pr && pr.siembra_mes) sim.mes = pr.siembra_mes - 1; sim.anio = 0; sim.est = -1;
+  $('capa').querySelector('option[value=plan]').disabled = false; await cargarLoteo(id); chips();
+}
+// distribución en lotes: descuenta caminos, construcciones, cauce, árboles y bordes según lo que se responda
+let loteo = null, loteoOpc = {}, loteoId = null;
+async function cargarLoteo(id) {
+  if (loteoId !== id) { loteoOpc = {}; loteoId = id; }
+  try { const q = await fetch(`api/loteo/${id}?${new URLSearchParams(loteoOpc)}`); loteo = q.ok ? await q.json() : null; } catch (e) { loteo = null; }
+  loteCultivo = {}; plantasClave = ''; pintarPlan(); pintarProbar(); if ($('capa').value === 'plan' && malla) textura();
+}
+function pintarPlan() {
+  const p = planDatos, c = p.clima, M = MESES.map(m => m.toLowerCase());
+  const clima = `Aquí llueven unos <b>${fmt(c.lluvia_reciente, 0)} mm al año</b>` + (c.lluvia_antes ? ` (entre ${c.periodo_antes[0]} y ${c.periodo_antes[1]} eran ${fmt(c.lluvia_antes, 0)})` : '') +
+    `, con unos ${fmt(c.heladas_por_anio, 0)} días de helada y ${fmt(c.dias_calor_35, 0)} días sobre 35 °C al año. El suelo es ${p.suelo.textura}.`;
+  const filaC = x => `<div class="cultivoFila"><b>${x.nombre}</b><span class="chipv ${V[x.veredicto]}">${x.veredicto}</span><br><span style="color:var(--tenue)">${x.porque}</span>` +
+    (x.siembra_mes ? `<div class="tecbox tec">Siembra tentativa ${M[x.siembra_mes - 1]} → cosecha ${M[x.cosecha_mes - 1]} (${x.ciclo_dias} días) · rendimiento relativo mediano ${x.apto} (con riego ${x.con_riego}, sembrando en ${M[x.siembra_mes_riego - 1]}) · agua del cultivo ${x.agua_mm} mm, la lluvia cubre ${x.lluvia_cubre_pct} %, faltan ${x.riego_mm} mm · factores: agua ${x.tecnico.factor_agua}, temperatura ${x.tecnico.factor_temperatura}, floración ${x.tecnico.factor_floracion}, emergencia ${x.tecnico.factor_emergencia} · prob. helada en floración ${x.tecnico.prob_helada_floracion}, calor ${x.tecnico.prob_calor_floracion}, déficit ${x.tecnico.prob_deficit_hidrico} · Kc ${x.tecnico.parametros.Kc.join('/')}, Ky ${x.tecnico.parametros.Ky}, raíz ${x.tecnico.parametros.raiz_m} m, C ${x.tecnico.parametros.C_erosion}` +
+      (x.calendario ? ` · <b>ajuste local:</b> en la zona ${x.calendario.referencia ? 'la referencia (' + x.calendario.referencia + ')' : 'este cultivo'} se siembra en ${M[x.calendario.siembra_mes - 1]} y se cosecha en ${M[x.calendario.cosecha_mes - 1]} (${x.calendario.ciclo_dias} días); ciclo ajustado a ${x.calendario.grados_dia_local} grados-día (valor general ${x.calendario.grados_dia_general}); diferencia con la siembra simulada ${x.calendario.diferencia_dias} días · ${x.calendario.fuente}` : ' · sin calendario local: parámetros generales') + `</div>` : '') + '</div>';
+  const buenos = p.cultivos.filter(x => x.veredicto.startsWith('se da')), riego = p.cultivos.filter(x => x.veredicto === 'solo con riego'), no = p.cultivos.filter(x => x.veredicto.startsWith('no'));
+  const zonas = p.zonas.map(z => `<div class="zona"><h3>${z.nombre} · ${fmt(z.ha, 1)} ha</h3><div class="mini">${z.descripcion}</div>` +
+    `<div style="margin-top:6px"><b>Conviene:</b> ${z.recomendados.join(', ')}.` + (z.evitar.length ? ` <b>Mejor evitar:</b> ${z.evitar.join(', ')}.` : '') + '</div>' +
+    (z.tecnicas.length ? `<div style="margin-top:8px"><b>Cómo sembrar y proteger</b></div><ul class="tecn">${z.tecnicas.map(t => `<li><b>${t.titulo}.</b> ${t.porque}</li>`).join('')}</ul>` : '') +
+    `<table><tr><th>Rotación</th><th title="Años en que el cultivo sale bien">Años buenos</th><th>Agua mm</th><th title="Toneladas de suelo que se pierden por hectárea al año">Suelo perdido</th><th>Meses desnudo</th></tr>` +
+    z.estrategias.map((e, k) => `<tr class="${k === estDe(z) ? 'sel' : ''}" data-est="${k}"><td>${e.nombre}${k === z.mejor ? ' <b style="color:#8fd694">★ la que más rinde</b>' : ''}<div class="mini">${e.nota}</div></td><td>${e.buenos_de_10} de 10</td><td>${e.agua_mm}</td><td>${e.erosion_t_ha} t/ha</td><td>${e.meses_desnudo}</td></tr>`).join('') + '</table>' +
+    `<div class="tecbox tec">Pendiente media ${z.pendiente_media} % · factor LS ${z.factor_ls} · erosión por RUSLE (R de Renard y Freimund 1994, K de Williams 1995, C de Panagos et al. 2015).</div></div>`).join('');
+  const por = Object.fromEntries(p.cultivos.map(x => [x.clave, x])), zPor = Object.fromEntries(p.zonas.map(z => [z.clave, z]));
+  const reparto = !loteo ? '' : `<div style="margin-top:14px"><b>Cómo repartir el terreno</b></div><p class="frase">De tus <b>${fmt(loteo.total_ha, 1)} ha</b> se siembran <b>${fmt(loteo.usado_ha, 1)} ha</b> (${loteo.pct || 0} %) en ${loteo.lotes.length} lotes. El resto no se ocupa, y abajo dice por qué.</p>` +
+    loteo.hallazgos.map(h => `<div class="mini" style="margin-top:8px">${h.pregunta}</div><select data-opc="${h.clave}">${h.opciones.map(([v, n]) => `<option value="${v}" ${v === h.valor ? 'selected' : ''}>${n}</option>`).join('')}</select>`).join('') +
+    `<table style="margin-top:10px"><tr><th>Lote</th><th>Terreno</th><th>ha</th><th>Cultivo que más rinde</th></tr>${loteo.lotes.map(l => { const z = zPor[l.zona], e = z && z.estrategias[z.mejor || 0]; return `<tr><td>${l.id}</td><td>${l.zona_nombre}</td><td>${fmt(l.ha, 1)}</td><td>${e ? e.nombres.join(' → ') : ''}</td></tr>`; }).join('')}</table>` +
+    `<div style="margin-top:10px">${textoRed()}</div><div style="margin-top:10px"><b>Obras para dejarlo listo</b></div><ol class="tecn" style="padding-left:18px">${(loteo.etapas || []).map(e => `<li><b>${e.titulo}.</b> ${e.detalle}</li>`).join('')}</ol>` +
+    (loteo.proyeccion ? `<div style="margin-top:8px"><b>Proyección del terreno</b></div><table><tr><td>Superficie cultivable hoy</td><td>${fmt(loteo.proyeccion.hoy_ha, 1)} ha</td></tr><tr><td>Superficie sembrada con este plan</td><td>${fmt(loteo.proyeccion.plan_ha, 1)} ha</td></tr>` +
+      (loteo.proyeccion.despeje_ha ? `<tr><td>Árboles y matorral a despejar</td><td>${fmt(loteo.proyeccion.despeje_ha, 1)} ha</td></tr>` : '') + `<tr><td>Caminos nuevos</td><td>${fmt(loteo.proyeccion.camino_m, 0)} m</td></tr><tr><td>Agua que usan los cultivos al año</td><td>${fmt(loteo.proyeccion.agua_m3_anio, 0)} m³</td></tr><tr><td>Años en que la cosecha sale bien</td><td>${fmt(loteo.proyeccion.buenos_de_10, 0)} de cada 10</td></tr></table>` : '') +
+    `<div style="margin-top:8px"><b>Lo que no se siembra</b></div><table>${loteo.fuera.map(x => `<tr><td>${x.motivo}</td><td>${fmt(x.ha, 1)} ha</td></tr>`).join('')}</table>`;
+  $('plan').innerHTML = `<p class="frase">${clima}</p><div class="fila"><span class="mini">Hoy se cultiva aquí:</span><select id="selActual">${p.cultivos.filter(x => x.siembra_mes).map(x => `<option value="${x.clave}" ${x.clave === p.actual ? 'selected' : ''}>${x.nombre}</option>`).join('')}</select></div>` +
+    `<p class="mini" style="margin-top:10px">Se probaron ${p.cultivos.length} cultivos de campo. Existen muchos más (frutales, hortalizas, viñas, forrajeras): que uno no aparezca aquí no significa que no se dé. Las fechas de siembra y cosecha son tentativas; la fecha real depende de la variedad y del año.</p><div style="margin-top:4px"><b>Cultivos que se dan aquí sin riego</b></div>${buenos.map(filaC).join('') || '<p class="mini">Ninguno de la lista se da bien sin riego.</p>'}` +
+    (riego.length ? `<div style="margin-top:10px"><b>Solo con riego</b></div>${riego.map(filaC).join('')}` : '') +
+    (no.length ? `<div class="mini" style="margin-top:8px">No se recomiendan: ${no.map(x => x.nombre).join(', ')}.</div>` : '') +
+    reparto + `<div style="margin-top:14px"><b>Por zonas del terreno</b> <span class="mini">(toca una rotación para verla simulada en el 3D)</span> <button id="planMejor" class="herr" style="margin-top:6px">Ver en el 3D dónde va cada cultivo</button></div>${zonas}` +
+    `<div class="tecbox tec">${p.fuentes.clima}. Método: ${p.fuentes.metodo}. Parámetros: ${p.fuentes.parametros}. Agua útil del suelo ${p.suelo.agua_util_mm_m} mm/m (Saxton y Rawls 2006). ETo anual ${c.eto_anual} mm.</div>`;
+  $('selActual').onchange = e => cargarPlan(planId, e.target.value);
+  $('plan').querySelectorAll('select[data-opc]').forEach(el => el.onchange = () => { loteoOpc[el.dataset.opc] = el.value; cargarLoteo(planId); });
+  const irPlan = est => { sim.est = est; sim.anio = 0; pintarPlan(); $('capa').value = 'plan'; ver3d(); $('capa').onchange(); };
+  $('planMejor').onclick = () => irPlan(-1);
+  $('plan').querySelectorAll('tr[data-est]').forEach(tr => tr.onclick = () => irPlan(+tr.dataset.est));
+}
+function textoSim() {
+  if (!planDatos) return; const p = planDatos, por = Object.fromEntries(p.cultivos.map(x => [x.clave, x])); let largo = 1;
+  const etqs = [], estZ = {};
+  const lineas = p.zonas.filter(z => z.estrategias.length).map(z => { const e = z.estrategias[estDe(z)]; largo = Math.max(largo, e.secuencia.length);
+    const cu = por[e.secuencia[sim.anio % e.secuencia.length]], m = ((cu.mensual || {})[sim.tipo] || [])[sim.mes]; if (!m) return '';
+    const est = m.fase === 'suelo sin cultivo' ? 'suelo sin cultivo' : (m.fase === 'rastrojo' ? `rastrojo de ${cu.nombre.toLowerCase()}` : `${cu.nombre.toLowerCase()} ${m.fase}` + (m.ks < 0.6 ? ' · <b style="color:#e6c95a">le falta agua</b>' : ''));
+    estZ[z.clave] = { cu, m, e };
+    return `<span>${z.nombre}:</span> ${est}`; }).filter(Boolean);
+  const dib = loteo && loteo.lotes.length ? loteo.lotes.slice(0, 7).map(l => ({ c: l.centro, k: l.zona, t: `Lote ${l.id} · ${fmt(l.ha, 1)} ha · ${l.zona_nombre.toLowerCase()}`, s: l.surco_texto, l: l.id })) : p.zonas.filter(z => z.centro).map(z => ({ c: z.centro, k: z.clave, t: `${z.nombre} · ${fmt(z.ha, 1)} ha`, s: z.surco_texto }));
+  dib.forEach(o => { const q = estadoUnidad(o.k, o.l); if (!q) return; const { cu, m } = q, sin = m.fase === 'suelo sin cultivo';
+    etqs.push({ z: { centro: o.c }, html: `<b>${sin ? 'Sin cultivo' : cu.nombre}</b><span>${o.t}</span><span>${sin ? 'suelo descansando' : m.fase}${m.fase !== 'rastrojo' && !sin && m.ks < 0.6 ? ' · <i>le falta agua</i>' : ''}</span>` }); });
+  ponerEtiquetas(etqs);
+  sim.largo = largo; $('simMes').max = largo * 12 - 1; $('simMes').value = sim.anio * 12 + sim.mes;
+  $('simTit').textContent = `Año ${sim.anio + 1} de la rotación · ${MESES[sim.mes]} · año ${sim.tipo} (clima real de ${p.clima.anios_tipo[sim.tipo]})`; $('simTxt').innerHTML = lineas.join(' &nbsp;·&nbsp; ');
+}
+function pararSim() { if (sim.timer) { clearInterval(sim.timer); sim.timer = null; $('simPlay').textContent = '▶ Simular'; } }
+function pasoSim(v) { sim.anio = Math.floor(v / 12); sim.mes = v % 12; textura(); }
+function pintarCultivo(d, id, soloDatos) {
+  const c = d.cultivo, oc = $('capa').querySelector('option[value=cultivo]');
+  if (!c) { oc.disabled = true; $('leyenda').classList.add('oculto');
+    $('cult').innerHTML = '<p class="mini">Comparando tu terreno con los potreros que hoy se cultivan alrededor. El avance se ve arriba, en «Analizando».</p>';
+    if ($('capa').value === 'cultivo') { $('capa').value = 'hd'; if (malla) textura(); }
+    if (soloDatos === undefined && !pedidoRegion[id]) { pedidoRegion[id] = true;
+      fetch('api/estado/' + id).then(q => q.json()).then(e => { if (e.estado === 'corriendo') return;
+        fetch('api/analizar/' + id, { method: 'POST' }).then(q => q.json()).then(r => { avisoPausa(r); seguir(id, true, d.meta.nombre); }); }); }
+    return; }
+  if (!c.criterios) { oc.disabled = true; $('cult').innerHTML = '<p class="mini">Este terreno se analizó con una versión anterior. Pulsa «Completar…» o vuelve a prospectarlo.</p>'; return; }
+  if (planId !== id) cargarPlan(id);
+  oc.disabled = false; const h = c.ha, n = k => c.leyenda.find(l => l.clase === k), v = k => h[n(k).nombre] || 0;
+  const fila = k => v(k) > 0 ? `<div class="dato"><span><i class="cuad" style="background:${n(k).color};margin-right:7px"></i>${n(k).nombre}</span><b>${fmt(v(k), 1)} ha</b></div>` : '';
+  const m = c.mundo || {}, z = c.zona || {}; let mundoS = '', mundoT = '', zonaS = '', zonaT = '';
+  if (m.disponible) {
+    const ps = m.paises.slice(0, 4).map(x => x.pais), lista = ps.length > 1 ? ps.slice(0, -1).join(', ') + ' y ' + ps[ps.length - 1] : (ps[0] || '');
+    const rg = m.fraccion_riego > 0.5 ? ', casi siempre con riego' : (m.fraccion_riego < 0.15 ? ', casi siempre sin riego' : ', una parte con riego');
+    const aqui = Math.round(m.aqui_cultivo * 100);
+    const veredicto = aqui >= 20 ? `<b>Este lugar sirve para cultivar:</b> en sus alrededores ya se cultiva (${aqui} % de la superficie en unos 18 km). `
+      : (m.de_cada_10 >= 5 ? `<b>Este lugar sirve para cultivar,</b> aunque en sus alrededores hoy casi no se cultiva. ` : (m.de_cada_10 >= 2 ? `<b>Este lugar puede servir para cultivar, con limitaciones.</b> ` : `<b>En lugares como este casi no se cultiva.</b> `));
+    mundoS = veredicto + `Aquí llueven unos ${fmt(m.clima.lluvia_anual, 0)} mm al año y la temperatura media es de ${fmt(m.clima.temp_media)} °C. ` +
+      `De cada 10 lugares del mundo con un clima y un suelo como estos, ${m.de_cada_10} tienen cultivos${m.de_cada_10 ? rg : ''}` +
+      (aqui >= 20 && m.de_cada_10 < 5 ? ': es un clima que en el mundo se cultiva poco, pero aquí sí se hace.' : '.') +
+      (lista ? ` Los más parecidos donde sí se cultiva están en ${lista}.` : '');
+    mundoT = `<div class="tecbox tec"><b>Lugares parecidos en el mundo.</b> ${m.k} celdas de ~18 km más parecidas en clima y suelo (a más de 100 km de aquí), de ${fmt(m.n_mundo, 0)} celdas de tierra. Con cultivos (≥ 20 % de la celda, ESA CCI 2020): ${m.cultivados}. ` +
+      `Distancia mediana en variables estandarizadas: ${m.distancia_mediana} (${m.parecido}). Validación mundial del método: AUC ${m.auc}. Fracción con riego entre los cultivados: ${fmt(m.fraccion_riego * 100, 0)} %.<br>` +
+      `Clima (WorldClim 1970-2000): media ${m.clima.temp_media} °C · máx. mes cálido ${m.clima.temp_max_mes_calido} °C · mín. mes frío ${m.clima.temp_min_mes_frio} °C · lluvia ${m.clima.lluvia_anual} mm (trimestre seco ${m.clima.lluvia_trimestre_seco}, cálido ${m.clima.lluvia_trimestre_calido}, frío ${m.clima.lluvia_trimestre_frio}).<br>` +
+      `Suelo (SoilGrids 0-5 cm): arcilla ${m.suelo.arcilla} % · arena ${m.suelo.arena} % · pH ${m.suelo.ph} (el carbono no se usa para comparar: poco fiable). En esta celda de ~18 km hay cultivos en ${aqui} % (ESA CCI 2020).<br>` +
+      `Ejemplos: ${m.paises.map(x => `${x.pais} (${x.lugares}; ${x.lat}, ${x.lon})`).join(' · ')}</div>`;
+  } else mundoS = `<span class="mini">${m.motivo || 'La comparación con lugares parecidos del mundo aún no está disponible.'}</span>`;
+  if (z.disponible) {
+    const vec = z.vecinos_cdl && z.vecinos_cdl.length ? z.vecinos_cdl.slice(0, 4).map(x => x.cultivo).join(', ') : Object.entries(z.vecinos_estacion).sort((a, b) => b[1] - a[1]).filter(x => x[1] > 0).slice(0, 1).map(x => 'cultivos de ' + x[0]).join('');
+    zonaS = `Alrededor de tu terreno (${fmt(z.radio_km)} km) hoy se cultivan ${fmt(z.cultivadas_cerca_ha, 0)} ha, sobre todo ${vec}.`;
+    zonaT = `<div class="tecbox tec"><b>Zona.</b> ${fmt(z.cultivadas_cerca_ha, 0)} ha cultivadas y ${fmt(z.naturales_cerca_ha, 0)} ha naturales en ${fmt(z.radio_km)} km (tasa ${fmt(z.tasa_base * 100, 0)} %). Clasificador de relieve y suelo, validación espacial por bloques: AUC ${z.auc}, acierto equilibrado ${z.acierto} %. ` +
+      `Solo informativo: no decide el sí/no. Fuentes: ${Object.values(z.fuentes).filter(Boolean).join(' · ')}. Por estación: ${Object.entries(z.vecinos_estacion).map(([e, a]) => `${e} ${fmt(a, 0)} ha`).join(' · ')}.</div>`;
+  }
+  $('cult').innerHTML = `<p class="frase">De tus <b>${fmt(c.total_ha, 1)} ha</b>: en <b>${fmt(v(1), 1)} ha sí se puede cultivar</b>` +
+    (v(2) > 0 ? `, en ${fmt(v(2), 1)} ha con cuidado por la pendiente` : '') + (v(3) > 0 ? ` y en ${fmt(v(3), 1)} ha no conviene por la pendiente fuerte` : '') + '.' +
+    (v(6) > 0 ? ` Otras ${fmt(v(6), 1)} ha sirven, pero hoy tienen árboles o matorral.` : '') + '</p>' + [1, 2, 3, 6, 4, 5].map(fila).join('') +
+    `<div class="tecbox tec"><b>Criterios dentro del terreno.</b> Pendiente ${c.criterios.pendiente_si} sí · ${c.criterios.pendiente_cuidado} con cuidado · ${c.criterios.pendiente_no} no. Cauce: ${c.criterios.cauce}. Resguardo de construcciones: ${c.criterios.resguardo_construcciones}. Caminos según su clase. Árboles y matorral: mapas de cobertura y verdor permanente (HLS).</div>` +
+    `<p class="frase" style="margin-top:12px">${mundoS}</p>${mundoT}` + (zonaS ? `<p class="mini">${zonaS}</p>` : '') + zonaT +
+    `<p class="mini">Toca cualquier punto dentro del terreno 3D para saber por qué se puede o no.</p>`;
+  $('ficha').innerHTML = fichaBase + '<div class="sep"></div>' + [1, 2, 3, 6, 4, 5].filter(k => v(k) > 0).map(k => `<div class="dato"><span><i class="cuad" style="background:${n(k).color};margin-right:6px"></i>${n(k).nombre.replace('Terreno apto, pero hoy con árboles o matorral', 'Apto, hoy con árboles').replace('Cauce y su franja: no se cultiva', 'Cauce y franja').replace(' cultivar', '').replace('Se puede con cuidado: pendiente moderada', 'Con cuidado (pendiente)').replace('No conviene: pendiente fuerte', 'No conviene (pendiente)').replace('Agua, construcciones o caminos', 'Agua, edificios, caminos')}</span><b>${fmt(v(k), 1)} ha</b></div>`).join('');
+  leyCult = [1, 2, 3, 6, 4, 5].filter(k => v(k) > 0).map(k => `<div><i style="background:${n(k).color}"></i>${n(k).nombre}</div>`).join('');
+  if ($('capa').value !== 'cultivo' && !pintarCultivo.hecho) { pintarCultivo.hecho = true; $('capa').value = 'cultivo'; if (malla) textura(); }
+  $('leyenda').classList.toggle('oculto', $('capa').value !== 'cultivo'); chips();
+}
+// ---------------- terreno 3D
+let renderer, escena3, camara, ctl, malla, mat, borde, datosMalla, metaActual, uvGrilla, uvHD, fichaBase = '';
+function iniciar3d() {
+  const c = $('tres'); renderer = new THREE.WebGLRenderer({ antialias: true }); renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  c.appendChild(renderer.domElement); escena3 = new THREE.Scene(); escena3.background = new THREE.Color(0x0b0e0c);
+  camara = new THREE.PerspectiveCamera(42, 1, 1, 1e6); ctl = new OrbitControls(camara, renderer.domElement); ctl.maxPolarAngle = Math.PI / 2.05; ctl.enableDamping = true;
+  escena3.add(new THREE.AmbientLight(0xffffff, 2.5)); const sol = new THREE.DirectionalLight(0xffffff, 1.4); sol.position.set(-1, 1.4, -0.6); escena3.add(sol);
+  const ajustar = () => { const w = c.clientWidth, h = c.clientHeight; if (!w || !h) return; renderer.setSize(w, h); camara.aspect = w / h; camara.updateProjectionMatrix(); };
+  new ResizeObserver(ajustar).observe(c); ajustar();
+  renderer.domElement.addEventListener('pointerdown', () => { vuelo = null; });
+  (function anim() { requestAnimationFrame(anim); if (vuelo) { const k = Math.min((performance.now() - vuelo.t) / 1400, 1), q = k < .5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;
+      camara.position.lerpVectors(vuelo.p0, vuelo.p1, q); ctl.target.lerpVectors(vuelo.o0, vuelo.o1, q); if (k >= 1) vuelo = null; }
+    ctl.update(); animarPlantas(); renderer.render(escena3, camara); moverEtiquetas(); })();
+}
+let vuelo = null, enfocado = false, etiquetas = [], hdCache = null, planTx = null, planCv = null;
+// punto del terreno (en celdas de la malla) llevado a coordenadas de la escena
+function punto3(c, r, sube = 0) { const { ancho, alto, res, z, zmin } = datosMalla, ci = Math.min(Math.max(Math.round(c), 0), ancho - 1), ri = Math.min(Math.max(Math.round(r), 0), alto - 1);
+  return new THREE.Vector3((c - ancho / 2) * res, (z[ri * ancho + ci] - zmin) * +$('exag').value + sube, (r - alto / 2) * res); }
+// al ver el plan la cámara se acerca al terreno marcado; al salir vuelve a la vista general
+function enfocar(cerca) {
+  if (!datosMalla || cerca === enfocado) return; enfocado = cerca; let o1, p1; const L = Math.max(datosMalla.ancho, datosMalla.alto) * datosMalla.res;
+  if (cerca) { const P = datosMalla.poligono, cs = P.map(p => p[0]), rs = P.map(p => p[1]), c0 = (Math.min(...cs) + Math.max(...cs)) / 2, r0 = (Math.min(...rs) + Math.max(...rs)) / 2;
+    const R = Math.max(Math.hypot(Math.max(...cs) - Math.min(...cs), Math.max(...rs) - Math.min(...rs)) / 2 * datosMalla.res, 60);
+    o1 = punto3(c0, r0); p1 = o1.clone().add(new THREE.Vector3(-0.45, 0.62, 0.95).multiplyScalar(R * 1.7)); }
+  else { o1 = new THREE.Vector3(0, 0, 0); p1 = new THREE.Vector3(-L * 0.75, L * 0.7, L * 1.05); }
+  vuelo = { t: performance.now(), p0: camara.position.clone(), o0: ctl.target.clone(), p1, o1 };
+}
+// etiquetas sobre cada zona: qué cultivo le toca
+function ponerEtiquetas(lista) {
+  etiquetas.forEach(e => e.el.remove()); etiquetas = [];
+  if (!datosMalla || !metaActual) return; const f = datosMalla.res / metaActual.res;
+  lista.forEach(({ z, html }) => { if (!z.centro) return; const el = document.createElement('div'); el.className = 'etq'; el.innerHTML = html; $('tres').appendChild(el);
+    etiquetas.push({ el, c: z.centro[0] / f, r: z.centro[1] / f }); });
+}
+function moverEtiquetas() {
+  if (!etiquetas.length) return; const w = renderer.domElement.clientWidth, h = renderer.domElement.clientHeight, puestas = [];
+  etiquetas.map(e => { const v = punto3(e.c, e.r, datosMalla.res * 0.5).project(camara); return { e, v, x: (v.x + 1) / 2 * w, y: (1 - v.y) / 2 * h }; }).sort((a, b) => b.y - a.y).forEach(({ e, v, x, y }) => {
+    e.el.style.display = v.z > 1 ? 'none' : 'block'; if (v.z > 1) return;
+    const an = e.el.offsetWidth, al = e.el.offsetHeight; let base = y - 12;                 // si se encima con otra, sube; el tallo la une a su punto
+    for (let n = 0; n < 6; n++) { const ch = puestas.find(p => Math.abs(p.x - x) < (p.an + an) / 2 + 6 && base > p.arriba - 6 && base - al < p.base + 6); if (!ch) break; base = ch.arriba - 8; }
+    puestas.push({ x, an, base, arriba: base - al }); e.el.style.left = x + 'px'; e.el.style.top = base + 'px'; e.el.style.setProperty('--tallo', (y - base) + 'px'); });
+}
+// ---- cultivos en 3D: plantas sembradas en surcos sobre el terreno; su altura y color salen de la simulación del mes
+let plantas = null, plantasClave = '', tiempo0 = performance.now();
+const NZ = 16, plU = { uTiempo: { value: 0 }, uAlt: { value: new Array(NZ).fill(0) }, uAncho: { value: new Array(NZ).fill(1) },
+  uBase: { value: Array.from({ length: NZ }, () => new THREE.Vector3(.1, .3, .1)) }, uPunta: { value: Array.from({ length: NZ }, () => new THREE.Vector3(.3, .6, .2)) } };
+const plObj = { alt: new Array(NZ).fill(0), ancho: new Array(NZ).fill(1), base: Array.from({ length: NZ }, () => new THREE.Vector3(.1, .3, .1)), punta: Array.from({ length: NZ }, () => new THREE.Vector3(.3, .6, .2)) };
+const lin = (r, g, b) => { const c = new THREE.Color().setRGB(r, g, b, THREE.SRGBColorSpace); return new THREE.Vector3(c.r, c.g, c.b); };
+// aspecto de cada cultivo: altura y ancho de hoja relativos, color al florecer y al madurar
+const ASPECTO = { cereal: { h: 1.2, w: 1.0, maduro: [.86, .69, .27] }, alto: { h: 1.9, w: 2.3, maduro: [.78, .67, .36] }, girasol: { h: 1.7, w: 2.2, flor: [.96, .78, .12], maduro: [.6, .5, .28] },
+  legumbre: { h: .55, w: 2.0, flor: [.82, .86, .7], maduro: [.72, .62, .32] }, raps: { h: 1.2, w: 1.6, flor: [.96, .87, .2], maduro: [.74, .66, .36] }, papa: { h: .6, w: 2.4, flor: [.85, .85, .9], maduro: [.6, .56, .3] },
+  quinoa: { h: 1.3, w: 1.5, flor: [.8, .5, .55], maduro: [.8, .36, .3] }, pradera: { h: .6, w: 1.6, flor: [.6, .5, .8], maduro: [.3, .6, .22] } };
+const aspecto = k => ASPECTO[{ trigo: 'cereal', cebada: 'cereal', avena: 'cereal', avena_vicia: 'cereal', arroz: 'cereal', mijo: 'cereal', centeno: 'cereal', yuca: 'alto', algodon: 'raps', maiz: 'alto', sorgo: 'alto', girasol: 'girasol', raps: 'raps', papa: 'papa', quinoa: 'quinoa', alfalfa: 'pradera' }[k] || 'legumbre'];
+function geoPlanta() {       // mata de hojas finas y curvas que salen de un mismo punto
+  const pos = [], idx = [], B = 6, S = 4;
+  for (let b = 0; b < B; b++) { const az = b / B * Math.PI * 2 + 0.4, inc = 0.16 + 0.34 * ((b * 37 % 10) / 10), dx = Math.cos(az), dz = Math.sin(az), k0 = pos.length / 3;
+    for (let q = 0; q <= S; q++) { const t = q / S, w = 0.12 * (1 - t ** 1.6) + 0.006, o = inc * t * t, y = t * (1 - 0.25 * inc);
+      pos.push(dx * o + dz * w, y, dz * o - dx * w, dx * o - dz * w, y, dz * o + dx * w); if (q < S) { const a = k0 + q * 2; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); } } }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); return g;
+}
+const matPlanta = new THREE.ShaderMaterial({ uniforms: plU, side: THREE.DoubleSide, vertexShader: `
+  attribute float aZona; attribute float aAzar; uniform float uTiempo; uniform float uAlt[${NZ}]; uniform float uAncho[${NZ}]; uniform vec3 uBase[${NZ}]; uniform vec3 uPunta[${NZ}]; varying vec3 vCol;
+  void main() { int z = int(aZona + 0.5); float t = position.y, h = uAlt[z] * (0.82 + 0.36 * aAzar); vec3 p = position; p.y *= h; p.xz *= uAncho[z] * (0.5 + 0.5 * min(h, 1.0));
+    vec4 w = modelMatrix * instanceMatrix * vec4(p, 1.0); float esc = length(instanceMatrix[1].xyz);
+    w.x += sin(uTiempo * 1.5 + w.x * 0.045 + w.z * 0.03 + aAzar * 6.28) * 0.07 * t * t * h * esc; w.z += cos(uTiempo * 1.1 + w.x * 0.03 + aAzar * 3.0) * 0.04 * t * t * h * esc;
+    vCol = mix(uBase[z] * 0.5, uPunta[z], pow(t, 1.25)) * (0.8 + 0.4 * aAzar); gl_Position = projectionMatrix * viewMatrix * w; }`,
+  fragmentShader: `varying vec3 vCol; void main() { gl_FragColor = linearToOutputTexel(vec4(vCol, 1.0)); }` });
+async function sembrar() {
+  if (!planDatos || !planDatos.zona_b64 || !datosMalla || !metaActual) return;
+  const ex = +$('exag').value, clave = [actual, ex, planDatos.zonas.map(z => z.clave + ':' + z.ha).join(), loteo ? JSON.stringify(loteoOpc) + loteo.usado_ha : ''].join('|'); if (plantas && plantasClave === clave) { plantas.visible = true; return; }
+  if (plantas) { escena3.remove(plantas); plantas.geometry.dispose(); plantas = null; }
+  const usaL = !!(loteo && loteo.lotes.length), bin = atob(usaL ? loteo.raster : planDatos.zona_b64), Z = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) Z[i] = bin.charCodeAt(i);
+  const za = usaL ? loteo.ancho : planDatos.zona_ancho, zh = usaL ? loteo.alto : planDatos.zona_alto, rm = metaActual.res / (usaL ? loteo.factor : 1), { ancho, alto, res, z: dem, zmin } = datosMalla, f = res / rm, W0 = ancho / 2 * res, H0 = alto / 2 * res;
+  const zs = usaL ? loteo.lotes.map(l => ({ clave: l.id, zona: l.zona, surco: l.surco, ha: l.ha })) : planDatos.zonas.filter(z => z.estrategias.length && z.surco).map(z => ({ clave: z.clave, zona: z.clave, surco: z.surco, ha: z.ha })), area = zs.reduce((a, z) => a + z.ha, 0) * 1e4; if (!area) return;
+  const N = 70000, d = Math.min(Math.max(Math.sqrt(area / (0.32 * N)), 0.8), 6), paso = d * 0.32;       // separación entre surcos y entre plantas (metros)
+  const alturaEn = (x, zz) => { const c = Math.min(Math.max((x + W0) / res, 0), ancho - 1.001), r = Math.min(Math.max((zz + H0) / res, 0), alto - 1.001), c0 = Math.floor(c), r0 = Math.floor(r), fc = c - c0, fr = r - r0, i = r0 * ancho + c0;
+    return ((dem[i] * (1 - fc) + dem[i + 1] * fc) * (1 - fr) + (dem[i + ancho] * (1 - fc) + dem[i + ancho + 1] * fc) * fr - zmin) * ex; };
+  const M = [], zo = [], az = []; let rnd = 12345; const azar = () => (rnd = (rnd * 16807) % 2147483647) / 2147483647;
+  zs.forEach(z => { const [dc, dr] = z.surco, nx = -dr, nz = dc; let u0 = 1e9, u1 = -1e9, v0 = 1e9, v1 = -1e9;
+    for (let r = 0; r < zh; r++) for (let c = 0; c < za; c++) if (Z[r * za + c] === z.clave) { const x = (c + .5) * rm - W0, y = (r + .5) * rm - H0, u = x * dc + y * dr, v = x * nx + y * nz; u0 = Math.min(u0, u); u1 = Math.max(u1, u); v0 = Math.min(v0, v); v1 = Math.max(v1, v); }
+    for (let v = v0 - rm; v <= v1 + rm; v += d) for (let u = u0 - rm; u <= u1 + rm; u += paso) { const uu = u + (azar() - .5) * paso * .6, vv = v + (azar() - .5) * d * .12, x = uu * dc + vv * nx, y = uu * dr + vv * nz;
+      const c = Math.floor((x + W0) / rm), r = Math.floor((y + H0) / rm); if (c < 0 || r < 0 || c >= za || r >= zh || Z[r * za + c] !== z.clave || M.length >= N * 1.4 * 16) continue;
+      const e = d * (0.85 + 0.3 * azar()), a = azar() * 6.283, co = Math.cos(a) * e, si = Math.sin(a) * e; M.push(co, 0, -si, 0, 0, e, 0, 0, si, 0, co, 0, x, alturaEn(x, y), y, 1); zo.push(z.clave); az.push(azar()); } });
+  const g = geoPlanta(); g.setAttribute('aZona', new THREE.InstancedBufferAttribute(new Float32Array(zo), 1)); g.setAttribute('aAzar', new THREE.InstancedBufferAttribute(new Float32Array(az), 1));
+  plantas = new THREE.InstancedMesh(g, matPlanta, zo.length); plantas.instanceMatrix = new THREE.InstancedBufferAttribute(new Float32Array(M), 16); plantas.frustumCulled = false; escena3.add(plantas); plantasClave = clave;
+}
+// estado de cada zona en el mes simulado -> altura y color objetivo de sus plantas (la animación los alcanza de a poco)
+let loteCultivo = {};                 // cultivo que la persona quiso probar en un lote (si no, el de la rotación de su zona)
+function estadoUnidad(zClave, loteId) {
+  const p = planDatos, z = p.zonas.find(x => x.clave === zClave); if (!z || !z.estrategias.length) return null;
+  const por = Object.fromEntries(p.cultivos.map(x => [x.clave, x])), e = z.estrategias[estDe(z)], forz = loteId != null && loteCultivo[loteId], sec = forz ? [forz] : e.secuencia;
+  const cu = por[sec[sim.anio % sec.length]], m = ((cu.mensual || {})[sim.tipo] || (cu.mensual || {}).normal || [])[sim.mes];
+  return m ? { cu, m, nombres: sec.map(k => por[k].nombre), z } : null;
+}
+const unidades = () => loteo && loteo.lotes.length ? loteo.lotes.map(l => ({ k: l.id, zona: l.zona, lote: l.id })) : planDatos.zonas.filter(z => z.estrategias.length).map(z => ({ k: z.clave, zona: z.clave, lote: null }));
+function crecer() {
+  if (!planDatos) return; plObj.alt.fill(0);
+  unidades().forEach(u => { const q = estadoUnidad(u.zona, u.lote); if (!q || u.k >= NZ || (obra && !obra.sembrados.has(u.k))) return; const { cu, m } = q;
+    const A = aspecto(cu.clave), k = u.k; let base = [.13, .4, .13], punta = [.45, .7, .26], alt = 0, an = A.w;
+    if (m.fase === 'rastrojo') { alt = 0.16 * A.h; an = 0.9; base = [.5, .43, .28]; punta = [.82, .74, .52]; }
+    else if (m.fase !== 'suelo sin cultivo') { alt = A.h * Math.max(Math.min(m.fc / 0.9, 1), 0.14);
+      if (m.fase === 'en flor y llenando grano' && A.flor) punta = A.flor;
+      if (m.fase === 'madurando') { base = base.map((v, i) => v * .35 + A.maduro[i] * .55); punta = A.maduro; }
+      if (m.ks < 0.6) { const q2 = Math.min((0.6 - m.ks) / 0.5, 1); punta = punta.map((v, i) => v * (1 - q2) + [.8, .68, .3][i] * q2); base = base.map((v, i) => v * (1 - q2 * .6) + [.55, .5, .25][i] * q2 * .6); alt *= 1 - 0.2 * q2; } }
+    plObj.alt[k] = alt; plObj.ancho[k] = an; plObj.base[k] = lin(...base); plObj.punta[k] = lin(...punta); });
+}
+// ---- entorno en 3D: construcciones (huellas reales, con su altura cuando se conoce) y árboles donde el satélite ve arbolado
+let entorno = null, entornoClave = '', talados = null, tocones = null, obra = null;
+// modelos 3D (Kenney Nature Kit, CC0): se unen en una sola geometría con color por vértice, base en el suelo y alto 1
+const modelos = {};
+function modelo(nombre) {
+  return modelos[nombre] || (modelos[nombre] = new GLTFLoader().loadAsync(`modelos/kenney_nature/${nombre}.glb`).then(g => { g.scene.updateMatrixWorld(true); const pos = [], nor = [], col = [];
+    g.scene.traverse(o => { if (!o.isMesh) return; const ge = o.geometry.index ? o.geometry.toNonIndexed() : o.geometry.clone(); ge.applyMatrix4(o.matrixWorld); if (!ge.attributes.normal) ge.computeVertexNormals();
+      let c = (o.material.color || new THREE.Color(1, 1, 1)).clone(); const lum = 0.3 * c.r + 0.6 * c.g + 0.1 * c.b;      // el paquete trae hojas turquesa y madera muy clara: se llevan a verde y café naturales
+      if (c.g > c.r * 1.15) c = new THREE.Color().setRGB(.25, .47, .17, THREE.SRGBColorSpace).multiplyScalar(Math.min(Math.max(lum / 0.45, 0.75), 1.25)); else c = new THREE.Color().setRGB(.45, .32, .2, THREE.SRGBColorSpace).multiplyScalar(Math.min(Math.max(lum / 0.5, 0.7), 1.2));
+      const p = ge.attributes.position, n = ge.attributes.normal; for (let i = 0; i < p.count; i++) { pos.push(p.getX(i), p.getY(i), p.getZ(i)); nor.push(n.getX(i), n.getY(i), n.getZ(i)); col.push(c.r, c.g, c.b); } });
+    let y0 = 1e9, y1 = -1e9; for (let i = 1; i < pos.length; i += 3) { y0 = Math.min(y0, pos[i]); y1 = Math.max(y1, pos[i]); } const k = 1 / Math.max(y1 - y0, 1e-6); for (let i = 0; i < pos.length; i += 3) { pos[i] *= k; pos[i + 1] = (pos[i + 1] - y0) * k; pos[i + 2] *= k; }
+    const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3)); geo.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); return geo; }));
+}
+function altura3(x, zz) { const { ancho, alto, res, z: dem, zmin } = datosMalla, c = Math.min(Math.max(x / res + ancho / 2, 0), ancho - 1.001), r = Math.min(Math.max(zz / res + alto / 2, 0), alto - 1.001), c0 = Math.floor(c), r0 = Math.floor(r), fc = c - c0, fr = r - r0, i = r0 * ancho + c0;
+  return ((dem[i] * (1 - fc) + dem[i + 1] * fc) * (1 - fr) + (dem[i + ancho] * (1 - fc) + dem[i + ancho + 1] * fc) * fr - zmin) * +$('exag').value; }
+function lonlat3(lo, la) { const h = hdCache, q = merc(lo, la, h.z), X = (q[0] - h.x0) * 256, Y = (q[1] - h.y0) * 256, [nw, ne, sw] = h.px, ax = ne[0] - nw[0], ay = ne[1] - nw[1], bx = sw[0] - nw[0], by = sw[1] - nw[1], det = ax * by - ay * bx, dx = X - nw[0], dy = Y - nw[1];
+  const { ancho, alto, res } = datosMalla; return [((dx * by - dy * bx) / det * (ancho - 1) - ancho / 2) * res, ((ax * dy - ay * dx) / det * (alto - 1) - alto / 2) * res]; }
+function geoArbol() {          // copa irregular de sombreado suave sobre un tronco
+  const copa = new THREE.IcosahedronGeometry(1, 2).toNonIndexed(), p = copa.attributes.position, pos = [], nor = [], col = [];
+  for (let i = 0; i < p.count; i++) { let x = p.getX(i), y = p.getY(i), z = p.getZ(i); const r = 1 + 0.16 * Math.sin(x * 5.1 + y * 3.3) * Math.cos(z * 4.7 + y * 2.1) + 0.08 * Math.sin(z * 9 + x * 7);
+    pos.push(x * r, y * r * 1.3 + 1.75, z * r); const n = Math.hypot(x, y / 1.3, z); nor.push(x / n, y / 1.3 / n, z / n); const g = 0.5 + 0.5 * (y + 1) / 2; col.push(g, g, g); }
+  const tr = new THREE.CylinderGeometry(0.07, 0.12, 0.9, 6).toNonIndexed(), q = tr.attributes.position, qn = tr.attributes.normal;
+  for (let i = 0; i < q.count; i++) { pos.push(q.getX(i), q.getY(i) + 0.45, q.getZ(i)); nor.push(qn.getX(i), qn.getY(i), qn.getZ(i)); col.push(.55, .38, .25); }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); return g;
+}
+async function construirEntorno() {
+  if (!datosMalla || !metaActual) return; await lienzoHD();
+  const ex = +$('exag').value, clave = [actual, ex, loteo ? loteo.usado_ha + JSON.stringify(loteoOpc) : ''].join('|'); if (entorno && entornoClave === clave) { entorno.visible = true; return; }
+  if (entorno) { escena3.remove(entorno); entorno.traverse(o => o.geometry && o.geometry.dispose()); } entorno = new THREE.Group(); entornoClave = clave; escena3.add(entorno);
+  // construcciones
+  try { const fc = edifCache[actual] || (edifCache[actual] = await (await fetch('api/edificios/' + actual)).json()), pos = [], col = [];
+    const tri = (a, b, c, k) => { pos.push(...a, ...b, ...c); for (let i = 0; i < 3; i++) col.push(...k); };
+    fc.features.forEach(f => (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates).forEach(pol => {
+      let an = pol[0].slice(0, -1).map(([lo, la]) => lonlat3(lo, la)); if (an.length < 3) return; if (THREE.ShapeUtils.isClockWise(an.map(q => new THREE.Vector2(q[0], q[1])))) an = an.reverse();
+      const y0 = Math.min(...an.map(q => altura3(q[0], q[1]))), y1 = y0 + (f.properties.altura || 3.2) * Math.max(ex, 1), pared = [.9, .88, .84], techo = [.66, .6, .56];
+      an.forEach((a, i) => { const b = an[(i + 1) % an.length]; tri([a[0], y0, a[1]], [a[0], y1, a[1]], [b[0], y1, b[1]], pared); tri([a[0], y0, a[1]], [b[0], y1, b[1]], [b[0], y0, b[1]], pared); });
+      THREE.ShapeUtils.triangulateShape(an.map(q => new THREE.Vector2(q[0], q[1])), []).forEach(t => tri([an[t[0]][0], y1, an[t[0]][1]], [an[t[2]][0], y1, an[t[2]][1]], [an[t[1]][0], y1, an[t[1]][1]], techo)); }));
+    if (pos.length) { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); g.computeVertexNormals();
+      entorno.add(new THREE.Mesh(g, new THREE.MeshLambertMaterial({ vertexColors: true, side: THREE.DoubleSide }))); } } catch (e) { console.warn('construcciones', e); }
+  // árboles
+  try { const en = await (await fetch('api/entorno/' + actual)).json(), bin = atob(en.arboles), A = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) A[i] = bin.charCodeAt(i);
+    let L = null, lw = 0, F = 1; if (loteo && loteo.raster) { const b2 = atob(loteo.raster); L = new Uint8Array(b2.length); for (let i = 0; i < b2.length; i++) L[i] = b2.charCodeAt(i); lw = loteo.ancho; F = loteo.factor; }
+    const rm = metaActual.res, W0 = datosMalla.ancho / 2 * datosMalla.res, H0 = datosMalla.alto / 2 * datosMalla.res, celdas = [], tala = []; talados = null; let rnd = 777; const azar = () => (rnd = (rnd * 16807) % 2147483647) / 2147483647;
+    for (let r = 0; r < en.alto; r++) for (let c = 0; c < en.ancho; c++) if (A[r * en.ancho + c] && !(L && L[(r * F + (F >> 1)) * lw + c * F + (F >> 1)])) celdas.push([c, r, A[r * en.ancho + c]]);
+    const enCamino = new Set((loteo && loteo.caminos_nuevos || []).flatMap(c => c.puntos.map(([a, b]) => b * en.ancho + a)));
+    for (let r = 0; r < en.alto; r++) for (let c = 0; c < en.ancho; c++) if (A[r * en.ancho + c] && ((L && L[(r * F + (F >> 1)) * lw + c * F + (F >> 1)]) || enCamino.has(r * en.ancho + c))) tala.push([c, r, A[r * en.ancho + c]]);
+    const sinTala = celdas.filter(([c, r]) => !enCamino.has(r * en.ancho + c)), ejeY = new THREE.Vector3(0, 1, 0), C = new THREE.Color(), matV = new THREE.MeshLambertMaterial({ vertexColors: true });
+    const ARB = await Promise.all(['tree_oak', 'tree_detailed', 'tree_default', 'tree_fat', 'tree_pineRoundA'].map(modelo)), MAT = await Promise.all(['plant_bushLarge', 'plant_bush', 'plant_bushDetailed'].map(modelo));
+    // reparte los puntos entre los modelos disponibles y arma una malla instanciada por modelo
+    const poner = (lista, tope) => { const porCelda = Math.min(1.6, tope / Math.max(lista.length, 1)), grupos = new Map(), mallas = [];
+      lista.forEach(([c, r, tipo]) => { let n = Math.floor(porCelda) + (azar() < porCelda % 1 ? 1 : 0); while (n-- > 0) { const mods = tipo === 2 ? MAT : ARB, g = mods[Math.floor(azar() * mods.length)]; if (!grupos.has(g)) grupos.set(g, []);
+          const x = (c + azar()) * rm - W0, z = (r + azar()) * rm - H0; grupos.get(g).push({ p: new THREE.Vector3(x, altura3(x, z), z), giro: azar() * 6.283, s: (tipo === 2 ? 1.4 + 1.8 * azar() : 6 + 6 * azar()) * Math.max(ex, 1), tipo, orden: 0 }); } });
+      grupos.forEach((base, g) => { const im = new THREE.InstancedMesh(g, matV, base.length), M = new THREE.Matrix4(), Q = new THREE.Quaternion(); im.userData.base = base;
+        base.forEach((b, i) => { Q.setFromAxisAngle(ejeY, b.giro); M.compose(b.p, Q, new THREE.Vector3(b.s, b.s, b.s)); im.setMatrixAt(i, M); const v = 0.82 + 0.3 * azar(); im.setColorAt(i, C.setRGB(v, v * (0.96 + 0.08 * azar()), v)); });
+        im.frustumCulled = false; entorno.add(im); mallas.push(im); }); return mallas; };
+    poner(sinTala, 14000); talados = poner(tala, 9000); tocones = null;
+    if (talados.length) { // la tala avanza desde la entrada hacia adentro; cada árbol deja su tocón
+      const ac = (loteo.caminos_nuevos || []).find(c => c.tipo === 'acceso'), pe = ac ? ac.puntos[ac.puntos.length - 1] : null, ox = pe ? (pe[0] + .5) * rm - W0 : 0, oz = pe ? (pe[1] + .5) * rm - H0 : 0;
+      const todos = talados.flatMap(m => m.userData.base), ds = todos.map(b => Math.hypot(b.p.x - ox, b.p.z - oz)), d0 = Math.min(...ds), d1 = Math.max(...ds); todos.forEach((b, i) => b.orden = (ds[i] - d0) / Math.max(d1 - d0, 1) * 0.72);
+      const tr = todos.filter(b => b.tipo !== 2); if (tr.length) { tocones = new THREE.InstancedMesh(await modelo('stump_round'), matV, tr.length); tocones.userData.base = tr; tocones.frustumCulled = false; tocones.visible = false; entorno.add(tocones); }
+      talados.forEach(m => m.visible = false); } else talados = null;
+  } catch (e) { console.warn('árboles', e); }
+}
+// animación de la preparación del terreno: entrada, despeje, suelo y siembra lote por lote
+const espera = ms => new Promise(ok => setTimeout(ok, ms));
+function caer(t, destronque = 0) {     // cada árbol se sacude con los golpes, cae de lado, se retira y deja su tocón; el matorral se arranca
+  if (!talados) return; const M = new THREE.Matrix4(), Q = new THREE.Quaternion(), Qg = new THREE.Quaternion(), eje = new THREE.Vector3(), ejeY = new THREE.Vector3(0, 1, 0), S = new THREE.Vector3();
+  const fase = b => Math.min(Math.max((t - b.orden) / 0.26, 0), 1);
+  talados.forEach(m => { m.userData.base.forEach((b, i) => { const q = fase(b); let inc = 0, k = 1;
+      if (b.tipo === 2) k = 1 - q; else if (q < 0.25) inc = Math.sin(q * 50) * 0.05 * (q / 0.25); else if (q < 0.7) { const f = (q - 0.25) / 0.45; inc = 1.5 * f * f; } else { inc = 1.5; k = 1 - (q - 0.7) / 0.3; }
+      Qg.setFromAxisAngle(ejeY, b.giro); Q.setFromAxisAngle(eje.set(Math.cos(b.giro), 0, Math.sin(b.giro)), inc).multiply(Qg); M.compose(b.p, Q, S.setScalar(Math.max(b.s * k, 1e-4))); m.setMatrixAt(i, M); }); m.instanceMatrix.needsUpdate = true; });
+  if (tocones) { tocones.userData.base.forEach((b, i) => { const v = fase(b) > 0.3 ? b.s * 0.07 * (1 - destronque) : 1e-4; Qg.setFromAxisAngle(ejeY, b.giro); M.compose(b.p, Qg, S.set(v * 1.6, Math.max(v, 1e-4), v * 1.6)); tocones.setMatrixAt(i, M); }); tocones.instanceMatrix.needsUpdate = true; }
+}
+async function animarObra() {
+  if (obra || !loteo || !loteo.lotes.length) return; pararSim(); obra = { sembrados: new Set() }; const cartel = (n, e) => { $('obra').innerHTML = `<b>${n} · ${e.titulo}</b>${e.detalle}`; $('obra').classList.remove('oculto'); };
+  try { const et = Object.fromEntries(loteo.etapas.map(e => [e.clave, e])); let n = 1; await sembrar(); await construirEntorno(); crecer(); ponerEtiquetas([]);
+    if (talados) { talados.forEach(m => m.visible = true); if (tocones) tocones.visible = true; caer(0); }
+    ponerUV(uvHD); ponerMapa(await texturaPlan({ suelo: 0, camino: 0 })); await espera(900);
+    if ((loteo.caminos_nuevos || []).length) { cartel(n++, et.acceso || et.servicio); for (let i = 1; i <= 10; i++) { if (i === 5 && et.acceso && et.servicio) cartel(n++, et.servicio); ponerMapa(await texturaPlan({ suelo: 0, camino: i / 10 })); await espera(380); } }
+    else if (et.acceso) { cartel(n++, et.acceso); await espera(2500); }
+    if (talados && et.despeje) { cartel(n++, et.despeje); const todos = talados.flatMap(m => m.userData.base), cen = todos.reduce((a, b) => a.add(b.p), new THREE.Vector3()).multiplyScalar(1 / todos.length);
+      const vuelta = { p: camara.position.clone(), o: ctl.target.clone() }; vuelo = { t: performance.now(), p0: vuelta.p, o0: vuelta.o, o1: cen, p1: cen.clone().add(vuelta.p.clone().sub(vuelta.o).multiplyScalar(0.5)) }; await espera(1500);
+      const t0 = performance.now(), dur = 10000; while (performance.now() - t0 < dur) { caer((performance.now() - t0) / dur); await new Promise(requestAnimationFrame); } caer(1.01);
+      vuelo = { t: performance.now(), p0: camara.position.clone(), o0: ctl.target.clone(), p1: vuelta.p, o1: vuelta.o }; await espera(1500); }
+    if (talados) { caer(1.01); talados.forEach(m => m.visible = false); }
+    cartel(n++, et.suelo); for (let i = 1; i <= 6; i++) { ponerMapa(await texturaPlan({ suelo: i / 6, camino: 1 })); if (talados) caer(1.01, i / 6); await espera(330); }
+    cartel(n++, et.siembra); const u0 = unidades()[0], q0 = estadoUnidad(u0.zona, u0.lote); sim.anio = 0; if (q0 && q0.cu.siembra_mes) sim.mes = q0.cu.siembra_mes % 12;
+    for (const u of unidades()) { obra.sembrados.add(u.k); crecer(); await espera(650); }
+    await espera(900);
+  } finally { obra = null; $('obra').classList.add('oculto'); if (talados) talados.forEach(m => m.visible = false); if (tocones) tocones.visible = false; }
+  await textura(); $('simPlay').click();
+}
+// panel para ir probando dentro de la simulación
+function pintarProbar() {
+  const el = $('probar'); if (!loteo) { el.innerHTML = ''; return; }
+  el.innerHTML = `<h4>Probar en la simulación</h4><div class="mini" style="margin-bottom:8px">Se siembran <b>${fmt(loteo.usado_ha, 1)} de ${fmt(loteo.total_ha, 1)} ha</b> (${loteo.pct || 0} %) en ${loteo.lotes.length} lotes. Toca un lote para cambiarle el cultivo.</div><button id="verObra" class="herr" style="width:100%;margin-bottom:10px">▶ Ver cómo se prepara el terreno</button>` + textoRed() +
+    `<button id="marcarEnt" class="herr" style="width:100%;margin:6px 0 10px">${loteoOpc.entrada ? 'Quitar la entrada marcada' : 'Marcar la entrada en el 3D'}</button>` +
+    loteo.hallazgos.map(h => `<div class="mini">${h.pregunta}</div><select data-opc="${h.clave}">${h.opciones.map(([v, n]) => `<option value="${v}" ${v === h.valor ? 'selected' : ''}>${n}</option>`).join('')}</select>`).join('');
+  el.querySelectorAll('select[data-opc]').forEach(x => x.onchange = () => { loteoOpc[x.dataset.opc] = x.value; cargarLoteo(planId); });
+  $('verObra').onclick = animarObra;
+  $('marcarEnt').onclick = () => { if (loteoOpc.entrada) { delete loteoOpc.entrada; cargarLoteo(planId); } else { marcandoEntrada = true; $('marcarEnt').textContent = 'Toca en el 3D el punto por donde se entra…'; } };
+}
+let marcandoEntrada = false;
+// caminos reconocidos alrededor, en palabras
+function textoRed() {
+  const r = loteo && loteo.red; if (!r) return ''; const cl = Object.entries(r.clases || {}).slice(0, 3).map(([k, m]) => `${fmt(m, 0)} m de ${k.replace(/^una? /, '')}`).join(', ');
+  const cerca = r.cercano ? (r.cercano.m < 15 ? `El terreno toca ${r.cercano.clase}.` : `El camino para vehículos más cercano es ${r.cercano.clase}, a ${fmt(r.cercano.m, 0)} m hacia el ${r.cercano.rumbo}${r.cercano.en_vista ? '' : ' (fuera de la vista)'}.`) : 'No hay caminos para vehículos registrados en 1,2 km a la redonda.';
+  return `<div class="mini"><b>Caminos reconocidos.</b> ${cerca}${cl ? ' En la vista: ' + cl + '.' : ''}${r.peatonales_m ? ` Hay ${fmt(r.peatonales_m, 0)} m de senderos que no sirven para entrar con vehículo.` : ''}${r.tren_m ? ` Pasa una vía de tren (${fmt(r.tren_m, 0)} m).` : ''}${loteo.entrada ? ' <b>Entrada marcada a mano.</b>' : ''}</div><div class="mini tec">${r.fuente}. Puede faltar alguna huella que el mapa no tiene.</div>`;
+}
+function tarjetaLote(l) {
+  const q = estadoUnidad(l.zona, l.id), aptos = planDatos.cultivos.filter(x => x.siembra_mes), cu = q && q.cu, M = MESES.map(m => m.toLowerCase());
+  $('tarjT').innerHTML = `Lote ${l.id} · ${fmt(l.ha, 1)} ha · ${l.zona_nombre.toLowerCase()}`;
+  $('tarjP').textContent = cu ? `${cu.nombre}: ${cu.veredicto}. ${cu.porque}` : '';
+  $('tarjL').innerHTML = `<li>Pendiente media ${fmt(l.pendiente, 1)} % · ${l.surco_texto}</li>` + (cu && cu.siembra_mes ? `<li>Fechas tentativas: siembra en ${M[cu.siembra_mes - 1]}, cosecha en ${M[cu.cosecha_mes - 1]}. Sale bien ${cu.buenos_de_10} de cada 10 años.</li>` : '') +
+    `<li>Probar otro cultivo en este lote:<br><select id="selLote" style="width:100%;margin-top:4px"><option value="">El de la rotación recomendada</option>${aptos.map(x => `<option value="${x.clave}" ${loteCultivo[l.id] === x.clave ? 'selected' : ''}>${x.nombre} — ${x.veredicto}</option>`).join('')}</select></li>`;
+  $('selLote').onchange = e => { if (e.target.value) loteCultivo[l.id] = e.target.value; else delete loteCultivo[l.id]; crecer(); textoSim(); tarjetaLote(l); };
+  $('tarjeta').classList.remove('oculto');
+}
+function animarPlantas() {
+  if (!plantas || !plantas.visible) return; plU.uTiempo.value = (performance.now() - tiempo0) / 1000;
+  for (let k = 0; k < NZ; k++) { plU.uAlt.value[k] += (plObj.alt[k] - plU.uAlt.value[k]) * 0.07; plU.uAncho.value[k] += (plObj.ancho[k] - plU.uAncho.value[k]) * 0.07; plU.uBase.value[k].lerp(plObj.base[k], 0.07); plU.uPunta.value[k].lerp(plObj.punta[k], 0.07); }
+}
+function alturas(ex) {
+  const { ancho, alto, res, z, zmin } = datosMalla; const pos = malla.geometry.attributes.position;
+  for (let r = 0, i = 0; r < alto; r++) for (let c = 0; c < ancho; c++, i++) pos.setXYZ(i, (c - ancho / 2) * res, (z[i] - zmin) * ex, (r - alto / 2) * res);
+  pos.needsUpdate = true; malla.geometry.computeVertexNormals();
+  if (borde) { const p = borde.geometry.attributes.position; datosMalla.poligono.forEach(([c, r], k) => {
+      const ci = Math.min(Math.max(Math.round(c), 0), ancho - 1), ri = Math.min(Math.max(Math.round(r), 0), alto - 1);
+      p.setXYZ(k, (c - ancho / 2) * res, (z[ri * ancho + ci] - zmin) * ex + res * 0.6, (r - alto / 2) * res); }); p.needsUpdate = true; }
+}
+async function construir3d(id) {
+  if (!renderer) iniciar3d();
+  const m = await (await fetch('api/malla/' + id)).json();
+  const bin = atob(m.z), buf = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+  datosMalla = { ...m, z: new Float32Array(buf.buffer) };
+  if (malla) { escena3.remove(malla); malla.geometry.dispose(); } if (borde) { escena3.remove(borde); borde.geometry.dispose(); }
+  const g = new THREE.BufferGeometry(), n = m.ancho * m.alto; const uv = new Float32Array(n * 2), idx = [];
+  for (let r = 0, i = 0; r < m.alto; r++) for (let c = 0; c < m.ancho; c++, i++) { uv[i * 2] = c / (m.ancho - 1); uv[i * 2 + 1] = 1 - r / (m.alto - 1); }
+  for (let r = 0; r < m.alto - 1; r++) for (let c = 0; c < m.ancho - 1; c++) { const a = r * m.ancho + c; idx.push(a, a + m.ancho, a + 1, a + 1, a + m.ancho, a + m.ancho + 1); }
+  uvGrilla = uv; uvHD = null; hdCache = null; if (entorno) { escena3.remove(entorno); entorno = null; entornoClave = ''; } if (plantas) { escena3.remove(plantas); plantas.geometry.dispose(); plantas = null; } enfocado = false; vuelo = null; ponerEtiquetas([]);
+  g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(n * 3), 3)); g.setAttribute('uv', new THREE.BufferAttribute(uv.slice(), 2)); g.setIndex(idx);
+  mat = mat || new THREE.MeshLambertMaterial({ side: THREE.DoubleSide }); malla = new THREE.Mesh(g, mat); escena3.add(malla);
+  const bg = new THREE.BufferGeometry(); bg.setAttribute('position', new THREE.BufferAttribute(new Float32Array(m.poligono.length * 3), 3));
+  borde = new THREE.Line(bg, new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 2, depthTest: false })); borde.renderOrder = 10; escena3.add(borde);
+  alturas(+$('exag').value);
+  const L = Math.max(m.ancho, m.alto) * m.res; camara.position.set(-L * 0.75, L * 0.7, L * 1.05); camara.far = L * 20; camara.updateProjectionMatrix(); ctl.target.set(0, 0, 0);
+  if ($('capa').value === 'plan') enfocar(true);
+  await textura();
+}
+// imagen de alta resolución: mosaico de teselas armado en el navegador y proyectado sobre la malla
+const merc = (lon, lat, z) => { const n = 2 ** z, r = lat * Math.PI / 180; return [(lon + 180) / 360 * n, (1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * n]; };
+async function lienzoHD() {
+  if (hdCache && hdCache.id === actual && uvHD) return hdCache;
+  const E = metaActual.esquinas; let z = 18, m, x0, x1, y0, y1;
+  for (; z > 10; z--) { m = E.map(([lo, la]) => merc(lo, la, z)); x0 = Math.floor(Math.min(...m.map(p => p[0]))); x1 = Math.floor(Math.max(...m.map(p => p[0])));
+    y0 = Math.floor(Math.min(...m.map(p => p[1]))); y1 = Math.floor(Math.max(...m.map(p => p[1]))); if (x1 - x0 < 16 && y1 - y0 < 16) break; }
+  const nx = x1 - x0 + 1, ny = y1 - y0 + 1, cv = document.createElement('canvas'); cv.width = nx * 256; cv.height = ny * 256; const cx = cv.getContext('2d');
+  const tareas = []; for (let ty = y0; ty <= y1; ty++) for (let tx = x0; tx <= x1; tx++) tareas.push(new Promise(ok => { const im = new Image(); im.crossOrigin = 'anonymous';
+    im.onload = () => { cx.drawImage(im, (tx - x0) * 256, (ty - y0) * 256); ok(); }; im.onerror = () => ok();
+    im.src = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${ty}/${tx}`; }));
+  await Promise.all(tareas);
+  // caminos y calles
+  try { const fc = camCache[actual] || (camCache[actual] = await (await fetch('api/caminos/' + actual)).json());
+    cx.strokeStyle = 'rgba(255,236,160,0.95)'; cx.lineWidth = 3; cx.lineJoin = 'round';
+    fc.features.forEach(f => (f.geometry.type === 'LineString' ? [f.geometry.coordinates] : f.geometry.coordinates).forEach(lin => { cx.beginPath();
+      lin.forEach(([lo, la], k) => { const q = merc(lo, la, z), x = (q[0] - x0) * 256, y = (q[1] - y0) * 256; k ? cx.lineTo(x, y) : cx.moveTo(x, y); }); cx.stroke(); })); } catch (e) {}
+  // edificaciones: huellas vectoriales nítidas
+  try { const fc = edifCache[actual] || (edifCache[actual] = await (await fetch('api/edificios/' + actual)).json());
+    cx.strokeStyle = '#ff8a00'; cx.fillStyle = 'rgba(255,138,0,0.35)'; cx.lineWidth = 2;
+    fc.features.forEach(f => (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates).forEach(pol => { cx.beginPath();
+      pol[0].forEach(([lo, la], k) => { const q = merc(lo, la, z), x = (q[0] - x0) * 256, y = (q[1] - y0) * 256; k ? cx.lineTo(x, y) : cx.moveTo(x, y); }); cx.closePath(); cx.fill(); cx.stroke(); })); } catch (e) {}
+  // fuera del terreno se atenúa
+  const pp = metaActual.poligono.map(([lo, la]) => { const q = merc(lo, la, z); return [(q[0] - x0) * 256, (q[1] - y0) * 256]; });
+  cx.fillStyle = 'rgba(0,0,0,0.22)'; cx.beginPath(); cx.rect(0, 0, cv.width, cv.height); pp.forEach(([x, y], k) => k ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.closePath(); cx.fill('evenodd');
+  // coordenadas de textura por vértice (interpolación bilineal de las 4 esquinas de la grilla en Mercator)
+  const { ancho, alto } = datosMalla; uvHD = new Float32Array(ancho * alto * 2); const [nw, ne, sw, se] = m;
+  for (let r = 0, i = 0; r < alto; r++) { const fr = r / (alto - 1); for (let c = 0; c < ancho; c++, i++) { const fc = c / (ancho - 1);
+      const mx = (nw[0] * (1 - fc) + ne[0] * fc) * (1 - fr) + (sw[0] * (1 - fc) + se[0] * fc) * fr, my = (nw[1] * (1 - fc) + ne[1] * fc) * (1 - fr) + (sw[1] * (1 - fc) + se[1] * fc) * fr;
+      uvHD[i * 2] = (mx - x0) / nx; uvHD[i * 2 + 1] = 1 - (my - y0) / ny; } }
+  return hdCache = { id: actual, cv, z, x0, y0, px: m.map(q => [(q[0] - x0) * 256, (q[1] - y0) * 256]) };
+}
+async function texturaHD() { const h = await lienzoHD(); const tx = new THREE.CanvasTexture(h.cv); tx.colorSpace = THREE.SRGBColorSpace; tx.anisotropy = 8; return tx; }
+// cualquier mapa se pinta sobre la imagen de alta resolución, en toda la vista (la grilla del análisis se lleva a la imagen con una transformación afín)
+async function texturaSobreHD(url) {
+  const h = await lienzoHD();
+  const im = await new Promise(ok => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => ok(null); i.src = url; });
+  if (!planCv || planCv.width !== h.cv.width || planCv.height !== h.cv.height) { planCv = document.createElement('canvas'); planCv.width = h.cv.width; planCv.height = h.cv.height; if (planTx) { planTx.dispose(); planTx = null; } }
+  const cx = planCv.getContext('2d'); cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(h.cv, 0, 0);
+  if (im) { const [nw, ne, sw] = h.px; cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high';
+    cx.setTransform((ne[0] - nw[0]) / im.width, (ne[1] - nw[1]) / im.width, (sw[0] - nw[0]) / im.height, (sw[1] - nw[1]) / im.height, nw[0], nw[1]); cx.drawImage(im, 0, 0); cx.setTransform(1, 0, 0, 1, 0, 0); }
+  if (!planTx) { planTx = new THREE.CanvasTexture(planCv); planTx.colorSpace = THREE.SRGBColorSpace; planTx.anisotropy = 8; } planTx.needsUpdate = true; return planTx;
+}
+async function texturaPlan(o = {}) {
+  const h = await lienzoHD(), suelo = o.suelo ?? 1, cam = o.camino ?? 1, Wm = loteo.ancho / loteo.factor, Hm = loteo.alto / loteo.factor, [nw, ne, sw] = h.px;
+  if (!planCv || planCv.width !== h.cv.width || planCv.height !== h.cv.height) { planCv = document.createElement('canvas'); planCv.width = h.cv.width; planCv.height = h.cv.height; if (planTx) { planTx.dispose(); planTx = null; } }
+  const cx = planCv.getContext('2d'); cx.setTransform(1, 0, 0, 1, 0, 0); cx.globalAlpha = 1; cx.drawImage(h.cv, 0, 0);
+  if (!loteo._cv) { const b = atob(loteo.raster), cv = document.createElement('canvas'); cv.width = loteo.ancho; cv.height = loteo.alto; const c2 = cv.getContext('2d'), im = c2.createImageData(cv.width, cv.height);
+    for (let i = 0; i < b.length; i++) if (b.charCodeAt(i)) { im.data[i * 4] = 126; im.data[i * 4 + 1] = 96; im.data[i * 4 + 2] = 68; im.data[i * 4 + 3] = 205; } c2.putImageData(im, 0, 0); loteo._cv = cv; }
+  if (suelo > 0) { cx.globalAlpha = suelo; cx.imageSmoothingEnabled = true; cx.setTransform((ne[0] - nw[0]) / loteo.ancho, (ne[1] - nw[1]) / loteo.ancho, (sw[0] - nw[0]) / loteo.alto, (sw[1] - nw[1]) / loteo.alto, nw[0], nw[1]); cx.drawImage(loteo._cv, 0, 0); cx.setTransform(1, 0, 0, 1, 0, 0); cx.globalAlpha = 1; }
+  // caminos nuevos: entrada y servicio
+  const P = (c, r) => [nw[0] + (c + .5) / Wm * (ne[0] - nw[0]) + (r + .5) / Hm * (sw[0] - nw[0]), nw[1] + (c + .5) / Wm * (ne[1] - nw[1]) + (r + .5) / Hm * (sw[1] - nw[1])];
+  const pxm = Math.hypot(ne[0] - nw[0], ne[1] - nw[1]) / (Wm * metaActual.res), cams = loteo.caminos_nuevos || [], total = cams.reduce((a, c) => a + c.puntos.length, 0); let hechos = 0;
+  cx.lineJoin = 'round'; cx.lineCap = 'round';
+  cams.forEach(c => { const n = Math.max(0, Math.min(c.puntos.length, Math.round(cam * total) - hechos)); hechos += c.puntos.length; if (n < 2) return; const pts = c.puntos.slice(0, n).map(([a, b]) => P(a, b));
+    [['rgba(60,45,30,.9)', (c.tipo === 'acceso' ? 6 : 4) * pxm + 4], [c.tipo === 'acceso' ? '#e9d8ae' : '#cdb98c', (c.tipo === 'acceso' ? 6 : 4) * pxm]].forEach(([col, w]) => { cx.strokeStyle = col; cx.lineWidth = Math.max(w, 3); cx.beginPath(); pts.forEach(([x, y], k) => k ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.stroke(); }); });
+  if (!planTx) { planTx = new THREE.CanvasTexture(planCv); planTx.colorSpace = THREE.SRGBColorSpace; planTx.anisotropy = 8; } planTx.needsUpdate = true; return planTx;
+}
+function ponerMapa(tx) { if (mat.map && mat.map !== tx) { if (mat.map === planTx) planTx = null; mat.map.dispose(); } mat.map = tx; mat.needsUpdate = true; }
+const CAPAS3D = [['hd', 'Imagen'], ['cultivo', 'Cultivable'], ['plan', 'Plan'], ['aptitud', 'Límites'], ['pendiente', 'Pendiente'], ['flujo', 'Agua'], ['humedad', 'Humedad'], ['altitud', 'Altitud'], ['ndvi', 'Verdor'], ['imagen', 'Sentinel-2']];
+const BASES = [['esri', 'Alta resolución'], ['s2', 'Sentinel-2'], ['modis', 'NASA MODIS']];
+function chips() {
+  const en3d = $('tres').style.display === 'block', sel = en3d ? $('capa') : $('base'), c = $('capas'); c.innerHTML = '';
+  (en3d ? CAPAS3D : BASES).forEach(([k, n]) => { const b = document.createElement('button'), o = sel.querySelector(`option[value=${k}]`);
+    b.textContent = n; b.title = o ? o.textContent : n; b.disabled = !!(o && o.disabled); b.classList.toggle('act', sel.value === k);
+    b.onclick = () => { sel.value = k; sel.onchange({ target: sel }); chips(); }; c.appendChild(b); });
+  $('mesFlot').classList.toggle('oculto', !(en3d && $('capa').value === 'ndvi'));
+  const enPlan = en3d && $('capa').value === 'plan' && planDatos; $('simFlot').classList.toggle('oculto', !enPlan); $('probar').classList.toggle('oculto', !(enPlan && loteo)); if (!enPlan) pararSim();
+  if (en3d && $('capa').value === 'plan') { $('leyenda').innerHTML = [['#967452', 'Suelo sin cultivo'], ['#cdbb85', 'Rastrojo (restos de la cosecha)'], ['#4f9a3a', 'Cultivo creciendo'], ['#dbb045', 'Maduro, o le falta agua']].map(([c, n]) => `<div><i style="background:${c}"></i>${n}</div>`).join(''); $('leyenda').classList.remove('oculto'); if (enPlan) textoSim(); }
+  else if (en3d && $('capa').value === 'cultivo' && leyCult) { $('leyenda').innerHTML = leyCult; $('leyenda').classList.remove('oculto'); }
+  else $('leyenda').classList.add('oculto');
+}
+$('simMes').oninput = () => pasoSim(+$('simMes').value);
+$('simPlay').onclick = () => { if (sim.timer) return pararSim(); $('simPlay').textContent = '❚❚ Pausa';
+  sim.timer = setInterval(() => pasoSim((sim.anio * 12 + sim.mes + 1) % ((sim.largo || 1) * 12)), 1100); };
+document.querySelectorAll('#simFlot [data-t]').forEach(b => b.onclick = () => { sim.tipo = b.dataset.t; document.querySelectorAll('#simFlot [data-t]').forEach(x => x.classList.toggle('act', x === b)); textura(); });
+$('mesF').oninput = () => { $('mes').value = $('mesF').value; $('mesFlotTxt').textContent = MESES[$('mesF').value - 1]; $('mes').oninput(); };
+function ponerUV(arr) { const u = malla.geometry.attributes.uv; u.array.set(arr); u.needsUpdate = true; }
+async function textura() {
+  chips(); const k = $('capa').value;
+  if (k !== 'plan') { ponerEtiquetas([]); if (plantas) plantas.visible = false; if (entorno) entorno.visible = false; }
+  if (k === 'hd') { const tx = await texturaHD(); ponerUV(uvHD); ponerMapa(tx); return; }
+  if (plantas) plantas.visible = k === 'plan';
+  if (k !== 'imagen') { const url = k === 'plan' ? `api/capa/${actual}/plan.png?solo=2&mes=${sim.mes + 1}&est_=${sim.est}&anio_=${sim.anio}&tipo=${sim.tipo}&t=${Date.now()}` : `api/capa/${actual}/${k}.png?solo=1&mes=${$('mes').value}&t=${Date.now()}`;
+    if (k === 'plan' && obra) return;
+    const tx = k === 'plan' && loteo && loteo.raster ? await texturaPlan() : await texturaSobreHD(url); if ($('capa').value !== k) return; ponerUV(uvHD); ponerMapa(tx); if (k === 'plan') { await sembrar(); crecer(); await construirEntorno(); } return; }
+  const url = `api/capa/${actual}/${k}.png?mes=${$('mes').value}&t=${Date.now()}`;
+  return new Promise(ok => new THREE.TextureLoader().load(url, tx => { tx.colorSpace = THREE.SRGBColorSpace; tx.anisotropy = 8; ponerUV(uvGrilla); ponerMapa(tx); ok(); }, undefined, () => ok()));
+}
+$('capa').onchange = () => { $('ctlMes').classList.toggle('oculto', $('capa').value !== 'ndvi'); $('leyenda').classList.toggle('oculto', $('capa').value !== 'cultivo'); enfocar($('capa').value === 'plan'); textura(); };
+// tocar el terreno 3D: explicación en palabras simples
+let abajo = null; const rayo = new THREE.Raycaster();
+$('tres').addEventListener('pointerdown', e => { abajo = [e.clientX, e.clientY]; });
+$('tres').addEventListener('pointerup', async e => {
+  if (!abajo || Math.hypot(e.clientX - abajo[0], e.clientY - abajo[1]) > 5 || !malla) return;
+  const b = renderer.domElement.getBoundingClientRect(); rayo.setFromCamera(new THREE.Vector2((e.clientX - b.left) / b.width * 2 - 1, -((e.clientY - b.top) / b.height) * 2 + 1), camara);
+  const hit = rayo.intersectObject(malla)[0]; if (!hit) return;
+  if (marcandoEntrada && loteo) { marcandoEntrada = false; const rm = metaActual.res; loteoOpc.entrada = `${((hit.point.x + datosMalla.ancho / 2 * datosMalla.res) / rm).toFixed(1)},${((hit.point.z + datosMalla.alto / 2 * datosMalla.res) / rm).toFixed(1)}`; return cargarLoteo(planId); }
+  if ($('capa').value === 'plan' && loteo && loteo.raster) { const rf = metaActual.res / loteo.factor, c = Math.floor((hit.point.x + datosMalla.ancho / 2 * datosMalla.res) / rf), r = Math.floor((hit.point.z + datosMalla.alto / 2 * datosMalla.res) / rf);
+    if (!loteo._r) { const b = atob(loteo.raster); loteo._r = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) loteo._r[i] = b.charCodeAt(i); }
+    const l = c >= 0 && r >= 0 && c < loteo.ancho && r < loteo.alto && loteo.lotes.find(x => x.id === loteo._r[r * loteo.ancho + c]); if (l) return tarjetaLote(l); }
+  const f = datosMalla.res / metaActual.res, col = (hit.point.x / datosMalla.res + datosMalla.ancho / 2) * f, fil = (hit.point.z / datosMalla.res + datosMalla.alto / 2) * f;
+  const q = await fetch(`api/punto/${actual}?c=${col}&r=${fil}`); if (!q.ok) return; const x = await q.json();
+  $('tarjT').innerHTML = `<i class="cuad" style="background:${x.color}"></i>${x.titulo}`; $('tarjP').textContent = x.texto; $('tarjL').innerHTML = x.detalles.map(l => `<li>${l}</li>`).join('') + (x.tecnico || []).map(l => `<li class="tec">${l}</li>`).join('');
+  $('tarjeta').classList.remove('oculto');
+  if (!marca) { marca = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 12), new THREE.MeshBasicMaterial({ color: 0xffffff })); escena3.add(marca); }
+  const s3 = Math.max(datosMalla.ancho, datosMalla.alto) * datosMalla.res / 150; marca.scale.setScalar(s3); marca.position.copy(hit.point);
+});
+let marca = null; $('tarjX').onclick = () => $('tarjeta').classList.add('oculto');
+$('mes').oninput = () => { $('mesTxt').textContent = MESES[$('mes').value - 1]; textura(); };
+$('exag').oninput = () => { $('exTxt').textContent = $('exag').value + '×'; if (malla) alturas(+$('exag').value); if (plantas && plantas.visible) { sembrar(); construirEntorno(); } };
+function ver3d() { setTimeout(chips, 0); $('ficha').classList.remove('oculto'); $('leyenda').classList.toggle('oculto', $('capa').value !== 'cultivo'); $('tres').style.display = 'block'; $('mapa').style.display = 'none'; $('b3d').classList.add('act'); $('bMapa').classList.remove('act');
+  $('ayuda').textContent = 'Toca un punto dentro de tu terreno (línea blanca) para saber si se puede cultivar y por qué · arrastra para girar · rueda para acercar.'; }
+function verMapa() { setTimeout(chips, 0); $('ficha').classList.add('oculto'); $('leyenda').classList.add('oculto'); $('tarjeta').classList.add('oculto'); $('tres').style.display = 'none'; $('mapa').style.display = 'block'; $('bMapa').classList.add('act'); $('b3d').classList.remove('act');
+  $('ayuda').textContent = 'Busca un lugar, pulsa «Marcar terreno» y haz clic en cada esquina. Doble clic para cerrar.'; mapa.resize(); }
+$('b3d').onclick = ver3d; $('bMapa').onclick = verMapa;
+</script>
+</body>
+</html>
