@@ -161,7 +161,19 @@ def get_entorno(i: str):
     if os.path.exists(f"{d}/cultivo.npz") and os.path.exists(f"{d}/terreno.npz"):     # 2 = matorral o árboles dispersos dentro del terreno
         veg[(np.load(f"{d}/cultivo.npz")["clase"] == 6) & np.load(f"{d}/terreno.npz")["mascara"] & (veg == 0)] = 2
         veg[np.load(f"{d}/cultivo.npz")["clase"] == 7] = 3              # 3 = viña o huerto frutal: plantas en hileras, no bosque
-    return dict(ancho=int(wc.shape[1]), alto=int(wc.shape[0]), arboles=base64.b64encode(np.ascontiguousarray(veg).tobytes()).decode())
+    # cuántos árboles dibujar en cada celda: WorldCover llama «árboles» a todo lo que tenga más de 10 % de copa, así que un cerro ralo
+    # y un bosque cerrado salen iguales. El verdor medido (NDVI de NASA HLS, percentil 60 del historial) distingue uno de otro.
+    dens = np.full(wc.shape, 55, "uint8"); fuente = "sin historial de verdor todavía: densidad media supuesta"
+    fh = f"{d}/hls_ndvi.npz"
+    if os.path.exists(fh):
+        try:
+            import warnings
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore"); q = np.nanpercentile(np.load(fh)["ndvi"].astype("float32"), 60, 0)
+            if q.shape == wc.shape: dens = np.where(np.isfinite(q), np.clip((q - 0.30) / 0.35, 0.06, 1.0) * 100, 55).astype("uint8"); fuente = "verdor medido (NDVI de NASA HLS)"
+        except Exception: pass
+    return dict(ancho=int(wc.shape[1]), alto=int(wc.shape[0]), arboles=base64.b64encode(np.ascontiguousarray(veg).tobytes()).decode(),
+                densidad=base64.b64encode(np.ascontiguousarray(dens).tobytes()).decode(), densidad_fuente=fuente)
 
 @app.get("/api/loteo/{i}")
 def get_loteo(i: str, bosque: str = "conservar", ladera: str = "incluir", camino: float = 5, construccion: float = 10, cabecera: float = 6, entrada: str = ""):
@@ -279,6 +291,30 @@ def get_terreno(i: str, motivo: str = "abrir"):
                 terreno=json.load(open(f"{d}/terreno.json")), vegetacion=os.path.exists(f"{d}/hls_ndvi.npz"), completo=os.path.exists(f"{d}/clima.json"),
                 cultivo=json.load(open(f"{d}/cultivo.json")) if os.path.exists(f"{d}/cultivo.json") else None)
 
+def _terrazas(d, G, alto):
+    """Relieve actual, relieve con terrazas, zona que se escalona y pendiente. La zona es la ladera de 8 a 30 % dentro del terreno, sin cauce, agua, construcciones, caminos ni plantaciones."""
+    from scipy.ndimage import gaussian_filter
+    dem = gaussian_filter(rasterio.open(f"{d}/dem.tif").read(1).astype("float32"), sigma=max(30.0 / G["res"], 1.0) * 0.7); t = np.load(f"{d}/terreno.npz"); pend = t["pendiente_pct"]
+    zona = t["mascara"] & (pend >= 8) & (pend <= 30) & ~t["edificios"]
+    for k in ("agua", "caminos"):
+        if k in t.files: zona &= ~t[k]
+    if os.path.exists(f"{d}/cultivo.npz"): zona &= np.isin(np.load(f"{d}/cultivo.npz")["clase"], (2, 3, 6))
+    nuevo = dem.copy(); nuevo[zona] = (np.floor(dem[zona] / alto) + 0.5) * alto
+    return dem, nuevo, zona, pend
+
+@app.get("/api/terrazas/{i}")
+def terrazas(i: str, alto: float = 1.5):
+    """Cómo quedaría la ladera con terrazas de banco: el mismo relieve de la vista 3D, escalonado donde la pendiente va de 8 a 30 %.
+    Cada banco queda plano a media altura de su escalón, de modo que la tierra que se corta arriba es la que se rellena abajo.
+    Es un esquema: el relieve de origen es de 30 m, así que sirve para dimensionar la obra, no para trazarla."""
+    d = _dir(i); G = json.load(open(f"{d}/meta.json")); alto = float(np.clip(alto, 0.5, 4.0)); dem, nuevo, zona, pend = _terrazas(d, G, alto)
+    a_celda = G["res"] ** 2; ha = float(zona.sum() * a_celda / 1e4); corte = float(np.clip(dem - nuevo, 0, None)[zona].sum() * a_celda); pm = float(pend[zona].mean()) if zona.any() else 0.0
+    paso = max(1, int(np.ceil(np.sqrt(dem.size / 160000)))); z = np.ascontiguousarray(nuevo[::paso, ::paso])
+    return dict(ha=round(ha, 2), alto_m=alto, pendiente_media=round(pm, 1), ancho_banco_m=round(alto / max(pm / 100, 1e-6), 1) if ha else None,
+                escalones=int(np.ptp(np.floor(dem[zona] / alto)) + 1) if ha else 0, tierra_m3=int(round(corte, -1)), m3_por_ha=int(round(corte / max(ha, 1e-6), -1)) if ha else 0,
+                ha_hoy_no_convenia=round(float((zona & (pend > 15)).sum() * a_celda / 1e4), 2), con_arboles_ha=round(float((zona & (rasterio.open(f"{d}/worldcover.tif").read(1) == 10)).sum() * a_celda / 1e4), 2),
+                z=base64.b64encode(z.tobytes()).decode(), ancho=int(z.shape[1]), alto=int(z.shape[0]))
+
 @app.get("/api/malla/{i}")
 def malla(i: str):
     d = _dir(i); G = json.load(open(f"{d}/meta.json")); T = Affine(*G["transform"])
@@ -336,6 +372,10 @@ def capa(i: str, nombre: str, mes: int = 1, mezcla: float = 0.75, edif: int = 1,
     if base is None: base = np.full((G["alto"], G["ancho"], 3), 128, "uint8")
     if not os.path.exists(f"{d}/terreno.npz") or "caminos" not in np.load(f"{d}/terreno.npz").files: terreno.analizar(d)
     t = np.load(f"{d}/terreno.npz"); fuera = np.where(t["mascara"], 1.0, 0.72)[:, :, None]      # fuera del terreno se atenúa
+    if nombre == "terrazas":            # bancos pintados siguiendo las curvas de nivel: verde claro y verde oscuro alternados, talud en café
+        dem, nuevo, zona, pend = _terrazas(d, G, 1.5); niv = np.floor(dem / 1.5).astype("int32"); col = np.zeros(base.shape, "uint8"); col[...] = (112, 158, 84); col[(niv % 2 == 0)] = (146, 188, 108)
+        talud = np.zeros(zona.shape, bool); talud[1:, :] |= niv[1:, :] != niv[:-1, :]; talud[:, 1:] |= niv[:, 1:] != niv[:, :-1]; col[talud & (pend > 18)] = (128, 98, 66)
+        return _png(np.dstack([col, np.where(zona, 215, 0).astype("uint8")]))
     if nombre == "imagen": return _png(np.dstack([_con_edif(d, (base * fuera).astype("uint8"), edif), np.full(base.shape[:2], 255, "uint8")]))
     if nombre == "plan":
         # simulación: cada zona con el cultivo que le toca ese año de la rotación, en ese mes y ese tipo de año (seco/normal/lluvioso reales)

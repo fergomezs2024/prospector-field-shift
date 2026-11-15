@@ -39,7 +39,7 @@ CULTIVOS = {
     "quinoa":   _C("Quinoa", "amarantáceas", "grano andino", 3, 1500, 12, 24, 3, 32, -3, 33, (0.4, 1.00, 0.45), 0.9, 0.50, 0.90, 0.30, 0.75, 0.10, "baja", False, "grano"),
     "avena_vicia": _C("Avena con vicia (forraje)", "mezcla gramínea-leguminosa", "forraje y cobertura", 0, 1300, 10, 24, 2, 32, -4, 99, (0.5, 1.00, 0.85), 1.0, 0.55, 0.80, 0.08, 0.95, 0.45, "media", True, "forraje y cobertura del suelo"),
     "arroz":    _C("Arroz", "gramíneas", "cereal de verano (con mucha agua)", 10, 1900, 22, 32, 12, 40, 13, 36, (1.05, 1.20, 0.90), 0.6, 0.20, 1.10, 0.15, 0.90, 0.30, "alta", False, "grano"),
-    "mijo":     _C("Mijo", "gramíneas", "cultivo de verano", 10, 1100, 25, 35, 12, 42, 2, 42, (0.30, 1.00, 0.30), 1.5, 0.55, 0.90, 0.30, 0.75, 0.25, "baja", False, "grano"),
+    "mijo":     _C("Mijo", "gramíneas", "cultivo de verano", 10, 1100, 20, 35, 10, 42, 2, 42, (0.30, 1.00, 0.30), 1.5, 0.55, 0.90, 0.30, 0.75, 0.25, "baja", False, "grano"),
     "centeno":  _C("Centeno", "gramíneas", "cereal de invierno", 0, 1900, 10, 22, 2, 30, -3, 31, (0.35, 1.15, 0.25), 1.3, 0.60, 1.00, 0.20, 0.90, 0.35, "baja", False, "grano"),
     "mani":     _C("Maní", "leguminosas", "cultivo de verano", 10, 1500, 22, 30, 14, 38, 2, 37, (0.40, 1.15, 0.60), 0.8, 0.50, 0.70, 0.32, 0.80, 0.10, "baja", True, "grano y aceite"),
     "algodon":  _C("Algodón", "malváceas", "cultivo de verano", 15, 1300, 25, 35, 16, 42, 2, 40, (0.35, 1.18, 0.60), 1.3, 0.65, 0.85, 0.50, 0.85, 0.20, "baja", False, "fibra"),
@@ -56,7 +56,7 @@ CULTIVOS = {
     "alfalfa":  _C("Alfalfa", "leguminosas", "forraje permanente", 5, 99999, 15, 30, 3, 38, -8, 99, (0.4, 0.95, 0.90), 1.5, 0.55, 1.10, 0.05, 0.95, 0.80, "baja", True, "forraje"),
 }
 SIN_VALIDAR = {"tomate", "aji", "cebolla", "repollo", "sandia", "cartamo", "tabaco"}      # ver validacion/INFORME_cultivos_nuevos.md
-VERSION = 11            # subir cuando cambie el método: las copias guardadas con otra versión se recalculan
+VERSION = 13            # subir cuando cambie el método: las copias guardadas con otra versión se recalculan
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 
 def _clima(d, G):
@@ -109,6 +109,7 @@ def _temporada(cu, k0, L, awc, riego=False, diario=False):
         if D < 0: hondo = min(hondo - D, cap); D = 0.0
         ks = 1.0 if D <= 0.5 * taw0 else max((taw0 - D) / (0.5 * taw0), 0.0); D = min(D + ks * 0.3 * E[t], taw0)
     seco_hondo = 1.0 - hondo / cap; zr_ant = 0.3
+    humedo_al_sembrar = D <= 0.6 * taw0          # la capa de arriba guarda al menos 40 % de su agua útil (lluvia de la temporada anterior o deshielo)
     gdd = 0.0; etc = eta = lluvia = tsum = 0.0; nact = 0; helada = 0; calor = 0; dias = 0; serie = []; tflor = 0.0; nflor = 0
     lluvia_siembra = sum(P[max(k0 - 10, 0):min(k0 + 10, n)])      # para sembrar tiene que haber llovido (o regarse)
     maxd = 365 if perenne else cu.get("maxd", 250)
@@ -127,11 +128,11 @@ def _temporada(cu, k0, L, awc, riego=False, diario=False):
         if riego and D > raw: D = 0.0
         ks = 1.0 if D <= raw else max((taw - D) / max(taw - raw, 1e-6), 0.0)
         e_c = kc * E[t]; e_a = ks * e_c; D = min(D + e_a, taw); etc += e_c; eta += e_a; lluvia += P[t]; dias += 1
-        if tm > tb + 2 or perenne: tsum += tm; nact += 1         # la temperatura se juzga en los días en que la planta crece (no en el reposo de invierno)
+        if tm > tb + 2: tsum += tm; nact += 1                    # la temperatura se juzga en los días en que la planta crece (no en el reposo de invierno), también en las praderas permanentes
         if not perenne and 0.40 <= f <= 0.78:
             tflor += tm; nflor += 1
             if Tn[t] < cu["helada"]: helada += 1
-            if Tx[t] > cu["calor"]: calor += 1
+            if 0.50 <= f <= 0.65 and Tx[t] > cu["calor"]: calor += 1       # el calor daña en la floración misma (unas dos semanas), no en todo el llenado
         if diario: serie.append((t, fc, ks, f))
         if not perenne and f >= 1.0: break
     else:
@@ -143,7 +144,7 @@ def _temporada(cu, k0, L, awc, riego=False, diario=False):
     yh = (0.45 if helada >= 1 else 1.0) * (0.6 if helada >= 4 else 1.0); yc = max(1 - 0.03 * calor, 0.4)
     # la floración necesita temperatura: si cae en la época fría el cultivo no cuaja (aproxima el efecto de fotoperíodo y vernalización)
     yf = 1.0 if perenne or nflor == 0 else min(max((tflor / nflor - (cu["to1"] - 5)) / 5.0, 0.15), 1.0)
-    ye = 1.0 if (riego or perenne or lluvia_siembra >= 20) else 0.55        # siembra en seco: mala emergencia
+    ye = 1.0 if (riego or perenne or lluvia_siembra >= 20 or humedo_al_sembrar) else 0.55        # siembra en seco: mala emergencia
     return dict(y=yw * yt * yh * yc * yf * ye, yf=yf, ye=ye, yw=yw, yt=yt, yh=yh, yc=yc, etc=etc, eta=eta, lluvia=lluvia, dias=dias, helada=helada, calor=calor, fin=k0 + dias, serie=serie)
 
 def _suelo(d):
@@ -242,13 +243,13 @@ def evaluar(c, anio, mes, J, lat, z, awc, lon=None, usar_calendario=True, solo=N
         yt = med("yt"); fallos = int(round(sum(1 for y in mejor["ys"] if y < 0.25) / len(mejor["ys"]) * 10))
         if b10 >= 7: ver = "se da bien"
         elif b10 >= 4: ver = "se da, con riesgo"
-        elif mejor["m"] >= 0.35 and fallos <= 2: ver = "se da, con cosecha baja"      # secano de bajo rendimiento: rinde poco, pero casi nunca se pierde
-        elif y_riego >= 0.7 and mejor["m"] < 0.6 and psq >= 0.3: ver = "solo con riego"
+        elif mejor["m"] >= 0.35 and fallos <= 2 and 1 - (1 - med("yw")) / max(cu["ky"], 1e-6) >= 0.5: ver = "se da, con cosecha baja"      # secano de bajo rendimiento: rinde poco, pero casi nunca se pierde; la lluvia tiene que cubrir al menos la mitad del agua que el cultivo necesita
+        elif y_riego >= 0.4 and psq >= 0.3: ver = "solo con riego"               # con riego se da; si rinde menos de 70 % el texto dice que es con cosecha limitada
         else: ver = "no se recomienda"
         if yt < 0.6 and ver != "se da bien": ver = "no se recomienda"
         por = (f"Sembrado en {MESES[mes_s - 1]}, sale bien {b10} de cada 10 años sin riego." if ver in ("se da bien", "se da, con riesgo") else
                f"Sembrado en {MESES[mes_s - 1]}, se cosecha casi todos los años, pero poco: cerca de {int(round(mejor['m'] * 100))} % de lo que daría con agua suficiente." if ver == "se da, con cosecha baja" else
-               (f"Sin riego solo sale bien {b10} de cada 10 años; con riego sí se da, sembrando en {MESES[mes_riego - 1]}." if ver == "solo con riego" else
+               (f"Sin riego solo sale bien {b10} de cada 10 años; con riego sí se da, sembrando en {MESES[mes_riego - 1]}." + ("" if y_riego >= 0.7 else f" Aun con riego rinde cerca de {int(round(y_riego * 100))} % de lo normal, por la temperatura.") if ver == "solo con riego" else
                 ("La temperatura de este lugar no le acomoda." if yt < 0.6 else f"Sale bien solo {b10} de cada 10 años.")))
         if riesgos and ver != "no se recomienda": por += " Ojo: " + "; ".join(r["texto"] for r in riesgos) + "."
         if calend and ver != "no se recomienda":

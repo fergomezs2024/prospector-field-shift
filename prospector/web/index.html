@@ -107,6 +107,7 @@
     <div id="flot">
       <button id="bMapa" class="act">Mapa satelital</button>
       <button id="b3d" disabled>Terreno 3D</button>
+      <button id="bTerr" class="oculto" title="Muestra cómo quedaría la ladera escalonada en terrazas para poder sembrarla">Ladera con terrazas</button>
       <span class="sepv"></span>
       <div id="capas"></div>
     </div>
@@ -183,6 +184,7 @@
         <option value="humedad">Zonas que acumulan humedad (índice topográfico)</option>
         <option value="altitud">Altitud (metros sobre el nivel del mar)</option>
         <option value="ndvi">Verdor por mes (NDVI, NASA HLS)</option>
+        <option value="terrazas">Ladera con terrazas</option>
       </select>
       <div id="ctlMes" class="oculto" style="margin-top:8px">
         <div class="fila"><span id="mesTxt" style="min-width:90px">Enero</span><input id="mes" type="range" min="1" max="12" value="1"></div>
@@ -662,6 +664,7 @@ async function construirEntorno() {
       entorno.add(new THREE.Mesh(g, new THREE.MeshLambertMaterial({ vertexColors: true, side: THREE.DoubleSide }))); } } catch (e) { console.warn('construcciones', e); }
   // árboles
   try { const en = await (await fetch('api/entorno/' + actual)).json(), bin = atob(en.arboles), A = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) A[i] = bin.charCodeAt(i);
+    const dbin = en.densidad ? atob(en.densidad) : null, DEN = (c, r) => dbin ? dbin.charCodeAt(r * en.ancho + c) / 100 : 0.55;   // árboles por celda según el verdor medido: un cerro ralo no se dibuja como bosque
     let L = null, lw = 0, F = 1; if (loteo && loteo.raster) { const b2 = atob(loteo.raster); L = new Uint8Array(b2.length); for (let i = 0; i < b2.length; i++) L[i] = b2.charCodeAt(i); lw = loteo.ancho; F = loteo.factor; }
     const rm = metaActual.res, W0 = datosMalla.ancho / 2 * datosMalla.res, H0 = datosMalla.alto / 2 * datosMalla.res, celdas = [], tala = []; talados = null; let rnd = 777; const azar = () => (rnd = (rnd * 16807) % 2147483647) / 2147483647;
     for (let r = 0; r < en.alto; r++) for (let c = 0; c < en.ancho; c++) if (A[r * en.ancho + c] && !(L && L[(r * F + (F >> 1)) * lw + c * F + (F >> 1)])) celdas.push([c, r, A[r * en.ancho + c]]);
@@ -673,7 +676,7 @@ async function construirEntorno() {
     const poner = (lista, tope) => { const porCelda = Math.min(1.6, tope / Math.max(lista.length, 1)), grupos = new Map(), mallas = [];
       lista.forEach(([c, r, tipo]) => { if (tipo === 3) { const g = MAT[1]; if (!grupos.has(g)) grupos.set(g, []);   // viña o huerto: plantas chicas en hileras parejas
           [0.25, 0.75].forEach(fx => { const x = (c + fx) * rm - W0, z = (r + 0.5) * rm - H0; grupos.get(g).push({ p: new THREE.Vector3(x, altura3(x, z), z), giro: 0, s: 1.5 * Math.max(ex, 1), tipo: 2, orden: 0 }); }); return; }
-        let n = Math.floor(porCelda) + (azar() < porCelda % 1 ? 1 : 0); while (n-- > 0) { const mods = tipo === 2 ? MAT : ARB, g = mods[Math.floor(azar() * mods.length)]; if (!grupos.has(g)) grupos.set(g, []);
+        const pc = porCelda * (tipo === 1 ? DEN(c, r) : 1); let n = Math.floor(pc) + (azar() < pc % 1 ? 1 : 0); while (n-- > 0) { const mods = tipo === 2 ? MAT : ARB, g = mods[Math.floor(azar() * mods.length)]; if (!grupos.has(g)) grupos.set(g, []);
           const x = (c + azar()) * rm - W0, z = (r + azar()) * rm - H0; grupos.get(g).push({ p: new THREE.Vector3(x, altura3(x, z), z), giro: azar() * 6.283, s: (tipo === 2 ? 1.4 + 1.8 * azar() : 6 + 6 * azar()) * Math.max(ex, 1), tipo, orden: 0 }); } });
       grupos.forEach((base, g) => { const im = new THREE.InstancedMesh(g, matV, base.length), M = new THREE.Matrix4(), Q = new THREE.Quaternion(); im.userData.base = base;
         base.forEach((b, i) => { Q.setFromAxisAngle(ejeY, b.giro); M.compose(b.p, Q, new THREE.Vector3(b.s, b.s, b.s)); im.setMatrixAt(i, M); const v = 0.82 + 0.3 * azar(); im.setColorAt(i, C.setRGB(v, v * (0.96 + 0.08 * azar()), v)); });
@@ -767,7 +770,7 @@ async function construir3d(id) {
   mat = mat || new THREE.MeshLambertMaterial({ side: THREE.DoubleSide }); malla = new THREE.Mesh(g, mat); escena3.add(malla);
   const bg = new THREE.BufferGeometry(); bg.setAttribute('position', new THREE.BufferAttribute(new Float32Array(m.poligono.length * 3), 3));
   borde = new THREE.Line(bg, new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 2, depthTest: false })); borde.renderOrder = 10; escena3.add(borde);
-  alturas(+$('exag').value);
+  alturas(+$('exag').value); prepararTerrazas(id);
   const L = Math.max(m.ancho, m.alto) * m.res; camara.position.set(-L * 0.75, L * 0.7, L * 1.05); camara.far = L * 20; camara.updateProjectionMatrix(); ctl.target.set(0, 0, 0);
   if ($('capa').value === 'plan') enfocar(true);
   await textura();
@@ -870,7 +873,7 @@ function ponerUV(arr) { const u = malla.geometry.attributes.uv; u.array.set(arr)
 async function textura() {
   chips(); const k = $('capa').value;
   if (k !== 'plan') { ponerEtiquetas([]); if (plantas) plantas.visible = false; if (entorno) entorno.visible = false; }
-  if (k === 'hd') { const tx = await texturaHD(); ponerUV(uvHD); ponerMapa(tx); return; }
+  if (k === 'hd') { const tx = await texturaHD(); if ($('capa').value !== 'hd') return; ponerUV(uvHD); ponerMapa(tx); return; }   // si mientras cargaba se eligió otra capa, no se pisa
   if (plantas) plantas.visible = k === 'plan';
   if (k !== 'imagen') { const url = k === 'plan' ? `api/capa/${actual}/plan.png?solo=2&mes=${sim.mes + 1}&est_=${sim.est}&anio_=${sim.anio}&tipo=${sim.tipo}&t=${Date.now()}` : `api/capa/${actual}/${k}.png?solo=1&mes=${$('mes').value}&t=${Date.now()}`;
     if (k === 'plan' && obra) return;
@@ -900,13 +903,27 @@ $('tres').addEventListener('pointerup', async e => {
 let marca = null; $('tarjX').onclick = () => $('tarjeta').classList.add('oculto');
 $('mes').oninput = () => { $('mesTxt').textContent = MESES[$('mes').value - 1]; textura(); };
 $('exag').oninput = () => { $('exTxt').textContent = $('exag').value + '×'; if (malla) alturas(+$('exag').value); if (plantas && plantas.visible) { sembrar(); construirEntorno(); } };
+// ---- ladera con terrazas: antes y después sobre el mismo terreno 3D
+let terr = null, terrOn = false;
+async function prepararTerrazas(id) { terr = null; terrOn = false; $('bTerr').classList.add('oculto'); $('bTerr').classList.remove('act'); $('bTerr').textContent = 'Ladera con terrazas';
+  try { const t = await (await fetch('api/terrazas/' + id)).json(); if (!t.ha || t.ha < 0.2 || actual !== id) return;
+    const b = atob(t.z), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); t.zt = new Float32Array(u.buffer); terr = t; $('bTerr').classList.remove('oculto'); } catch (e) {} }
+$('bTerr').onclick = () => { if (!terr || !datosMalla) return; terrOn = !terrOn; if (!datosMalla.z0) datosMalla.z0 = datosMalla.z;
+  datosMalla.z = terrOn ? terr.zt : datosMalla.z0; $('bTerr').classList.toggle('act', terrOn);
+  if (terrOn) { terr.capaAntes = $('capa').value === 'terrazas' ? 'hd' : $('capa').value; $('capa').value = 'terrazas'; } else $('capa').value = terr.capaAntes || 'hd'; $('capa').onchange({ target: $('capa') }); chips(); $('bTerr').textContent = terrOn ? 'Volver a la ladera actual' : 'Ladera con terrazas';
+  if ($('tres').style.display !== 'block') ver3d(); alturas(+$('exag').value); if (entorno) { escena3.remove(entorno); entorno = null; entornoClave = ''; } if (plantas && plantas.visible) { sembrar(); construirEntorno(); }
+  const o = $('obra'); if (!terrOn) return o.classList.add('oculto');
+  o.innerHTML = `<b>Así quedaría la ladera con terrazas</b>${fmt(terr.ha, 1)} ha de ladera (pendiente media ${fmt(terr.pendiente_media, 0)} %) en ${terr.escalones} escalones de ${fmt(terr.alto_m, 1)} m de alto y unos ${fmt(terr.ancho_banco_m, 0)} m de ancho. ` +
+    `Habría que mover cerca de ${fmt(terr.tierra_m3, 0)} m³ de tierra (${fmt(terr.m3_por_ha, 0)} m³ por hectárea)` + (terr.ha_hoy_no_convenia > 0 ? `; ${fmt(terr.ha_hoy_no_convenia, 1)} ha que hoy no convenía sembrar quedarían en bancos planos` : '') + (terr.con_arboles_ha > 0 ? `; ${fmt(terr.con_arboles_ha, 1)} ha hoy tienen árboles` : '') +
+    `. <span class="mini">Es un esquema para dimensionar la obra: el relieve de origen es de 30 m. Una terraza necesita muros o taludes firmes, desagües y permiso; consúltalo con un técnico.</span>`; o.classList.remove('oculto'); };
 function ver3d() { setTimeout(chips, 0); $('ficha').classList.remove('oculto'); $('leyenda').classList.toggle('oculto', $('capa').value !== 'cultivo'); $('tres').style.display = 'block'; $('mapa').style.display = 'none'; $('b3d').classList.add('act'); $('bMapa').classList.remove('act');
   $('ayuda').textContent = 'Toca un punto dentro de tu terreno (línea blanca) para saber si se puede cultivar y por qué · arrastra para girar · rueda para acercar.'; }
 function verMapa() { setTimeout(chips, 0); $('ficha').classList.add('oculto'); $('leyenda').classList.add('oculto'); $('tarjeta').classList.add('oculto'); $('tres').style.display = 'none'; $('mapa').style.display = 'block'; $('bMapa').classList.add('act'); $('b3d').classList.remove('act');
   $('ayuda').textContent = 'Busca un lugar, pulsa «Marcar terreno» y haz clic en cada esquina. Doble clic para cerrar.'; mapa.resize(); }
 $('b3d').onclick = ver3d; $('bMapa').onclick = verMapa;
 // enlace directo a un terreno ya analizado:  ?t=<id>&capa=plan
-{ const q = new URLSearchParams(location.search); if (q.get('t')) cargar(q.get('t')).then(() => { if (q.get('capa')) setTimeout(() => { $('capa').value = q.get('capa'); ver3d(); $('capa').onchange({ target: $('capa') }); }, 3000); }).catch(() => {}); }
+{ const q = new URLSearchParams(location.search); if (q.get('t')) cargar(q.get('t')).then(() => { if (q.get('capa')) setTimeout(() => { $('capa').value = q.get('capa'); ver3d(); $('capa').onchange({ target: $('capa') }); }, 3000);
+  if (q.get('terrazas')) setTimeout(() => $('bTerr').click(), 6000); }).catch(() => {}); }
 </script>
 </body>
 </html>
