@@ -1,0 +1,1607 @@
+{
+ "agent": "sudamerica",
+ "countries": [
+  {
+   "iso3": "ARG",
+   "name": "Argentina",
+   "national": {
+    "crops": [
+     "soybean",
+     "maize",
+     "wheat",
+     "sunflower",
+     "barley",
+     "oats",
+     "rye",
+     "sorghum"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://datos.magyp.gob.ar/dataset/9e1e77ba-267e-4eaa-a59f-3296e86b5f36/resource/95d066e6-8a0f-4a80-b59d-6f28f88eacd5/download/estimaciones-agricolas-2026-03.csv"
+   },
+   "regions": [
+    {
+     "name": "Buenos Aires",
+     "crops": [
+      "soybean",
+      "maize",
+      "wheat",
+      "barley",
+      "sunflower",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://datos.magyp.gob.ar/dataset/9e1e77ba-267e-4eaa-a59f-3296e86b5f36/resource/95d066e6-8a0f-4a80-b59d-6f28f88eacd5/download/estimaciones-agricolas-2026-03.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Córdoba",
+     "crops": [
+      "soybean",
+      "maize",
+      "wheat",
+      "rye",
+      "groundnut",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://datos.magyp.gob.ar/dataset/9e1e77ba-267e-4eaa-a59f-3296e86b5f36/resource/95d066e6-8a0f-4a80-b59d-6f28f88eacd5/download/estimaciones-agricolas-2026-03.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Santa Fe",
+     "crops": [
+      "soybean",
+      "maize",
+      "wheat",
+      "sunflower",
+      "sorghum",
+      "cotton"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://datos.magyp.gob.ar/dataset/9e1e77ba-267e-4eaa-a59f-3296e86b5f36/resource/95d066e6-8a0f-4a80-b59d-6f28f88eacd5/download/estimaciones-agricolas-2026-03.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Santiago del Estero",
+     "crops": [
+      "soybean",
+      "maize",
+      "wheat",
+      "cotton",
+      "sorghum",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://datos.magyp.gob.ar/dataset/9e1e77ba-267e-4eaa-a59f-3296e86b5f36/resource/95d066e6-8a0f-4a80-b59d-6f28f88eacd5/download/estimaciones-agricolas-2026-03.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Entre Ríos",
+     "crops": [
+      "soybean",
+      "wheat",
+      "maize",
+      "rice",
+      "sorghum",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://datos.magyp.gob.ar/dataset/9e1e77ba-267e-4eaa-a59f-3296e86b5f36/resource/95d066e6-8a0f-4a80-b59d-6f28f88eacd5/download/estimaciones-agricolas-2026-03.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "La Pampa",
+     "crops": [
+      "maize",
+      "soybean",
+      "wheat",
+      "sunflower",
+      "oats",
+      "rye"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://datos.magyp.gob.ar/dataset/9e1e77ba-267e-4eaa-a59f-3296e86b5f36/resource/95d066e6-8a0f-4a80-b59d-6f28f88eacd5/download/estimaciones-agricolas-2026-03.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Chaco",
+     "crops": [
+      "soybean",
+      "maize",
+      "cotton",
+      "sunflower",
+      "wheat",
+      "sorghum"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://datos.magyp.gob.ar/dataset/9e1e77ba-267e-4eaa-a59f-3296e86b5f36/resource/95d066e6-8a0f-4a80-b59d-6f28f88eacd5/download/estimaciones-agricolas-2026-03.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Salta",
+     "crops": [
+      "maize",
+      "bean",
+      "soybean",
+      "chickpea",
+      "wheat",
+      "sorghum"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://datos.magyp.gob.ar/dataset/9e1e77ba-267e-4eaa-a59f-3296e86b5f36/resource/95d066e6-8a0f-4a80-b59d-6f28f88eacd5/download/estimaciones-agricolas-2026-03.csv",
+     "confidence": "medium",
+     "notes": "Sugar cane, tobacco, citrus and grapes are not covered (or not updated) in the MAGyP estimates dataset, so they are missing from this ranking."
+    },
+    {
+     "name": "Misiones",
+     "crops": [
+      "mate",
+      "maize",
+      "tea",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://datos.magyp.gob.ar/dataset/9e1e77ba-267e-4eaa-a59f-3296e86b5f36/resource/95d066e6-8a0f-4a80-b59d-6f28f88eacd5/download/estimaciones-agricolas-2026-03.csv",
+     "confidence": "medium",
+     "notes": "Yerba mate area in the dataset is inconsistent between campaigns (195,602 ha in 2022/23 vs 38,359 ha in 2023/24); ranking kept but magnitudes unreliable. Tobacco, cassava, citrus not covered."
+    },
+    {
+     "name": "Mendoza",
+     "crops": [
+      "grape"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.argentina.gob.ar/sites/default/files/2018/10/anuario_superficie_2024.pdf",
+     "confidence": "medium",
+     "notes": "INV Anuario de Superficie 2024: 142,785 ha of vines (71.4% of national 199,946 ha; San Juan 39,684 ha). Other Mendoza crops (olive, stone fruit, garlic, vegetables) have no source read; MAGyP grain estimates show negligible field crops there."
+    }
+   ],
+   "notes": "National and provincial rankings computed from the MAGyP \"Estimaciones agrícolas\" open CSV (sown area, campaign 2023/2024, summed over departments; sub-categories such as soja 1ra/2da merged into totals). Dataset covers grains, oilseeds, pulses, cotton, rice, mate, tea only: sugar cane (last update 2004/05), citrus, potato, grapes, fruit and vegetables are NOT covered, so Tucumán (dataset shows soybean > maize > wheat > bean > chickpea, but sugar cane and lemon unsourced) was left out as a region. Oats and rye include area sown for forage/cover. National grape area 199,946 ha (INV 2024) would rank below the 8 listed. USDA IPAD (ipad.fas.usda.gov) returned HTTP 503 for every request."
+  },
+  {
+   "iso3": "BRA",
+   "name": "Brazil",
+   "national": {
+    "crops": [
+     "soybean",
+     "maize",
+     "sugarcane",
+     "wheat",
+     "bean",
+     "coffee",
+     "cotton",
+     "rice"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://apisidra.ibge.gov.br/values/t/5457/n1/all/v/216/p/2023/c782/all"
+   },
+   "regions": [
+    {
+     "name": "Mato Grosso",
+     "crops": [
+      "soybean",
+      "maize",
+      "cotton",
+      "sugarcane",
+      "bean",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://apisidra.ibge.gov.br/values/t/5457/n3/all/v/216/p/2023/c782/all",
+     "confidence": "high"
+    },
+    {
+     "name": "Paraná",
+     "crops": [
+      "soybean",
+      "maize",
+      "wheat",
+      "sugarcane",
+      "bean",
+      "cassava"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://apisidra.ibge.gov.br/values/t/5457/n3/all/v/216/p/2023/c782/all",
+     "confidence": "high"
+    },
+    {
+     "name": "Rio Grande do Sul",
+     "crops": [
+      "soybean",
+      "wheat",
+      "rice",
+      "maize",
+      "oats",
+      "tobacco"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://apisidra.ibge.gov.br/values/t/5457/n3/all/v/216/p/2023/c782/all",
+     "confidence": "high"
+    },
+    {
+     "name": "São Paulo",
+     "crops": [
+      "sugarcane",
+      "soybean",
+      "maize",
+      "orange",
+      "groundnut",
+      "coffee"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://apisidra.ibge.gov.br/values/t/5457/n3/all/v/216/p/2023/c782/all",
+     "confidence": "high"
+    },
+    {
+     "name": "Goiás",
+     "crops": [
+      "soybean",
+      "maize",
+      "sugarcane",
+      "sorghum",
+      "bean",
+      "sunflower"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://apisidra.ibge.gov.br/values/t/5457/n3/all/v/216/p/2023/c782/all",
+     "confidence": "high"
+    },
+    {
+     "name": "Mato Grosso do Sul",
+     "crops": [
+      "soybean",
+      "maize",
+      "sugarcane",
+      "sorghum",
+      "cassava",
+      "wheat"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://apisidra.ibge.gov.br/values/t/5457/n3/all/v/216/p/2023/c782/all",
+     "confidence": "high"
+    },
+    {
+     "name": "Minas Gerais",
+     "crops": [
+      "soybean",
+      "maize",
+      "coffee",
+      "sugarcane",
+      "sorghum",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://apisidra.ibge.gov.br/values/t/5457/n3/all/v/216/p/2023/c782/all",
+     "confidence": "high"
+    },
+    {
+     "name": "Bahia",
+     "crops": [
+      "soybean",
+      "maize",
+      "cocoa",
+      "bean",
+      "cotton",
+      "coffee"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://apisidra.ibge.gov.br/values/t/5457/n3/all/v/216/p/2023/c782/all",
+     "confidence": "high"
+    },
+    {
+     "name": "Pará",
+     "crops": [
+      "soybean",
+      "maize",
+      "cassava",
+      "oilpalm",
+      "cocoa",
+      "banana"
+     ],
+     "unmatched": [
+      "açaí (4th by area, 225,957 ha)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://apisidra.ibge.gov.br/values/t/5457/n3/all/v/216/p/2023/c782/all",
+     "confidence": "high"
+    },
+    {
+     "name": "Tocantins",
+     "crops": [
+      "soybean",
+      "maize",
+      "rice",
+      "sorghum",
+      "bean",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://apisidra.ibge.gov.br/values/t/5457/n3/all/v/216/p/2023/c782/all",
+     "confidence": "high"
+    }
+   ],
+   "notes": "IBGE Produção Agrícola Municipal (PAM) 2023, SIDRA table 5457 (https://sidra.ibge.gov.br/tabela/5457), variable 216 = harvested area (ha), temporary + permanent crops, read through the SIDRA API. Maize is the sum of 1st and 2nd crop as published. Coffee = arabica + canephora total."
+  },
+  {
+   "iso3": "CHL",
+   "name": "Chile",
+   "national": {
+    "crops": [
+     "wheat",
+     "grape",
+     "oats",
+     "maize",
+     "potato",
+     "walnut",
+     "cherry",
+     "rapeseed"
+    ],
+    "basis": "area",
+    "year": 2020,
+    "source_url": "https://www.odepa.gob.cl/estadisticas-del-sector/ficha-nacional-y-regionales"
+   },
+   "regions": [
+    {
+     "name": "Coquimbo",
+     "crops": [
+      "grape",
+      "avocado",
+      "olive",
+      "tangetc",
+      "walnut",
+      "lettuce"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://bibliotecadigital.odepa.gob.cl/bitstream/handle/20.500.12650/8973/FichaCoquimboInformativa.pdf",
+     "confidence": "medium",
+     "notes": "Combined from ODEPA regional ficha: fruit cadastre (Odepa-Ciren ~2019-2021), SAG wine-grape cadastre 2019 and INE annual-crop sown-area survey 2019/2020. Grape = table + wine grapes. Pisco grapes not included in the tables read."
+    },
+    {
+     "name": "Valparaíso",
+     "crops": [
+      "avocado",
+      "grape",
+      "walnut",
+      "tangetc",
+      "lemonlime",
+      "peachetc"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://bibliotecadigital.odepa.gob.cl/bitstream/handle/20.500.12650/71111/FichaValparaisoInformativa.pdf",
+     "confidence": "medium",
+     "notes": "Combined from ODEPA regional ficha: fruit cadastre (Odepa-Ciren ~2019-2021), SAG wine-grape cadastre 2019 and INE annual-crop sown-area survey 2019/2020. Grape = table + wine grapes."
+    },
+    {
+     "name": "Metropolitana de Santiago",
+     "crops": [
+      "grape",
+      "walnut",
+      "oats",
+      "olive",
+      "maize",
+      "avocado"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://bibliotecadigital.odepa.gob.cl/bitstream/handle/20.500.12650/8975/FichaMetropolitanaInformativa.pdf",
+     "confidence": "medium",
+     "notes": "Combined from ODEPA regional ficha: fruit cadastre (Odepa-Ciren ~2019-2021), SAG wine-grape cadastre 2019 and INE annual-crop sown-area survey 2019/2020. Grape = table + wine grapes."
+    },
+    {
+     "name": "O'Higgins",
+     "crops": [
+      "grape",
+      "maize",
+      "cherry",
+      "wheat",
+      "plum",
+      "walnut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://bibliotecadigital.odepa.gob.cl/bitstream/handle/20.500.12650/71112/FichaOHigginsInformativa.pdf",
+     "confidence": "high",
+     "notes": "Combined from ODEPA regional ficha: fruit cadastre (Odepa-Ciren ~2019-2021), SAG wine-grape cadastre 2019 and INE annual-crop sown-area survey 2019/2020. Grape = table + wine grapes."
+    },
+    {
+     "name": "Maule",
+     "crops": [
+      "grape",
+      "wheat",
+      "maize",
+      "rice",
+      "cherry",
+      "apple"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://bibliotecadigital.odepa.gob.cl/bitstream/handle/20.500.12650/8961/FichaMauleInformativa.pdf",
+     "confidence": "high",
+     "notes": "Combined from ODEPA regional ficha: fruit cadastre (Odepa-Ciren ~2019-2021), SAG wine-grape cadastre 2019 and INE annual-crop sown-area survey 2019/2020. Grape = table + wine grapes."
+    },
+    {
+     "name": "Ñuble",
+     "crops": [
+      "wheat",
+      "oats",
+      "grape",
+      "sugarbeet",
+      "rice",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://bibliotecadigital.odepa.gob.cl/bitstream/handle/20.500.12650/8962/FichaNubleInformativa.pdf",
+     "confidence": "high",
+     "notes": "Combined from ODEPA regional ficha: fruit cadastre (Odepa-Ciren ~2019-2021), SAG wine-grape cadastre 2019 and INE annual-crop sown-area survey 2019/2020. Grape = table + wine grapes."
+    },
+    {
+     "name": "Biobío",
+     "crops": [
+      "wheat",
+      "oats",
+      "maize",
+      "potato",
+      "rapeseed",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://bibliotecadigital.odepa.gob.cl/bitstream/handle/20.500.12650/8963/FichaBiobioInformativa.pdf",
+     "confidence": "high",
+     "notes": "Combined from ODEPA regional ficha: fruit cadastre (Odepa-Ciren ~2019-2021), SAG wine-grape cadastre 2019 and INE annual-crop sown-area survey 2019/2020. Grape = table + wine grapes."
+    },
+    {
+     "name": "La Araucanía",
+     "crops": [
+      "wheat",
+      "oats",
+      "rapeseed",
+      "triticale",
+      "lupin",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://bibliotecadigital.odepa.gob.cl/bitstream/handle/20.500.12650/8964/FichaAraucaniaInformativa.pdf",
+     "confidence": "high",
+     "notes": "Combined from ODEPA regional ficha: fruit cadastre (Odepa-Ciren ~2019-2021), SAG wine-grape cadastre 2019 and INE annual-crop sown-area survey 2019/2020. Grape = table + wine grapes."
+    },
+    {
+     "name": "Los Lagos",
+     "crops": [
+      "wheat",
+      "potato",
+      "oats",
+      "rapeseed",
+      "barley",
+      "blueberry"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://bibliotecadigital.odepa.gob.cl/bitstream/handle/20.500.12650/8966/FichaLosLagosInformativa.pdf",
+     "confidence": "high",
+     "notes": "Combined from ODEPA regional ficha: fruit cadastre (Odepa-Ciren ~2019-2021), SAG wine-grape cadastre 2019 and INE annual-crop sown-area survey 2019/2020. Grape = table + wine grapes."
+    }
+   ],
+   "notes": "Source: ODEPA \"Fichas regionales\" (PDFs, biblioteca digital ODEPA). The national ficha has no crop-area table, so the national ranking was DERIVED from the regional fichas: stated national totals (wine grapes 136,288.5 ha; annual crops 576,415 ha) and regional area divided by the published \"% region/country\" (approx.: wheat ~205k ha, grape ~182k incl. table grapes, oats ~97k, maize ~65k, potato ~44k, walnut ~43k, cherry ~39k, rapeseed ~38k). Data vintage is 2019-2021, i.e. older than the 2021 census; cherry and hazelnut have expanded since. INE census page reachable but had no crop tables in HTML; WebFetch to odepa.gob.cl failed on TLS (worked with curl)."
+  },
+  {
+   "iso3": "PER",
+   "name": "Peru",
+   "national": {
+    "crops": [
+     "maize",
+     "coffee",
+     "rice",
+     "potato",
+     "alfalfa",
+     "cocoa",
+     "plantain",
+     "barley"
+    ],
+    "basis": "area",
+    "year": 2022,
+    "source_url": "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Compendio2023/cap13/cap13.pdf"
+   },
+   "regions": [
+    {
+     "name": "San Martín",
+     "crops": [
+      "rice",
+      "coffee",
+      "cocoa",
+      "oilpalm",
+      "maize",
+      "plantain"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2022,
+     "source_url": "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Compendio2023/cap13/cap13.pdf",
+     "confidence": "medium",
+     "notes": "Derived: departmental PRODUCTION (table 13.16, 2022) converted to approximate area with the national average yield from the same compendium (tables 13.4 and 13.16), then ranked. Pulses, forage oats, vegetables other than onion/asparagus not included."
+    },
+    {
+     "name": "Cajamarca",
+     "crops": [
+      "coffee",
+      "maize",
+      "rice",
+      "potato",
+      "wheat",
+      "alfalfa"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2022,
+     "source_url": "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Compendio2023/cap13/cap13.pdf",
+     "confidence": "medium",
+     "notes": "Derived: departmental PRODUCTION (table 13.16, 2022) converted to approximate area with the national average yield from the same compendium (tables 13.4 and 13.16), then ranked. Pulses, forage oats, vegetables other than onion/asparagus not included."
+    },
+    {
+     "name": "Puno",
+     "crops": [
+      "potato",
+      "alfalfa",
+      "quinoa",
+      "barley",
+      "coffee"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2022,
+     "source_url": "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Compendio2023/cap13/cap13.pdf",
+     "confidence": "medium",
+     "notes": "Derived: departmental PRODUCTION (table 13.16, 2022) converted to approximate area with the national average yield from the same compendium (tables 13.4 and 13.16), then ranked. Pulses, forage oats, vegetables other than onion/asparagus not included."
+    },
+    {
+     "name": "Junín",
+     "crops": [
+      "coffee",
+      "cocoa",
+      "potato",
+      "maize",
+      "orange",
+      "plantain"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2022,
+     "source_url": "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Compendio2023/cap13/cap13.pdf",
+     "confidence": "medium",
+     "notes": "Derived: departmental PRODUCTION (table 13.16, 2022) converted to approximate area with the national average yield from the same compendium (tables 13.4 and 13.16), then ranked. Pulses, forage oats, vegetables other than onion/asparagus not included."
+    },
+    {
+     "name": "Cusco",
+     "crops": [
+      "maize",
+      "coffee",
+      "potato",
+      "barley",
+      "wheat",
+      "cocoa"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2022,
+     "source_url": "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Compendio2023/cap13/cap13.pdf",
+     "confidence": "medium",
+     "notes": "Derived: departmental PRODUCTION (table 13.16, 2022) converted to approximate area with the national average yield from the same compendium (tables 13.4 and 13.16), then ranked. Pulses, forage oats, vegetables other than onion/asparagus not included."
+    },
+    {
+     "name": "La Libertad",
+     "crops": [
+      "wheat",
+      "sugarcane",
+      "maize",
+      "rice",
+      "barley",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2022,
+     "source_url": "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Compendio2023/cap13/cap13.pdf",
+     "confidence": "low",
+     "notes": "Derived: departmental PRODUCTION (table 13.16, 2022) converted to approximate area with the national average yield from the same compendium (tables 13.4 and 13.16), then ranked. Pulses, forage oats, vegetables other than onion/asparagus not included. The six crops are within ~20% of each other (33-41k ha est.), so the order is uncertain."
+    },
+    {
+     "name": "Piura",
+     "crops": [
+      "rice",
+      "maize",
+      "plantain",
+      "mango",
+      "lemonlime",
+      "grape"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2022,
+     "source_url": "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Compendio2023/cap13/cap13.pdf",
+     "confidence": "medium",
+     "notes": "Derived: departmental PRODUCTION (table 13.16, 2022) converted to approximate area with the national average yield from the same compendium (tables 13.4 and 13.16), then ranked. Pulses, forage oats, vegetables other than onion/asparagus not included. \"Plátano\" here is largely organic banana."
+    },
+    {
+     "name": "Lambayeque",
+     "crops": [
+      "rice",
+      "sugarcane",
+      "maize",
+      "avocado",
+      "mango",
+      "coffee"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2022,
+     "source_url": "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Compendio2023/cap13/cap13.pdf",
+     "confidence": "medium",
+     "notes": "Derived: departmental PRODUCTION (table 13.16, 2022) converted to approximate area with the national average yield from the same compendium (tables 13.4 and 13.16), then ranked. Pulses, forage oats, vegetables other than onion/asparagus not included."
+    },
+    {
+     "name": "Ica",
+     "crops": [
+      "maize",
+      "grape",
+      "asparagus",
+      "avocado",
+      "tangetc",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2022,
+     "source_url": "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Compendio2023/cap13/cap13.pdf",
+     "confidence": "medium",
+     "notes": "Derived: departmental PRODUCTION (table 13.16, 2022) converted to approximate area with the national average yield from the same compendium (tables 13.4 and 13.16), then ranked. Pulses, forage oats, vegetables other than onion/asparagus not included."
+    },
+    {
+     "name": "Arequipa",
+     "crops": [
+      "alfalfa",
+      "rice",
+      "potato",
+      "onion",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2022,
+     "source_url": "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Compendio2023/cap13/cap13.pdf",
+     "confidence": "medium",
+     "notes": "Derived: departmental PRODUCTION (table 13.16, 2022) converted to approximate area with the national average yield from the same compendium (tables 13.4 and 13.16), then ranked. Pulses, forage oats, vegetables other than onion/asparagus not included."
+    }
+   ],
+   "notes": "INEI Compendio Estadístico Perú 2023, chapter 13 (data from MIDAGRI-DEIA). National ranking = harvested area 2022 (table 13.4); maize = amarillo duro 260,971 + amiláceo 199,729 + choclo 49,048 ha; coffee 423,854; rice 414,286; potato 341,468; alfalfa 209,284; cocoa 177,350; plantain 171,073; barley 127,932. The compendium gives no area by department, only production, hence the derived regional rankings (basis=production). MIDAGRI SIEA (siea.midagri.gob.pe) could not be reached (connection timeout / ECONNREFUSED)."
+  },
+  {
+   "iso3": "COL",
+   "name": "Colombia",
+   "national": {
+    "crops": [
+     "rice",
+     "coffee",
+     "oilpalm",
+     "sugarcane",
+     "maize",
+     "plantain",
+     "cocoa",
+     "cassava"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://www.datos.gov.co/resource/uejq-wxrr.json"
+   },
+   "regions": [
+    {
+     "name": "Meta",
+     "crops": [
+      "oilpalm",
+      "rice",
+      "soybean",
+      "maize",
+      "plantain",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.datos.gov.co/resource/uejq-wxrr.json",
+     "confidence": "high"
+    },
+    {
+     "name": "Antioquia",
+     "crops": [
+      "coffee",
+      "plantain",
+      "banana",
+      "sugarcane",
+      "rice",
+      "avocado"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.datos.gov.co/resource/uejq-wxrr.json",
+     "confidence": "high"
+    },
+    {
+     "name": "Valle del Cauca",
+     "crops": [
+      "sugarcane",
+      "coffee",
+      "plantain",
+      "maize",
+      "avocado",
+      "banana"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.datos.gov.co/resource/uejq-wxrr.json",
+     "confidence": "high"
+    },
+    {
+     "name": "Santander",
+     "crops": [
+      "oilpalm",
+      "cocoa",
+      "coffee",
+      "sugarcane",
+      "plantain",
+      "pineapple"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.datos.gov.co/resource/uejq-wxrr.json",
+     "confidence": "high"
+    },
+    {
+     "name": "Tolima",
+     "crops": [
+      "rice",
+      "coffee",
+      "maize",
+      "plantain",
+      "avocado",
+      "cocoa"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.datos.gov.co/resource/uejq-wxrr.json",
+     "confidence": "high"
+    },
+    {
+     "name": "Casanare",
+     "crops": [
+      "rice",
+      "oilpalm",
+      "maize",
+      "plantain",
+      "cocoa",
+      "coffee"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.datos.gov.co/resource/uejq-wxrr.json",
+     "confidence": "high"
+    },
+    {
+     "name": "Huila",
+     "crops": [
+      "coffee",
+      "plantain",
+      "rice",
+      "maize",
+      "sugarcane",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.datos.gov.co/resource/uejq-wxrr.json",
+     "confidence": "high"
+    },
+    {
+     "name": "Cundinamarca",
+     "crops": [
+      "potato",
+      "sugarcane",
+      "coffee",
+      "maize",
+      "bean",
+      "mango"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.datos.gov.co/resource/uejq-wxrr.json",
+     "confidence": "high"
+    },
+    {
+     "name": "Bolívar",
+     "crops": [
+      "maize",
+      "oilpalm",
+      "cassava",
+      "rice",
+      "yam",
+      "plantain"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.datos.gov.co/resource/uejq-wxrr.json",
+     "confidence": "high"
+    },
+    {
+     "name": "Nariño",
+     "crops": [
+      "potato",
+      "coffee",
+      "oilpalm",
+      "plantain",
+      "cocoa",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.datos.gov.co/resource/uejq-wxrr.json",
+     "confidence": "high"
+    }
+   ],
+   "notes": "UPRA / MinAgricultura \"Evaluaciones Agropecuarias Municipales (EVA) 2019-2025, Base Agrícola\" on datos.gov.co (dataset uejq-wxrr, https://www.datos.gov.co/d/uejq-wxrr), harvested area summed by department for year 2024 via the Socrata API. \"Caña\" merges sugar-mill cane and panela cane. In 2023 coffee (697,815 ha) ranked above rice (648,180 ha); in 2024 rice 679,091 vs coffee 671,192."
+  },
+  {
+   "iso3": "ECU",
+   "name": "Ecuador",
+   "national": {
+    "crops": [
+     "cocoa",
+     "rice",
+     "maize",
+     "oilpalm",
+     "banana",
+     "plantain",
+     "sugarcane"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://www.ecuadorencifras.gob.ec/documentos/web-inec/Estadisticas_agropecuarias/espac/2024/Tabulados_ESPAC_2024.xlsx"
+   },
+   "regions": [
+    {
+     "name": "Guayas",
+     "crops": [
+      "rice",
+      "cocoa",
+      "sugarcane",
+      "banana",
+      "maize",
+      "mango"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://sipa.agricultura.gob.ec/boletines/situacionales/2024/provinciales/Provincia_Guayas_2024.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Los Ríos",
+     "crops": [
+      "cocoa",
+      "rice",
+      "maize",
+      "banana",
+      "oilpalm",
+      "plantain"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://sipa.agricultura.gob.ec/boletines/situacionales/2024/provinciales/Provincia_LosRios_2024.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Manabí",
+     "crops": [
+      "cocoa",
+      "maize",
+      "plantain",
+      "rice",
+      "oilpalm",
+      "lemonlime"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://sipa.agricultura.gob.ec/boletines/situacionales/2024/provinciales/Provincia_Manabi_2024.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Esmeraldas",
+     "crops": [
+      "cocoa",
+      "oilpalm",
+      "plantain",
+      "maize",
+      "lemonlime",
+      "coffee"
+     ],
+     "unmatched": [
+      "maracuyá / passion fruit (5th)",
+      "palmito / palm heart (6th)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://sipa.agricultura.gob.ec/boletines/situacionales/2024/provinciales/Provincia_Esmeraldas_2024.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "El Oro",
+     "crops": [
+      "banana",
+      "cocoa",
+      "rice",
+      "maize",
+      "lemonlime",
+      "plantain"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://sipa.agricultura.gob.ec/boletines/situacionales/2024/provinciales/Provincia_ElOro_2024.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Bolívar",
+     "crops": [
+      "cocoa",
+      "maize",
+      "orange",
+      "bean",
+      "banana",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://sipa.agricultura.gob.ec/boletines/situacionales/2024/provinciales/Provincia_Bolivar_2024.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Cotopaxi",
+     "crops": [
+      "maize",
+      "cocoa",
+      "banana",
+      "sugarcane",
+      "plantain",
+      "greenonion"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://sipa.agricultura.gob.ec/boletines/situacionales/2024/provinciales/Provincia_Cotopaxi_2024.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Loja",
+     "crops": [
+      "maize",
+      "bean",
+      "sugarcane",
+      "coffee",
+      "banana",
+      "broadbean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://sipa.agricultura.gob.ec/boletines/situacionales/2024/provinciales/Provincia_Loja_2024.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Pichincha",
+     "crops": [
+      "cocoa",
+      "maize",
+      "oilpalm",
+      "coffee",
+      "sugarcane",
+      "avocado"
+     ],
+     "unmatched": [
+      "palmito / palm heart (2nd, 4,416 ha)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://sipa.agricultura.gob.ec/boletines/situacionales/2024/provinciales/Provincia_Pichincha_2024.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Chimborazo",
+     "crops": [
+      "barley",
+      "maize",
+      "potato",
+      "bean",
+      "greenbroadbean",
+      "cocoa"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://sipa.agricultura.gob.ec/boletines/situacionales/2024/provinciales/Provincia_Chimborazo_2024.pdf",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Regions: MAG (SIPA) \"Estadísticas agropecuarias de la provincia\" 2024 bulletins, table \"Principales cultivos\" ordered by sown area, source INEC ESPAC 2024. Maize merges maíz duro and maíz suave (dry + choclo); banana includes orito. National: INEC ESPAC 2024 tabulados (T5 permanent, T8 transitory); I summed sub-columns (plantation age / seed type), so magnitudes are approximate (cocoa ~610k ha, palm ~200k, banana ~180k, plantain ~150k, sugar cane ~105k; rice and hard maize each roughly 275-400k) and the rice-vs-maize order is uncertain. Bulletins for Santo Domingo and Santa Elena returned 404 under the guessed file names. Planted pasture excluded."
+  },
+  {
+   "iso3": "BOL",
+   "name": "Bolivia",
+   "national": {
+    "crops": [
+     "soybean",
+     "sorghum",
+     "maize",
+     "potato",
+     "rice",
+     "wheat",
+     "sugarcane",
+     "sunflower"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://nube.ine.gob.bo/index.php/s/6kBAE1i0Ys4tF0U/download"
+   },
+   "regions": [
+    {
+     "name": "Santa Cruz",
+     "crops": [
+      "soybean",
+      "sorghum",
+      "maize",
+      "sunflower",
+      "sugarcane",
+      "rice"
+     ],
+     "unmatched": [
+      "chía (22,882 ha, below top 6)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.ine.gob.bo/index.php/s/6kBAE1i0Ys4tF0U/download",
+     "confidence": "high"
+    },
+    {
+     "name": "Cochabamba",
+     "crops": [
+      "potato",
+      "maize",
+      "wheat",
+      "plantain",
+      "orange",
+      "banana"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.ine.gob.bo/index.php/s/6kBAE1i0Ys4tF0U/download",
+     "confidence": "high"
+    },
+    {
+     "name": "La Paz",
+     "crops": [
+      "potato",
+      "alfalfa",
+      "coffee",
+      "barley",
+      "maize",
+      "quinoa"
+     ],
+     "unmatched": [
+      "cebada berza / forage barley (3rd, 32,094 ha)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.ine.gob.bo/index.php/s/6kBAE1i0Ys4tF0U/download",
+     "confidence": "high"
+    },
+    {
+     "name": "Chuquisaca",
+     "crops": [
+      "maize",
+      "potato",
+      "wheat",
+      "barley",
+      "bean",
+      "groundnut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.ine.gob.bo/index.php/s/6kBAE1i0Ys4tF0U/download",
+     "confidence": "high"
+    },
+    {
+     "name": "Potosí",
+     "crops": [
+      "quinoa",
+      "potato",
+      "maize",
+      "wheat",
+      "barley",
+      "broadbean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.ine.gob.bo/index.php/s/6kBAE1i0Ys4tF0U/download",
+     "confidence": "high"
+    },
+    {
+     "name": "Oruro",
+     "crops": [
+      "quinoa",
+      "alfalfa",
+      "potato",
+      "barley",
+      "onion",
+      "broadbean"
+     ],
+     "unmatched": [
+      "cebada berza / forage barley (4th, 9,500 ha)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.ine.gob.bo/index.php/s/6kBAE1i0Ys4tF0U/download",
+     "confidence": "high"
+    },
+    {
+     "name": "Tarija",
+     "crops": [
+      "maize",
+      "soybean",
+      "potato",
+      "groundnut",
+      "wheat",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.ine.gob.bo/index.php/s/6kBAE1i0Ys4tF0U/download",
+     "confidence": "medium",
+     "notes": "The file gives 199,666 ha of grain maize for Tarija in 2023-2024, more than Santa Cruz (189,534 ha); this looks anomalous, treat magnitude with caution."
+    },
+    {
+     "name": "Beni",
+     "crops": [
+      "rice",
+      "maize",
+      "soybean",
+      "plantain",
+      "cassava",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.ine.gob.bo/index.php/s/6kBAE1i0Ys4tF0U/download",
+     "confidence": "high"
+    }
+   ],
+   "notes": "INE Bolivia, \"Superficie Año Agrícola por Departamento, 1984-2025\" (xlsx linked from https://www.ine.gob.bo/index.php/estadisticas-economicas/agropecuaria/agricultura-cuadros-estadisticos/), cultivated area, agricultural year 2023-2024 (preliminary). Soybean, maize, sorghum, wheat, sunflower include summer + winter campaigns. Coca is not in the table."
+  },
+  {
+   "iso3": "PRY",
+   "name": "Paraguay",
+   "national": {
+    "crops": [
+     "soybean",
+     "maize",
+     "rice",
+     "mate",
+     "banana"
+    ],
+    "basis": "area",
+    "year": 2022,
+    "source_url": "https://www.lanacion.com.py/negocios/2023/06/29/siembra-de-principales-rubros-de-produccion-crecieron-en-los-ultimos-anos/"
+   },
+   "regions": [
+    {
+     "name": "Alto Paraná",
+     "crops": [
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://cdn.biodiversidadla.org/content/download/180740/1316316/file/Sojaalcuello2023.pdf",
+     "confidence": "medium",
+     "notes": "Only soybean and irrigated rice area by department could be sourced (secondary report by BASE-IS reproducing CAN 2022 tabulations). Maize, wheat, sugar cane, cassava by department NOT found. Soybean 1,037,938 ha of 1,527,414 ha of commercial crops."
+    },
+    {
+     "name": "Itapúa",
+     "crops": [
+      "soybean",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://cdn.biodiversidadla.org/content/download/180740/1316316/file/Sojaalcuello2023.pdf",
+     "confidence": "medium",
+     "notes": "Only soybean and irrigated rice area by department could be sourced (secondary report by BASE-IS reproducing CAN 2022 tabulations). Maize, wheat, sugar cane, cassava by department NOT found. Soybean 619,445 ha; rice 44,082 ha."
+    },
+    {
+     "name": "Canindeyú",
+     "crops": [
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://cdn.biodiversidadla.org/content/download/180740/1316316/file/Sojaalcuello2023.pdf",
+     "confidence": "medium",
+     "notes": "Only soybean and irrigated rice area by department could be sourced (secondary report by BASE-IS reproducing CAN 2022 tabulations). Maize, wheat, sugar cane, cassava by department NOT found. Soybean 565,141 ha."
+    },
+    {
+     "name": "Caaguazú",
+     "crops": [
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://cdn.biodiversidadla.org/content/download/180740/1316316/file/Sojaalcuello2023.pdf",
+     "confidence": "medium",
+     "notes": "Only soybean and irrigated rice area by department could be sourced (secondary report by BASE-IS reproducing CAN 2022 tabulations). Maize, wheat, sugar cane, cassava by department NOT found. Soybean 416,372 ha."
+    },
+    {
+     "name": "San Pedro",
+     "crops": [
+      "soybean",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://cdn.biodiversidadla.org/content/download/180740/1316316/file/Sojaalcuello2023.pdf",
+     "confidence": "medium",
+     "notes": "Only soybean and irrigated rice area by department could be sourced (secondary report by BASE-IS reproducing CAN 2022 tabulations). Maize, wheat, sugar cane, cassava by department NOT found. Soybean 396,827 ha; rice 8,840 ha."
+    },
+    {
+     "name": "Caazapá",
+     "crops": [
+      "soybean",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://cdn.biodiversidadla.org/content/download/180740/1316316/file/Sojaalcuello2023.pdf",
+     "confidence": "low",
+     "notes": "Only soybean and irrigated rice area by department could be sourced (secondary report by BASE-IS reproducing CAN 2022 tabulations). Maize, wheat, sugar cane, cassava by department NOT found. Soybean 182,731 ha; rice 7,082 ha."
+    },
+    {
+     "name": "Amambay",
+     "crops": [
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://cdn.biodiversidadla.org/content/download/180740/1316316/file/Sojaalcuello2023.pdf",
+     "confidence": "low",
+     "notes": "Only soybean and irrigated rice area by department could be sourced (secondary report by BASE-IS reproducing CAN 2022 tabulations). Maize, wheat, sugar cane, cassava by department NOT found. Soybean 167,267 ha."
+    },
+    {
+     "name": "Misiones",
+     "crops": [
+      "rice",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://cdn.biodiversidadla.org/content/download/180740/1316316/file/Sojaalcuello2023.pdf",
+     "confidence": "low",
+     "notes": "Only soybean and irrigated rice area by department could be sourced (secondary report by BASE-IS reproducing CAN 2022 tabulations). Maize, wheat, sugar cane, cassava by department NOT found. Rice 58,582 ha; soybean 41,188 ha."
+    }
+   ],
+   "notes": "WEAK SOURCING. Official MAG sites failed: can2022.mag.gov.py has an expired TLS certificate (not bypassed), dcea.mag.gov.py unreachable, www.mag.gov.py has no statistics links. National list is from a news article (La Nación PY, last-resort source) quoting CAN 2022: soybean 3,062,086 ha (normal) + >477,000 ha (zafriña); maize 229,120 + 963,090 ha (zafriña); irrigated rice 205,744; yerba mate 38,724; banana 15,960. Wheat, sugar cane and cassava are nationally important but no area figure was found, so they are omitted (wheat likely ranks 3rd). Regional figures come from the NGO report \"Con la Soja al Cuello 2023\" (BASE-IS), tables 2 and 4, built on CAN 2022 data: secondary source."
+  },
+  {
+   "iso3": "URY",
+   "name": "Uruguay",
+   "national": {
+    "crops": [
+     "soybean",
+     "wheat",
+     "maize",
+     "barley",
+     "rice",
+     "rapeseed",
+     "oats",
+     "sorghum"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/documentos/noticias/Comunicado_%20Agr_Prim_%202023_.pdf"
+   },
+   "regions": [
+    {
+     "name": "Soriano",
+     "crops": [
+      "soybean",
+      "barley",
+      "wheat",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/2020-08/PUBLICACION_INV2020.pdf",
+     "confidence": "high",
+     "notes": "Soybean (2019/20), wheat and malting barley (2020) from DIEA Encuesta Agrícola Invierno 2020; maize 2019/20 from Encuesta Primavera 2019 (https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/documentos/noticias/Publicaci%C3%B3n_agr_primav2019.pdf). Rapeseed, sorghum, rice by department not available."
+    },
+    {
+     "name": "Colonia",
+     "crops": [
+      "soybean",
+      "barley",
+      "wheat",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/2020-08/PUBLICACION_INV2020.pdf",
+     "confidence": "high",
+     "notes": "Soybean (2019/20), wheat and malting barley (2020) from DIEA Encuesta Agrícola Invierno 2020; maize 2019/20 from Encuesta Primavera 2019 (https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/documentos/noticias/Publicaci%C3%B3n_agr_primav2019.pdf). Rapeseed, sorghum, rice by department not available."
+    },
+    {
+     "name": "Río Negro",
+     "crops": [
+      "soybean",
+      "wheat",
+      "barley",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/2020-08/PUBLICACION_INV2020.pdf",
+     "confidence": "high",
+     "notes": "Soybean (2019/20), wheat and malting barley (2020) from DIEA Encuesta Agrícola Invierno 2020; maize 2019/20 from Encuesta Primavera 2019 (https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/documentos/noticias/Publicaci%C3%B3n_agr_primav2019.pdf). Rapeseed, sorghum, rice by department not available."
+    },
+    {
+     "name": "Paysandú",
+     "crops": [
+      "soybean",
+      "wheat",
+      "barley",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/2020-08/PUBLICACION_INV2020.pdf",
+     "confidence": "high",
+     "notes": "Soybean (2019/20), wheat and malting barley (2020) from DIEA Encuesta Agrícola Invierno 2020; maize 2019/20 from Encuesta Primavera 2019 (https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/documentos/noticias/Publicaci%C3%B3n_agr_primav2019.pdf). Rapeseed, sorghum, rice by department not available."
+    },
+    {
+     "name": "Flores",
+     "crops": [
+      "soybean",
+      "barley",
+      "wheat",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/2020-08/PUBLICACION_INV2020.pdf",
+     "confidence": "high",
+     "notes": "Soybean (2019/20), wheat and malting barley (2020) from DIEA Encuesta Agrícola Invierno 2020; maize 2019/20 from Encuesta Primavera 2019 (https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/documentos/noticias/Publicaci%C3%B3n_agr_primav2019.pdf). Rapeseed, sorghum, rice by department not available."
+    },
+    {
+     "name": "San José",
+     "crops": [
+      "soybean",
+      "wheat",
+      "maize",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/2020-08/PUBLICACION_INV2020.pdf",
+     "confidence": "high",
+     "notes": "Soybean (2019/20), wheat and malting barley (2020) from DIEA Encuesta Agrícola Invierno 2020; maize 2019/20 from Encuesta Primavera 2019 (https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/documentos/noticias/Publicaci%C3%B3n_agr_primav2019.pdf). Rapeseed, sorghum, rice by department not available."
+    },
+    {
+     "name": "Durazno",
+     "crops": [
+      "soybean",
+      "wheat",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/2020-08/PUBLICACION_INV2020.pdf",
+     "confidence": "medium",
+     "notes": "Soybean (2019/20), wheat and malting barley (2020) from DIEA Encuesta Agrícola Invierno 2020; maize 2019/20 from Encuesta Primavera 2019 (https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/documentos/noticias/Publicaci%C3%B3n_agr_primav2019.pdf). Rapeseed, sorghum, rice by department not available."
+    },
+    {
+     "name": "Treinta y Tres",
+     "crops": [
+      "rice",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": 2023,
+     "source_url": "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/sites/ministerio-ganaderia-agricultura-pesca/files/documentos/noticias/COMUNICADO%20PRENSA%20ARROZ%202022_23.pdf",
+     "confidence": "low",
+     "notes": "Rice is only published by zone: the East zone (Cerro Largo, Treinta y Tres, Rocha, Lavalleja) had ~111,202 of 147,031 ha in 2022/23 (DIEA Encuesta de Arroz); no per-department hectares. Soybean in Treinta y Tres was 16,441 ha in 2019/20 (Invierno 2020 survey). Rice-first order is an inference, not a published departmental figure."
+    }
+   ],
+   "notes": "MGAP-DIEA surveys. National: Encuesta Agrícola Primavera 2023 (winter crops sown 2023: wheat 266,791 ha, barley 191,017, rapeseed+carinata 132,316, oats 15,932; summer 2023/24 sowing intention: soybean 1,064,555, maize 213,093, sorghum 10,744) plus rice 147,031 ha from Encuesta de Arroz 2022/23. Departmental tables in the 2023 releases are not in the text, so regions use the 2019/20-2020 surveys. DIEA Anuario 2025 PDF is 107 MB and was not downloaded; INE anuario page returned 404."
+  },
+  {
+   "iso3": "VEN",
+   "name": "Venezuela",
+   "national": {
+    "crops": [
+     "maize",
+     "rice",
+     "coffee",
+     "oilpalm",
+     "sugarcane",
+     "potato"
+    ],
+    "basis": "area",
+    "year": 2025,
+    "source_url": "https://fedeagro.org/wp-content/uploads/2026/04/RESULTADOS-2025-FINAL.pdf"
+   },
+   "regions": [
+    {
+     "name": "Guárico",
+     "crops": [
+      "maize",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": 2025,
+     "source_url": "https://fedeagro.org/wp-content/uploads/2026/04/RESULTADOS-2025-FINAL.pdf",
+     "confidence": "low",
+     "notes": "Fedeagro only gives multi-state totals for 2025: winter maize 176,400 ha in Guárico + south Aragua + Anzoátegui + Monagas + Carabobo and 103,400 ha in Portuguesa + Barinas + Cojedes + Lara + Yaracuy; rice 72,000 ha in Guárico and 76,000 ha in Portuguesa + Barinas + Cojedes. Order within the state is not published."
+    },
+    {
+     "name": "Portuguesa",
+     "crops": [
+      "maize",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": 2025,
+     "source_url": "https://fedeagro.org/wp-content/uploads/2026/04/RESULTADOS-2025-FINAL.pdf",
+     "confidence": "low",
+     "notes": "Fedeagro only gives multi-state totals for 2025: winter maize 176,400 ha in Guárico + south Aragua + Anzoátegui + Monagas + Carabobo and 103,400 ha in Portuguesa + Barinas + Cojedes + Lara + Yaracuy; rice 72,000 ha in Guárico and 76,000 ha in Portuguesa + Barinas + Cojedes. Order within the state is not published."
+    },
+    {
+     "name": "Barinas",
+     "crops": [
+      "maize",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": 2025,
+     "source_url": "https://fedeagro.org/wp-content/uploads/2026/04/RESULTADOS-2025-FINAL.pdf",
+     "confidence": "low",
+     "notes": "Fedeagro only gives multi-state totals for 2025: winter maize 176,400 ha in Guárico + south Aragua + Anzoátegui + Monagas + Carabobo and 103,400 ha in Portuguesa + Barinas + Cojedes + Lara + Yaracuy; rice 72,000 ha in Guárico and 76,000 ha in Portuguesa + Barinas + Cojedes. Order within the state is not published."
+    },
+    {
+     "name": "Cojedes",
+     "crops": [
+      "maize",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": 2025,
+     "source_url": "https://fedeagro.org/wp-content/uploads/2026/04/RESULTADOS-2025-FINAL.pdf",
+     "confidence": "low",
+     "notes": "Fedeagro only gives multi-state totals for 2025: winter maize 176,400 ha in Guárico + south Aragua + Anzoátegui + Monagas + Carabobo and 103,400 ha in Portuguesa + Barinas + Cojedes + Lara + Yaracuy; rice 72,000 ha in Guárico and 76,000 ha in Portuguesa + Barinas + Cojedes. Order within the state is not published."
+    },
+    {
+     "name": "Zulia",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low",
+     "notes": "No source found for crop areas in Zulia (oil palm, plantain expected but unsourced)."
+    },
+    {
+     "name": "Mérida",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low",
+     "notes": "No source found for crop areas in the Andean states (coffee, potato, vegetables expected but unsourced)."
+    }
+   ],
+   "notes": "No official statistics found (no recent MPPAT/INE crop-area publication reachable). National list is from FEDEAGRO (producers' federation, NOT an official source) \"Resultados 2025\": maize ~293,400 ha (winter cycle), rice 148,000 ha (two cycles), coffee ~145,000 ha, oil palm ~80,000 ha, sugar cane ~63,000 ha (derived from 4.43 Mt at ~70 t/ha), potato ~9,400 ha, tomato ~6,750, onion ~6,600, soybean ~6,000. Cocoa, plantain/banana, cassava, sorghum and beans have no area in that source and are omitted. USDA IPAD returned HTTP 503; fas.usda.gov GAIN report page returned HTTP 403; FAOSTAT API returned 401."
+  }
+ ]
+}

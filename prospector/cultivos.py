@@ -55,8 +55,8 @@ CULTIVOS = {
     "tabaco":   _C("Tabaco", "solanáceas", "cultivo industrial de verano", 10, 1300, 20, 30, 12, 36, 1, 38, (0.50, 1.15, 0.80), 0.6, 0.50, 0.90, 0.49, 0.80, 0.05, "baja", False, "hoja"),
     "alfalfa":  _C("Alfalfa", "leguminosas", "forraje permanente", 5, 99999, 15, 30, 3, 38, -8, 99, (0.4, 0.95, 0.90), 1.5, 0.55, 1.10, 0.05, 0.95, 0.80, "baja", True, "forraje"),
 }
-SIN_VALIDAR = {"tomate", "aji", "cebolla", "repollo", "sandia", "cartamo", "tabaco"}      # ver validacion/INFORME_cultivos_nuevos.md
-VERSION = 13            # subir cuando cambie el método: las copias guardadas con otra versión se recalculan
+DEBILES = {"haba": 3, "aji": 3, "arveja": 2, "repollo": 2}      # de cada 10 lugares donde se siembra, cuántos no reconoce (validacion/INFORME_dirigida_53.md)
+VERSION = 14            # subir cuando cambie el método: las copias guardadas con otra versión se recalculan
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 
 def _clima(d, G):
@@ -370,8 +370,8 @@ def analizar(d, actual=None, registro=print):
                fuentes=dict(clima="NASA POWER diario (MERRA-2, CERES) y lluvia GPM IMERG", metodo="FAO-56 (agua), FAO-33 (rendimiento por agua), suma térmica, RUSLE (erosión)",
                             observado="Superficie sembrada: CROPGRIDS v1.08 (Tang et al. 2024). Rendimiento medido: GDHY (Iizumi y Sakai 2020), 2007-2016", parametros="FAO ECOCROP, FAO-56, FAO-33; factores C de Panagos et al. 2015; largo de ciclo y fecha de siembra de la zona según el calendario mundial GGCMI (Jägermeyr et al. 2021)"))
     from . import cultivado, calendario, mundo
-    for x in res_c:                        # cultivos agregados sin validación mundial suficiente: se dice en la propia ficha
-        if x["clave"] in SIN_VALIDAR and x.get("porque"): x["porque"] += " Este cultivo se agregó con valores generales y todavía no tiene validación mundial suficiente: tómalo solo como orientación."
+    for x in res_c:                        # cultivos que la validación dirigida mostró débiles: se dice en la propia ficha
+        if x["clave"] in DEBILES and x.get("porque"): x["porque"] += f" Ojo: en la validación mundial el motor no reconoció este cultivo en cerca de {DEBILES[x['clave']]} de cada 10 lugares donde sí se siembra; si aquí sale mal, no lo descartes solo por eso."
     try:
         from . import regiones
         out["region"] = regiones.consultar(G["centro"][0], lat)      # cultivos principales de la región y del país (observado y oficial)

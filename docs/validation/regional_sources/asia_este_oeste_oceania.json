@@ -1,0 +1,1833 @@
+{
+ "agent": "asia_este_oeste_oceania",
+ "countries": [
+  {
+   "iso3": "CHN",
+   "name": "China",
+   "national": {
+    "crops": [
+     "maize",
+     "rice",
+     "wheat",
+     "vegetablenes",
+     "fruitnes",
+     "soybean",
+     "rapeseed",
+     "groundnut"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg"
+   },
+   "regions": [
+    {
+     "name": "Heilongjiang",
+     "crops": [
+      "maize",
+      "soybean",
+      "rice",
+      "vegetablenes",
+      "fruitnes",
+      "groundnut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Henan",
+     "crops": [
+      "wheat",
+      "maize",
+      "vegetablenes",
+      "groundnut",
+      "rice",
+      "fruitnes"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Shandong",
+     "crops": [
+      "wheat",
+      "maize",
+      "vegetablenes",
+      "groundnut",
+      "fruitnes",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Sichuan",
+     "crops": [
+      "maize",
+      "rice",
+      "vegetablenes",
+      "rapeseed",
+      "fruitnes",
+      "wheat"
+     ],
+     "unmatched": [
+      "tubers (potato + sweet potato, not split in the table)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Anhui",
+     "crops": [
+      "wheat",
+      "rice",
+      "maize",
+      "vegetablenes",
+      "soybean",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Hebei",
+     "crops": [
+      "maize",
+      "wheat",
+      "vegetablenes",
+      "fruitnes",
+      "groundnut",
+      "soybean"
+     ],
+     "unmatched": [
+      "tubers (potato + sweet potato, not split in the table)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Inner Mongolia",
+     "crops": [
+      "maize",
+      "soybean",
+      "wheat",
+      "rapeseed",
+      "vegetablenes",
+      "rice"
+     ],
+     "unmatched": [
+      "tubers (potato + sweet potato, not split in the table)",
+      "other oil-bearing crops (about 525 thousand ha not itemised in the table; likely sunflower)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Jilin",
+     "crops": [
+      "maize",
+      "rice",
+      "soybean",
+      "groundnut",
+      "vegetablenes",
+      "fruitnes"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Jiangsu",
+     "crops": [
+      "wheat",
+      "rice",
+      "vegetablenes",
+      "maize",
+      "soybean",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Hunan",
+     "crops": [
+      "rice",
+      "rapeseed",
+      "vegetablenes",
+      "fruitnes",
+      "maize",
+      "tea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Hubei",
+     "crops": [
+      "rice",
+      "vegetablenes",
+      "rapeseed",
+      "wheat",
+      "maize",
+      "fruitnes"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Xinjiang",
+     "crops": [
+      "cotton",
+      "maize",
+      "wheat",
+      "fruitnes",
+      "vegetablenes",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Guangxi",
+     "crops": [
+      "rice",
+      "vegetablenes",
+      "fruitnes",
+      "sugarcane",
+      "maize",
+      "groundnut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Yunnan",
+     "crops": [
+      "maize",
+      "vegetablenes",
+      "fruitnes",
+      "rice",
+      "tea",
+      "tobacco"
+     ],
+     "unmatched": [
+      "tubers (potato + sweet potato, not split in the table)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Guangdong",
+     "crops": [
+      "rice",
+      "vegetablenes",
+      "fruitnes",
+      "groundnut",
+      "sugarcane",
+      "maize"
+     ],
+     "unmatched": [
+      "tubers (potato + sweet potato, not split in the table)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    },
+    {
+     "name": "Jiangxi",
+     "crops": [
+      "rice",
+      "vegetablenes",
+      "rapeseed",
+      "fruitnes",
+      "groundnut",
+      "tea"
+     ],
+     "unmatched": [
+      "tubers (potato + sweet potato, not split in the table)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.stats.gov.cn/sj/ndsj/2024/html/E12-08.jpg",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Source: China Statistical Yearbook 2024 (NBS), table 12-8 'Sown Areas of Farm Crops' (published as a JPG image; read visually; 2023 data, 1000 ha, national series plus all 31 provinces). Rankings are by sown area. 'vegetablenes' = the table's aggregate 'Vegetables' column; 'fruitnes' = aggregate 'Orchards' column (no species split: apple/citrus/pear etc. cannot be separated); 'Tubers' (national 7,048 thousand ha, potato + sweet potato not split) would rank 7th nationally and is listed as unmatched where it is in a province's top group. National 2023 (1000 ha): maize 44,219; rice 28,949; wheat 23,627; vegetables 22,873; orchards 12,738; soybean 10,474; rapeseed 7,805; tubers 7,048; groundnut 4,798; tea 3,430; cotton 2,788; sugarcane 1,265; tobacco 1,084. The English yearbook has no by-province table for sorghum, millet, sunflower, individual fruits or forage. data.stats.gov.cn returned HTTP 403. USDA IPAD (ipad.fas.usda.gov) is retired and redirects to fas.usda.gov/data/production, which returned HTTP 403."
+  },
+  {
+   "iso3": "JPN",
+   "name": "Japan",
+   "national": {
+    "crops": [
+     "rice",
+     "grassnes",
+     "wheat",
+     "soybean",
+     "maizefor",
+     "buckwheat",
+     "barley",
+     "sugarbeet"
+    ],
+    "basis": "area",
+    "year": 2021,
+    "source_url": "https://www.maff.go.jp/e/data/stat/97th/index.html"
+   },
+   "regions": [
+    {
+     "name": "Hokkaido",
+     "crops": [
+      "grassnes",
+      "wheat",
+      "rice",
+      "maizefor",
+      "sugarbeet",
+      "soybean"
+     ],
+     "unmatched": [
+      "potato (table not consulted)",
+      "azuki/red beans 19,000 ha",
+      "buckwheat 24,300 ha"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://www.maff.go.jp/e/data/stat/97th/attach/xls/index-54.xls",
+     "confidence": "medium"
+    },
+    {
+     "name": "Niigata",
+     "crops": [
+      "rice",
+      "soybean",
+      "buckwheat",
+      "barley",
+      "wheat"
+     ],
+     "unmatched": [
+      "vegetables, fruit trees and potatoes not read at prefecture level (not in the tables consulted)"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://www.maff.go.jp/e/data/stat/97th/attach/xls/index-54.xls",
+     "confidence": "medium"
+    },
+    {
+     "name": "Akita",
+     "crops": [
+      "rice",
+      "soybean",
+      "buckwheat",
+      "wheat"
+     ],
+     "unmatched": [
+      "vegetables, fruit trees and potatoes not read at prefecture level (not in the tables consulted)"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://www.maff.go.jp/e/data/stat/97th/attach/xls/index-54.xls",
+     "confidence": "medium"
+    },
+    {
+     "name": "Ibaraki",
+     "crops": [
+      "rice",
+      "sweetpotato",
+      "wheat",
+      "buckwheat",
+      "soybean",
+      "barley"
+     ],
+     "unmatched": [
+      "vegetables, fruit trees and potatoes not read at prefecture level (not in the tables consulted)"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://www.maff.go.jp/e/data/stat/97th/attach/xls/index-54.xls",
+     "confidence": "medium"
+    },
+    {
+     "name": "Aomori",
+     "crops": [
+      "rice",
+      "soybean",
+      "buckwheat",
+      "wheat",
+      "tobacco"
+     ],
+     "unmatched": [
+      "apple and other fruit, vegetables: not read (70,200 ha of 'other crops' in this prefecture are not itemised)"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://www.maff.go.jp/e/data/stat/97th/attach/xls/index-54.xls",
+     "confidence": "low"
+    },
+    {
+     "name": "Fukuoka",
+     "crops": [
+      "rice",
+      "wheat",
+      "soybean",
+      "barley",
+      "tea"
+     ],
+     "unmatched": [
+      "vegetables, fruit trees and potatoes not read at prefecture level (not in the tables consulted)"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://www.maff.go.jp/e/data/stat/97th/attach/xls/index-54.xls",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kumamoto",
+     "crops": [
+      "rice",
+      "grassnes",
+      "wheat",
+      "maizefor",
+      "soybean",
+      "barley"
+     ],
+     "unmatched": [
+      "vegetables, fruit trees and potatoes not read at prefecture level (not in the tables consulted)",
+      "rush (igusa) 448 ha"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://www.maff.go.jp/e/data/stat/97th/attach/xls/index-54.xls",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kagoshima",
+     "crops": [
+      "rice",
+      "grassnes",
+      "sweetpotato",
+      "sugarcane",
+      "tea",
+      "maizefor"
+     ],
+     "unmatched": [
+      "vegetables, fruit trees and potatoes not read at prefecture level (not in the tables consulted)"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://www.maff.go.jp/e/data/stat/97th/attach/xls/index-54.xls",
+     "confidence": "medium"
+    },
+    {
+     "name": "Okinawa",
+     "crops": [
+      "sugarcane",
+      "grassnes",
+      "tobacco",
+      "rice"
+     ],
+     "unmatched": [
+      "vegetables, fruit trees and potatoes not read at prefecture level (not in the tables consulted)"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://www.maff.go.jp/e/data/stat/97th/attach/xls/index-54.xls",
+     "confidence": "medium"
+    },
+    {
+     "name": "Shizuoka",
+     "crops": [
+      "rice",
+      "tea",
+      "wheat",
+      "soybean"
+     ],
+     "unmatched": [
+      "citrus and vegetables not read (37,500 ha of 'other crops' not itemised)"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://www.maff.go.jp/e/data/stat/97th/attach/xls/index-54.xls",
+     "confidence": "low"
+    }
+   ],
+   "notes": "Source: MAFF, 'The 97th Statistical Yearbook of MAFF' (index https://www.maff.go.jp/e/data/stat/97th/index.html), chapter VII Crops: table 12 aggregate planted area by prefecture (index-54.xls), 2 wheat and barley (index-44.xls), 3 sweet potatoes (index-45.xls), 4 pulses and buckwheat (index-46.xls), 7 industrial crops: tea, sugar beet, sugar cane, tobacco (index-49.xls), 8 feed and forage crops (index-50.xls). Latest year in these files is 2021 (Reiwa 3), planted area in ha. National 2021 (ha): rice 1,403,000; sown grass 717,600; wheat 220,000; soybean 146,200; forage maize 95,500; buckwheat 65,500; barley (two-row + six-row + naked) 63,100; sugar beet 57,700; tea 38,000; sweet potato 32,400; sugar cane 23,300. GAP: the vegetables (index-47.xls) and fruit (index-48.xls) tables and potatoes were NOT read, so vegetables (several 100 thousand ha in aggregate), fruit trees (apple, citrus) and potato are missing from every ranking; treat prefecture lists as 'field crops + tea/sugar/forage only'. 'grassnes' = sown forage grass ('Grass' in table 8), 'maizefor' = 'soiling maize'. Many prefecture cells for forage are '...' (not surveyed that year). FAO GIEWS brief for Japan is outdated (2016). MAFF page nenji_index.html returned 403 to curl but the 97th yearbook pages were reachable."
+  },
+  {
+   "iso3": "KOR",
+   "name": "Republic of Korea",
+   "national": {
+    "crops": [
+     "rice",
+     "barley",
+     "apple",
+     "chilleetc",
+     "garlic",
+     "onion",
+     "potato",
+     "pear"
+    ],
+    "basis": "area",
+    "year": 2026,
+    "source_url": "https://kostat.go.kr/boardDownload.es?bid=11707&list_no=447200&seq=1"
+   },
+   "regions": [
+    {
+     "name": "Jeollanam-do (Jeonnam, incl. Gwangju for rice and chili)",
+     "crops": [
+      "rice",
+      "barley",
+      "onion",
+      "chilleetc",
+      "garlic",
+      "pear"
+     ],
+     "unmatched": [
+      "barley figure is 'barley and wheat' combined (21,060 ha)",
+      "soybean, cabbage/radish, sweet potato, autumn potato, grapes, citrus and other crops are not covered by the three releases used"
+     ],
+     "basis": "area",
+     "year": 2026,
+     "source_url": "https://kostat.go.kr/boardDownload.es?bid=11707&list_no=447200&seq=1",
+     "confidence": "medium"
+    },
+    {
+     "name": "Chungcheongnam-do (Chungnam)",
+     "crops": [
+      "rice",
+      "garlic",
+      "potato",
+      "chilleetc",
+      "pear",
+      "apple"
+     ],
+     "unmatched": [
+      "soybean, cabbage/radish, sweet potato, autumn potato, grapes, citrus and other crops are not covered by the three releases used"
+     ],
+     "basis": "area",
+     "year": 2026,
+     "source_url": "https://kostat.go.kr/boardDownload.es?bid=11707&list_no=447200&seq=1",
+     "confidence": "medium"
+    },
+    {
+     "name": "Jeollabuk-do (Jeonbuk)",
+     "crops": [
+      "rice",
+      "barley",
+      "chilleetc",
+      "onion",
+      "apple",
+      "potato"
+     ],
+     "unmatched": [
+      "barley figure is 'barley and wheat' combined (15,064 ha)",
+      "soybean, cabbage/radish, sweet potato, autumn potato, grapes, citrus and other crops are not covered by the three releases used"
+     ],
+     "basis": "area",
+     "year": 2026,
+     "source_url": "https://kostat.go.kr/boardDownload.es?bid=11707&list_no=447200&seq=1",
+     "confidence": "medium"
+    },
+    {
+     "name": "Gyeongsangbuk-do (Gyeongbuk)",
+     "crops": [
+      "rice",
+      "apple",
+      "chilleetc",
+      "garlic",
+      "potato",
+      "onion"
+     ],
+     "unmatched": [
+      "soybean, cabbage/radish, sweet potato, autumn potato, grapes, citrus and other crops are not covered by the three releases used"
+     ],
+     "basis": "area",
+     "year": 2026,
+     "source_url": "https://kostat.go.kr/boardDownload.es?bid=11707&list_no=447200&seq=1",
+     "confidence": "medium"
+    },
+    {
+     "name": "Gyeonggi-do",
+     "crops": [
+      "rice",
+      "chilleetc",
+      "pear",
+      "potato",
+      "garlic",
+      "apple"
+     ],
+     "unmatched": [
+      "soybean, cabbage/radish, sweet potato, autumn potato, grapes, citrus and other crops are not covered by the three releases used"
+     ],
+     "basis": "area",
+     "year": 2026,
+     "source_url": "https://kostat.go.kr/boardDownload.es?bid=11707&list_no=447200&seq=1",
+     "confidence": "medium"
+    },
+    {
+     "name": "Gyeongsangnam-do (Gyeongnam)",
+     "crops": [
+      "rice",
+      "garlic",
+      "onion",
+      "apple",
+      "barley",
+      "chilleetc"
+     ],
+     "unmatched": [
+      "barley figure is 'barley and wheat' combined (2,539 ha)",
+      "soybean, cabbage/radish, sweet potato, autumn potato, grapes, citrus and other crops are not covered by the three releases used"
+     ],
+     "basis": "area",
+     "year": 2026,
+     "source_url": "https://kostat.go.kr/boardDownload.es?bid=11707&list_no=447200&seq=1",
+     "confidence": "medium"
+    },
+    {
+     "name": "Chungcheongbuk-do (Chungbuk)",
+     "crops": [
+      "rice",
+      "apple",
+      "chilleetc",
+      "potato",
+      "garlic"
+     ],
+     "unmatched": [
+      "soybean, cabbage/radish, sweet potato, autumn potato, grapes, citrus and other crops are not covered by the three releases used"
+     ],
+     "basis": "area",
+     "year": 2026,
+     "source_url": "https://kostat.go.kr/boardDownload.es?bid=11707&list_no=447200&seq=1",
+     "confidence": "medium"
+    },
+    {
+     "name": "Gangwon",
+     "crops": [
+      "rice",
+      "apple",
+      "chilleetc",
+      "potato"
+     ],
+     "unmatched": [
+      "only spring potatoes counted; highland summer potatoes and highland cabbage not covered",
+      "soybean, cabbage/radish, sweet potato, autumn potato, grapes, citrus and other crops are not covered by the three releases used"
+     ],
+     "basis": "area",
+     "year": 2026,
+     "source_url": "https://kostat.go.kr/boardDownload.es?bid=11707&list_no=447200&seq=1",
+     "confidence": "medium"
+    },
+    {
+     "name": "Jeju",
+     "crops": [
+      "barley",
+      "onion",
+      "garlic",
+      "potato"
+     ],
+     "unmatched": [
+      "citrus (mandarins) - Jeju's main crop is not covered by the releases read",
+      "barley figure is 'barley and wheat' combined (2,004 ha)"
+     ],
+     "basis": "area",
+     "year": 2026,
+     "source_url": "https://kostat.go.kr/boardDownload.es?bid=11707&list_no=446058&seq=1",
+     "confidence": "low"
+    }
+   ],
+   "notes": "Source: Statistics Korea (KOSTAT) English press releases (PDF), board https://kostat.go.kr/board.es?mid=a20103010000&bid=11707 : 'Preliminary Results of the Cultivated Area of Rice and Chili Peppers in 2026' (list_no=447200), 'Preliminary Results of the Cultivated Area of Barley, Wheat, Spring Potatoes, Apples and Pears in 2026' (list_no=446058), 'Cultivated Area of Garlic and Onions in 2026' (list_no=445423). Provincial figures are the 'major provinces' tables in those PDFs. National 2026 (ha): rice 670,069; barley 37,250; apple 34,850; chili pepper 25,376; garlic 24,170; onion 17,609; spring potato 14,897; pear 9,302; wheat 7,009. GAP: these releases cover only 9 crops; soybean (a large upland crop), autumn cabbage/radish, sweet potato, sesame, grapes, peaches, citrus and forage were not read, so ranks after rice are incomplete. In the rice and chili release Gwangju is merged with Jeonnam. KOSIS (kosis.kr) could not be reached (connection failure with curl)."
+  },
+  {
+   "iso3": "KAZ",
+   "name": "Kazakhstan",
+   "national": {
+    "crops": [
+     "wheat",
+     "barley",
+     "grassnes",
+     "sunflower",
+     "linseed",
+     "lentil",
+     "safflower",
+     "rapeseed"
+    ],
+    "basis": "area",
+    "year": 2025,
+    "source_url": "https://stat.gov.kz/en/industries/business-statistics/stat-forrest-village-hunt-fish/publications/473788/"
+   },
+   "regions": [
+    {
+     "name": "Akmola",
+     "crops": [
+      "wheat",
+      "barley",
+      "linseed",
+      "sunflower",
+      "lentil",
+      "grassnes"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://stat.gov.kz/api/iblock/element/282882/file/en/",
+     "confidence": "high"
+    },
+    {
+     "name": "Kostanay",
+     "crops": [
+      "wheat",
+      "linseed",
+      "barley",
+      "grassnes",
+      "sunflower",
+      "lentil"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://stat.gov.kz/api/iblock/element/282882/file/en/",
+     "confidence": "high"
+    },
+    {
+     "name": "North Kazakhstan (Soltustik Kazakhstan)",
+     "crops": [
+      "wheat",
+      "linseed",
+      "barley",
+      "lentil",
+      "rapeseed",
+      "sunflower"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://stat.gov.kz/api/iblock/element/282882/file/en/",
+     "confidence": "high"
+    },
+    {
+     "name": "Pavlodar",
+     "crops": [
+      "wheat",
+      "sunflower",
+      "grassnes",
+      "barley",
+      "linseed",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://stat.gov.kz/api/iblock/element/282882/file/en/",
+     "confidence": "high"
+    },
+    {
+     "name": "Karaganda",
+     "crops": [
+      "wheat",
+      "barley",
+      "grassnes",
+      "linseed",
+      "sunflower",
+      "safflower"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://stat.gov.kz/api/iblock/element/282882/file/en/",
+     "confidence": "high"
+    },
+    {
+     "name": "East Kazakhstan (Shygys Kazakhstan)",
+     "crops": [
+      "sunflower",
+      "wheat",
+      "grassnes",
+      "barley",
+      "rapeseed",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://stat.gov.kz/api/iblock/element/282882/file/en/",
+     "confidence": "high"
+    },
+    {
+     "name": "Turkistan",
+     "crops": [
+      "wheat",
+      "grassnes",
+      "cotton",
+      "safflower",
+      "barley",
+      "vegetablenes"
+     ],
+     "unmatched": [
+      "maize 40 thousand ha",
+      "melons/gourds (regional split not read)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://stat.gov.kz/api/iblock/element/282882/file/en/",
+     "confidence": "high"
+    },
+    {
+     "name": "Zhambyl",
+     "crops": [
+      "barley",
+      "grassnes",
+      "wheat",
+      "safflower",
+      "vegetablenes",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://stat.gov.kz/api/iblock/element/282882/file/en/",
+     "confidence": "high"
+    },
+    {
+     "name": "Almaty",
+     "crops": [
+      "grassnes",
+      "barley",
+      "maize",
+      "wheat",
+      "soybean",
+      "vegetablenes"
+     ],
+     "unmatched": [
+      "rice 7.7 thousand ha; source flags Almaty region data as adjusted"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://stat.gov.kz/api/iblock/element/282882/file/en/",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kyzylorda",
+     "crops": [
+      "rice",
+      "grassnes",
+      "wheat",
+      "vegetablenes",
+      "safflower"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://stat.gov.kz/api/iblock/element/282882/file/en/",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Source: Bureau of National Statistics of Kazakhstan, publication 'Gross harvest of agricultural crops in the Republic of Kazakhstan (2025)' and its spreadsheet 'Volume I. Sown and harvested area' (xlsx at /api/iblock/element/282882/file/en/): sheet 2 (national sown area), sheet 3 (sown area by region: wheat, oil crops, sunflower, vegetables), sheets 13-29 (harvested area by crop and region). Wheat/sunflower/vegetables use adjusted sown area; barley, maize, oats, rice, pulses, oilseed species and perennial grasses use harvested ('cleaned') area. National 2025 (thousand ha): wheat 12,308; barley 2,328; perennial grasses on arable land 1,981 (hay; harvested); sunflower 1,784; oil flax 1,347; lentils 643; safflower 368; rapeseed 323; oats 178; maize grain 177; cotton 146; potato 132; open-field vegetables 129; peas 108; soybean 106; rice 101; melons/gourds 94. 'grassnes' = perennial sown grasses on arable land (natural hayfields, 20.8 million ha, excluded). 'linseed' = oil flax ('Len-curly' in the English sheet). Aktobe and West Kazakhstan not included (Aktobe row partially unreadable in my extraction)."
+  },
+  {
+   "iso3": "UZB",
+   "name": "Uzbekistan",
+   "national": {
+    "crops": [
+     "wheat",
+     "cotton",
+     "fruitnes",
+     "vegetablenes",
+     "fornes",
+     "grape",
+     "potato"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://siat.stat.uz/data/?lang=en"
+   },
+   "regions": [
+    {
+     "name": "Kashkadarya",
+     "crops": [
+      "wheat",
+      "cotton",
+      "fornes",
+      "vegetablenes",
+      "fruitnes",
+      "grape"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://siat.stat.uz/data/?lang=en",
+     "confidence": "high"
+    },
+    {
+     "name": "Samarkand",
+     "crops": [
+      "wheat",
+      "cotton",
+      "grape",
+      "fruitnes",
+      "vegetablenes",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://siat.stat.uz/data/?lang=en",
+     "confidence": "high"
+    },
+    {
+     "name": "Jizzakh",
+     "crops": [
+      "wheat",
+      "cotton",
+      "fornes",
+      "fruitnes",
+      "vegetablenes",
+      "grape"
+     ],
+     "unmatched": [
+      "other grain crops (grain total minus wheat: rice/maize/barley, not itemised by region) about 104 thousand ha",
+      "'food crops' series 1.03.03.0072 (likely melons and gourds; ambiguous label) 15.8 thousand ha"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://siat.stat.uz/data/?lang=en",
+     "confidence": "high"
+    },
+    {
+     "name": "Tashkent region",
+     "crops": [
+      "wheat",
+      "cotton",
+      "fruitnes",
+      "fornes",
+      "vegetablenes",
+      "grape"
+     ],
+     "unmatched": [
+      "other grain crops (grain total minus wheat: rice/maize/barley, not itemised by region) about 32 thousand ha"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://siat.stat.uz/data/?lang=en",
+     "confidence": "high"
+    },
+    {
+     "name": "Fergana",
+     "crops": [
+      "wheat",
+      "cotton",
+      "fruitnes",
+      "vegetablenes",
+      "potato",
+      "fornes"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://siat.stat.uz/data/?lang=en",
+     "confidence": "high"
+    },
+    {
+     "name": "Surkhandarya",
+     "crops": [
+      "wheat",
+      "cotton",
+      "fruitnes",
+      "vegetablenes",
+      "fornes",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://siat.stat.uz/data/?lang=en",
+     "confidence": "high"
+    },
+    {
+     "name": "Bukhara",
+     "crops": [
+      "cotton",
+      "wheat",
+      "fornes",
+      "vegetablenes",
+      "fruitnes",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://siat.stat.uz/data/?lang=en",
+     "confidence": "high"
+    },
+    {
+     "name": "Karakalpakstan",
+     "crops": [
+      "cotton",
+      "wheat",
+      "fornes",
+      "vegetablenes",
+      "potato",
+      "fruitnes"
+     ],
+     "unmatched": [
+      "other grain crops (grain total minus wheat: rice/maize/barley, not itemised by region) about 32 thousand ha (rice likely)",
+      "'food crops' series 1.03.03.0072 (likely melons and gourds; ambiguous label) 13.5 thousand ha"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://siat.stat.uz/data/?lang=en",
+     "confidence": "high"
+    },
+    {
+     "name": "Khorezm",
+     "crops": [
+      "cotton",
+      "wheat",
+      "fornes",
+      "fruitnes",
+      "vegetablenes",
+      "potato"
+     ],
+     "unmatched": [
+      "other grain crops (grain total minus wheat: rice/maize/barley, not itemised by region) about 20 thousand ha (rice likely)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://siat.stat.uz/data/?lang=en",
+     "confidence": "high"
+    },
+    {
+     "name": "Andijan",
+     "crops": [
+      "wheat",
+      "cotton",
+      "fruitnes",
+      "vegetablenes",
+      "potato",
+      "fornes"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://siat.stat.uz/data/?lang=en",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Source: Statistics Agency of Uzbekistan, SIAT open-data portal (catalogue https://siat.stat.uz/data/?lang=en ; JSON at https://api.siat.stat.uz/media/uploads/sdmx/sdmx_data_<id>.json). Indicators read, all categories of farms, 2024, hectares, by region: wheat sown area (id 2761), grain crops (2038), cotton (2039), potatoes (2040), vegetables (2041), 'food crops' (2042), fodder crops (351), fruit and berry area (2043), vineyards (2957). National 2024 (ha): wheat 1,263,747; cotton 977,838; fruit and berries 372,097; other grains (grain total 1,568,204 minus wheat) 304,457; vegetables 282,137; fodder 246,479; vineyards 139,720; potatoes 125,455; 'food crops' 76,303. 'fruitnes' = aggregate fruit and berry plantations (no species split), 'fornes' = aggregate fodder crops, 'vegetablenes' = aggregate vegetables. GAP: rice, maize, barley, melons and oilseeds have no separate area series by region in SIAT, so they appear only as unmatched aggregates. stat.uz main site returned HTTP 403 (both curl and WebFetch); only siat.stat.uz / api.siat.stat.uz were reachable."
+  },
+  {
+   "iso3": "IRN",
+   "name": "Iran",
+   "national": {
+    "crops": [
+     "wheat",
+     "barley",
+     "fruitnes",
+     "rice"
+    ],
+    "basis": "area",
+    "year": 2014,
+    "source_url": "https://irandataportal.syr.edu/wp-content/uploads/Agriculture-Forestry-and-Fisheries-2.pdf"
+   },
+   "regions": [
+    {
+     "name": "Khuzestan",
+     "crops": [
+      "wheat",
+      "barley",
+      "fruitnes",
+      "rice"
+     ],
+     "unmatched": [
+      "'other crops' aggregate (not itemised by species) 280,126 ha (sugar cane, maize, vegetables etc.)"
+     ],
+     "basis": "area",
+     "year": 2014,
+     "source_url": "https://irandataportal.syr.edu/wp-content/uploads/Agriculture-Forestry-and-Fisheries-2.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Fars",
+     "crops": [
+      "wheat",
+      "barley",
+      "rice"
+     ],
+     "unmatched": [
+      "'other crops' aggregate (not itemised by species) 172,700 ha",
+      "orchard area unreadable in my text extraction"
+     ],
+     "basis": "area",
+     "year": 2014,
+     "source_url": "https://irandataportal.syr.edu/wp-content/uploads/Agriculture-Forestry-and-Fisheries-2.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Khorasan Razavi",
+     "crops": [
+      "wheat",
+      "barley",
+      "fruitnes",
+      "rice"
+     ],
+     "unmatched": [
+      "'other crops' aggregate (not itemised by species) 208,148 ha (saffron, sugar beet, cotton etc.)"
+     ],
+     "basis": "area",
+     "year": 2014,
+     "source_url": "https://irandataportal.syr.edu/wp-content/uploads/Agriculture-Forestry-and-Fisheries-2.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Golestan",
+     "crops": [
+      "wheat",
+      "barley",
+      "rice",
+      "fruitnes"
+     ],
+     "unmatched": [
+      "'other crops' aggregate (not itemised by species) 131,734 ha (oilseeds, cotton etc.)"
+     ],
+     "basis": "area",
+     "year": 2014,
+     "source_url": "https://irandataportal.syr.edu/wp-content/uploads/Agriculture-Forestry-and-Fisheries-2.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Mazandaran",
+     "crops": [
+      "rice",
+      "fruitnes",
+      "wheat",
+      "barley"
+     ],
+     "unmatched": [
+      "'other crops' aggregate (not itemised by species) 26,846 ha"
+     ],
+     "basis": "area",
+     "year": 2014,
+     "source_url": "https://irandataportal.syr.edu/wp-content/uploads/Agriculture-Forestry-and-Fisheries-2.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Gilan",
+     "crops": [
+      "rice",
+      "fruitnes",
+      "wheat",
+      "barley"
+     ],
+     "unmatched": [
+      "'other crops' aggregate (not itemised by species) 8,317 ha",
+      "tea is inside the orchards/permanent crops aggregate"
+     ],
+     "basis": "area",
+     "year": 2014,
+     "source_url": "https://irandataportal.syr.edu/wp-content/uploads/Agriculture-Forestry-and-Fisheries-2.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kermanshah",
+     "crops": [
+      "wheat",
+      "barley",
+      "fruitnes"
+     ],
+     "unmatched": [
+      "'other crops' aggregate (not itemised by species) 151,151 ha"
+     ],
+     "basis": "area",
+     "year": 2014,
+     "source_url": "https://irandataportal.syr.edu/wp-content/uploads/Agriculture-Forestry-and-Fisheries-2.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kordestan",
+     "crops": [
+      "wheat",
+      "barley"
+     ],
+     "unmatched": [
+      "'other crops' aggregate (not itemised by species) 121,622 ha",
+      "orchard area unreadable in my text extraction"
+     ],
+     "basis": "area",
+     "year": 2014,
+     "source_url": "https://irandataportal.syr.edu/wp-content/uploads/Agriculture-Forestry-and-Fisheries-2.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "East Azarbaijan",
+     "crops": [
+      "wheat",
+      "barley",
+      "fruitnes",
+      "rice"
+     ],
+     "unmatched": [
+      "'other crops' aggregate (not itemised by species) 149,737 ha"
+     ],
+     "basis": "area",
+     "year": 2014,
+     "source_url": "https://irandataportal.syr.edu/wp-content/uploads/Agriculture-Forestry-and-Fisheries-2.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Hamedan",
+     "crops": [
+      "wheat",
+      "barley",
+      "fruitnes"
+     ],
+     "unmatched": [
+      "'other crops' aggregate (not itemised by species) 85,312 ha"
+     ],
+     "basis": "area",
+     "year": 2014,
+     "source_url": "https://irandataportal.syr.edu/wp-content/uploads/Agriculture-Forestry-and-Fisheries-2.pdf",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "Source: Statistical Centre of Iran, Iran Statistical Yearbook 1394 (2015/16), chapter 5 Agriculture, table 5.5 'Number of holdings and cultivation area of crops in open air by type of crop, cultivation and ostan, the year 1393' (2014 agricultural census; wheat, barley, rice and an 'other crops' aggregate) and table 5.12 (area of orchards and nurseries by ostan). The English PDF was read from the Syracuse University Iran Data Portal mirror because amar.org.ir, amar.sci.org.ir and maj.ir (Ministry of Agriculture Jihad) all failed with TLS/connection errors. National (ha): wheat 6,475,643; barley 2,070,292; orchards and nurseries 1,814,287; rice 383,013; other annual crops 2,659,975 (not itemised). Data are old (2014) and only three cereals are itemised, so pistachio (Kerman), dates, citrus, saffron, sugar cane, sugar beet, maize, potato, cotton and alfalfa cannot be ranked by province from this source; 'fruitnes' = orchards aggregate. Cross-checks: FAO GIEWS brief (https://www.fao.org/giews/countrybrief/country.jsp?code=IRN, 2026) names Gilan, Mazandaran and Golestan as the main rice provinces and Golestan and North Khorasan as key cereal provinces; 2026 production wheat about 14 Mt, rice (paddy) about 4 Mt, barley 3.2 Mt. Wikipedia 'Agriculture in Iran' (last resort) lists 2018 production: wheat 14.5 Mt, sugarcane 8.1 Mt, tomato 6.5 Mt, potato 5.3 Mt, sugar beet 4.9 Mt, dates 1.2 Mt, pistachio 0.55 Mt - not used for ranking."
+  },
+  {
+   "iso3": "IRQ",
+   "name": "Iraq",
+   "national": {
+    "crops": [
+     "wheat",
+     "barley",
+     "maize",
+     "rice",
+     "tomato",
+     "alfalfa",
+     "watermelon",
+     "cucumberetc"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://www.cosit.gov.iq/documents/AAS2024/03.pdf"
+   },
+   "regions": [
+    {
+     "name": "Nineveh (Ninevah)",
+     "crops": [
+      "wheat",
+      "barley",
+      "maize",
+      "potato",
+      "sunflower"
+     ],
+     "unmatched": [
+      "vegetables, dates and forage are not published by governorate in the tables read"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.cosit.gov.iq/documents/AAS2024/03.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Salah al-Din",
+     "crops": [
+      "wheat",
+      "maize",
+      "barley"
+     ],
+     "unmatched": [
+      "vegetables, dates and forage are not published by governorate in the tables read"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.cosit.gov.iq/documents/AAS2024/03.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Wasit",
+     "crops": [
+      "wheat",
+      "maize",
+      "barley",
+      "potato"
+     ],
+     "unmatched": [
+      "vegetables, dates and forage are not published by governorate in the tables read"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.cosit.gov.iq/documents/AAS2024/03.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kirkuk",
+     "crops": [
+      "wheat",
+      "maize",
+      "barley"
+     ],
+     "unmatched": [
+      "vegetables, dates and forage are not published by governorate in the tables read"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.cosit.gov.iq/documents/AAS2024/03.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Al-Qadisiyah",
+     "crops": [
+      "wheat",
+      "rice",
+      "barley"
+     ],
+     "unmatched": [
+      "vegetables, dates and forage are not published by governorate in the tables read"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.cosit.gov.iq/documents/AAS2024/03.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Al-Anbar",
+     "crops": [
+      "wheat",
+      "barley",
+      "maize",
+      "potato"
+     ],
+     "unmatched": [
+      "vegetables, dates and forage are not published by governorate in the tables read"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.cosit.gov.iq/documents/AAS2024/03.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Al-Muthanna",
+     "crops": [
+      "wheat",
+      "barley",
+      "rice",
+      "maize"
+     ],
+     "unmatched": [
+      "vegetables, dates and forage are not published by governorate in the tables read"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.cosit.gov.iq/documents/AAS2024/03.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Diyala (Diala)",
+     "crops": [
+      "wheat",
+      "barley",
+      "maize",
+      "potato"
+     ],
+     "unmatched": [
+      "vegetables, dates and forage are not published by governorate in the tables read"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.cosit.gov.iq/documents/AAS2024/03.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Najaf",
+     "crops": [
+      "wheat",
+      "rice",
+      "barley",
+      "potato"
+     ],
+     "unmatched": [
+      "vegetables, dates and forage are not published by governorate in the tables read"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.cosit.gov.iq/documents/AAS2024/03.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Babylon (Babil)",
+     "crops": [
+      "wheat",
+      "barley",
+      "maize",
+      "rice",
+      "potato"
+     ],
+     "unmatched": [
+      "vegetables, dates and forage are not published by governorate in the tables read"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.cosit.gov.iq/documents/AAS2024/03.pdf",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "Source: Iraq Central Statistical Organization (COSIT), Annual Abstract of Statistics 2024, chapter 3 Agriculture (PDF): table 3/1 B wheat and barley by governorate 2024, 3/4 C paddy and sunflower by governorate 2024, 3/5 B maize and potatoes by governorate 2024, 3/6 area, yield and production of crops and vegetables 2024 (national). Areas in donum (1 donum = 0.25 ha). All figures EXCLUDE the Kurdistan Region (Duhok, Erbil, Sulaymaniyah shown as '-'). National 2024 cultivated area (thousand donum): wheat 8,177; barley 693; maize 237; paddy 210; tomato 88; alfalfa 71; watermelon 62; cucumber 59; potato 33; melon 32; eggplant 24; okra 23; green gram 21. Dates are a major perennial crop but the chapter gives palm counts/production, not area, so dates are not ranked. Governorate lists cover only wheat, barley, rice, maize, potato, sunflower. Key 2024 governorate areas (donum): Nineveh wheat 3,532,179 / barley 531,254; Salah al-Din wheat 957,154; Wasit wheat 685,724; Kirkuk wheat 532,251 / maize 120,509; Najaf rice 121,442; Qadisiyah rice 51,214. FAO GIEWS brief (2026) confirms wheat as dominant cereal with northern provinces as main producers. cosit.gov.iq/en/ returned 404 but the document path worked. USDA IPAD unreachable (retired/403)."
+  },
+  {
+   "iso3": "SAU",
+   "name": "Saudi Arabia",
+   "national": {
+    "crops": [
+     "date",
+     "wheat",
+     "potato",
+     "watermelon",
+     "tomato",
+     "cucumberetc",
+     "sorghum",
+     "maize"
+    ],
+    "basis": "production",
+    "year": 2024,
+    "source_url": "https://www.stats.gov.sa/en/w/news/127"
+   },
+   "regions": [
+    {
+     "name": "Jazan",
+     "crops": [],
+     "unmatched": [
+      "grain crops aggregate only: 56.38 thousand ha cultivated (crop split by region not found)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.argaam.com/en/article/articledetail/id/1867396",
+     "confidence": "low"
+    },
+    {
+     "name": "Riyadh",
+     "crops": [],
+     "unmatched": [
+      "grain crops aggregate only: 48.16 thousand ha cultivated (crop split by region not found)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.argaam.com/en/article/articledetail/id/1867396",
+     "confidence": "low"
+    },
+    {
+     "name": "Al-Jouf",
+     "crops": [],
+     "unmatched": [
+      "grain crops aggregate only: 45.67 thousand ha cultivated (crop split by region not found)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.argaam.com/en/article/articledetail/id/1867396",
+     "confidence": "low"
+    },
+    {
+     "name": "Hail",
+     "crops": [],
+     "unmatched": [
+      "grain crops aggregate only: 36.38 thousand ha cultivated (crop split by region not found)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.argaam.com/en/article/articledetail/id/1867396",
+     "confidence": "low"
+    },
+    {
+     "name": "Al-Qassim",
+     "crops": [],
+     "unmatched": [
+      "grain crops aggregate only: 32.21 thousand ha cultivated (crop split by region not found)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.argaam.com/en/article/articledetail/id/1867396",
+     "confidence": "low"
+    },
+    {
+     "name": "Eastern Province",
+     "crops": [],
+     "unmatched": [
+      "grain crops aggregate only: 28.02 thousand ha cultivated (crop split by region not found)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.argaam.com/en/article/articledetail/id/1867396",
+     "confidence": "low"
+    },
+    {
+     "name": "Makkah",
+     "crops": [],
+     "unmatched": [
+      "grain crops aggregate only: 20.32 thousand ha cultivated (crop split by region not found)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.argaam.com/en/article/articledetail/id/1867396",
+     "confidence": "low"
+    },
+    {
+     "name": "Aseer",
+     "crops": [],
+     "unmatched": [
+      "grain crops aggregate only: 18.52 thousand ha cultivated (crop split by region not found)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.argaam.com/en/article/articledetail/id/1867396",
+     "confidence": "low"
+    },
+    {
+     "name": "Tabuk",
+     "crops": [],
+     "unmatched": [
+      "grain crops aggregate only: 10.73 thousand ha cultivated (crop split by region not found)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.argaam.com/en/article/articledetail/id/1867396",
+     "confidence": "low"
+    }
+   ],
+   "notes": "NO SOURCE FOUND for crop-by-region rankings: every region entry has an empty crop list. National source: GASTAT news release on the Agriculture Statistics Publication 2024 (https://www.stats.gov.sa/en/w/news/127): dates 1,923 thousand t; grains 1,651 thousand t of which wheat 1,187; open-field vegetables 89.7 thousand ha / 2,745 thousand t (potato 624, watermelon 612); greenhouse vegetables 7.8 thousand ha / 797 thousand t (tomato 329, cucumber 232). National ranking is by PRODUCTION because the release gives no area for dates. Grain areas by crop and by region come from Argaam (news, last-resort source quoting the same GASTAT report): 2024 cultivated area (thousand ha) wheat 180.45; sorghum 59.58; other grains 25.0; white corn 13.77; corn 8.36; millet 7.10; yellow corn 5.33; sesame 4.23; total 304.45; regional grain totals as listed in each region's 'unmatched'. Fodder (alfalfa, Rhodes grass), olives and other fruit are not in the sources read. The GASTAT PDF URLs returned by search (stats.gov.sa/sites/default/files/Agriculture Statistics 2023EN.pdf, Agricultural_Production_Survey_Publication_2021_EN_0.pdf) now return 404; FAO GIEWS brief (2026) only covers wheat (about 1.1 Mt, quota-regulated). USDA IPAD unreachable."
+  },
+  {
+   "iso3": "AUS",
+   "name": "Australia",
+   "national": {
+    "crops": [
+     "wheat",
+     "sugarcane",
+     "barley",
+     "rapeseed",
+     "sorghum",
+     "chickpea",
+     "oats",
+     "lentil"
+    ],
+    "basis": "production",
+    "year": 2025,
+    "source_url": "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/latest-release"
+   },
+   "regions": [
+    {
+     "name": "New South Wales",
+     "crops": [
+      "wheat",
+      "barley",
+      "rapeseed",
+      "sugarcane",
+      "rice",
+      "maize"
+     ],
+     "unmatched": [
+      "sorghum (Qld + NSW produce over 99% of sorghum; NSW figure not given)",
+      "pulses (chickpea, lentil, lupin, faba bean), oats and horticulture are not published by state on this page"
+     ],
+     "basis": "production",
+     "year": 2025,
+     "source_url": "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/latest-release",
+     "confidence": "medium"
+    },
+    {
+     "name": "Western Australia",
+     "crops": [
+      "wheat",
+      "barley",
+      "rapeseed"
+     ],
+     "unmatched": [
+      "pulses (chickpea, lentil, lupin, faba bean), oats and horticulture are not published by state on this page"
+     ],
+     "basis": "production",
+     "year": 2025,
+     "source_url": "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/latest-release",
+     "confidence": "medium"
+    },
+    {
+     "name": "Victoria",
+     "crops": [
+      "wheat",
+      "barley",
+      "rapeseed"
+     ],
+     "unmatched": [
+      "pulses (chickpea, lentil, lupin, faba bean), oats and horticulture are not published by state on this page"
+     ],
+     "basis": "production",
+     "year": 2025,
+     "source_url": "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/latest-release",
+     "confidence": "medium"
+    },
+    {
+     "name": "South Australia",
+     "crops": [
+      "wheat",
+      "barley",
+      "rapeseed"
+     ],
+     "unmatched": [
+      "pulses (chickpea, lentil, lupin, faba bean), oats and horticulture are not published by state on this page"
+     ],
+     "basis": "production",
+     "year": 2025,
+     "source_url": "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/latest-release",
+     "confidence": "medium"
+    },
+    {
+     "name": "Queensland",
+     "crops": [
+      "sugarcane",
+      "wheat",
+      "sorghum",
+      "barley",
+      "rapeseed"
+     ],
+     "unmatched": [
+      "pulses (chickpea, lentil, lupin, faba bean), oats and horticulture are not published by state on this page"
+     ],
+     "basis": "production",
+     "year": 2025,
+     "source_url": "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/latest-release",
+     "confidence": "medium"
+    },
+    {
+     "name": "Tasmania",
+     "crops": [
+      "wheat",
+      "barley",
+      "rapeseed"
+     ],
+     "unmatched": [
+      "very small volumes (wheat 34, barley 24, canola 4 thousand t); potatoes, poppies and vegetables not covered by this page"
+     ],
+     "basis": "production",
+     "year": 2025,
+     "source_url": "https://www.abs.gov.au/statistics/industry/agriculture/australian-agriculture-broadacre-crops/latest-release",
+     "confidence": "low"
+    }
+   ],
+   "notes": "Source: Australian Bureau of Statistics, 'Australian Agriculture: Broadacre Crops', 2024-25 financial year (latest release; read via WebFetch summary). State data are PRODUCTION sold (thousand t, levy-payer based), not area: wheat NSW 13,077 / WA 12,431 / Vic 4,197 / SA 2,882 / Qld 2,143; barley WA 6,499 / NSW 3,250 / Vic 2,136 / SA 961 / Qld 864; canola WA 3,023 / NSW 1,888 / Vic 1,440 / SA 447; sugarcane Qld 27,252 / NSW 1,515; rice NSW 518; maize NSW 301; sorghum Qld about 1,600. Ranking by tonnage inflates sugarcane relative to area. National AREA planted (ha) from the same page: wheat 12.7 million; barley 4.9 million; canola 3.7 million; sorghum 545,000; sugarcane 324,000; maize 67,000; rice 41,000 (no area given for pulses or oats; national production thousand t: chickpeas 2,048; oats 1,152; lentils 1,030; faba beans 733; lupins 676). By area the national order is wheat, barley, rapeseed, then (area unknown) chickpea/oats/lentil, sorghum, sugarcane. Cotton, horticulture, grapes and hay are not on this page. ABARES (agriculture.gov.au/abares, abares.gov.au) could not be reached (connection failure / 60 s timeout), so state-level area tables from the Australian Crop Report were not obtained."
+  },
+  {
+   "iso3": "NZL",
+   "name": "New Zealand",
+   "national": {
+    "crops": [
+     "barley",
+     "wheat",
+     "grape",
+     "maize",
+     "kiwi",
+     "apple",
+     "potato",
+     "avocado"
+    ],
+    "basis": "area",
+    "year": 2022,
+    "source_url": "https://www.stats.govt.nz/information-releases/agricultural-production-statistics-year-to-june-2022-final/"
+   },
+   "regions": [
+    {
+     "name": "Canterbury",
+     "crops": [
+      "wheat",
+      "barley",
+      "potato",
+      "greenpea",
+      "grape",
+      "onion"
+     ],
+     "unmatched": [
+      "blackcurrants 600 ha",
+      "forage/fodder crops, seed crops and minor horticulture not in the tables read"
+     ],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.stats.govt.nz/assets/Uploads/Agricultural-production-statistics/Agricultural-production-statistics-Year-to-June-2022-final/Download-data/agricultural-production-statistics-year-to-June-2022-final-revised.xlsx",
+     "confidence": "high"
+    },
+    {
+     "name": "Marlborough",
+     "crops": [
+      "grape",
+      "greencorn",
+      "barley",
+      "cherry",
+      "apple",
+      "onion"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.stats.govt.nz/assets/Uploads/Agricultural-production-statistics/Agricultural-production-statistics-Year-to-June-2022-final/Download-data/agricultural-production-statistics-year-to-June-2022-final-revised.xlsx",
+     "confidence": "high"
+    },
+    {
+     "name": "Hawke's Bay",
+     "crops": [
+      "apple",
+      "barley",
+      "grape",
+      "pumpkinetc",
+      "maize",
+      "greencorn"
+     ],
+     "unmatched": [
+      "peas (fresh/processed) 1,100 ha"
+     ],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.stats.govt.nz/assets/Uploads/Agricultural-production-statistics/Agricultural-production-statistics-Year-to-June-2022-final/Download-data/agricultural-production-statistics-year-to-June-2022-final-revised.xlsx",
+     "confidence": "high"
+    },
+    {
+     "name": "Bay of Plenty",
+     "crops": [
+      "kiwi",
+      "avocado",
+      "maize",
+      "apple"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.stats.govt.nz/assets/Uploads/Agricultural-production-statistics/Agricultural-production-statistics-Year-to-June-2022-final/Download-data/agricultural-production-statistics-year-to-June-2022-final-revised.xlsx",
+     "confidence": "high"
+    },
+    {
+     "name": "Southland",
+     "crops": [
+      "barley",
+      "wheat",
+      "potato"
+     ],
+     "unmatched": [
+      "forage/fodder crops, seed crops and minor horticulture not in the tables read"
+     ],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.stats.govt.nz/assets/Uploads/Agricultural-production-statistics/Agricultural-production-statistics-Year-to-June-2022-final/Download-data/agricultural-production-statistics-year-to-June-2022-final-revised.xlsx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Otago",
+     "crops": [
+      "barley",
+      "wheat",
+      "grape",
+      "cherry",
+      "apple",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.stats.govt.nz/assets/Uploads/Agricultural-production-statistics/Agricultural-production-statistics-Year-to-June-2022-final/Download-data/agricultural-production-statistics-year-to-June-2022-final-revised.xlsx",
+     "confidence": "high"
+    },
+    {
+     "name": "Waikato",
+     "crops": [
+      "maize",
+      "potato",
+      "onion",
+      "kiwi",
+      "barley",
+      "avocado"
+     ],
+     "unmatched": [
+      "forage/fodder crops, seed crops and minor horticulture not in the tables read (maize silage important here)"
+     ],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.stats.govt.nz/assets/Uploads/Agricultural-production-statistics/Agricultural-production-statistics-Year-to-June-2022-final/Download-data/agricultural-production-statistics-year-to-June-2022-final-revised.xlsx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Gisborne",
+     "crops": [
+      "maize",
+      "pumpkinetc",
+      "grape",
+      "greencorn",
+      "apple",
+      "kiwi"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.stats.govt.nz/assets/Uploads/Agricultural-production-statistics/Agricultural-production-statistics-Year-to-June-2022-final/Download-data/agricultural-production-statistics-year-to-June-2022-final-revised.xlsx",
+     "confidence": "high"
+    },
+    {
+     "name": "Manawatu-Whanganui",
+     "crops": [
+      "maize",
+      "barley",
+      "potato",
+      "wheat",
+      "greenpea",
+      "onion"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.stats.govt.nz/assets/Uploads/Agricultural-production-statistics/Agricultural-production-statistics-Year-to-June-2022-final/Download-data/agricultural-production-statistics-year-to-June-2022-final-revised.xlsx",
+     "confidence": "high"
+    },
+    {
+     "name": "Northland",
+     "crops": [
+      "avocado",
+      "maize",
+      "kiwi",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.stats.govt.nz/assets/Uploads/Agricultural-production-statistics/Agricultural-production-statistics-Year-to-June-2022-final/Download-data/agricultural-production-statistics-year-to-June-2022-final-revised.xlsx",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Source: Stats NZ, 'Agricultural production statistics: Year to June 2022 (final)' (2022 agricultural production census) download workbook: table 8 grain crops by region (wheat, barley, maize grain; hectares harvested), table 9 area planted in outdoor fruit by region (apples, avocados, kiwifruit, wine grapes, blackcurrants, cherries), table 10 harvested area of outdoor vegetables by region (onions, potatoes, buttercup squash, peas, sweet corn). National 2022 (ha): barley 48,200; wheat 42,900; wine grapes 34,600; maize grain 16,300; kiwifruit 14,690; apples 9,810; potatoes 8,420; avocados 5,280; onions 4,880; squash 4,800; peas 4,650; sweet corn 3,320. The 2023 survey release (https://www.stats.govt.nz/information-releases/agricultural-production-statistics-year-to-june-2023-final/) only has grain crops: 2023 barley 50,100 ha, wheat 40,500 ha, maize 18,900 ha (Canterbury wheat 31,300 / barley 30,000). 'pumpkinetc' = buttercup squash, 'greencorn' = sweet corn, 'greenpea' = fresh and processed peas. Some regional cells are suppressed ('S'). Forage brassicas, fodder beet, maize silage, oats and seed crops are NOT in these tables, so they are missing from the rankings; sown pasture excluded by design."
+  }
+ ]
+}

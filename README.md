@@ -76,19 +76,20 @@ Partner and other open data (Copernicus DEM, Sentinel-2, ESA WorldCover and CCI,
 
 ## Validation
 
-The crop engine was tested on random points spread evenly over nine world regions, against independent data. On a held-out sample of 360 points that was never used to adjust the model:
+The crop engine was tested on random points spread evenly over nine world regions, against independent data. On a sample of 360 points drawn after the last change to the engine and never used to adjust it:
 
 | Measured | Result |
 |---|---|
-| Rainfed cropland points where the engine finds at least one crop that grows without irrigation | 91 % of 239 |
-| Arid land with no cropland (under 250 mm of rain a year) where it finds one — should be zero | 0 of 25 |
-| Cases where a crop is really sown (CROPGRIDS) and the engine recognises it | 93 % of 870 (76 % rainfed, 17 % only with irrigation) |
+| Rainfed cropland points where the engine finds at least one crop that grows without irrigation | 94 % of 235 |
+| Arid land with no cropland (under 250 mm of rain a year) where it finds one — should be zero | 0 of 27 |
+| Cases where a crop is really sown (CROPGRIDS) and the engine recognises it | 97 % of 919 (81 % rainfed, 15 % only with irrigation) |
+| Same question on a targeted sample: about 30 points per crop, only where that crop is grown | 94 % of 951 |
 
-Weak spots: North Africa and the Middle East (55 %); peas, rice and rapeseed; sowing dates for peas, barley and potatoes. Details, per-region and per-crop tables, and what the validation does not prove: [docs/VALIDATION.md](docs/VALIDATION.md).
+Weak spots: North Africa and the Middle East (76 %); maize, rice and cassava are missed at 8–10 % of the places where they are sown; sowing dates for peas and potatoes. The engine is permissive: a "grows" verdict is weaker evidence than a "does not grow" one. Details, the targeted sample, what each validation run changed in the engine and what the validation does not prove: [docs/VALIDATION.md](docs/VALIDATION.md).
 
 ## Known limits
 
-- 31 annual crops are simulated: 23 field crops validated worldwide, plus 8 vegetable and industrial crops (tomato, pepper, onion, cabbage, watermelon, sugar beet, safflower, tobacco) added with general FAO parameters. Of those 8 only sugar beet has enough sample points to be checked; the other 7 are flagged in the app as not yet validated. Fruit trees, vines and pastures are not simulated. A crop missing from the list is not a crop that fails.
+- 31 annual crops are simulated (23 field crops plus tomato, pepper, onion, cabbage, watermelon, sugar beet, safflower and tobacco), with general FAO parameters. Where each crop is really grown the engine recognises it at 94 % of 951 points; it is weakest for broad bean, pepper, pea and cabbage, and the app flags those four. Fruit trees, vines and pastures are not simulated. A crop missing from the list is not a crop that fails.
 - For 79 other crops (grapes, fruit, vegetables, sugar cane, coffee and more) the tool reports whether they are actually grown in the area (CROPGRIDS) and whether the area ranks among the top 10 % or 25 % of places in the world for that crop. That is observed practice — a sign of suitable climate, buyers and know-how — not a simulated yield.
 - For every field the tool also shows the main crops of its first-level region (4,596 regions worldwide, CROPGRIDS summed inside Natural Earth boundaries) and of its country (official FAOSTAT harvested area, 2019–2021), so the simulation can be contrasted with what the region actually grows. Across 152 countries, the five main crops from the two sources share 4.4 crops on average and the first crop is the same in 142; at country level the two sources are not independent.
 - Satellite land cover cannot tell a vineyard or an orchard from woodland. Where OpenStreetMap maps the parcel as vineyard, orchard or nursery, the tool treats it as an existing plantation: it is not proposed for clearing and is drawn as rows. Where the map has nothing, the farmer is asked.

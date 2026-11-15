@@ -1,0 +1,1708 @@
+{
+ "agent": "norte_centroamerica",
+ "countries": [
+  {
+   "iso3": "USA",
+   "name": "United States",
+   "national": {
+    "crops": [
+     "maize",
+     "soybean",
+     "wheat",
+     "alfalfa",
+     "cotton",
+     "sorghum",
+     "rice",
+     "rapeseed"
+    ],
+    "basis": "area",
+    "year": 2025,
+    "source_url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt"
+   },
+   "regions": [
+    {
+     "name": "Iowa",
+     "crops": [
+      "maize",
+      "soybean",
+      "alfalfa",
+      "oats"
+     ],
+     "unmatched": [
+      "hay other than alfalfa"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=IOWA",
+     "confidence": "high"
+    },
+    {
+     "name": "Illinois",
+     "crops": [
+      "maize",
+      "soybean",
+      "wheat",
+      "alfalfa",
+      "oats",
+      "pumpkinetc"
+     ],
+     "unmatched": [
+      "hay other than alfalfa"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=ILLINOIS",
+     "confidence": "high"
+    },
+    {
+     "name": "Nebraska",
+     "crops": [
+      "maize",
+      "soybean",
+      "wheat",
+      "alfalfa",
+      "sorghum",
+      "oats"
+     ],
+     "unmatched": [
+      "hay other than alfalfa (larger than wheat)",
+      "proso millet (vocabulary: millet)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=NEBRASKA",
+     "confidence": "high"
+    },
+    {
+     "name": "Kansas",
+     "crops": [
+      "wheat",
+      "maize",
+      "soybean",
+      "sorghum",
+      "alfalfa",
+      "oats"
+     ],
+     "unmatched": [
+      "hay other than alfalfa (about 1.97 M acres, ranks 5th)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=KANSAS",
+     "confidence": "high"
+    },
+    {
+     "name": "North Dakota",
+     "crops": [
+      "soybean",
+      "wheat",
+      "maize",
+      "rapeseed",
+      "alfalfa",
+      "sunflower"
+     ],
+     "unmatched": [
+      "hay other than alfalfa"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=NORTH%20DAKOTA",
+     "confidence": "high"
+    },
+    {
+     "name": "Minnesota",
+     "crops": [
+      "maize",
+      "soybean",
+      "wheat",
+      "alfalfa",
+      "sugarbeet",
+      "oats"
+     ],
+     "unmatched": [
+      "hay other than alfalfa"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=MINNESOTA",
+     "confidence": "high"
+    },
+    {
+     "name": "Wisconsin",
+     "crops": [
+      "maize",
+      "soybean",
+      "alfalfa",
+      "wheat",
+      "rye",
+      "oats"
+     ],
+     "unmatched": [
+      "hay other than alfalfa"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=WISCONSIN",
+     "confidence": "high"
+    },
+    {
+     "name": "Texas",
+     "crops": [
+      "wheat",
+      "cotton",
+      "maize",
+      "sorghum",
+      "oats",
+      "groundnut"
+     ],
+     "unmatched": [
+      "hay other than alfalfa (about 5.15 M acres, ranks 3rd)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=TEXAS",
+     "confidence": "high"
+    },
+    {
+     "name": "Arkansas",
+     "crops": [
+      "soybean",
+      "rice",
+      "maize",
+      "cotton",
+      "wheat",
+      "groundnut"
+     ],
+     "unmatched": [
+      "hay other than alfalfa (about 1.27 M acres, ranks 3rd)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=ARKANSAS",
+     "confidence": "high"
+    },
+    {
+     "name": "Mississippi",
+     "crops": [
+      "soybean",
+      "maize",
+      "cotton",
+      "rice",
+      "wheat",
+      "sweetpotato"
+     ],
+     "unmatched": [
+      "hay other than alfalfa"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=MISSISSIPPI",
+     "confidence": "high"
+    },
+    {
+     "name": "Georgia",
+     "crops": [
+      "groundnut",
+      "cotton",
+      "maize",
+      "wheat",
+      "soybean",
+      "oats"
+     ],
+     "unmatched": [
+      "hay other than alfalfa",
+      "pecans"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=GEORGIA",
+     "confidence": "high"
+    },
+    {
+     "name": "North Carolina",
+     "crops": [
+      "soybean",
+      "maize",
+      "wheat",
+      "cotton",
+      "groundnut",
+      "tobacco"
+     ],
+     "unmatched": [
+      "hay other than alfalfa"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=NORTH%20CAROLINA",
+     "confidence": "high"
+    },
+    {
+     "name": "Florida",
+     "crops": [
+      "sugarcane",
+      "groundnut",
+      "orange",
+      "maize",
+      "cotton",
+      "greencorn"
+     ],
+     "unmatched": [
+      "hay other than alfalfa"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=FLORIDA",
+     "confidence": "high"
+    },
+    {
+     "name": "Montana",
+     "crops": [
+      "wheat",
+      "alfalfa",
+      "lentil",
+      "barley",
+      "pea",
+      "chickpea"
+     ],
+     "unmatched": [
+      "hay other than alfalfa"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=MONTANA",
+     "confidence": "high"
+    },
+    {
+     "name": "Idaho",
+     "crops": [
+      "wheat",
+      "alfalfa",
+      "barley",
+      "maize",
+      "potato",
+      "sugarbeet"
+     ],
+     "unmatched": [
+      "hay other than alfalfa"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=IDAHO",
+     "confidence": "high"
+    },
+    {
+     "name": "Washington",
+     "crops": [
+      "wheat",
+      "alfalfa",
+      "maize",
+      "apple",
+      "rapeseed",
+      "potato"
+     ],
+     "unmatched": [
+      "hay other than alfalfa"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=WASHINGTON",
+     "confidence": "high"
+    },
+    {
+     "name": "California",
+     "crops": [
+      "almond",
+      "grape",
+      "rice",
+      "pistachio",
+      "alfalfa",
+      "maizefor"
+     ],
+     "unmatched": [
+      "hay other than alfalfa",
+      "walnut is 7th (380k acres); corn is 450k planted acres of which 370k silage"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.nass.usda.gov/Quick_Stats/Ag_Overview/stateOverview.php?state=CALIFORNIA",
+     "confidence": "high"
+    }
+   ],
+   "notes": "National: USDA NASS Crop Production 2025 Summary (Jan 2026), table \"Crop Area Planted and Harvested ... United States: 2024 and 2025\", ranked by 2025 harvested area (corn grain 91.3 M ac, soybeans 80.4, wheat 37.2, alfalfa hay 14.7, cotton 7.8, sorghum 6.0, rice 2.7, canola 2.3; peanuts 1.9 and barley 1.8 follow). \"Hay, all other\" (34.9 M ac, would rank 4th) has no clean vocabulary match (closest: grassnes/mixedgrass/fornes) and is left out of the list. States: USDA NASS 2025 State Agriculture Overview pages (survey estimates), ranked by the larger of planted/harvested acres; alfalfa = \"hay & haylage, alfalfa\"; non-alfalfa hay listed in unmatched. That table covers surveyed field crops, vegetables and main fruit/nuts, so minor specialty crops may be missing. Wisconsin rye is planted area (220k ac, only 14k harvested for grain: mostly cover crop). www.nass.usda.gov redirects to sb.nass.usda.gov; one transient TLS EOF on Nebraska, succeeded on retry. No US-total overview page exists (state=US returns empty), hence the separate national source."
+  },
+  {
+   "iso3": "CAN",
+   "name": "Canada",
+   "national": {
+    "crops": [
+     "wheat",
+     "rapeseed",
+     "barley",
+     "soybean",
+     "lentil",
+     "maize",
+     "pea",
+     "oats"
+    ],
+    "basis": "area",
+    "year": 2025,
+    "source_url": "https://www150.statcan.gc.ca/n1/tbl/csv/32100359-eng.zip"
+   },
+   "regions": [
+    {
+     "name": "Saskatchewan",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "lentil",
+      "barley",
+      "pea",
+      "oats"
+     ],
+     "unmatched": [
+      "tame hay (1.23 M ha, ranks 4th)",
+      "flaxseed/chickpea/canary seed follow"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www150.statcan.gc.ca/n1/tbl/csv/32100359-eng.zip",
+     "confidence": "high"
+    },
+    {
+     "name": "Alberta",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "barley",
+      "pea",
+      "oats",
+      "lentil"
+     ],
+     "unmatched": [
+      "tame hay (1.56 M ha, ranks 3rd)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www150.statcan.gc.ca/n1/tbl/csv/32100359-eng.zip",
+     "confidence": "high"
+    },
+    {
+     "name": "Manitoba",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "soybean",
+      "maize",
+      "oats",
+      "barley"
+     ],
+     "unmatched": [
+      "tame hay (0.52 M ha, ranks 4th)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www150.statcan.gc.ca/n1/tbl/csv/32100359-eng.zip",
+     "confidence": "high"
+    },
+    {
+     "name": "Ontario",
+     "crops": [
+      "soybean",
+      "maize",
+      "wheat",
+      "maizefor",
+      "bean",
+      "rye"
+     ],
+     "unmatched": [
+      "tame hay (0.62 M ha, ranks 3rd)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www150.statcan.gc.ca/n1/tbl/csv/32100359-eng.zip",
+     "confidence": "high"
+    },
+    {
+     "name": "Quebec",
+     "crops": [
+      "soybean",
+      "maize",
+      "wheat",
+      "maizefor",
+      "oats",
+      "barley"
+     ],
+     "unmatched": [
+      "tame hay (0.65 M ha, ranks 1st)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www150.statcan.gc.ca/n1/tbl/csv/32100359-eng.zip",
+     "confidence": "high"
+    },
+    {
+     "name": "British Columbia",
+     "crops": [
+      "rapeseed",
+      "wheat",
+      "oats",
+      "barley",
+      "pea",
+      "maizefor"
+     ],
+     "unmatched": [
+      "tame hay (0.32 M ha, ranks 1st by far)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www150.statcan.gc.ca/n1/tbl/csv/32100359-eng.zip",
+     "confidence": "medium"
+    },
+    {
+     "name": "Prince Edward Island",
+     "crops": [
+      "potato",
+      "barley",
+      "wheat",
+      "soybean",
+      "maize",
+      "maizefor"
+     ],
+     "unmatched": [
+      "tame hay (41.5k ha, ranks 1st)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www150.statcan.gc.ca/n1/tbl/csv/32100359-eng.zip",
+     "confidence": "high"
+    },
+    {
+     "name": "New Brunswick",
+     "crops": [
+      "potato",
+      "barley",
+      "oats",
+      "maizefor",
+      "wheat",
+      "maize"
+     ],
+     "unmatched": [
+      "tame hay (55.6k ha, ranks 1st)"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www150.statcan.gc.ca/n1/tbl/csv/32100359-eng.zip",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Statistics Canada table 32-10-0359-01 (Estimated areas, yield, production of principal field crops; viewer: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3210035901), seeded area in hectares, reference year 2025, read from the official CSV download. National 2025 seeded ha: wheat 10.94 M, canola 8.76 M, tame hay 5.06 M (no clean vocabulary match; closest mixedgrass/fornes; kept in unmatched), barley 2.48 M, soybeans 2.36 M, lentils 1.77 M, grain corn 1.53 M, dry peas 1.42 M, oats 1.21 M. Potatoes are not in that table: potato area for Prince Edward Island (83,700 acres) and New Brunswick (50,900 acres) comes from StatCan table 32-10-0358-01 (https://www150.statcan.gc.ca/n1/tbl/csv/32100358-eng.zip), latest reference year 2026, converted to hectares to place it in the ranking (potato elsewhere: Alberta 86,000 ac, Manitoba 70,500 ac, too small to enter the top 6). Gap: these tables exclude fruit, vegetables and grapes, so British Columbia (tree fruit, berries, wine grapes) and southern Ontario/Quebec horticulture are under-represented; BC marked medium for that reason."
+  },
+  {
+   "iso3": "MEX",
+   "name": "Mexico",
+   "national": {
+    "crops": [
+     "maize",
+     "bean",
+     "sorghum",
+     "sugarcane",
+     "coffee",
+     "maizefor",
+     "wheat",
+     "orange"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://nube.agricultura.gob.mx/datosAbiertos/Agricola.php"
+   },
+   "regions": [
+    {
+     "name": "Jalisco",
+     "crops": [
+      "maize",
+      "maizefor",
+      "agave",
+      "sugarcane",
+      "sorghum",
+      "avocado"
+     ],
+     "unmatched": [
+      "pastos y praderas (sown pasture) 453k ha, ranks 2nd"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.agricultura.gob.mx/datosAbiertos/Agricola.php",
+     "confidence": "high"
+    },
+    {
+     "name": "Veracruz",
+     "crops": [
+      "maize",
+      "sugarcane",
+      "orange",
+      "coffee",
+      "lemonlime",
+      "pineapple"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.agricultura.gob.mx/datosAbiertos/Agricola.php",
+     "confidence": "high"
+    },
+    {
+     "name": "Oaxaca",
+     "crops": [
+      "maize",
+      "coffee",
+      "sugarcane",
+      "bean",
+      "lemonlime",
+      "sorghum"
+     ],
+     "unmatched": [
+      "pastos y praderas (sown pasture) 475k ha, ranks 2nd"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.agricultura.gob.mx/datosAbiertos/Agricola.php",
+     "confidence": "high"
+    },
+    {
+     "name": "Chiapas",
+     "crops": [
+      "maize",
+      "coffee",
+      "bean",
+      "oilpalm",
+      "mango",
+      "sugarcane"
+     ],
+     "unmatched": [
+      "pastos y praderas (sown pasture) 62k ha"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.agricultura.gob.mx/datosAbiertos/Agricola.php",
+     "confidence": "high"
+    },
+    {
+     "name": "Tamaulipas",
+     "crops": [
+      "sorghum",
+      "maize",
+      "sugarcane",
+      "orange",
+      "soybean",
+      "safflower"
+     ],
+     "unmatched": [
+      "pastos y praderas (sown pasture) 145k ha, ranks 2nd"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.agricultura.gob.mx/datosAbiertos/Agricola.php",
+     "confidence": "high"
+    },
+    {
+     "name": "Zacatecas",
+     "crops": [
+      "bean",
+      "maize",
+      "maizefor",
+      "pimento",
+      "alfalfa",
+      "peachetc"
+     ],
+     "unmatched": [
+      "avena forrajera (forage oats) 80k ha, ranks 4th",
+      "calabaza semilla/chihua (pumpkin for seed) 16.5k ha",
+      "tuna (prickly pear) 11k ha"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.agricultura.gob.mx/datosAbiertos/Agricola.php",
+     "confidence": "high"
+    },
+    {
+     "name": "Michoacán",
+     "crops": [
+      "maize",
+      "avocado",
+      "sorghum",
+      "lemonlime",
+      "wheat",
+      "mango"
+     ],
+     "unmatched": [
+      "pastos y praderas (sown pasture) 77k ha",
+      "avena forrajera (forage oats) 32k ha"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.agricultura.gob.mx/datosAbiertos/Agricola.php",
+     "confidence": "high"
+    },
+    {
+     "name": "Chihuahua",
+     "crops": [
+      "maize",
+      "alfalfa",
+      "cotton",
+      "bean",
+      "apple",
+      "maizefor"
+     ],
+     "unmatched": [
+      "avena forrajera (forage oats) 135k ha, ranks 2nd",
+      "nuez (pecan) 105k ha, ranks 3rd"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.agricultura.gob.mx/datosAbiertos/Agricola.php",
+     "confidence": "high"
+    },
+    {
+     "name": "Sinaloa",
+     "crops": [
+      "maize",
+      "chickpea",
+      "bean",
+      "mango",
+      "sorghum",
+      "wheat"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.agricultura.gob.mx/datosAbiertos/Agricola.php",
+     "confidence": "high"
+    },
+    {
+     "name": "Guanajuato",
+     "crops": [
+      "maize",
+      "sorghum",
+      "agave",
+      "bean",
+      "alfalfa",
+      "wheat"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://nube.agricultura.gob.mx/datosAbiertos/Agricola.php",
+     "confidence": "high"
+    }
+   ],
+   "notes": "SIAP (Secretaria de Agricultura) open data \"Estadistica de Produccion Agricola\", municipal closing file for agricultural year 2024 (\"Descargar CSV\" 2024 link on the page, 5.9 MB), aggregated here by state and crop over all cycles and water regimes, ranked by sown area (Sembrada, ha). National 2024 sown ha: maiz grano 6.66 M, pastos y praderas 2.58 M (sown pasture, excluded from lists, in unmatched), frijol 1.50 M, sorgo grano 1.30 M, cana 0.84 M, cafe 0.70 M, maiz forrajero 0.59 M, avena forrajera 0.55 M (no vocabulary match, closest fornes), trigo 0.49 M, naranja 0.35 M, cebada 0.30 M, aguacate 0.26 M, agave 0.24 M. \"Chile seco\" mapped to pimento (dry chillies), \"limon\" to lemonlime, \"alfalfa verde\"+\"alfalfa achicalada\" to alfalfa. 2024 was a drought year in the northwest: Sinaloa maize sown area (292k ha) is well below its usual level. Sonora (wheat) and Yucatan (mostly sown pasture) not included. Other SIAP hosts (nube.siap.gob.mx, infosiap.siap.gob.mx) did not resolve/respond; nube.agricultura.gob.mx worked."
+  },
+  {
+   "iso3": "GTM",
+   "name": "Guatemala",
+   "national": {
+    "crops": [
+     "maize",
+     "coffee",
+     "oilpalm",
+     "sugarcane",
+     "bean",
+     "nutmeg",
+     "rubber",
+     "banana"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Americas.zip"
+   },
+   "regions": [
+    {
+     "name": "Alta Verapaz",
+     "crops": [
+      "maize",
+      "nutmeg",
+      "coffee",
+      "cocoa",
+      "pineapple",
+      "rice"
+     ],
+     "unmatched": [
+      "nutmeg = cardamom (68% of national cardamom area)",
+      "oil palm not covered by source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://precios.maga.gob.gt/archivos/agro-en-cifras/El%20Agro%20En%20Cifras%20-%202013.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Petén",
+     "crops": [
+      "maize",
+      "bean",
+      "pineapple",
+      "rice",
+      "sesame"
+     ],
+     "unmatched": [
+      "oil palm not covered by source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://precios.maga.gob.gt/archivos/agro-en-cifras/El%20Agro%20En%20Cifras%20-%202013.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Escuintla",
+     "crops": [
+      "sugarcane",
+      "banana",
+      "plantain",
+      "pineapple",
+      "lemonlime",
+      "sesame"
+     ],
+     "unmatched": [
+      "maize share not given (outside the top-7 list)",
+      "oil palm and rubber not covered by source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://precios.maga.gob.gt/archivos/agro-en-cifras/El%20Agro%20En%20Cifras%20-%202013.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Huehuetenango",
+     "crops": [
+      "maize",
+      "coffee",
+      "bean",
+      "potato",
+      "onion",
+      "peachetc"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://precios.maga.gob.gt/archivos/agro-en-cifras/El%20Agro%20En%20Cifras%20-%202013.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Quiché",
+     "crops": [
+      "maize",
+      "nutmeg",
+      "bean",
+      "onion",
+      "avocado",
+      "peachetc"
+     ],
+     "unmatched": [
+      "nutmeg = cardamom (16% of national cardamom area)"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://precios.maga.gob.gt/archivos/agro-en-cifras/El%20Agro%20En%20Cifras%20-%202013.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "San Marcos",
+     "crops": [
+      "coffee",
+      "maize",
+      "potato",
+      "banana",
+      "plantain",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://precios.maga.gob.gt/archivos/agro-en-cifras/El%20Agro%20En%20Cifras%20-%202013.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Jutiapa",
+     "crops": [
+      "maize",
+      "bean",
+      "rice",
+      "tomato",
+      "onion",
+      "mango"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://precios.maga.gob.gt/archivos/agro-en-cifras/El%20Agro%20En%20Cifras%20-%202013.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Izabal",
+     "crops": [
+      "maize",
+      "banana",
+      "pineapple",
+      "rice",
+      "plantain"
+     ],
+     "unmatched": [
+      "oil palm and rubber not covered by source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://precios.maga.gob.gt/archivos/agro-en-cifras/El%20Agro%20En%20Cifras%20-%202013.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Suchitepéquez",
+     "crops": [
+      "coffee",
+      "sugarcane",
+      "sesame",
+      "banana",
+      "plantain",
+      "mango"
+     ],
+     "unmatched": [
+      "maize share not given (outside the top-7 list)",
+      "rubber not covered by source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://precios.maga.gob.gt/archivos/agro-en-cifras/El%20Agro%20En%20Cifras%20-%202013.pdf",
+     "confidence": "low"
+    },
+    {
+     "name": "Santa Rosa",
+     "crops": [
+      "coffee",
+      "bean",
+      "mango",
+      "melonetc",
+      "sesame",
+      "lemonlime"
+     ],
+     "unmatched": [
+      "maize share not given (outside the top-7 list)"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://precios.maga.gob.gt/archivos/agro-en-cifras/El%20Agro%20En%20Cifras%20-%202013.pdf",
+     "confidence": "low"
+    }
+   ],
+   "notes": "National: FAOSTAT \"Crops and livestock products\" (QCL, https://www.fao.org/faostat/en/#data/QCL), Americas bulk file dated Dec 2025, element Area harvested: maize 1001k ha, coffee 376k, oil palm 230k (external-source flag), sugar cane 219k, dry beans 187k, \"nutmeg, mace, cardamoms\" 142k (in Guatemala this is cardamom; vocabulary key nutmeg), rubber 71k, bananas 57k. Regions: MAGA (Ministerio de Agricultura, DIPLAN) \"El Agro en Cifras 2013\", crop fact sheets: each sheet states which departments concentrate the harvested area of that crop, e.g. sugar cane \"Escuintla (82%), Suchitepequez (11%)\", cardamom \"Alta Verapaz (68%), Quiche (16%)\", maize \"Peten (18.4%), Alta Verapaz (13.1%), Quiche (8.1%), Huehuetenango (7.5%), Jutiapa (6.6%), San Marcos (4.7%), Izabal (4%)\", coffee \"San Marcos (15%), Santa Rosa (14%), Huehuetenango (10%), Alta Verapaz (10%), Suchitepequez (7%), Quetzaltenango (7%)\", banana \"Izabal (34.3%), Escuintla (27.6%)\". The per-department ORDER is a derived estimate: those department shares multiplied by FAOSTAT 2024 national harvested areas; it is not a published departmental table. Limits: only the top 2-7 departments per crop are named, so a crop is missing from a department when it falls outside that list (notably maize in Escuintla, Suchitepequez, Santa Rosa); the 2013 edition has no departmental shares for oil palm or rubber (both large nationally; oil palm is concentrated in Peten/Alta Verapaz/Izabal/south coast according to general knowledge, not verified here). FAO GIEWS country brief of 26-Jan-2026 (https://www.fao.org/giews/countrybrief/country.jsp?code=GTM) independently names Peten, Alta Verapaz and Izabal as key maize-producing departments. Not reachable: www.ine.gob.gt (bot-manager challenge, ENA survey not read), www.maga.gob.gt (403); El Agro en Cifras 2021-2023 PDFs exceed the 10 MB limit and were not downloaded."
+  },
+  {
+   "iso3": "HND",
+   "name": "Honduras",
+   "national": {
+    "crops": [
+     "coffee",
+     "maize",
+     "oilpalm",
+     "bean",
+     "sugarcane",
+     "nutmeg",
+     "orange",
+     "plantain"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://ine.gob.hn/censo-agropecuario-nacional-2024/"
+   },
+   "regions": [
+    {
+     "name": "El Paraíso",
+     "crops": [
+      "coffee",
+      "maize",
+      "bean",
+      "tobacco",
+      "sorghum",
+      "plantain"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://ine.gob.hn/censo-agropecuario-nacional-2024/",
+     "confidence": "high"
+    },
+    {
+     "name": "Yoro",
+     "crops": [
+      "oilpalm",
+      "maize",
+      "coffee",
+      "bean",
+      "sugarcane",
+      "cocoa"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://ine.gob.hn/censo-agropecuario-nacional-2024/",
+     "confidence": "high"
+    },
+    {
+     "name": "Colón",
+     "crops": [
+      "oilpalm",
+      "maize",
+      "orange",
+      "cocoa",
+      "plantain",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://ine.gob.hn/censo-agropecuario-nacional-2024/",
+     "confidence": "high"
+    },
+    {
+     "name": "Santa Bárbara",
+     "crops": [
+      "coffee",
+      "maize",
+      "nutmeg",
+      "sugarcane",
+      "bean",
+      "pimento"
+     ],
+     "unmatched": [
+      "nutmeg = cardamom (9,972 ha); pimento = pimienta gorda/allspice (1,874 ha)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://ine.gob.hn/censo-agropecuario-nacional-2024/",
+     "confidence": "high"
+    },
+    {
+     "name": "Comayagua",
+     "crops": [
+      "coffee",
+      "maize",
+      "bean",
+      "sweetpotato",
+      "plantain",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://ine.gob.hn/censo-agropecuario-nacional-2024/",
+     "confidence": "high"
+    },
+    {
+     "name": "Olancho",
+     "crops": [
+      "maize",
+      "bean",
+      "coffee",
+      "cassava",
+      "cocoa",
+      "plantain"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://ine.gob.hn/censo-agropecuario-nacional-2024/",
+     "confidence": "high"
+    },
+    {
+     "name": "Francisco Morazán",
+     "crops": [
+      "maize",
+      "bean",
+      "coffee",
+      "sugarcane",
+      "cabbage",
+      "orange"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://ine.gob.hn/censo-agropecuario-nacional-2024/",
+     "confidence": "high"
+    },
+    {
+     "name": "Copán",
+     "crops": [
+      "coffee",
+      "maize",
+      "bean",
+      "nutmeg",
+      "plantain",
+      "cocoa"
+     ],
+     "unmatched": [
+      "nutmeg = cardamom (169 ha)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://ine.gob.hn/censo-agropecuario-nacional-2024/",
+     "confidence": "high"
+    },
+    {
+     "name": "Choluteca",
+     "crops": [
+      "maize",
+      "sugarcane",
+      "bean",
+      "melonetc",
+      "okra",
+      "cashew"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://ine.gob.hn/censo-agropecuario-nacional-2024/",
+     "confidence": "high"
+    },
+    {
+     "name": "Cortés",
+     "crops": [
+      "sugarcane",
+      "maize",
+      "oilpalm",
+      "coffee",
+      "banana",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://ine.gob.hn/censo-agropecuario-nacional-2024/",
+     "confidence": "high"
+    }
+   ],
+   "notes": "National and regions: INE Honduras, Censo Agropecuario Nacional (CAN) 2024, preliminary results published Jan 2026; XLSX tables linked from the page (3-CUADROS-GRANOS-BASICOS, 4-CUADROS-CULTIVOS-ANUALES, 5-CUADROS-CULTIVOS-PERMANENTES under https://ine.gob.hn/wp-content/uploads/2026/01/), column \"area sembrada (ha)\" by department, ranked across the three files. National sown ha: coffee 440k, maize 283k, oil palm 209k, beans 102k, sugar cane 56k, cardamom 11.5k (vocabulary key nutmeg = FAO \"nutmeg, mace, cardamoms\"), oranges 8.7k, plantain 8.4k, rambutan 7.8k (no match), sorghum 6.7k. FAOSTAT 2024 area harvested (https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Americas.zip) gives a similar set but ranks maize (385k) above coffee (267k). Caveats: data are preliminary; census excludes Islas de la Bahia; rice by department was not parsed (4.7k ha nationally); Lempira (coffee, maize, beans), La Paz, Ocotepeque, Intibuca (coffee) and Atlantida (oil palm 44.6k ha, rambutan 7.0k, maize 5.6k) not listed as regions."
+  },
+  {
+   "iso3": "NIC",
+   "name": "Nicaragua",
+   "national": {
+    "crops": [
+     "maize",
+     "bean",
+     "coffee",
+     "rice",
+     "sugarcane",
+     "groundnut",
+     "oilpalm",
+     "orange"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Americas.zip"
+   },
+   "regions": [
+    {
+     "name": "Matagalpa",
+     "crops": [
+      "maize",
+      "bean",
+      "coffee",
+      "rice",
+      "sorghum",
+      "cocoa"
+     ],
+     "unmatched": [
+      "musaceas (bananas+plantains, not split in the census) 4.5k mz"
+     ],
+     "basis": "area",
+     "year": 2011,
+     "source_url": "https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/Country_info_2010/Reports/Reports_4/NIC_SPA_REP_2011.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Jinotega",
+     "crops": [
+      "maize",
+      "coffee",
+      "bean",
+      "rice",
+      "cocoa",
+      "cassava"
+     ],
+     "unmatched": [
+      "musaceas (bananas+plantains, not split in the census) 9.3k mz, ranks 4th"
+     ],
+     "basis": "area",
+     "year": 2011,
+     "source_url": "https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/Country_info_2010/Reports/Reports_4/NIC_SPA_REP_2011.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Chinandega",
+     "crops": [
+      "sugarcane",
+      "maize",
+      "groundnut",
+      "bean",
+      "sesame",
+      "rice"
+     ],
+     "unmatched": [
+      "musaceas (bananas+plantains, not split in the census) 4.0k mz"
+     ],
+     "basis": "area",
+     "year": 2011,
+     "source_url": "https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/Country_info_2010/Reports/Reports_4/NIC_SPA_REP_2011.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "León",
+     "crops": [
+      "maize",
+      "groundnut",
+      "sorghum",
+      "rice",
+      "bean",
+      "sesame"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2011,
+     "source_url": "https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/Country_info_2010/Reports/Reports_4/NIC_SPA_REP_2011.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Nueva Segovia",
+     "crops": [
+      "bean",
+      "maize",
+      "coffee",
+      "rice",
+      "tobacco",
+      "sorghum"
+     ],
+     "unmatched": [
+      "musaceas (bananas+plantains, not split in the census) 1.8k mz, ranks 4th"
+     ],
+     "basis": "area",
+     "year": 2011,
+     "source_url": "https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/Country_info_2010/Reports/Reports_4/NIC_SPA_REP_2011.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Región Autónoma de la Costa Caribe Norte",
+     "crops": [
+      "maize",
+      "bean",
+      "rice",
+      "cassava",
+      "cocoa",
+      "coffee"
+     ],
+     "unmatched": [
+      "musaceas (bananas+plantains, not split in the census) 11.3k mz, ranks 3rd"
+     ],
+     "basis": "area",
+     "year": 2011,
+     "source_url": "https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/Country_info_2010/Reports/Reports_4/NIC_SPA_REP_2011.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Región Autónoma de la Costa Caribe Sur",
+     "crops": [
+      "maize",
+      "bean",
+      "cassava",
+      "oilpalm",
+      "rice",
+      "yautia"
+     ],
+     "unmatched": [
+      "musaceas (bananas+plantains, not split in the census) 11.7k mz, ranks 5th"
+     ],
+     "basis": "area",
+     "year": 2011,
+     "source_url": "https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/Country_info_2010/Reports/Reports_4/NIC_SPA_REP_2011.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Rivas",
+     "crops": [
+      "bean",
+      "maize",
+      "rice",
+      "sugarcane",
+      "sorghum",
+      "sesame"
+     ],
+     "unmatched": [
+      "musaceas (bananas+plantains, not split in the census) 13.5k mz, ranks 1st (plantain area)"
+     ],
+     "basis": "area",
+     "year": 2011,
+     "source_url": "https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/Country_info_2010/Reports/Reports_4/NIC_SPA_REP_2011.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Managua",
+     "crops": [
+      "maize",
+      "rice",
+      "sorghum",
+      "coffee",
+      "bean",
+      "sugarcane"
+     ],
+     "unmatched": [
+      "groundnut 4.8k mz is 7th"
+     ],
+     "basis": "area",
+     "year": 2011,
+     "source_url": "https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/Country_info_2010/Reports/Reports_4/NIC_SPA_REP_2011.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Granada",
+     "crops": [
+      "rice",
+      "bean",
+      "maize",
+      "groundnut",
+      "sugarcane",
+      "coffee"
+     ],
+     "unmatched": [
+      "musaceas (bananas+plantains, not split in the census) 3.2k mz"
+     ],
+     "basis": "area",
+     "year": 2011,
+     "source_url": "https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/Country_info_2010/Reports/Reports_4/NIC_SPA_REP_2011.pdf",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "National: FAOSTAT \"Crops and livestock products\" (QCL, https://www.fao.org/faostat/en/#data/QCL), Americas bulk file dated Dec 2025, element Area harvested: no 2024 rows for Nicaragua, 2023 used: maize 249k ha, dry beans 212k, coffee 148k, rice 82k, sugar cane 73k, groundnuts 50k, oil palm 29k, oranges 24k. Regions: IV Censo Nacional Agropecuario (CENAGRO) 2011, INIDE/MAGFOR final report (FAO-hosted copy; same report at https://www.inide.gob.ni/docs/Cenagro/INFIVCENAGRO/IVCENAGROINFORME/assets/common/downloads/Informe%20Final%20IV%20CENAGRO.pdf), cuadros 15, 18, 19 and 20: sown area in manzanas by department, agricultural year 2010-2011 (basic grains sown alone, oilseeds, other crops, permanent crops); rice = irrigated + upland, sorghum = rojo + millon + blanco, quequisque mapped to yautia. Confidence medium only because the census is from 2011 (oil palm, coffee and groundnut areas have changed since). The census calls the two Caribbean regions RAAN and RAAS (now RACCN/RACCS). INIDE departmental profiles and the Internet Archive index were not reachable (404 / \"temporarily offline\")."
+  },
+  {
+   "iso3": "CRI",
+   "name": "Costa Rica",
+   "national": {
+    "crops": [
+     "coffee",
+     "oilpalm",
+     "sugarcane",
+     "pineapple",
+     "banana",
+     "rice",
+     "bean",
+     "orange"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Americas.zip"
+   },
+   "regions": [
+    {
+     "name": "Alajuela",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Guanacaste",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Puntarenas",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Limón",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Cartago",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Heredia",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "San José",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    }
+   ],
+   "notes": "National: FAOSTAT \"Crops and livestock products\" (QCL, https://www.fao.org/faostat/en/#data/QCL), Americas bulk file dated Dec 2025, element Area harvested: coffee 82.5k ha, oil palm 74.7k, sugar cane 58.3k, \"other fruits n.e.c.\" 56.7k (FAO estimate, omitted from list; key would be fruitnes), pineapples 53.0k, bananas 45.9k, rice 14.7k, dry beans 14.7k, oranges 12.8k. Regions: NO official crop-by-province table could be read, so all seven provinces have empty crop lists. Tried: INEC VI Censo Nacional Agropecuario 2014 (inec.cr returns 403 to both curl and the fetch tool; the INAMU-hosted file https://formatos.inamu.go.cr/SIDOC/archivosLibros/tc_vi_censo_nacional_agropecuario_11417_636106476680154294.pdf is only the table of contents, which confirms that tables of area by crop \"segun provincia\" exist in the census volume \"Cultivos agricolas, forestales y ornamentales\"); SEPSA/InfoAgro series (https://www.infoagro.go.cr/estadisticas/areayproduccion_region/) are by planning region (Chorotega, Brunca, Huetar Norte...) not by province and cover only some crops; sepsa.go.cr refused connections. Uncited, last-resort hints only (Spanish Wikipedia \"Agricultura en Costa Rica\", not used for the lists): banana mainly in Limon; pineapple around San Carlos (Alajuela), Sarapiqui (Heredia) and Buenos Aires (Puntarenas); oil palm in the Central and South Pacific (Puntarenas). FAO GIEWS brief of 09-Jul-2026 names Chorotega and Brunca as main cropping regions without crops."
+  },
+  {
+   "iso3": "CUB",
+   "name": "Cuba",
+   "national": {
+    "crops": [
+     "sugarcane",
+     "cassava",
+     "maize",
+     "plantain",
+     "tomato",
+     "rice",
+     "bean",
+     "sweetpotato"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Americas.zip"
+   },
+   "regions": [
+    {
+     "name": "Camagüey",
+     "crops": [
+      "sugarcane",
+      "rice",
+      "maize",
+      "cassava",
+      "plantain",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "http://www.onei.gob.cu/aep-camaguey-2023",
+     "confidence": "medium"
+    },
+    {
+     "name": "Granma",
+     "crops": [
+      "sugarcane",
+      "maize",
+      "plantain",
+      "cassava",
+      "rice",
+      "pumpkinetc"
+     ],
+     "unmatched": [
+      "series is erratic between years (e.g. rice 18.3k ha in 2020, 0.75k in 2023); FAO GIEWS names Granma a main paddy area"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "http://www.onei.gob.cu/aep-granma-2023",
+     "confidence": "low"
+    },
+    {
+     "name": "Pinar del Río",
+     "crops": [
+      "tobacco",
+      "maize",
+      "sweetpotato",
+      "rice",
+      "bean",
+      "pumpkinetc"
+     ],
+     "unmatched": [
+      "table covers the STATE sector only; no sugar cane table in this yearbook"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "http://www.onei.gob.cu/aep-pinar-del-rio-2023",
+     "confidence": "low"
+    },
+    {
+     "name": "Sancti Spíritus",
+     "crops": [
+      "sugarcane",
+      "rice",
+      "tobacco",
+      "cassava",
+      "plantain",
+      "maize"
+     ],
+     "unmatched": [
+      "2021 used: the 2022 column is state sector only"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "http://www.onei.gob.cu/aep-sancti-spiritus-2023",
+     "confidence": "low"
+    },
+    {
+     "name": "Ciego de Ávila",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Matanzas",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Villa Clara",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Holguín",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Artemisa",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Mayabeque",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    }
+   ],
+   "notes": "National: FAOSTAT \"Crops and livestock products\" (QCL, https://www.fao.org/faostat/en/#data/QCL), Americas bulk file dated Dec 2025, element Area harvested: sugar cane 270k ha (FAO estimate), cassava 124k, maize 115k (external), plantains 70k, tomatoes 43k, rice 41k, dry beans 40k, sweet potatoes 36k; all estimated/imputed, no official flags. Regions: ONEI (Oficina Nacional de Estadistica e Informacion) provincial statistical yearbooks 2023 (PDF \"Archivo completo\" linked from each page), chapter 7, tables \"Superficie cosechada y en produccion de cultivos seleccionados de la agricultura no canera\" (ha) and \"Superficie cosechada ... cana de azucar por zafras\" (zafra 2022/2023; 2020/2021 for Sancti Spiritus). Harvested-area series in these yearbooks jump by up to an order of magnitude between years and some columns exclude the non-state sector, so rankings are indicative only (confidence low/medium). Fruit trees are reported only as selected items and coffee/cocoa are not in these tables. FAO GIEWS brief (https://www.fao.org/giews/countrybrief/country.jsp?code=CUB) names Granma, Sancti Spiritus, Camaguey and Pinar del Rio as the main paddy-producing areas. Access: https://www.onei.gob.cu has an EXPIRED TLS certificate (not bypassed); the site was read over its plain-HTTP address, which answers only intermittently (connection refused most of the time), so provinces with empty crop lists are those whose yearbook could not be downloaded."
+  },
+  {
+   "iso3": "DOM",
+   "name": "Dominican Republic",
+   "national": {
+    "crops": [
+     "rice",
+     "sugarcane",
+     "cocoa",
+     "plantain",
+     "banana",
+     "avocado",
+     "lemonlime",
+     "maize"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Americas.zip"
+   },
+   "regions": [
+    {
+     "name": "Duarte",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "La Vega",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "San Juan",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Monte Plata",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Monte Cristi",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Valverde",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "María Trinidad Sánchez",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Sánchez Ramírez",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    }
+   ],
+   "notes": "National: FAOSTAT \"Crops and livestock products\" (QCL, https://www.fao.org/faostat/en/#data/QCL), Americas bulk file dated Dec 2025, element Area harvested: rice 188k ha, sugar cane 111k, cocoa 104k, plantains 103k, bananas 56k, avocados 56k, lemons/limes 49k, maize 48k, coconuts 48k, cassava 47k, coffee 45k, dry beans 44k (official figures). Regions: NO sub-national crop source could be read, so the provinces listed (chosen as commonly cited farming provinces, not from a ranking) have empty crop lists. Tried: Ministerio de Agricultura statistics pages (https://agricultura.gob.do/category/estadisticas-agropecuarias/ : document lists are loaded by script and the RENAGRO 2024 category is empty; its series are by the 8 agricultural \"regionales\", not provinces); ONE Precenso Nacional Agropecuario 2015 report (https://www.fao.org/fileadmin/user_upload/FAO-countries/Republica_Dominicana/docs/Resultados_Precenso_Nacional_Agropecuario.pdf) was read but only has counts of production units by province and crop TYPE nationally, no crop areas by province; www.one.gob.do returned 403; the CNCCMDL \"Caracterizacion de los sistemas de produccion agricola\" PDF exceeds 10 MB and was not downloaded; FAO GIEWS brief names no provinces."
+  },
+  {
+   "iso3": "HTI",
+   "name": "Haiti",
+   "national": {
+    "crops": [
+     "bean",
+     "maize",
+     "cassava",
+     "banana",
+     "mango",
+     "rice",
+     "sweetpotato",
+     "groundnut"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Americas.zip"
+   },
+   "regions": [
+    {
+     "name": "Centre",
+     "crops": [],
+     "unmatched": [
+      "crop GROUPS only: cereals 100.3k cx, legumes 69.0k, vegetables incl. roots/tubers 19.6k, oil crops 17.9k, fruits and nuts 8.2k, sugar crops 2.4k"
+     ],
+     "basis": "area",
+     "year": 2009,
+     "source_url": "https://microdata.fao.org/index.php/catalog/1601/download/6398",
+     "confidence": "low"
+    },
+    {
+     "name": "Artibonite",
+     "crops": [],
+     "unmatched": [
+      "crop GROUPS only: cereals 116.6k cx (largest cereal area in the country, 25.3%; also 37k cx irrigated), legumes 32.0k, vegetables incl. roots/tubers 20.8k, sugar crops 8.1k, fruits and nuts 4.4k, oil crops 2.3k"
+     ],
+     "basis": "area",
+     "year": 2009,
+     "source_url": "https://microdata.fao.org/index.php/catalog/1601/download/6398",
+     "confidence": "low"
+    },
+    {
+     "name": "Ouest",
+     "crops": [],
+     "unmatched": [
+      "crop GROUPS only: legumes 61.8k cx, cereals 57.0k, vegetables incl. roots/tubers 36.7k, fruits and nuts 14.0k, sugar crops 3.1k, oil crops 2.5k"
+     ],
+     "basis": "area",
+     "year": 2009,
+     "source_url": "https://microdata.fao.org/index.php/catalog/1601/download/6398",
+     "confidence": "low"
+    },
+    {
+     "name": "Nord",
+     "crops": [],
+     "unmatched": [
+      "crop GROUPS only: vegetables incl. roots/tubers 38.4k cx, fruits and nuts 23.9k, cereals 21.7k, legumes 21.1k, sugar crops 7.6k, beverage/spice crops 6.4k"
+     ],
+     "basis": "area",
+     "year": 2009,
+     "source_url": "https://microdata.fao.org/index.php/catalog/1601/download/6398",
+     "confidence": "low"
+    },
+    {
+     "name": "Sud",
+     "crops": [],
+     "unmatched": [
+      "crop GROUPS only: cereals 52.3k cx, legumes 25.3k, vegetables incl. roots/tubers 16.8k, fruits and nuts 4.5k, oil crops 2.1k"
+     ],
+     "basis": "area",
+     "year": 2009,
+     "source_url": "https://microdata.fao.org/index.php/catalog/1601/download/6398",
+     "confidence": "low"
+    },
+    {
+     "name": "Grande-Anse",
+     "crops": [],
+     "unmatched": [
+      "crop GROUPS only: legumes 29.2k cx, vegetables incl. roots/tubers 28.5k, cereals 15.7k, beverage/spice crops 3.2k, fruits and nuts 1.8k"
+     ],
+     "basis": "area",
+     "year": 2009,
+     "source_url": "https://microdata.fao.org/index.php/catalog/1601/download/6398",
+     "confidence": "low"
+    },
+    {
+     "name": "Nord-Est",
+     "crops": [],
+     "unmatched": [
+      "crop GROUPS only: legumes 19.1k cx, cereals 17.1k, vegetables incl. roots/tubers 14.5k, oil crops 8.9k (groundnut area), fruits and nuts 2.7k"
+     ],
+     "basis": "area",
+     "year": 2009,
+     "source_url": "https://microdata.fao.org/index.php/catalog/1601/download/6398",
+     "confidence": "low"
+    }
+   ],
+   "notes": "National: FAOSTAT \"Crops and livestock products\" (QCL, https://www.fao.org/faostat/en/#data/QCL), Americas bulk file dated Dec 2025, element Area harvested: dry beans 276k ha, maize 227k, cassava 150k, bananas 54k, mangoes 54k, rice 52k, sweet potatoes 48k, groundnuts 43k, cow peas 41k, plantains 38k; all FAO-imputed/estimated. Regions: no source with individual crops by department was found, so every department has an EMPTY crop list. What was read: MARNDR/FAO/EU Recensement General de l'Agriculture (RGA) 2008-2009, \"Synthese nationale des resultats\" (file HTI_REP_FRE_2008_2009.pdf in the FAO microdata catalogue, https://microdata.fao.org/index.php/catalog/1601/related-materials), Tableau 11-10: utilised agricultural area by department and by crop GROUP (cereals, legumes, vegetables incl. roots and tubers, fruits and nuts, oil crops, beverages/spices, sugar crops) in carreaux (1 cx = 1.29 ha); those group figures are recorded in \"unmatched\" for each department as the only sub-national evidence. FAO GIEWS brief (https://www.fao.org/giews/countrybrief/country.jsp?code=HTI) only calls Artibonite a \"key producing department\" without naming a crop. Not reachable: agriculture.gouv.ht (403/404). FEWS NET livelihood-zone material is by zone, not department, and was not used."
+  }
+ ]
+}

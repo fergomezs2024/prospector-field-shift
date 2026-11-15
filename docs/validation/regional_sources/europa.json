@@ -1,0 +1,2254 @@
+{
+ "agent": "europa",
+ "countries": [
+  {
+   "iso3": "ESP",
+   "name": "Spain",
+   "national": {
+    "crops": [
+     "olive",
+     "barley",
+     "wheat",
+     "grape",
+     "sunflower",
+     "almond",
+     "oats",
+     "grassnes"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpsh1?format=JSON&lang=EN&geoLevel=country&sinceTimePeriod=2018"
+   },
+   "regions": [
+    {
+     "name": "Andalucía",
+     "crops": [
+      "olive",
+      "wheat",
+      "sunflower",
+      "barley",
+      "oats",
+      "triticale"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [306 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [107 kha]",
+      "other cereals harvested green [97 kha]",
+      "citrus fruits (aggregate) [90 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Castilla-La Mancha",
+     "crops": [
+      "barley",
+      "grape",
+      "olive",
+      "wheat",
+      "oats",
+      "sunflower"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [229 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Castilla y León",
+     "crops": [
+      "wheat",
+      "barley",
+      "sunflower",
+      "maize",
+      "grape",
+      "pea"
+     ],
+     "unmatched": [
+      "other cereals harvested green [147 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Aragón",
+     "crops": [
+      "barley",
+      "wheat",
+      "triticale",
+      "maize",
+      "olive",
+      "grape"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [130 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Extremadura",
+     "crops": [
+      "olive",
+      "grassnes",
+      "wheat",
+      "grape",
+      "barley",
+      "oats"
+     ],
+     "unmatched": [
+      "other cereals harvested green [101 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [57 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Cataluña",
+     "crops": [
+      "barley",
+      "olive",
+      "wheat",
+      "grape",
+      "rapeseed",
+      "rice"
+     ],
+     "unmatched": [
+      "other cereals harvested green [97 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [95 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Comunitat Valenciana",
+     "crops": [
+      "olive",
+      "grape",
+      "rice",
+      "barley",
+      "oats",
+      "wheat"
+     ],
+     "unmatched": [
+      "citrus fruits (aggregate) [154 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [125 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [21 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Galicia",
+     "crops": [
+      "grassnes",
+      "maizefor",
+      "grape",
+      "potato",
+      "maize",
+      "wheat"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [36 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Región de Murcia",
+     "crops": [
+      "grape",
+      "olive",
+      "barley",
+      "oats",
+      "wheat",
+      "potato"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [111 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [49 kha]",
+      "citrus fruits (aggregate) [41 kha]",
+      "aromatic, medicinal and culinary plants [4 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "Source: Eurostat crop statistics (data supplied by the national statistical authority), read through the Eurostat dissemination API; national = table apro_cpsh1, regions = table apro_cpshr (browser view: https://ec.europa.eu/eurostat/databrowser/view/apro_cpshr/default/table?lang=en). Ranking by cultivated/harvested area (thousand ha), year 2023. Mapping choices: 'Temporary grasses and grazings' (sown, on arable land) -> grassnes; 'Green maize' -> maizefor; 'Grain maize and corn-cob-mix' -> maize; 'Broad and field beans' -> broadbean; 'Field peas' -> pea; 'Lucerne' -> alfalfa. The regional table has NO breakdown of fruit, citrus or vegetables by species: where those aggregates rank among the top crops they are listed in 'unmatched' with their area, so tree-fruit/citrus/vegetable species are missing from regional 'crops' lists (confidence set to medium in those regions). Permanent grassland excluded. Regions are autonomous communities (NUTS2). National-level categories without vocabulary match that would rank in the top 8: other cereals harvested green. "
+  },
+  {
+   "iso3": "FRA",
+   "name": "France",
+   "national": {
+    "crops": [
+     "wheat",
+     "grassnes",
+     "barley",
+     "rapeseed",
+     "maize",
+     "maizefor",
+     "sunflower",
+     "grape"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpsh1?format=JSON&lang=EN&geoLevel=country&sinceTimePeriod=2018"
+   },
+   "regions": [
+    {
+     "name": "Nouvelle-Aquitaine",
+     "crops": [
+      "wheat",
+      "maize",
+      "grassnes",
+      "grape",
+      "sunflower",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Grand Est",
+     "crops": [
+      "wheat",
+      "barley",
+      "rapeseed",
+      "maize",
+      "maizefor",
+      "sugarbeet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Centre-Val de Loire",
+     "crops": [
+      "wheat",
+      "barley",
+      "rapeseed",
+      "grassnes",
+      "sunflower",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Occitanie",
+     "crops": [
+      "wheat",
+      "grassnes",
+      "grape",
+      "sunflower",
+      "maize",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Hauts-de-France",
+     "crops": [
+      "wheat",
+      "sugarbeet",
+      "barley",
+      "rapeseed",
+      "potato",
+      "maizefor"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Pays de la Loire",
+     "crops": [
+      "wheat",
+      "grassnes",
+      "maizefor",
+      "maize",
+      "rapeseed",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Bretagne",
+     "crops": [
+      "wheat",
+      "maizefor",
+      "grassnes",
+      "maize",
+      "barley",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Bourgogne-Franche-Comté",
+     "crops": [
+      "wheat",
+      "barley",
+      "rapeseed",
+      "grassnes",
+      "sunflower",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Normandie",
+     "crops": [
+      "wheat",
+      "maizefor",
+      "rapeseed",
+      "barley",
+      "grassnes",
+      "flax"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Auvergne-Rhône-Alpes",
+     "crops": [
+      "grassnes",
+      "wheat",
+      "maize",
+      "maizefor",
+      "barley",
+      "triticale"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Source: Eurostat crop statistics (data supplied by the national statistical authority), read through the Eurostat dissemination API; national = table apro_cpsh1, regions = table apro_cpshr (browser view: https://ec.europa.eu/eurostat/databrowser/view/apro_cpshr/default/table?lang=en). Ranking by cultivated/harvested area (thousand ha), year 2023. Mapping choices: 'Temporary grasses and grazings' (sown, on arable land) -> grassnes; 'Green maize' -> maizefor; 'Grain maize and corn-cob-mix' -> maize; 'Broad and field beans' -> broadbean; 'Field peas' -> pea; 'Lucerne' -> alfalfa. The regional table has NO breakdown of fruit, citrus or vegetables by species: where those aggregates rank among the top crops they are listed in 'unmatched' with their area, so tree-fruit/citrus/vegetable species are missing from regional 'crops' lists (confidence set to medium in those regions). Permanent grassland excluded. Regions are the 13 current metropolitan regions (NUTS1); top 10 by arable+permanent crop area. "
+  },
+  {
+   "iso3": "ITA",
+   "name": "Italy",
+   "national": {
+    "crops": [
+     "wheat",
+     "olive",
+     "grassnes",
+     "grape",
+     "alfalfa",
+     "maize",
+     "maizefor",
+     "soybean"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpsh1?format=JSON&lang=EN&geoLevel=country&sinceTimePeriod=2018"
+   },
+   "regions": [
+    {
+     "name": "Puglia",
+     "crops": [
+      "wheat",
+      "olive",
+      "grassnes",
+      "grape",
+      "oats",
+      "barley"
+     ],
+     "unmatched": [
+      "fresh vegetables incl. melons and strawberries (aggregate) [87 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [47 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Sicilia",
+     "crops": [
+      "wheat",
+      "olive",
+      "grape",
+      "grassnes",
+      "potato",
+      "oats"
+     ],
+     "unmatched": [
+      "citrus fruits (aggregate) [84 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [73 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [67 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Emilia-Romagna",
+     "crops": [
+      "wheat",
+      "maize",
+      "grape",
+      "grassnes",
+      "maizefor",
+      "soybean"
+     ],
+     "unmatched": [
+      "fresh vegetables incl. melons and strawberries (aggregate) [48 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [45 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Lombardia",
+     "crops": [
+      "maizefor",
+      "grassnes",
+      "maize",
+      "wheat",
+      "rice",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Veneto",
+     "crops": [
+      "wheat",
+      "soybean",
+      "maize",
+      "grape",
+      "maizefor",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Piemonte",
+     "crops": [
+      "maize",
+      "rice",
+      "wheat",
+      "grassnes",
+      "grape",
+      "maizefor"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [47 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Toscana",
+     "crops": [
+      "wheat",
+      "grassnes",
+      "olive",
+      "grape",
+      "sunflower",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Lazio",
+     "crops": [
+      "grassnes",
+      "olive",
+      "wheat",
+      "maizefor",
+      "grape",
+      "barley"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [41 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [27 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Campania",
+     "crops": [
+      "wheat",
+      "olive",
+      "grassnes",
+      "grape",
+      "maizefor",
+      "barley"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [74 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [38 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Calabria",
+     "crops": [
+      "olive",
+      "wheat",
+      "grassnes",
+      "oats",
+      "grape",
+      "barley"
+     ],
+     "unmatched": [
+      "citrus fruits (aggregate) [39 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [21 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [14 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "Source: Eurostat crop statistics (data supplied by the national statistical authority), read through the Eurostat dissemination API; national = table apro_cpsh1, regions = table apro_cpshr (browser view: https://ec.europa.eu/eurostat/databrowser/view/apro_cpshr/default/table?lang=en). Ranking by cultivated/harvested area (thousand ha), year 2023. Mapping choices: 'Temporary grasses and grazings' (sown, on arable land) -> grassnes; 'Green maize' -> maizefor; 'Grain maize and corn-cob-mix' -> maize; 'Broad and field beans' -> broadbean; 'Field peas' -> pea; 'Lucerne' -> alfalfa. The regional table has NO breakdown of fruit, citrus or vegetables by species: where those aggregates rank among the top crops they are listed in 'unmatched' with their area, so tree-fruit/citrus/vegetable species are missing from regional 'crops' lists (confidence set to medium in those regions). Permanent grassland excluded. Regions are regioni (NUTS2). "
+  },
+  {
+   "iso3": "DEU",
+   "name": "Germany",
+   "national": {
+    "crops": [
+     "wheat",
+     "maizefor",
+     "barley",
+     "rapeseed",
+     "rye",
+     "maize",
+     "sugarbeet",
+     "triticale"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpsh1?format=JSON&lang=EN&geoLevel=country&sinceTimePeriod=2018"
+   },
+   "regions": [
+    {
+     "name": "Bayern",
+     "crops": [
+      "wheat",
+      "maizefor",
+      "barley",
+      "maize",
+      "rapeseed",
+      "sugarbeet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Niedersachsen",
+     "crops": [
+      "maizefor",
+      "wheat",
+      "barley",
+      "rye",
+      "potato",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Nordrhein-Westfalen",
+     "crops": [
+      "wheat",
+      "maizefor",
+      "barley",
+      "maize",
+      "rapeseed",
+      "triticale"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Mecklenburg-Vorpommern",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "barley",
+      "maizefor",
+      "rye",
+      "sugarbeet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Brandenburg",
+     "crops": [
+      "maizefor",
+      "wheat",
+      "rye",
+      "barley",
+      "rapeseed",
+      "triticale"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Sachsen-Anhalt",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "barley",
+      "maizefor",
+      "rye",
+      "sugarbeet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Baden-Württemberg",
+     "crops": [
+      "wheat",
+      "barley",
+      "maizefor",
+      "maize",
+      "rapeseed",
+      "grape"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Sachsen",
+     "crops": [
+      "wheat",
+      "barley",
+      "rapeseed",
+      "maizefor",
+      "rye",
+      "grassnes"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Schleswig-Holstein",
+     "crops": [
+      "maizefor",
+      "wheat",
+      "rapeseed",
+      "barley",
+      "rye",
+      "grassnes"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts1&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Source: Eurostat crop statistics (data supplied by the national statistical authority), read through the Eurostat dissemination API; national = table apro_cpsh1, regions = table apro_cpshr (browser view: https://ec.europa.eu/eurostat/databrowser/view/apro_cpshr/default/table?lang=en). Ranking by cultivated/harvested area (thousand ha), year 2023. Mapping choices: 'Temporary grasses and grazings' (sown, on arable land) -> grassnes; 'Green maize' -> maizefor; 'Grain maize and corn-cob-mix' -> maize; 'Broad and field beans' -> broadbean; 'Field peas' -> pea; 'Lucerne' -> alfalfa. The regional table has NO breakdown of fruit, citrus or vegetables by species: where those aggregates rank among the top crops they are listed in 'unmatched' with their area, so tree-fruit/citrus/vegetable species are missing from regional 'crops' lists (confidence set to medium in those regions). Permanent grassland excluded. Regions are Bundeslaender (NUTS1). "
+  },
+  {
+   "iso3": "POL",
+   "name": "Poland",
+   "national": {
+    "crops": [
+     "wheat",
+     "maize",
+     "triticale",
+     "rapeseed",
+     "rye",
+     "barley",
+     "maizefor",
+     "grassnes"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpsh1?format=JSON&lang=EN&geoLevel=country&sinceTimePeriod=2018"
+   },
+   "regions": [
+    {
+     "name": "Wielkopolskie",
+     "crops": [
+      "wheat",
+      "maize",
+      "triticale",
+      "rye",
+      "maizefor",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Lubelskie",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "triticale",
+      "maize",
+      "oats",
+      "barley"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [74 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Mazowieckie (Mazowiecki regionalny, PL92)",
+     "crops": [
+      "triticale",
+      "wheat",
+      "maize",
+      "rye",
+      "maizefor",
+      "oats"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [86 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kujawsko-pomorskie",
+     "crops": [
+      "wheat",
+      "maize",
+      "rapeseed",
+      "triticale",
+      "sugarbeet",
+      "maizefor"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Łódzkie",
+     "crops": [
+      "triticale",
+      "wheat",
+      "rye",
+      "maize",
+      "oats",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Warmińsko-mazurskie",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "triticale",
+      "maize",
+      "maizefor",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Zachodniopomorskie",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "rye",
+      "triticale",
+      "barley",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Dolnośląskie",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "maize",
+      "barley",
+      "triticale",
+      "maizefor"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Podlaskie",
+     "crops": [
+      "maize",
+      "maizefor",
+      "triticale",
+      "wheat",
+      "rye",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Pomorskie",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "rye",
+      "triticale",
+      "maize",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Source: Eurostat crop statistics (data supplied by the national statistical authority), read through the Eurostat dissemination API; national = table apro_cpsh1, regions = table apro_cpshr (browser view: https://ec.europa.eu/eurostat/databrowser/view/apro_cpshr/default/table?lang=en). Ranking by cultivated/harvested area (thousand ha), year 2023. Mapping choices: 'Temporary grasses and grazings' (sown, on arable land) -> grassnes; 'Green maize' -> maizefor; 'Grain maize and corn-cob-mix' -> maize; 'Broad and field beans' -> broadbean; 'Field peas' -> pea; 'Lucerne' -> alfalfa. The regional table has NO breakdown of fruit, citrus or vegetables by species: where those aggregates rank among the top crops they are listed in 'unmatched' with their area, so tree-fruit/citrus/vegetable species are missing from regional 'crops' lists (confidence set to medium in those regions). Permanent grassland excluded. Regions are voivodeships (NUTS2); Mazowieckie is split by Eurostat into two NUTS2 units, the listed one is 'Mazowiecki regionalny' (PL92, voivodeship without the Warsaw capital subregion). "
+  },
+  {
+   "iso3": "UKR",
+   "name": "Ukraine",
+   "national": {
+    "crops": [
+     "maize",
+     "wheat",
+     "sunflower",
+     "barley",
+     "soybean",
+     "rapeseed"
+    ],
+    "basis": "production",
+    "year": 2023,
+    "source_url": "https://web.archive.org/web/20241231020244/https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=UP"
+   },
+   "regions": [
+    {
+     "name": "Vinnytska oblast",
+     "crops": [
+      "maize",
+      "wheat",
+      "sunflower",
+      "barley",
+      "soybean",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2020,
+     "source_url": "https://web.archive.org/web/20241211211132/https://ipad.fas.usda.gov/rssiws/al/up_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Poltavska oblast",
+     "crops": [
+      "maize",
+      "wheat",
+      "sunflower",
+      "soybean",
+      "barley",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2020,
+     "source_url": "https://web.archive.org/web/20241211211132/https://ipad.fas.usda.gov/rssiws/al/up_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Sumska oblast",
+     "crops": [
+      "maize",
+      "wheat",
+      "sunflower",
+      "soybean",
+      "barley",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2020,
+     "source_url": "https://web.archive.org/web/20241211211132/https://ipad.fas.usda.gov/rssiws/al/up_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kharkivska oblast",
+     "crops": [
+      "wheat",
+      "sunflower",
+      "maize",
+      "barley",
+      "soybean",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2020,
+     "source_url": "https://web.archive.org/web/20241211211132/https://ipad.fas.usda.gov/rssiws/al/up_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Chernihivska oblast",
+     "crops": [
+      "maize",
+      "wheat",
+      "sunflower",
+      "soybean",
+      "rapeseed",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2020,
+     "source_url": "https://web.archive.org/web/20241211211132/https://ipad.fas.usda.gov/rssiws/al/up_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Dnipropetrovska oblast",
+     "crops": [
+      "wheat",
+      "sunflower",
+      "maize",
+      "barley",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2020,
+     "source_url": "https://web.archive.org/web/20241211211132/https://ipad.fas.usda.gov/rssiws/al/up_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kirovohradska oblast",
+     "crops": [
+      "maize",
+      "sunflower",
+      "wheat",
+      "barley",
+      "soybean",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2020,
+     "source_url": "https://web.archive.org/web/20241211211132/https://ipad.fas.usda.gov/rssiws/al/up_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Khmelnytska oblast",
+     "crops": [
+      "maize",
+      "wheat",
+      "soybean",
+      "sunflower",
+      "barley",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2020,
+     "source_url": "https://web.archive.org/web/20241211211132/https://ipad.fas.usda.gov/rssiws/al/up_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Cherkaska oblast",
+     "crops": [
+      "maize",
+      "wheat",
+      "sunflower",
+      "barley",
+      "soybean",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2020,
+     "source_url": "https://web.archive.org/web/20241211211132/https://ipad.fas.usda.gov/rssiws/al/up_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Odeska oblast",
+     "crops": [
+      "wheat",
+      "barley",
+      "sunflower",
+      "maize",
+      "rapeseed",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2020,
+     "source_url": "https://web.archive.org/web/20241211211132/https://ipad.fas.usda.gov/rssiws/al/up_cropprod.aspx",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "Ukrstat could not be reached (ukrstat.gov.ua: connection refused/timeout from curl and WebFetch; stat.gov.ua reachable but no regional crop-area table found). ipad.fas.usda.gov live site returned HTTP 503 / was blocked, so USDA FAS IPAD pages were read through Internet Archive snapshots (Dec 2024). National: IPAD country summary, production 5-yr average 2019-2023 (1000 t): corn 33,562; wheat 26,420; sunflowerseed 15,160; barley 7,970; soybean 4,120; rapeseed 3,496. Only these six field crops are covered: potatoes, sugar beet, vegetables and fruit are NOT covered by the source and may be regionally important. Regions: IPAD 'Crop Production Maps' (source stated on maps: State Statistics Service of Ukraine, average production 2016-2020), six map images (Ukraine_wheat/Corn/Barley/Sunflowerseed/Soybean/Rapeseed.jpg) giving each oblast's % of national production. Oblast ranking = oblast share x national production of the crop (national weights from the 2019-2023 summary, a different period than the shares). Shares are whole percentages, so close ranks within an oblast are uncertain; a crop absent from an oblast list had no percentage printed on the map. By production, not area: maize is favoured over sunflower/wheat relative to an area ranking (higher yield). The 10 oblasts with the largest derived output are listed. Data are pre-2022; war-affected oblasts (Kharkivska, Zaporizka, Khersonska, Mykolaivska) have changed since."
+  },
+  {
+   "iso3": "ROU",
+   "name": "Romania",
+   "national": {
+    "crops": [
+     "wheat",
+     "maize",
+     "sunflower",
+     "rapeseed",
+     "barley",
+     "alfalfa",
+     "grape",
+     "soybean"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpsh1?format=JSON&lang=EN&geoLevel=country&sinceTimePeriod=2018"
+   },
+   "regions": [
+    {
+     "name": "Sud-Muntenia",
+     "crops": [
+      "wheat",
+      "maize",
+      "sunflower",
+      "rapeseed",
+      "barley",
+      "soybean"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [42 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Sud-Est",
+     "crops": [
+      "wheat",
+      "maize",
+      "sunflower",
+      "barley",
+      "rapeseed",
+      "grape"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Nord-Est",
+     "crops": [
+      "maize",
+      "wheat",
+      "sunflower",
+      "rapeseed",
+      "soybean",
+      "grape"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Sud-Vest Oltenia",
+     "crops": [
+      "wheat",
+      "maize",
+      "sunflower",
+      "rapeseed",
+      "barley",
+      "grape"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Vest",
+     "crops": [
+      "wheat",
+      "maize",
+      "rapeseed",
+      "sunflower",
+      "barley",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Nord-Vest",
+     "crops": [
+      "maize",
+      "wheat",
+      "sunflower",
+      "rapeseed",
+      "barley",
+      "soybean"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [28 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Centru",
+     "crops": [
+      "maize",
+      "wheat",
+      "barley",
+      "sunflower",
+      "rapeseed",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Source: Eurostat crop statistics (data supplied by the national statistical authority), read through the Eurostat dissemination API; national = table apro_cpsh1, regions = table apro_cpshr (browser view: https://ec.europa.eu/eurostat/databrowser/view/apro_cpshr/default/table?lang=en). Ranking by cultivated/harvested area (thousand ha), year 2023. Mapping choices: 'Temporary grasses and grazings' (sown, on arable land) -> grassnes; 'Green maize' -> maizefor; 'Grain maize and corn-cob-mix' -> maize; 'Broad and field beans' -> broadbean; 'Field peas' -> pea; 'Lucerne' -> alfalfa. The regional table has NO breakdown of fruit, citrus or vegetables by species: where those aggregates rank among the top crops they are listed in 'unmatched' with their area, so tree-fruit/citrus/vegetable species are missing from regional 'crops' lists (confidence set to medium in those regions). Permanent grassland excluded. Regions are the NUTS2 development regions (statistical groupings of counties, not administrative units; county-level data from INS was not consulted). "
+  },
+  {
+   "iso3": "GBR",
+   "name": "United Kingdom",
+   "national": {
+    "crops": [
+     "wheat",
+     "barley",
+     "maizefor",
+     "rapeseed",
+     "oats",
+     "broadbean",
+     "potato",
+     "pea"
+    ],
+    "basis": "area",
+    "year": 2025,
+    "source_url": "https://www.gov.uk/government/statistics/agricultural-land-use-in-the-united-kingdom/agricultural-land-use-in-united-kingdom-at-1-june-2025"
+   },
+   "regions": [
+    {
+     "name": "England",
+     "crops": [
+      "wheat",
+      "barley",
+      "maizefor",
+      "rapeseed",
+      "oats",
+      "sugarbeet"
+     ],
+     "unmatched": [
+      "potatoes 90 kha -> potato ranks 7th",
+      "field vegetables 79 kha"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.gov.uk/government/statistics/agricultural-facts-england-regional-profiles/agricultural-facts-summary",
+     "confidence": "medium"
+    },
+    {
+     "name": "East of England",
+     "crops": [
+      "wheat",
+      "barley",
+      "sugarbeet",
+      "rapeseed",
+      "maizefor",
+      "potato"
+     ],
+     "unmatched": [
+      "field vegetables 24 kha"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.gov.uk/government/statistics/agricultural-facts-england-regional-profiles/agricultural-facts-east-of-england-region",
+     "confidence": "medium"
+    },
+    {
+     "name": "East Midlands",
+     "crops": [
+      "wheat",
+      "barley",
+      "rapeseed",
+      "maizefor",
+      "oats",
+      "sugarbeet"
+     ],
+     "unmatched": [
+      "field vegetables 22 kha"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.gov.uk/government/statistics/agricultural-facts-england-regional-profiles/agricultural-facts-east-midland-region",
+     "confidence": "medium"
+    },
+    {
+     "name": "Yorkshire and the Humber",
+     "crops": [
+      "wheat",
+      "barley",
+      "rapeseed",
+      "potato",
+      "maizefor",
+      "oats"
+     ],
+     "unmatched": [
+      "field vegetables 12 kha"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.gov.uk/government/statistics/agricultural-facts-england-regional-profiles/agricultural-facts-yorkshire-and-the-humber-region",
+     "confidence": "medium"
+    },
+    {
+     "name": "South East (including London)",
+     "crops": [
+      "wheat",
+      "barley",
+      "oats",
+      "rapeseed",
+      "maizefor"
+     ],
+     "unmatched": [
+      "orchards 7.7 kha (species not given)",
+      "small fruit 5.2 kha"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.gov.uk/government/statistics/agricultural-facts-england-regional-profiles/agricultural-facts-south-east-region",
+     "confidence": "medium"
+    },
+    {
+     "name": "South West",
+     "crops": [
+      "wheat",
+      "barley",
+      "maizefor",
+      "oats",
+      "rapeseed"
+     ],
+     "unmatched": [
+      "orchards 2.7 kha"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.gov.uk/government/statistics/agricultural-facts-england-regional-profiles/agricultural-facts-south-west-region",
+     "confidence": "medium"
+    },
+    {
+     "name": "West Midlands",
+     "crops": [
+      "wheat",
+      "barley",
+      "maizefor",
+      "rapeseed",
+      "oats",
+      "potato"
+     ],
+     "unmatched": [
+      "orchards 5.1 kha"
+     ],
+     "basis": "area",
+     "year": 2025,
+     "source_url": "https://www.gov.uk/government/statistics/agricultural-facts-england-regional-profiles/agricultural-facts-west-midland-region",
+     "confidence": "medium"
+    },
+    {
+     "name": "Scotland",
+     "crops": [
+      "barley",
+      "grassnes",
+      "wheat",
+      "rapeseed",
+      "potato",
+      "oats"
+     ],
+     "unmatched": [
+      "vegetables for human consumption 21.9 kha"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.gov.scot/publications/results-from-the-scottish-agricultural-census-june-2024/documents/",
+     "confidence": "high"
+    },
+    {
+     "name": "Wales",
+     "crops": [
+      "maizefor",
+      "barley",
+      "wheat",
+      "rapeseed",
+      "potato"
+     ],
+     "unmatched": [
+      "crops for stockfeeding 14.9 kha (ranks 4th)",
+      "other cereals for combining 6.0 kha (species not split; probably mostly oats)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.gov.wales/survey-agriculture-and-horticulture-june-2024",
+     "confidence": "medium"
+    },
+    {
+     "name": "Northern Ireland",
+     "crops": [
+      "barley",
+      "wheat",
+      "potato",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://www.daera-ni.gov.uk/news/results-june-agricultural-census-2024",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "National: Defra 'Agricultural Land Use in United Kingdom at 1 June 2025' (wheat 1,670 kha, barley 1,080, maize 274, oilseed rape 241, potatoes 127, dry peas 60); that page gives no figures for oats or field beans, whose position (5th, 6th) is taken from Eurostat apro_cpsh1 UK 2019 (oats 182 kha, broad/field beans 137 kha; last UK year in Eurostat) - https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpsh1?format=JSON&lang=EN&geoLevel=country&sinceTimePeriod=2018 . Temporary grass (about 1.2 Mha in Eurostat 2019) is NOT in the national list because the Defra page read gives no figure. Defra 'maize' is mostly forage/biogas maize, mapped to maizefor (not split from grain maize). English regions (former Government Office Regions): each region page's Table 1.2 'Crop areas in 2025' lists only the predominant crops in absolute kha; the remaining positions were derived as region share of England (summary page Table 1.2, %) x England totals read in the region pages (wheat 1,525; barley 742; maize 241; oilseed rape 204; oats 162; sugar beet 93; potatoes 90; field veg 79 kha). Sugar beet share is published only for East of England (65%) and East Midlands (23%); field beans, peas and temporary grass are not in these profiles, so they are missing from English regional lists. North East and North West omitted (small crop areas). Scotland: Scottish Agricultural Census June 2024, Table 1 of the ODS tables workbook linked from the documents page (barley 300 kha, rotational grass <5 years 157 kha -> grassnes, wheat 98, oilseed rape 37, potatoes 29, oats 28). Wales: June 2024 survey ODS linked from the cited page (maize 24.5 kha, barley 24.0, wheat 22.7, stockfeed crops 14.9, oilseed rape 6.0, potatoes 2.9). Northern Ireland: DAERA June 2024 census news release (spring barley 13.6 kha, wheat 8.0, potatoes 3.1, oats 1.8; winter barley area not stated); forage maize/arable silage not given on the page read. Eurostat has no UK regional crop data for 2020+ (all empty)."
+  },
+  {
+   "iso3": "NLD",
+   "name": "Netherlands",
+   "national": {
+    "crops": [
+     "grassnes",
+     "maizefor",
+     "potato",
+     "wheat",
+     "sugarbeet",
+     "barley",
+     "maize",
+     "alfalfa"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpsh1?format=JSON&lang=EN&geoLevel=country&sinceTimePeriod=2018"
+   },
+   "regions": [
+    {
+     "name": "Noord-Brabant",
+     "crops": [
+      "maizefor",
+      "grassnes",
+      "potato",
+      "wheat",
+      "sugarbeet",
+      "maize"
+     ],
+     "unmatched": [
+      "fresh vegetables incl. melons and strawberries (aggregate) [21 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Groningen",
+     "crops": [
+      "wheat",
+      "potato",
+      "sugarbeet",
+      "grassnes",
+      "barley",
+      "maizefor"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Zeeland",
+     "crops": [
+      "wheat",
+      "potato",
+      "sugarbeet",
+      "grassnes",
+      "maizefor",
+      "barley"
+     ],
+     "unmatched": [
+      "fresh vegetables incl. melons and strawberries (aggregate) [10 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [4 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Gelderland",
+     "crops": [
+      "maizefor",
+      "grassnes",
+      "wheat",
+      "potato",
+      "sugarbeet",
+      "maize"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [6 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Drenthe",
+     "crops": [
+      "potato",
+      "grassnes",
+      "maizefor",
+      "sugarbeet",
+      "barley",
+      "wheat"
+     ],
+     "unmatched": [
+      "fresh vegetables incl. melons and strawberries (aggregate) [4 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Overijssel",
+     "crops": [
+      "maizefor",
+      "grassnes",
+      "potato",
+      "sugarbeet",
+      "wheat",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Flevoland",
+     "crops": [
+      "potato",
+      "wheat",
+      "grassnes",
+      "sugarbeet",
+      "maizefor",
+      "barley"
+     ],
+     "unmatched": [
+      "fresh vegetables incl. melons and strawberries (aggregate) [19 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Noord-Holland",
+     "crops": [
+      "grassnes",
+      "potato",
+      "wheat",
+      "sugarbeet",
+      "maizefor",
+      "barley"
+     ],
+     "unmatched": [
+      "fresh vegetables incl. melons and strawberries (aggregate) [9 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "Source: Eurostat crop statistics (data supplied by the national statistical authority), read through the Eurostat dissemination API; national = table apro_cpsh1, regions = table apro_cpshr (browser view: https://ec.europa.eu/eurostat/databrowser/view/apro_cpshr/default/table?lang=en). Ranking by cultivated/harvested area (thousand ha), year 2023. Mapping choices: 'Temporary grasses and grazings' (sown, on arable land) -> grassnes; 'Green maize' -> maizefor; 'Grain maize and corn-cob-mix' -> maize; 'Broad and field beans' -> broadbean; 'Field peas' -> pea; 'Lucerne' -> alfalfa. The regional table has NO breakdown of fruit, citrus or vegetables by species: where those aggregates rank among the top crops they are listed in 'unmatched' with their area, so tree-fruit/citrus/vegetable species are missing from regional 'crops' lists (confidence set to medium in those regions). Permanent grassland excluded. Regions are provinces (NUTS2). "
+  },
+  {
+   "iso3": "GRC",
+   "name": "Greece",
+   "national": {
+    "crops": [
+     "olive",
+     "wheat",
+     "cotton",
+     "barley",
+     "maize",
+     "grassnes",
+     "maizefor",
+     "grape"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpsh1?format=JSON&lang=EN&geoLevel=country&sinceTimePeriod=2018"
+   },
+   "regions": [
+    {
+     "name": "Kentriki Makedonia",
+     "crops": [
+      "wheat",
+      "cotton",
+      "olive",
+      "barley",
+      "maize",
+      "maizefor"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [75 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Thessalia",
+     "crops": [
+      "wheat",
+      "cotton",
+      "barley",
+      "maize",
+      "olive",
+      "grassnes"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [29 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Anatoliki Makedonia, Thraki",
+     "crops": [
+      "wheat",
+      "maizefor",
+      "cotton",
+      "sunflower",
+      "maize",
+      "olive"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Kriti",
+     "crops": [
+      "olive",
+      "grassnes",
+      "grape",
+      "barley",
+      "oats",
+      "rye"
+     ],
+     "unmatched": [
+      "fresh vegetables incl. melons and strawberries (aggregate) [7 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [5 kha]",
+      "citrus fruits (aggregate) [2 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Peloponnisos",
+     "crops": [
+      "olive",
+      "grape",
+      "oats",
+      "grassnes",
+      "wheat",
+      "barley"
+     ],
+     "unmatched": [
+      "citrus fruits (aggregate) [20 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [9 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [4 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Sterea Elláda",
+     "crops": [
+      "olive",
+      "wheat",
+      "cotton",
+      "grassnes",
+      "barley",
+      "maize"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [8 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Dytiki Elláda",
+     "crops": [
+      "olive",
+      "oats",
+      "grassnes",
+      "grape",
+      "maize",
+      "pea"
+     ],
+     "unmatched": [
+      "citrus fruits (aggregate) [10 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [6 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Dytiki Makedonia",
+     "crops": [
+      "wheat",
+      "barley",
+      "maize",
+      "grassnes",
+      "sunflower",
+      "triticale"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [9 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "Source: Eurostat crop statistics (data supplied by the national statistical authority), read through the Eurostat dissemination API; national = table apro_cpsh1, regions = table apro_cpshr (browser view: https://ec.europa.eu/eurostat/databrowser/view/apro_cpshr/default/table?lang=en). Ranking by cultivated/harvested area (thousand ha), year 2023. Mapping choices: 'Temporary grasses and grazings' (sown, on arable land) -> grassnes; 'Green maize' -> maizefor; 'Grain maize and corn-cob-mix' -> maize; 'Broad and field beans' -> broadbean; 'Field peas' -> pea; 'Lucerne' -> alfalfa. The regional table has NO breakdown of fruit, citrus or vegetables by species: where those aggregates rank among the top crops they are listed in 'unmatched' with their area, so tree-fruit/citrus/vegetable species are missing from regional 'crops' lists (confidence set to medium in those regions). Permanent grassland excluded. Regions are administrative regions/peripheries (NUTS2), Eurostat transliterated names. "
+  },
+  {
+   "iso3": "PRT",
+   "name": "Portugal",
+   "national": {
+    "crops": [
+     "olive",
+     "grape",
+     "grassnes",
+     "maize",
+     "almond",
+     "maizefor",
+     "chestnut",
+     "rice"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpsh1?format=JSON&lang=EN&geoLevel=country&sinceTimePeriod=2018"
+   },
+   "regions": [
+    {
+     "name": "Alentejo",
+     "crops": [
+      "olive",
+      "grassnes",
+      "grape",
+      "wheat",
+      "oats",
+      "triticale"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [109 kha]",
+      "other cereals harvested green [38 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Norte",
+     "crops": [
+      "olive",
+      "grape",
+      "maizefor",
+      "maize",
+      "grassnes",
+      "rye"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [90 kha]",
+      "other cereals harvested green [14 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Centro",
+     "crops": [
+      "olive",
+      "grape",
+      "maize",
+      "grassnes",
+      "maizefor",
+      "rice"
+     ],
+     "unmatched": [
+      "other cereals harvested green [31 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [28 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Oeste e Vale do Tejo",
+     "crops": [
+      "grape",
+      "maize",
+      "olive",
+      "rice",
+      "grassnes",
+      "potato"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [37 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [23 kha]",
+      "other cereals harvested green [10 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Algarve",
+     "crops": [
+      "olive",
+      "grassnes",
+      "oats",
+      "grape",
+      "wheat",
+      "barley"
+     ],
+     "unmatched": [
+      "citrus fruits (aggregate) [16 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [13 kha]",
+      "other cereals harvested green [1 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [1 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "Source: Eurostat crop statistics (data supplied by the national statistical authority), read through the Eurostat dissemination API; national = table apro_cpsh1, regions = table apro_cpshr (browser view: https://ec.europa.eu/eurostat/databrowser/view/apro_cpshr/default/table?lang=en). Ranking by cultivated/harvested area (thousand ha), year 2023. Mapping choices: 'Temporary grasses and grazings' (sown, on arable land) -> grassnes; 'Green maize' -> maizefor; 'Grain maize and corn-cob-mix' -> maize; 'Broad and field beans' -> broadbean; 'Field peas' -> pea; 'Lucerne' -> alfalfa. The regional table has NO breakdown of fruit, citrus or vegetables by species: where those aggregates rank among the top crops they are listed in 'unmatched' with their area, so tree-fruit/citrus/vegetable species are missing from regional 'crops' lists (confidence set to medium in those regions). Permanent grassland excluded. Regions are NUTS2 regions in the NUTS 2024 classification (Oeste e Vale do Tejo is separate from Centro and Alentejo). National-level categories without vocabulary match that would rank in the top 8: other cereals harvested green. "
+  },
+  {
+   "iso3": "RUS",
+   "name": "Russia",
+   "national": {
+    "crops": [
+     "wheat",
+     "barley",
+     "sunflower",
+     "maize",
+     "soybean",
+     "oats",
+     "rapeseed",
+     "rye"
+    ],
+    "basis": "production",
+    "year": 2023,
+    "source_url": "https://web.archive.org/web/20241218231003/https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=RS"
+   },
+   "regions": [
+    {
+     "name": "Central federal district",
+     "crops": [
+      "wheat",
+      "barley",
+      "maize",
+      "sunflower",
+      "soybean",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2021,
+     "source_url": "https://web.archive.org/web/20241218164701/https://ipad.fas.usda.gov/rssiws/al/rs_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Southern federal district",
+     "crops": [
+      "wheat",
+      "sunflower",
+      "maize",
+      "barley",
+      "soybean",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2021,
+     "source_url": "https://web.archive.org/web/20241218164701/https://ipad.fas.usda.gov/rssiws/al/rs_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Volga federal district",
+     "crops": [
+      "wheat",
+      "barley",
+      "sunflower",
+      "rye",
+      "oats",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2021,
+     "source_url": "https://web.archive.org/web/20241218164701/https://ipad.fas.usda.gov/rssiws/al/rs_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Siberian federal district",
+     "crops": [
+      "wheat",
+      "barley",
+      "oats",
+      "rapeseed",
+      "rye",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2021,
+     "source_url": "https://web.archive.org/web/20241218164701/https://ipad.fas.usda.gov/rssiws/al/rs_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "North Caucasian federal district",
+     "crops": [
+      "wheat",
+      "maize",
+      "barley",
+      "sunflower",
+      "rapeseed",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2021,
+     "source_url": "https://web.archive.org/web/20241218164701/https://ipad.fas.usda.gov/rssiws/al/rs_cropprod.aspx",
+     "confidence": "medium"
+    },
+    {
+     "name": "Urals federal district",
+     "crops": [
+      "wheat",
+      "barley",
+      "oats",
+      "rapeseed",
+      "rye"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2021,
+     "source_url": "https://web.archive.org/web/20241218164701/https://ipad.fas.usda.gov/rssiws/al/rs_cropprod.aspx",
+     "confidence": "low"
+    },
+    {
+     "name": "Northwestern federal district",
+     "crops": [
+      "barley",
+      "wheat",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2021,
+     "source_url": "https://web.archive.org/web/20241218164701/https://ipad.fas.usda.gov/rssiws/al/rs_cropprod.aspx",
+     "confidence": "low"
+    },
+    {
+     "name": "Far Eastern federal district",
+     "crops": [
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "production",
+     "year": 2021,
+     "source_url": "https://web.archive.org/web/20241218164701/https://ipad.fas.usda.gov/rssiws/al/rs_cropprod.aspx",
+     "confidence": "low"
+    }
+   ],
+   "notes": "Rosstat could not be reached (rosstat.gov.ru and territorial sites NN.rosstat.gov.ru: connection refused/timeout; fedstat.ru HTTP 403). ipad.fas.usda.gov live site returned 503, so USDA FAS IPAD pages were read via Internet Archive snapshots (Dec 2024). IMPORTANT: no source with oblast/krai-level (first-level federal subject) data could be read; regions are the 8 FEDERAL DISTRICTS used in the IPAD maps, which are groupings of subjects. No entry is given for individual subjects (Krasnodar, Rostov, Stavropol, Altai, etc.). National: IPAD country summary production 5-yr avg 2019-2023 (1000 t): wheat 83,524; barley 20,015; sunflowerseed 15,500; corn 15,161; soybean 5,244; rapeseed 3,176; oats (4.5 Mt) and rye (2.0 Mt) positions come from the IPAD map averages 2017-2021. Potatoes, sugar beet, pulses, buckwheat, flax are not covered by the source. Regions: IPAD crop production maps (source stated: Rosstat, average crop production 2017-2021), images Russia_Total_Wheat, Total_Barley, Corn, sunflowerseed, Soybean, Total_Rapeseed, Oats, Rye; district ranking = district % of national production x national average printed on each map (wheat 78.2 Mt, barley 19.0, corn 13.6, sunflower 13.4, oats 4.5, soybean 4.2, rapeseed 2.2, rye 2.0). By production, not area. Districts with no percentage on a map are treated as negligible for that crop: Far East shows only soybean (38%), Urals and Northwest lists are short; these three are low confidence. Corn and sunflower maps show no % for Siberia/Urals."
+  },
+  {
+   "iso3": "TUR",
+   "name": "Türkiye",
+   "national": {
+    "crops": [
+     "wheat",
+     "barley",
+     "maize",
+     "sunflower",
+     "olive",
+     "hazelnut",
+     "alfalfa",
+     "maizefor"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpsh1?format=JSON&lang=EN&geoLevel=country&sinceTimePeriod=2018"
+   },
+   "regions": [
+    {
+     "name": "Konya, Karaman (TR52)",
+     "crops": [
+      "wheat",
+      "barley",
+      "maize",
+      "sugarbeet",
+      "sunflower",
+      "maizefor"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [58 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [51 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kayseri, Sivas, Yozgat (TR72)",
+     "crops": [
+      "wheat",
+      "barley",
+      "sugarbeet",
+      "sunflower",
+      "oats",
+      "potato"
+     ],
+     "unmatched": [
+      "fresh vegetables incl. melons and strawberries (aggregate) [40 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Şanlıurfa, Diyarbakır (TRC2)",
+     "crops": [
+      "wheat",
+      "cotton",
+      "barley",
+      "maize",
+      "grape",
+      "maizefor"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [177 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [21 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kırıkkale, Aksaray, Niğde, Nevşehir, Kırşehir (TR71)",
+     "crops": [
+      "wheat",
+      "barley",
+      "sunflower",
+      "potato",
+      "rye",
+      "broadbean"
+     ],
+     "unmatched": [
+      "fresh vegetables incl. melons and strawberries (aggregate) [50 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [41 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Manisa, Afyonkarahisar, Kütahya, Uşak (TR33)",
+     "crops": [
+      "wheat",
+      "barley",
+      "olive",
+      "grape",
+      "maizefor",
+      "maize"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [67 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [54 kha]",
+      "other cereals harvested green [39 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Samsun, Tokat, Çorum, Amasya (TR83)",
+     "crops": [
+      "wheat",
+      "barley",
+      "sunflower",
+      "maizefor",
+      "maize",
+      "triticale"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [150 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [50 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Ankara (TR51)",
+     "crops": [
+      "wheat",
+      "barley",
+      "oats",
+      "sugarbeet",
+      "sunflower",
+      "maizefor"
+     ],
+     "unmatched": [
+      "fresh vegetables incl. melons and strawberries (aggregate) [38 kha]",
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [11 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Tekirdağ, Edirne, Kırklareli (TR21)",
+     "crops": [
+      "wheat",
+      "sunflower",
+      "rice",
+      "barley",
+      "maizefor",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "high"
+    },
+    {
+     "name": "Aydın, Denizli, Muğla (TR32)",
+     "crops": [
+      "olive",
+      "wheat",
+      "cotton",
+      "barley",
+      "maizefor",
+      "grape"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [91 kha]",
+      "other cereals harvested green [50 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    },
+    {
+     "name": "Bursa, Eskişehir, Bilecik (TR41)",
+     "crops": [
+      "wheat",
+      "barley",
+      "maize",
+      "olive",
+      "sunflower",
+      "maizefor"
+     ],
+     "unmatched": [
+      "fruits, berries and nuts (aggregate, excl. citrus/grapes/strawberries) [60 kha]",
+      "fresh vegetables incl. melons and strawberries (aggregate) [55 kha]"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/apro_cpshr?format=JSON&lang=EN&geoLevel=nuts2&sinceTimePeriod=2020&strucpro=AR_THS_HA&strucpro=MAR_THS_HA",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "Source: Eurostat crop statistics (data supplied by the national statistical authority), read through the Eurostat dissemination API; national = table apro_cpsh1, regions = table apro_cpshr (browser view: https://ec.europa.eu/eurostat/databrowser/view/apro_cpshr/default/table?lang=en). Ranking by cultivated/harvested area (thousand ha), year 2023. Mapping choices: 'Temporary grasses and grazings' (sown, on arable land) -> grassnes; 'Green maize' -> maizefor; 'Grain maize and corn-cob-mix' -> maize; 'Broad and field beans' -> broadbean; 'Field peas' -> pea; 'Lucerne' -> alfalfa. The regional table has NO breakdown of fruit, citrus or vegetables by species: where those aggregates rank among the top crops they are listed in 'unmatched' with their area, so tree-fruit/citrus/vegetable species are missing from regional 'crops' lists (confidence set to medium in those regions). Permanent grassland excluded. Regions are NUTS2 statistical regions (groups of provinces, named by their provinces), not the 81 provinces themselves; data originate from TurkStat (TÜİK) as transmitted to Eurostat. TÜİK's own site was not queried. Caution: 'broadbean' in TR71 is Eurostat category P1200 'Broad and field beans' as reported for Türkiye and may actually be dry beans (bean); chickpea/lentil are hidden in the regional 'other dry pulses' aggregate. Hazelnut (Black Sea) and other tree crops appear only in the national list for the reason given above. "
+  }
+ ]
+}

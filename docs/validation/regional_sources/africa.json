@@ -1,0 +1,2131 @@
+{
+ "agent": "africa",
+ "countries": [
+  {
+   "iso3": "NGA",
+   "name": "Nigeria",
+   "national": {
+    "crops": [
+     "cassava",
+     "yam",
+     "maize",
+     "sorghum",
+     "cowpea",
+     "rice",
+     "oilpalm",
+     "groundnut"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Kano",
+     "crops": [
+      "sorghum",
+      "groundnut",
+      "cowpea",
+      "maize",
+      "rice",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_NG.csv",
+     "confidence": "low"
+    },
+    {
+     "name": "Kaduna",
+     "crops": [
+      "sorghum",
+      "maize",
+      "groundnut",
+      "yam",
+      "cassava",
+      "cowpea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_NG.csv",
+     "confidence": "low"
+    },
+    {
+     "name": "Niger",
+     "crops": [
+      "sorghum",
+      "cassava",
+      "yam",
+      "maize",
+      "rice",
+      "groundnut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_NG.csv",
+     "confidence": "low"
+    },
+    {
+     "name": "Benue",
+     "crops": [
+      "cassava",
+      "rice",
+      "groundnut",
+      "yam",
+      "sorghum",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_NG.csv",
+     "confidence": "low"
+    },
+    {
+     "name": "Bauchi",
+     "crops": [
+      "sorghum",
+      "groundnut",
+      "maize",
+      "cowpea",
+      "rice",
+      "cassava"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_NG.csv",
+     "confidence": "low"
+    },
+    {
+     "name": "Taraba",
+     "crops": [
+      "yam",
+      "sorghum",
+      "maize",
+      "cowpea",
+      "groundnut",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_NG.csv",
+     "confidence": "low"
+    },
+    {
+     "name": "Borno",
+     "crops": [
+      "maize",
+      "sorghum",
+      "cowpea",
+      "groundnut",
+      "rice",
+      "millet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_NG.csv",
+     "confidence": "low"
+    },
+    {
+     "name": "Kebbi",
+     "crops": [
+      "sorghum",
+      "rice",
+      "maize",
+      "yam",
+      "groundnut",
+      "cassava"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_NG.csv",
+     "confidence": "low"
+    },
+    {
+     "name": "Oyo",
+     "crops": [
+      "yam",
+      "cassava",
+      "maize",
+      "cowpea",
+      "rice",
+      "tomato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_NG.csv",
+     "confidence": "low"
+    },
+    {
+     "name": "Cross River",
+     "crops": [
+      "cassava",
+      "yam",
+      "okra",
+      "rice",
+      "maize",
+      "taro"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_NG.csv",
+     "confidence": "low"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): cassava 10050, yam 7526, maize 5902, sorghum 5777, cowpea 4990, rice 4470, oil palm 4307, groundnut 3517, millet 1922, okra 1781, sweet potato 1510, taro 1331, soybean 1169, cocoa 1131. REGIONAL lists: Source: HarvestStat Africa per-country CSV (github.com/HarvestStat/HarvestStat-Africa), a harmonised compilation of the FEWS NET Data Warehouse subnational crop statistics, which in turn come from national agencies. Rankings computed by me from the 'area' indicator, averaged over the years stated, seasons summed. Nigeria: mean of 2019-2021 (origin of the series: NAERLS/FMARD Agricultural Performance Survey via FEWS NET). DATA QUALITY WARNING: state areas in this series are implausibly large in places (e.g. Federal Capital Territory 2.4 M ha and Lagos 0.6 M ha of crops, more than their land area; a step change in 2014), so only the ORDER of crops should be used and confidence is low. FCT and Rivers were left out for that reason. The series has no tree crops: oil palm (4.3 M ha in FAOSTAT), cocoa (1.1 M ha), rubber, cashew and plantain are missing from every state list - this matters most for the southern states (Cross River, Oyo and the unlisted Ondo, Edo, Akwa Ibom). \"taro\" = cocoyam; \"melonseed\" = egusi melon."
+  },
+  {
+   "iso3": "ETH",
+   "name": "Ethiopia",
+   "national": {
+    "crops": [
+     "maize",
+     "cerealnes",
+     "wheat",
+     "sorghum",
+     "barley",
+     "coffee",
+     "sesame",
+     "bean"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Oromia",
+     "crops": [
+      "maize",
+      "wheat",
+      "sorghum",
+      "barley",
+      "coffee"
+     ],
+     "unmatched": [
+      "teff"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ET.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Amhara",
+     "crops": [
+      "wheat",
+      "sorghum",
+      "maize",
+      "barley",
+      "millet"
+     ],
+     "unmatched": [
+      "teff"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ET.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "SNNPR",
+     "crops": [
+      "maize",
+      "wheat",
+      "coffee",
+      "sorghum",
+      "broadbean"
+     ],
+     "unmatched": [
+      "teff"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ET.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Tigray",
+     "crops": [
+      "sorghum",
+      "sesame",
+      "millet",
+      "maize",
+      "wheat"
+     ],
+     "unmatched": [
+      "teff"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ET.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Sidama",
+     "crops": [
+      "coffee",
+      "maize",
+      "bean",
+      "barley"
+     ],
+     "unmatched": [
+      "gesho (Rhamnus prinoides, labelled \"Hops\" in the source)",
+      "khat (chat)"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ET.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Benishangul-Gumuz",
+     "crops": [
+      "maize",
+      "millet",
+      "groundnut",
+      "sorghum",
+      "soybean"
+     ],
+     "unmatched": [
+      "teff"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ET.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Somali",
+     "crops": [
+      "maize",
+      "sorghum",
+      "onion",
+      "tomato"
+     ],
+     "unmatched": [
+      "khat (chat)"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ET.csv",
+     "confidence": "high"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT \"Cereals n.e.c.\" (3.1 M ha) is teff, hence \"cerealnes\" in the national list; in the regional lists teff is kept under \"unmatched\" as instructed (read it as cerealnes if the gridded dataset follows FAO). FAOSTAT next: broad bean 514k, millet 433k, \"other fibre crops\" 334k, potato 321k. REGIONAL lists: Source: HarvestStat Africa per-country CSV (github.com/HarvestStat/HarvestStat-Africa), a harmonised compilation of the FEWS NET Data Warehouse subnational crop statistics, which in turn come from national agencies. Rankings computed by me from the 'area' indicator, averaged over the years stated, seasons summed. Ethiopia: CSA/ESS Agricultural Sample Survey, Meher season private peasant holdings, mean of 2019-2021 (Tigray has no 2021 data). Region names follow the source: \"SNNPR\" is the former Southern Nations, Nationalities and Peoples' Region (since split into South Ethiopia, Central Ethiopia and South West Ethiopia Peoples' regions; Sidama, separated in 2020, is listed on its own). Teff is first by area in Oromia, Amhara and second in SNNPR and Tigray (see \"unmatched\"); it is ranked ahead of the matched crops there. Broad bean = \"fava bean\" in the source; khat (chat), gesho (\"Hops\" in the source, 75k ha in Sidama - plausibly a labelling issue) and enset have no vocabulary match. Somali, Afar, Gambela have very small surveyed areas."
+  },
+  {
+   "iso3": "EGY",
+   "name": "Egypt",
+   "national": {
+    "crops": [
+     "wheat",
+     "maize",
+     "rice",
+     "sugarbeet",
+     "potato",
+     "sorghum",
+     "tomato",
+     "mango"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Beheira",
+     "crops": [
+      "fornes",
+      "wheat",
+      "rice",
+      "maize",
+      "potato",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=EG&start_date=2022-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Sharqia",
+     "crops": [
+      "wheat",
+      "rice",
+      "fornes",
+      "maize",
+      "sugarbeet",
+      "cotton"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=EG&start_date=2022-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Dakahlia",
+     "crops": [
+      "rice",
+      "wheat",
+      "fornes",
+      "maize",
+      "sugarbeet",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=EG&start_date=2022-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Kafr el-Sheikh",
+     "crops": [
+      "rice",
+      "wheat",
+      "fornes",
+      "sugarbeet",
+      "cotton",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=EG&start_date=2022-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Minya",
+     "crops": [
+      "maize",
+      "wheat",
+      "potato",
+      "soybean",
+      "fornes",
+      "sugarbeet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=EG&start_date=2022-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Faiyum",
+     "crops": [
+      "wheat",
+      "fornes",
+      "sorghum",
+      "maize",
+      "sugarbeet"
+     ],
+     "unmatched": [
+      "medicinal and aromatic crops"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=EG&start_date=2022-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Gharbia",
+     "crops": [
+      "fornes",
+      "wheat",
+      "rice",
+      "maize",
+      "onion",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=EG&start_date=2022-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Sohag",
+     "crops": [
+      "wheat",
+      "maize",
+      "fornes",
+      "sorghum",
+      "onion",
+      "tomato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=EG&start_date=2022-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Asyut",
+     "crops": [
+      "maize",
+      "wheat",
+      "fornes",
+      "sorghum",
+      "sugarbeet",
+      "tomato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=EG&start_date=2022-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Qena",
+     "crops": [
+      "sugarcane",
+      "wheat",
+      "sorghum",
+      "maize",
+      "fornes",
+      "tomato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=EG&start_date=2022-06-01&fields=simple",
+     "confidence": "high"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): wheat 1404, maize 972, rice 543, sugar beet 272, potato 243, sorghum 174, tomato 158, mango/guava 154, orange 144, sugar cane 139, seed cotton 116, olive 113. FAOSTAT has no fodder items, so berseem clover / green fodder (about 1 M ha in the CAPMAS series, second only to wheat) is absent from the national list but present in the governorate lists as \"fornes\". REGIONAL lists: Source: FEWS NET Data Warehouse open API (fdw.fews.net), series \"Official agricultural statistics, Egypt\" digitised from CAPMAS, Annual Bulletin of Statistical Crop Area and Plant Production 2023 and 2024 (MALR data). Rankings computed by me from \"Area Planted\" (ha), mean of 2023 and 2024, by governorate (\"Area Harvested\" is zero-filled in this series). White and yellow maize summed. \"fornes\" = sum of the source items \"Forage Products (unspecified)\" (winter season; most likely long-season berseem/Egyptian clover, but the source does not say so) and \"Green Fodder\"; short-season berseem (\"Clover, tahreesh\", 77k ha nationally) would map to \"clover\" and alfalfa (55k ha) to \"alfalfa\". Next national crops after the top 8: sugarcane (130k ha), cotton (119k ha), onion (118k ha). GAP: this bulletin series contains NO fruit/tree crops (citrus/orange, date, olive, grape, mango, banana appear nowhere), so orchards are missing from every list. In Minya the order of potato/soybean/fornes is uncertain (green fodder value not seen). Source spelling of governorates: Behera, Sharkeyia, Fayoum, Assyut. The FEWS reporting unit \"Noubaria\" (438k ha: wheat, sugar beet, potato, maize, tomato, groundnut) is an irrigation/reclamation area mostly inside Beheira, not a governorate, and was left out; New Valley (El Wadi el-Gedid) also has 342k ha led by wheat (160k ha), potato, maize, groundnut, alfalfa. censusinfo.capmas.gov.eg could not be resolved (DNS) from this environment."
+  },
+  {
+   "iso3": "ZAF",
+   "name": "South Africa",
+   "national": {
+    "crops": [
+     "maize",
+     "soybean",
+     "sunflower",
+     "wheat",
+     "sugarcane",
+     "rapeseed",
+     "grape",
+     "barley"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Free State",
+     "crops": [
+      "maize",
+      "soybean",
+      "sunflower",
+      "wheat",
+      "groundnut",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ZA.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "North West",
+     "crops": [
+      "maize",
+      "sunflower",
+      "soybean",
+      "groundnut",
+      "wheat",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ZA.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Mpumalanga",
+     "crops": [
+      "maize",
+      "soybean",
+      "sugarcane",
+      "nutnes",
+      "sorghum",
+      "banana"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ZA.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Western Cape",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "barley",
+      "grape",
+      "oats",
+      "apple"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ZA.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Limpopo",
+     "crops": [
+      "sunflower",
+      "maize",
+      "wheat",
+      "orange",
+      "soybean",
+      "sorghum"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ZA.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "KwaZulu-Natal",
+     "crops": [
+      "sugarcane",
+      "maize",
+      "soybean",
+      "wheat",
+      "nutnes"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ZA.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Gauteng",
+     "crops": [
+      "maize",
+      "soybean",
+      "sunflower",
+      "wheat",
+      "bean",
+      "sorghum"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ZA.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Northern Cape",
+     "crops": [
+      "maize",
+      "wheat",
+      "alfalfa",
+      "grape",
+      "nutnes",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ZA.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Eastern Cape",
+     "crops": [
+      "maize",
+      "alfalfa",
+      "orange",
+      "pineapple",
+      "lemonlime",
+      "wheat"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ZA.csv",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): maize 2655, soybean 967, sunflower 568, wheat 543, sugar cane 254, rapeseed 118, grape 114, citrus total 107, barley 101, potato 67. REGIONAL lists: Source: HarvestStat Africa per-country CSV (github.com/HarvestStat/HarvestStat-Africa), a harmonised compilation of the FEWS NET Data Warehouse subnational crop statistics, which in turn come from national agencies. Rankings computed by me from the 'area' indicator, averaged over the years stated, seasons summed. South Africa: the HarvestStat/FEWS series (origin: Crop Estimates Committee, commercial sector only) covers summer and winter grains and oilseeds, mean of 2022-2024; white + yellow maize summed. I merged into each province the non-grain crops from the Stats SA Census of Commercial Agriculture 2017 (Report 11-02-01, read from the FAO-hosted copy https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/WCA_2020/WCA_2020_new_doc/ZAF_REP1_ENG_2017_2018.pdf, tables 3.15-3.18, 4.1, 4.4, 4.6, 4.8, 4.10; areas planted 2017): sugarcane KwaZulu-Natal 163k ha, Mpumalanga 24k; Western Cape wine grapes 53k + table grapes 12k, apples 22k, pears 10k; Northern Cape lucerne 29k, grapes 14k, pecan 9k; Limpopo oranges 23k (all citrus 49k), other subtropical fruit 14k, macadamia 10k; Mpumalanga macadamia 16k, bananas 6k, oranges 4k; Eastern Cape lucerne 16k, oranges 15k, pineapples 9k, lemons 9k; planted grass (not listed) is also sizeable in Free State 35k, Eastern Cape 27k, KwaZulu-Natal 24k. Mixing 2017 census areas with 2022-24 grain areas makes the order approximate (confidence medium); \"nutnes\" = macadamia/pecan. Limpopo sunflower (100k ha in the series) looks high but is what the data say. Potatoes/vegetables by province were not extracted. statssa.gov.za returned HTTP 403 for both the fetch tool and curl."
+  },
+  {
+   "iso3": "KEN",
+   "name": "Kenya",
+   "national": {
+    "crops": [
+     "maize",
+     "bean",
+     "pigeonpea",
+     "potato",
+     "cowpea",
+     "tea",
+     "sorghum",
+     "pulsenes"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Trans Nzoia",
+     "crops": [
+      "maize",
+      "bean",
+      "sugarcane",
+      "tea",
+      "coffee"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_KE.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Uasin Gishu",
+     "crops": [
+      "maize",
+      "wheat",
+      "bean",
+      "potato",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_KE.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Nakuru",
+     "crops": [
+      "maize",
+      "bean",
+      "potato",
+      "wheat",
+      "tea",
+      "pea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_KE.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Narok",
+     "crops": [
+      "maize",
+      "wheat",
+      "bean",
+      "sugarcane",
+      "potato",
+      "cabbage"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_KE.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Bungoma",
+     "crops": [
+      "maize",
+      "bean",
+      "sugarcane",
+      "coffee",
+      "sweetpotato",
+      "banana"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_KE.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kakamega",
+     "crops": [
+      "maize",
+      "bean",
+      "sugarcane",
+      "sweetpotato",
+      "cowpea",
+      "tea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_KE.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Meru",
+     "crops": [
+      "bean",
+      "maize",
+      "potato",
+      "tea",
+      "banana",
+      "millet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_KE.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kitui",
+     "crops": [
+      "pulsenes",
+      "maize",
+      "cowpea",
+      "sorghum",
+      "millet",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_KE.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kericho",
+     "crops": [
+      "tea",
+      "maize",
+      "bean",
+      "sugarcane",
+      "coffee",
+      "pineapple"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_KE.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kilifi",
+     "crops": [
+      "maize",
+      "coconut",
+      "cashew",
+      "cowpea",
+      "pulsenes",
+      "cassava"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_KE.csv",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): maize 2237, dry beans 1207, pigeon pea 231, potato 229, cowpea 228, tea 224, sorghum 207, other pulses (green gram) 201, millet 121, wheat 116, coffee 110, sugar cane 97. REGIONAL lists: Source: HarvestStat Africa per-country CSV (github.com/HarvestStat/HarvestStat-Africa), a harmonised compilation of the FEWS NET Data Warehouse subnational crop statistics, which in turn come from national agencies. Rankings computed by me from the 'area' indicator, averaged over the years stated, seasons summed. Kenya: county-level series (counties are the first-level units since 2013), mean of 2019-2021. Dropped as implausible: \"Watermelon\" (82k ha nationally, e.g. 19k ha in Uasin Gishu) and \"Jute\". Green gram (mung bean) mapped to \"pulsenes\" (FAOSTAT \"other pulses\"); kale mapped to \"cabbage\". A coffee value of 38k ha for Nyandarua (not listed) is also implausible. The ASAL counties Kitui/Makueni/Machakos have the largest crop areas in the series; Kitui is listed."
+  },
+  {
+   "iso3": "TZA",
+   "name": "Tanzania",
+   "national": {
+    "crops": [
+     "maize",
+     "cassava",
+     "rice",
+     "sunflower",
+     "bean",
+     "groundnut",
+     "cashew",
+     "sorghum"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Dodoma",
+     "crops": [
+      "maize",
+      "sunflower",
+      "sorghum",
+      "groundnut",
+      "pigeonpea",
+      "sesame"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=TZ&start_date=2016-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Morogoro",
+     "crops": [
+      "rice",
+      "maize",
+      "sesame",
+      "bean",
+      "sunflower",
+      "pigeonpea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=TZ&start_date=2016-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Ruvuma",
+     "crops": [
+      "maize",
+      "cashew",
+      "rice",
+      "cassava",
+      "sesame",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=TZ&start_date=2016-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Kagera",
+     "crops": [
+      "maize",
+      "bean",
+      "banana",
+      "coffee",
+      "cassava",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=TZ&start_date=2016-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Mtwara",
+     "crops": [
+      "cashew",
+      "maize",
+      "cassava",
+      "pigeonpea",
+      "groundnut",
+      "sesame"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=TZ&start_date=2016-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Tabora",
+     "crops": [
+      "maize",
+      "rice",
+      "groundnut",
+      "sunflower",
+      "cassava",
+      "sweetpotato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=TZ&start_date=2016-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Simiyu",
+     "crops": [
+      "maize",
+      "cotton",
+      "rice",
+      "sweetpotato",
+      "sunflower",
+      "sorghum"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=TZ&start_date=2016-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Singida",
+     "crops": [
+      "maize",
+      "sunflower",
+      "sorghum",
+      "rice",
+      "groundnut",
+      "millet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=TZ&start_date=2016-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Mbeya",
+     "crops": [
+      "maize",
+      "rice",
+      "bean",
+      "groundnut",
+      "banana",
+      "sunflower"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=TZ&start_date=2016-06-01&fields=simple",
+     "confidence": "high"
+    },
+    {
+     "name": "Lindi",
+     "crops": [
+      "cashew",
+      "sesame",
+      "maize",
+      "pigeonpea",
+      "sorghum",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=TZ&start_date=2016-06-01&fields=simple",
+     "confidence": "high"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): maize 4200, cassava 1666, rice 1324, sunflower 1068, dry beans 1010, groundnut 909, cashew 746, sorghum 715, plantain 320, banana 316. REGIONAL lists: Source: FEWS NET Data Warehouse open API, rows digitised from the Tanzania NBS \"Annual Agricultural Sample Survey (AASS) 2022/23 - National Report\". Rankings computed by me from \"Area Planted\" by region, using the \"Annual\" row where present (otherwise long + short seasons). National sum of regions (k ha): maize 6268, rice 1699, beans 1093, sunflower 914, cashew 898, cassava 779, groundnut 571, sorghum 552, sesame 497, banana 394, cotton 362, pigeon pea 333. Tobacco, tea, sisal and sugarcane estates are poorly or not covered by this smallholder-oriented survey (tobacco does not appear at all, although Tabora is known for it - not verified here). An older cross-check from HarvestStat Africa (2015 data) gave the same leading crops per region."
+  },
+  {
+   "iso3": "GHA",
+   "name": "Ghana",
+   "national": {
+    "crops": [
+     "cocoa",
+     "maize",
+     "cassava",
+     "yam",
+     "oilpalm",
+     "plantain",
+     "rice",
+     "cashew"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Northern",
+     "crops": [
+      "maize",
+      "yam",
+      "rice",
+      "cassava",
+      "groundnut",
+      "soybean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_GH.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Ashanti",
+     "crops": [
+      "maize",
+      "cassava",
+      "plantain",
+      "taro",
+      "yam",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_GH.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Eastern",
+     "crops": [
+      "cassava",
+      "maize",
+      "plantain",
+      "yam",
+      "taro",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_GH.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Upper West",
+     "crops": [
+      "maize",
+      "groundnut",
+      "cowpea",
+      "yam",
+      "sorghum",
+      "millet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_GH.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Bono East",
+     "crops": [
+      "yam",
+      "maize",
+      "cassava",
+      "rice",
+      "groundnut",
+      "cowpea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_GH.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Bono",
+     "crops": [
+      "maize",
+      "cassava",
+      "yam",
+      "plantain",
+      "taro",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_GH.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Upper East",
+     "crops": [
+      "maize",
+      "sorghum",
+      "millet",
+      "rice",
+      "groundnut",
+      "cowpea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_GH.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Central",
+     "crops": [
+      "cassava",
+      "maize",
+      "plantain",
+      "taro",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_GH.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Western North",
+     "crops": [
+      "plantain",
+      "cassava",
+      "taro",
+      "maize",
+      "rice",
+      "yam"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_GH.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Volta",
+     "crops": [
+      "cassava",
+      "maize",
+      "rice",
+      "yam",
+      "plantain",
+      "cowpea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_GH.csv",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): cocoa 1424, maize 1289, cassava 1054, yam 567, oil palm 407, plantain 397, rice 394, cashew 348, groundnut 338, sorghum 310. REGIONAL lists: Source: HarvestStat Africa per-country CSV (github.com/HarvestStat/HarvestStat-Africa), a harmonised compilation of the FEWS NET Data Warehouse subnational crop statistics, which in turn come from national agencies. Rankings computed by me from the 'area' indicator, averaged over the years stated, seasons summed. Ghana: MoFA-SRID series, mean of 2020-2022, 16 regions. \"plantain\" = source item labelled \"Banana\" (MoFA reports plantain); \"taro\" = cocoyam (could correspond to \"yautia\" in FAO terms). GAP: the series has food crops only - cocoa (1.4 M ha nationally, concentrated in Western North, Western, Ashanti, Ahafo, Eastern, Central according to general knowledge that I could NOT source at regional level in this session), oil palm, cashew and rubber are missing from every regional list."
+  },
+  {
+   "iso3": "CIV",
+   "name": "Côte d'Ivoire",
+   "national": {
+    "crops": [
+     "cocoa",
+     "cashew",
+     "yam",
+     "cassava",
+     "rubber",
+     "rice",
+     "plantain",
+     "maize"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Bas-Sassandra",
+     "crops": [
+      "cocoa",
+      "rubber",
+      "oilpalm",
+      "rice",
+      "maize",
+      "cassava"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=CI&start_date=1990-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Denguélé",
+     "crops": [
+      "cashew",
+      "groundnut",
+      "rice",
+      "cotton",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=CI&start_date=1990-01-01&fields=simple",
+     "confidence": "low"
+    },
+    {
+     "name": "Savanes",
+     "crops": [
+      "cashew",
+      "maize",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=CI&start_date=1990-01-01&fields=simple",
+     "confidence": "low"
+    },
+    {
+     "name": "Vallée du Bandama",
+     "crops": [
+      "yam",
+      "cassava",
+      "rice",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=CI&start_date=1990-01-01&fields=simple",
+     "confidence": "low"
+    },
+    {
+     "name": "Zanzan",
+     "crops": [
+      "cashew",
+      "cotton",
+      "maize",
+      "yam"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=CI&start_date=1990-01-01&fields=simple",
+     "confidence": "low"
+    },
+    {
+     "name": "Sassandra-Marahoué",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Montagnes",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Gôh-Djiboua",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Comoé",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Lacs",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): cocoa 4237, cashew 1414, yam 1386, cassava 1224, rubber 809, rice 665, plantain 559, maize 540, then seed cotton 444, coffee 439, oil palm 407, mango 327. REGIONAL lists: FEWS NET Data Warehouse open API, rows digitised from the Ivorian \"Annuaire Statistique 2020 et 2021 - Indicateurs du secteur de l'Agriculture\" (plus rows tagged FAOStat). Coverage is very patchy: only one administrative region (second level) is available inside each district, so each district list reflects a single region: Bas-Sassandra = San-Pédro region 2021 (cocoa 489k ha, rubber 84k, oil palm 63k, rice 23k, maize 15k, cassava 10k); Denguélé = Kabadougou region 2020 (cashew 46k, groundnut 46k, rice 25k, seed cotton 21k, maize 19k); Savanes = Poro region 2021 (cashew 183k, maize 36k, rice 10k; cotton row is zero/missing although the north is the cotton zone); Vallée du Bandama = Gbêkê region 2020 (yams 30k incl. winged yam, cassava 12k, rice 6k, maize 4.5k); Zanzan = Bounkani region 2021 (cashew 25k, cotton 2.6k, maize 1.7k, yam 1.5k). Sassandra-Marahoué, Montagnes, Gôh-Djiboua, Comoé and Lacs: NO subnational source found, crop lists left empty. Qualitative zone information read at https://www.economie-ivoirienne.ci/node/251 (Direction Générale de l'Economie): the \"Sud-Ouest\" zone holds 84% of national cocoa, 78% of coffee, 33% of rubber, 37% of oil palm, 53% of plantain; \"Nord-Ouest\" 93% of cotton, 47% of cashew, 49% of rice, 70% of maize, 84% of millet; \"Centre-Nord-Est\" 50% of cashew, 36% of cassava, 33% of yam; \"Sud-Est\" 65% of rubber, 59% of oil palm - but the page does not say which districts form each zone, so it was not converted into district lists. FAO GIEWS brief (https://www.fao.org/giews/countrybrief/country.jsp?code=CIV) only mentions maize and rice in the bimodal south/centre and cereals in the unimodal north (Savanes). Unreachable: www-rec.franceagrimer.fr (expired TLS certificate, not bypassed), hub.ifdc.org (timeout)."
+  },
+  {
+   "iso3": "MAR",
+   "name": "Morocco",
+   "national": {
+    "crops": [
+     "wheat",
+     "barley",
+     "olive",
+     "almond",
+     "maize",
+     "broadbean",
+     "lupin",
+     "fig"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Casablanca-Settat",
+     "crops": [
+      "wheat",
+      "barley",
+      "maize",
+      "lentil",
+      "sugarbeet",
+      "pea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=MA&start_date=2019-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Marrakech-Safi",
+     "crops": [
+      "wheat",
+      "barley",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=MA&start_date=2019-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Fès-Meknès",
+     "crops": [
+      "wheat",
+      "barley",
+      "broadbean",
+      "chickpea",
+      "pea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=MA&start_date=2019-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Rabat-Salé-Kénitra",
+     "crops": [
+      "wheat",
+      "barley",
+      "chickpea",
+      "sunflower",
+      "lentil",
+      "sugarbeet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=MA&start_date=2019-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Béni Mellal-Khénifra",
+     "crops": [
+      "wheat",
+      "barley",
+      "sugarbeet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=MA&start_date=2019-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Tanger-Tétouan-Al Hoceïma",
+     "crops": [
+      "wheat",
+      "barley",
+      "chickpea",
+      "broadbean",
+      "groundnut",
+      "sugarbeet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=MA&start_date=2019-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Oriental",
+     "crops": [
+      "barley",
+      "wheat",
+      "sugarbeet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=MA&start_date=2019-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Drâa-Tafilalet",
+     "crops": [
+      "wheat",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=MA&start_date=2019-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Souss-Massa",
+     "crops": [
+      "wheat",
+      "barley"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=MA&start_date=2019-01-01&fields=simple",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): wheat 2578, barley 1289, olive 1155, almond 226, maize 97, broad bean 91, lupin 87, fig 67, date 65, chickpea 59, tangerine 55, orange 55, potato 54, apple 51. REGIONAL lists: Source: FEWS NET Data Warehouse open API, series \"Official agricultural statistics, Morocco\" (source organisation: Haut Commissariat au Plan), province-level rows summed by me to the 12-region level; \"Area Planted\", mean of cropping years 2021-2023 (drought years, so cereal areas are below normal). Soft wheat + durum wheat summed as \"wheat\" (nationally soft 1.69 M ha, durum 0.88 M ha, barley 1.29 M ha). Crops under 1% of a region's covered area were dropped. In Oriental barley and total wheat are tied (83.6k ha each). MAJOR GAP: the series covers only cereals, pulses, oilseeds and sugar crops. Tree crops (olive, almond, citrus, date, argan, grape), vegetables and fodder are NOT covered, so olive (which by official figures occupies about 1 M ha and should rank third nationally) and the citrus/vegetable speciality of Souss-Massa, dates of Drâa-Tafilalet and olives of Fès-Meknès / Marrakech-Safi are missing; confidence is therefore medium for the ordering of field crops and nil for tree crops. No official regional tree-crop table could be read in this session."
+  },
+  {
+   "iso3": "DZA",
+   "name": "Algeria",
+   "national": {
+    "crops": [
+     "wheat",
+     "barley",
+     "olive",
+     "date",
+     "potato",
+     "oats",
+     "grape",
+     "vegfor"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Tiaret",
+     "crops": [
+      "wheat",
+      "barley",
+      "oats"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2015,
+     "source_url": "https://www.algerie360.com/campagne-labours-semailles-a-tiaret-330-000-hectares-a-emblaver/",
+     "confidence": "low"
+    },
+    {
+     "name": "El Oued",
+     "crops": [
+      "date",
+      "potato",
+      "olive",
+      "tobacco",
+      "tomato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2014,
+     "source_url": "https://www.algerie360.com/el-oued-une-region-pionniere-dans-la-production-agricole/",
+     "confidence": "low"
+    },
+    {
+     "name": "Sétif",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Oum El Bouaghi",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Tébessa",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Batna",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Sidi Bel Abbès",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    },
+    {
+     "name": "Biskra",
+     "crops": [],
+     "unmatched": [],
+     "basis": "qualitative",
+     "year": null,
+     "source_url": "",
+     "confidence": "low"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT next: watermelon 60k ha, onion 50k, orange 48k, fig 39k. REGIONAL lists: National source: FEWS NET Data Warehouse open API, series \"Official agricultural statistics, Algeria\" (Ministère de l'Agriculture et du Développement Rural), national level only. Area Planted 2015 (latest year with areas; 2016-2018 rows carry production only): durum wheat 1314k ha + soft wheat 501k ha, barley 802k ha, olive 407k ha, fodder grass 212k ha, date palm 167k ha, potato 153k ha, vetch fodder 79k ha, oats 68k ha, melons 58k ha, onion 48k ha, fig 43k ha. An item \"Pulses, dry, unspecified\" (193k ha, 2.95 Mt) looks mislabelled (yield too high for dry pulses) and was ignored. 2018 production order: potato, durum wheat, melons, barley, tomato, onion, olive, soft wheat. REGIONS: no official wilaya-level crop table could be reached in this session (FDW has no subnational rows for Algeria; web search quota ran out before an MADR \"Série B\" or ONS table was located). Only two wilayas could be filled, both from NEWS articles (last-resort source, low confidence): Tiaret, sowing plan 2014-2015 quoted from the wilaya cabinet (durum wheat 125k ha + soft wheat 60k ha, barley 135k ha, oats 10k ha; pulses 1.5k ha); El Oued, figures attributed to the DSA, 2014 (date palm 36,335 ha, potato 33,000 ha, olive 3,000 ha, tobacco 1,400 ha, early tomato 1,228 ha). Sétif, Oum El Bouaghi, Tébessa, Batna, Sidi Bel Abbès and Biskra are placeholders with EMPTY crop lists and no source; their selection as important cereal/Saharan wilayas is itself unsourced."
+  },
+  {
+   "iso3": "SDN",
+   "name": "Sudan",
+   "national": {
+    "crops": [
+     "sorghum",
+     "groundnut",
+     "sesame",
+     "millet",
+     "melonseed",
+     "cotton",
+     "cowpea",
+     "wheat"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Gedaref",
+     "crops": [
+      "sorghum",
+      "sesame",
+      "millet",
+      "cotton",
+      "groundnut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.fao.org/3/cd0053EN/cd0053en.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Sennar",
+     "crops": [
+      "sorghum",
+      "sesame",
+      "millet",
+      "cotton",
+      "groundnut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.fao.org/3/cd0053EN/cd0053en.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "North Kordofan",
+     "crops": [
+      "sesame",
+      "millet",
+      "sorghum",
+      "groundnut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.fao.org/3/cd0053EN/cd0053en.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "West Kordofan",
+     "crops": [
+      "groundnut",
+      "sorghum",
+      "millet",
+      "sesame"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.fao.org/3/cd0053EN/cd0053en.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "South Kordofan",
+     "crops": [
+      "sorghum",
+      "sesame",
+      "groundnut",
+      "millet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.fao.org/3/cd0053EN/cd0053en.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "South Darfur",
+     "crops": [
+      "groundnut",
+      "millet",
+      "sorghum",
+      "sesame"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.fao.org/3/cd0053EN/cd0053en.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "North Darfur",
+     "crops": [
+      "millet",
+      "groundnut",
+      "sorghum",
+      "sesame"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.fao.org/3/cd0053EN/cd0053en.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "East Darfur",
+     "crops": [
+      "groundnut",
+      "sorghum",
+      "millet",
+      "sesame"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.fao.org/3/cd0053EN/cd0053en.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Al Jazirah",
+     "crops": [
+      "sorghum",
+      "wheat",
+      "sesame",
+      "groundnut",
+      "cotton",
+      "millet"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.fao.org/3/cd0053EN/cd0053en.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "White Nile",
+     "crops": [
+      "sorghum",
+      "sesame",
+      "millet",
+      "cotton",
+      "wheat",
+      "groundnut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://www.fao.org/3/cd0053EN/cd0053en.pdf",
+     "confidence": "high"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): sorghum 6716, groundnut 3341, sesame 3181, millet 3115, melonseed 493, seed cotton 333, cowpea 237, wheat 206, sunflower 119. REGIONAL lists: Source: FAO Special Report, 2023 CFSAM to the Republic of the Sudan (19 March 2024), tables 5 (cereal area harvested by state), 12 (sesame), 13 (groundnut), 15 (cotton). Rankings use the five-year average harvested area 2018/19-2022/23 (pre-war baseline; year field set to 2022), summing irrigated + semi-mechanized + traditional rainfed sectors per state; irrigation schemes listed separately in the tables (Rahad, New Halfa, Gash, Suki, Tokar) were NOT added to states. The report covers only sorghum, millet, wheat, sesame, groundnut, sunflower and cotton: sugarcane, gum arabic, vegetables, fodder (alfalfa) and fruit are not covered, so they are absent here. Sunflower placed last nationally on the basis of the text (small, only White Nile, Blue Nile, Sennar, Gedaref); no state area table read for it. 2023/24 areas are heavily distorted by the conflict (e.g. West Darfur zero)."
+  },
+  {
+   "iso3": "UGA",
+   "name": "Uganda",
+   "national": {
+    "crops": [
+     "plantain",
+     "maize",
+     "cassava",
+     "bean",
+     "coffee",
+     "groundnut",
+     "sorghum",
+     "sunflower"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Northern",
+     "crops": [
+      "maize",
+      "cassava",
+      "sorghum",
+      "sesame",
+      "soybean",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=UG&start_date=2018-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Western",
+     "crops": [
+      "maize",
+      "bean",
+      "plantain",
+      "coffee",
+      "groundnut",
+      "cassava"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=UG&start_date=2018-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Eastern",
+     "crops": [
+      "maize",
+      "cassava",
+      "sweetpotato",
+      "groundnut",
+      "bean",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=UG&start_date=2018-01-01&fields=simple",
+     "confidence": "medium"
+    },
+    {
+     "name": "Central",
+     "crops": [
+      "maize",
+      "bean",
+      "plantain",
+      "coffee",
+      "sweetpotato",
+      "cassava"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2020,
+     "source_url": "https://fdw.fews.net/api/cropproductionindicatorvalue/?format=csv&country_code=UG&start_date=2018-01-01&fields=simple",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): plantains/cooking bananas 2557 (much higher than the UBOS survey figure), maize 2004, cassava 967, dry beans 965, coffee 833, groundnut 382, sorghum 326, sunflower 283, sweet potato 272. REGIONAL lists: Source: FEWS NET Data Warehouse open API, rows digitised from the UBOS Annual Agriculture Survey 2019 and 2020. The survey reports by 14 UBOS sub-regions; I aggregated them to the four traditional regions (Central = North + South Buganda; Western = Ankole, Bunyoro, Kigezi, Tooro; Eastern = Busoga, Bukedi, Elgon, Teso; Northern = Acholi, Lango, West Nile, Karamoja). CAVEAT: neither the 4 regions nor the sub-regions are true first-level administrative units (Uganda's first level is 130+ districts, for which no crop table was found); they are statistical groupings. \"Area Planted\", mean of 2019 and 2020; first + second harvest summed for annual crops, maximum of the two seasons for banana, coffee and cassava. \"plantain\" = source item \"Cooking Banana\" (matooke; FAOSTAT reports it under plantains/cooking bananas; if the gridded dataset files Ugandan matooke under \"banana\" read it as banana). Robusta + arabica coffee summed (robusta dominant in Central; arabica in Elgon and Tooro sub-regions). Sub-region highlights: Ankole = cooking banana first; West Nile, Teso, Bukedi = cassava first; Karamoja and Acholi = sorghum first; Lango = cassava, maize, soybean. Tea, sugarcane, cotton and tobacco are not in the data. HarvestStat Africa (UCA 2008/09) gave a consistent picture with banana first in Western and Central."
+  },
+  {
+   "iso3": "MOZ",
+   "name": "Mozambique",
+   "national": {
+    "crops": [
+     "maize",
+     "cassava",
+     "bean",
+     "pulsenes",
+     "groundnut",
+     "cowpea",
+     "sesame",
+     "rice"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Zambézia",
+     "crops": [
+      "maize",
+      "cassava",
+      "pigeonpea",
+      "rice",
+      "groundnut",
+      "sorghum"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_MZ.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Nampula",
+     "crops": [
+      "cassava",
+      "maize",
+      "groundnut",
+      "cotton",
+      "cowpea",
+      "pulsenes"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_MZ.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Tete",
+     "crops": [
+      "maize",
+      "sorghum",
+      "groundnut",
+      "cowpea",
+      "pigeonpea",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_MZ.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Sofala",
+     "crops": [
+      "maize",
+      "rice",
+      "sorghum",
+      "cowpea",
+      "cassava",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_MZ.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Manica",
+     "crops": [
+      "maize",
+      "sorghum",
+      "bean",
+      "cowpea",
+      "groundnut",
+      "cassava"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_MZ.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Gaza",
+     "crops": [
+      "maize",
+      "cassava",
+      "cowpea",
+      "groundnut",
+      "rice",
+      "sweetpotato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_MZ.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Cabo Delgado",
+     "crops": [
+      "maize",
+      "cassava",
+      "cowpea",
+      "cotton",
+      "groundnut",
+      "sorghum"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_MZ.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Niassa",
+     "crops": [
+      "maize",
+      "cotton",
+      "bean",
+      "sorghum",
+      "cassava",
+      "cowpea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_MZ.csv",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): maize 2055, cassava 904, dry beans 879, other pulses 517, groundnut 386, cowpea 351, sesame 333, rice 283, sorghum 266, castor 201, cashew 176, seed cotton 120. REGIONAL lists: Source: HarvestStat Africa per-country CSV (github.com/HarvestStat/HarvestStat-Africa), a harmonised compilation of the FEWS NET Data Warehouse subnational crop statistics, which in turn come from national agencies. Rankings computed by me from the 'area' indicator, averaged over the years stated, seasons summed. Mozambique: MADER series, mean of 2020-2022. Groundnut = Spanish + Virginia types; beans = \"Rosecoco\"/mixed/lima beans; mung bean mapped to \"pulsenes\". Cashew (176k ha FAOSTAT, mainly Nampula per general knowledge, not sourced here), coconut, sesame in part, tea and tobacco are not or poorly covered; sugarcane only partially."
+  },
+  {
+   "iso3": "MLI",
+   "name": "Mali",
+   "national": {
+    "crops": [
+     "millet",
+     "sorghum",
+     "maize",
+     "rice",
+     "cotton",
+     "cowpea",
+     "groundnut",
+     "bean"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Africa.zip"
+   },
+   "regions": [
+    {
+     "name": "Sikasso",
+     "crops": [
+      "maize",
+      "sorghum",
+      "millet",
+      "cotton",
+      "rice",
+      "cowpea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ML.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Koulikoro",
+     "crops": [
+      "sorghum",
+      "millet",
+      "maize",
+      "groundnut",
+      "cowpea",
+      "cotton"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ML.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Ségou",
+     "crops": [
+      "millet",
+      "rice",
+      "sorghum",
+      "cowpea",
+      "maize",
+      "groundnut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ML.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Kayes",
+     "crops": [
+      "sorghum",
+      "groundnut",
+      "maize",
+      "cotton",
+      "millet",
+      "cowpea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ML.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Mopti",
+     "crops": [
+      "millet",
+      "rice",
+      "sorghum",
+      "cowpea",
+      "groundnut",
+      "bambara"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ML.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Tombouctou",
+     "crops": [
+      "rice",
+      "millet",
+      "sorghum",
+      "cowpea",
+      "wheat",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "https://raw.githubusercontent.com/HarvestStat/HarvestStat-Africa/main/data/crop/adm_crop_production_ML.csv",
+     "confidence": "high"
+    }
+   ],
+   "notes": "NATIONAL list: FAOSTAT Production (QCL) bulk file for Africa, element \"Area harvested\", mean of 2021-2023, individual items only (aggregates excluded), ranked by me. FAOSTAT (k ha): millet 2113, sorghum 1606, maize 1500, rice 890, seed cotton 675, cowpea 495, groundnut 472, dry beans 170, sesame 93, shea 81, fonio 72. REGIONAL lists: Source: HarvestStat Africa per-country CSV (github.com/HarvestStat/HarvestStat-Africa), a harmonised compilation of the FEWS NET Data Warehouse subnational crop statistics, which in turn come from national agencies. Rankings computed by me from the 'area' indicator, averaged over the years stated, seasons summed. Mali: CPS/SDR series (EAC survey), mean of 2019-2021. Kidal, Gao and Bamako omitted or negligible; the newer regions (Bougouni, Koutiala, Dioïla, San, etc.) are reported inside their former parent regions. Mango, shea and vegetables are not covered."
+  }
+ ]
+}

@@ -1,0 +1,1362 @@
+{
+ "agent": "asia_sur_sudeste",
+ "countries": [
+  {
+   "iso3": "IND",
+   "name": "India",
+   "national": {
+    "crops": [
+     "rice",
+     "wheat",
+     "cotton",
+     "soybean",
+     "chickpea",
+     "bean",
+     "maize",
+     "millet"
+    ],
+    "basis": "area",
+    "year": 2019,
+    "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf"
+   },
+   "regions": [
+    {
+     "name": "Uttar Pradesh",
+     "crops": [
+      "wheat",
+      "rice",
+      "sugarcane",
+      "millet",
+      "maize",
+      "rapeseed"
+     ],
+     "unmatched": [
+      "potato (not in source)"
+     ],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Madhya Pradesh",
+     "crops": [
+      "wheat",
+      "soybean",
+      "chickpea",
+      "bean",
+      "rice",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Maharashtra",
+     "crops": [
+      "cotton",
+      "soybean",
+      "chickpea",
+      "sorghum",
+      "rice",
+      "pigeonpea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Rajasthan",
+     "crops": [
+      "millet",
+      "bean",
+      "wheat",
+      "rapeseed",
+      "chickpea",
+      "soybean"
+     ],
+     "unmatched": [
+      "guar/cluster bean (not in source)"
+     ],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Punjab",
+     "crops": [
+      "wheat",
+      "rice",
+      "cotton",
+      "maize",
+      "sugarcane",
+      "rapeseed"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Haryana",
+     "crops": [
+      "wheat",
+      "rice",
+      "cotton",
+      "rapeseed",
+      "millet",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Gujarat",
+     "crops": [
+      "cotton",
+      "groundnut",
+      "wheat",
+      "rice",
+      "castor",
+      "chickpea"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Karnataka",
+     "crops": [
+      "maize",
+      "pigeonpea",
+      "rice",
+      "chickpea",
+      "sorghum",
+      "millet"
+     ],
+     "unmatched": [
+      "coffee, coconut, areca (not in source)"
+     ],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Andhra Pradesh",
+     "crops": [
+      "rice",
+      "groundnut",
+      "cotton",
+      "bean",
+      "chickpea",
+      "maize"
+     ],
+     "unmatched": [
+      "chillies, fruit, oil palm (not in source)"
+     ],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Telangana",
+     "crops": [
+      "rice",
+      "cotton",
+      "maize",
+      "pigeonpea",
+      "soybean",
+      "groundnut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "West Bengal",
+     "crops": [
+      "rice",
+      "rapeseed",
+      "jute",
+      "maize",
+      "sesame",
+      "wheat"
+     ],
+     "unmatched": [
+      "potato, tea, vegetables (not in source)"
+     ],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Bihar",
+     "crops": [
+      "rice",
+      "wheat",
+      "maize",
+      "sugarcane",
+      "bean",
+      "lentil"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Tamil Nadu",
+     "crops": [
+      "rice",
+      "bean",
+      "sorghum",
+      "maize",
+      "groundnut",
+      "cotton"
+     ],
+     "unmatched": [
+      "coconut, banana (not in source)"
+     ],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Odisha",
+     "crops": [
+      "rice",
+      "bean",
+      "cotton",
+      "pigeonpea",
+      "maize",
+      "oilseednes"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2019,
+     "source_url": "https://web.archive.org/web/20230705203718/https://desagri.gov.in/wp-content/uploads/2023/05/Normal-Estimates-2017-18-to-2021-22-2-1.pdf",
+     "confidence": "high"
+    }
+   ],
+   "notes": "All values from the DES (Ministry of Agriculture) publication \"Normal Estimates of Area, Production and Yield of Selected Principal Crops\" (May 2023): state-wise NORMAL area = average of 2017-18 to 2021-22 (year given as 2019, the midpoint). Read from an Internet Archive snapshot because desagri.gov.in timed out and agriwelfare.gov.in / eands.da.gov.in returned 403. Mappings: gram=chickpea, tur/arhar=pigeonpea, urad+moong summed = bean (FAO dry beans), bajra+ragi+small millets = millet, jowar=sorghum, rapeseed&mustard=rapeseed, nigerseed=oilseednes. LIMITATION: the source covers only foodgrains, oilseeds, sugarcane, cotton, jute/mesta. It excludes horticulture and plantation crops (potato, onion, vegetables, mango, banana, coconut, tea, coffee, rubber, areca, spices), guar and tobacco, so those cannot appear in the state rankings; states where they matter are flagged in \"unmatched\" with confidence medium. Kerala was deliberately left out for this reason (its only covered crop is rice, 197 thousand ha). FAOSTAT 2023 national area ranking (https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Asia.zip) agrees: rice, wheat, soybean, cotton, dry beans, maize, chickpea, millet, rapeseed, sugarcane."
+  },
+  {
+   "iso3": "PAK",
+   "name": "Pakistan",
+   "national": {
+    "crops": [
+     "wheat",
+     "rice",
+     "fornes",
+     "cotton",
+     "maize",
+     "sugarcane",
+     "rapeseed",
+     "chickpea"
+    ],
+    "basis": "area",
+    "year": 2022,
+    "source_url": "https://na.data.gov.pk/Crops/Home"
+   },
+   "regions": [
+    {
+     "name": "Punjab",
+     "crops": [
+      "wheat",
+      "rice",
+      "fornes",
+      "cotton",
+      "maize",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://na.data.gov.pk/Crops/Home",
+     "confidence": "high"
+    },
+    {
+     "name": "Sindh",
+     "crops": [
+      "wheat",
+      "rice",
+      "cotton",
+      "sugarcane",
+      "rapeseed",
+      "millet"
+     ],
+     "unmatched": [
+      "guar seed (95 thousand ha, would rank 6th)"
+     ],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://na.data.gov.pk/Crops/Home",
+     "confidence": "medium"
+    },
+    {
+     "name": "Khyber Pakhtunkhwa",
+     "crops": [
+      "wheat",
+      "maize",
+      "sugarcane",
+      "rice",
+      "fornes",
+      "tobacco"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://na.data.gov.pk/Crops/Home",
+     "confidence": "high"
+    },
+    {
+     "name": "Balochistan",
+     "crops": [
+      "wheat",
+      "rapeseed",
+      "rice",
+      "apple",
+      "cotton",
+      "date"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2022,
+     "source_url": "https://na.data.gov.pk/Crops/Home",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "Source: Pakistan Bureau of Statistics crops dashboard (Agriculture Statistics of Pakistan, 121 crops by district), read through the JSON endpoints the page itself calls (https://na.data.gov.pk/Crops/GetCropsData/?pv=0&dv=0&ds=0&year=2022-23&crop=<id>); district areas (thousand ha) for crop year 2022-23 were summed to province using the dashboard's own province>division>district lists. National sum matches FAOSTAT (wheat 9.03 Mha). \"fornes\" = \"Fodders Total\" (2.2 Mha nationally, mostly Punjab); drop it if forage is out of scope. Caveats: 2022-23 was the flood year, so Sindh rice (603) and cotton (589) are below normal and their order may flip in other years; \"R&M seed\" = rapeseed and mustard; the Kinno series has an obviously corrupt value in one Balochistan district and was ignored; Balochistan figures for rapeseed (233) look high and are unverified. Gilgit-Baltistan and AJK have negligible area in the source. The 2024-25 year exists in the dashboard but was not queried. pbs.gov.pk static tables only offer national series and a 1981-2009 district file."
+  },
+  {
+   "iso3": "THA",
+   "name": "Thailand",
+   "national": {
+    "crops": [
+     "rice",
+     "rubber",
+     "sugarcane",
+     "cassava",
+     "oilpalm",
+     "maize",
+     "tropicalnes",
+     "mango"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Asia.zip"
+   },
+   "regions": [
+    {
+     "name": "Ubon Ratchathani",
+     "crops": [
+      "rice",
+      "rubber",
+      "cassava",
+      "maize",
+      "oilpalm"
+     ],
+     "unmatched": [
+      "sugar cane (not in OAE province files; OCSB data not reached)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://catalog.oae.go.th/dataset/d0c2c691-06b6-472f-98b9-3052478e6c63/resource/dba34f73-8bbe-41ad-8edd-0f55a3e125db/download/untitled-42.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Nakhon Ratchasima",
+     "crops": [
+      "rice",
+      "cassava",
+      "maize",
+      "rubber",
+      "oilpalm"
+     ],
+     "unmatched": [
+      "sugar cane (not in OAE province files; OCSB data not reached)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://catalog.oae.go.th/dataset/d0c2c691-06b6-472f-98b9-3052478e6c63/resource/dba34f73-8bbe-41ad-8edd-0f55a3e125db/download/untitled-42.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Nakhon Sawan",
+     "crops": [
+      "rice",
+      "cassava",
+      "maize",
+      "rubber"
+     ],
+     "unmatched": [
+      "sugar cane (not in OAE province files; OCSB data not reached)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://catalog.oae.go.th/dataset/d0c2c691-06b6-472f-98b9-3052478e6c63/resource/dba34f73-8bbe-41ad-8edd-0f55a3e125db/download/untitled-42.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Surin",
+     "crops": [
+      "rice",
+      "rubber",
+      "cassava",
+      "oilpalm"
+     ],
+     "unmatched": [
+      "sugar cane (not in OAE province files; OCSB data not reached)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://catalog.oae.go.th/dataset/d0c2c691-06b6-472f-98b9-3052478e6c63/resource/dba34f73-8bbe-41ad-8edd-0f55a3e125db/download/untitled-42.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Buri Ram",
+     "crops": [
+      "rice",
+      "rubber",
+      "cassava",
+      "oilpalm"
+     ],
+     "unmatched": [
+      "sugar cane (not in OAE province files; OCSB data not reached)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://catalog.oae.go.th/dataset/d0c2c691-06b6-472f-98b9-3052478e6c63/resource/dba34f73-8bbe-41ad-8edd-0f55a3e125db/download/untitled-42.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Phetchabun",
+     "crops": [
+      "rice",
+      "maize",
+      "cassava",
+      "rubber",
+      "oilpalm"
+     ],
+     "unmatched": [
+      "sugar cane (not in OAE province files; OCSB data not reached)"
+     ],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://catalog.oae.go.th/dataset/d0c2c691-06b6-472f-98b9-3052478e6c63/resource/dba34f73-8bbe-41ad-8edd-0f55a3e125db/download/untitled-42.csv",
+     "confidence": "medium"
+    },
+    {
+     "name": "Chiang Rai",
+     "crops": [
+      "rice",
+      "rubber",
+      "tropicalnes",
+      "maize",
+      "coffee",
+      "cassava"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://catalog.oae.go.th/dataset/d0c2c691-06b6-472f-98b9-3052478e6c63/resource/dba34f73-8bbe-41ad-8edd-0f55a3e125db/download/untitled-42.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Surat Thani",
+     "crops": [
+      "rubber",
+      "oilpalm",
+      "tropicalnes",
+      "coconut",
+      "rice"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://catalog.oae.go.th/dataset/d0c2c691-06b6-472f-98b9-3052478e6c63/resource/dba34f73-8bbe-41ad-8edd-0f55a3e125db/download/untitled-42.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Nakhon Si Thammarat",
+     "crops": [
+      "rubber",
+      "oilpalm",
+      "rice",
+      "tropicalnes",
+      "coconut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://catalog.oae.go.th/dataset/d0c2c691-06b6-472f-98b9-3052478e6c63/resource/dba34f73-8bbe-41ad-8edd-0f55a3e125db/download/untitled-42.csv",
+     "confidence": "high"
+    },
+    {
+     "name": "Songkhla",
+     "crops": [
+      "rubber",
+      "rice",
+      "oilpalm",
+      "tropicalnes",
+      "coconut"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://catalog.oae.go.th/dataset/d0c2c691-06b6-472f-98b9-3052478e6c63/resource/dba34f73-8bbe-41ad-8edd-0f55a3e125db/download/untitled-42.csv",
+     "confidence": "high"
+    }
+   ],
+   "notes": "National: FAOSTAT area harvested 2023. Regions: Office of Agricultural Economics (OAE) open data catalogue, province-level files for year 2567 BE (2024), found through https://catalog.oae.go.th/api/3/action/package_search : wet-season rice (source_url) + dry-season rice, maize (all crops), cassava, rubber, oil palm, coconut, pineapple, longan, durian, soybean, coffee. Area = harvested area for annuals, bearing/tapped area for perennials, converted from rai (x0.16) and ranked; rice = wet + dry season. tropicalnes = durian (south) or longan (Chiang Rai). GAP: sugar cane is the third national crop (1.64 Mha, FAOSTAT) but OAE publishes no province file for it (it belongs to the Office of the Cane and Sugar Board, not reached), so it is NOT ranked in any province and would very plausibly enter the lists of the north-eastern and central provinces: those are medium confidence. Mango, vegetables and other fruit also have no province file. Provinces chosen by total covered crop area plus coverage of the southern tree-crop zone; other large rice provinces available in the same files (Si Sa Ket, Roi Et, Udon Thani, Khon Kaen, Phitsanulok...) were omitted for the 10-region cap."
+  },
+  {
+   "iso3": "VNM",
+   "name": "Viet Nam",
+   "national": {
+    "crops": [
+     "rice",
+     "vegfor",
+     "maize",
+     "rubber",
+     "coffee",
+     "cassava",
+     "cashew",
+     "fruitnes"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Asia.zip"
+   },
+   "regions": [
+    {
+     "name": "Kien Giang",
+     "crops": [
+      "rice",
+      "sugarcane",
+      "sweetpotato",
+      "maize"
+     ],
+     "unmatched": [
+      "perennial crops (coffee, rubber, pepper, cashew, tea, fruit) and vegetables: no provincial area in source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://istmat.org/files/uploads/50953/06_agriculture_forestry_and_fishing.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "An Giang",
+     "crops": [
+      "rice",
+      "maize",
+      "sweetpotato"
+     ],
+     "unmatched": [
+      "perennial crops (coffee, rubber, pepper, cashew, tea, fruit) and vegetables: no provincial area in source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://istmat.org/files/uploads/50953/06_agriculture_forestry_and_fishing.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Dong Thap",
+     "crops": [
+      "rice",
+      "maize",
+      "sweetpotato",
+      "soybean"
+     ],
+     "unmatched": [
+      "perennial crops (coffee, rubber, pepper, cashew, tea, fruit) and vegetables: no provincial area in source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://istmat.org/files/uploads/50953/06_agriculture_forestry_and_fishing.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Long An",
+     "crops": [
+      "rice",
+      "sugarcane",
+      "groundnut",
+      "maize"
+     ],
+     "unmatched": [
+      "perennial crops (coffee, rubber, pepper, cashew, tea, fruit) and vegetables: no provincial area in source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://istmat.org/files/uploads/50953/06_agriculture_forestry_and_fishing.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Thanh Hoa",
+     "crops": [
+      "rice",
+      "maize",
+      "sugarcane",
+      "cassava",
+      "groundnut",
+      "sweetpotato"
+     ],
+     "unmatched": [
+      "perennial crops (coffee, rubber, pepper, cashew, tea, fruit) and vegetables: no provincial area in source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://istmat.org/files/uploads/50953/06_agriculture_forestry_and_fishing.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Nghe An",
+     "crops": [
+      "rice",
+      "maize",
+      "sugarcane",
+      "groundnut",
+      "cassava",
+      "sweetpotato"
+     ],
+     "unmatched": [
+      "perennial crops (coffee, rubber, pepper, cashew, tea, fruit) and vegetables: no provincial area in source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://istmat.org/files/uploads/50953/06_agriculture_forestry_and_fishing.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Thai Binh",
+     "crops": [
+      "rice",
+      "maize",
+      "soybean",
+      "sweetpotato"
+     ],
+     "unmatched": [
+      "perennial crops (coffee, rubber, pepper, cashew, tea, fruit) and vegetables: no provincial area in source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://istmat.org/files/uploads/50953/06_agriculture_forestry_and_fishing.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Son La",
+     "crops": [
+      "maize",
+      "rice",
+      "cassava",
+      "sugarcane",
+      "soybean",
+      "sweetpotato"
+     ],
+     "unmatched": [
+      "perennial crops (coffee, rubber, pepper, cashew, tea, fruit) and vegetables: no provincial area in source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://istmat.org/files/uploads/50953/06_agriculture_forestry_and_fishing.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Dak Lak",
+     "crops": [
+      "maize",
+      "rice",
+      "cassava",
+      "sugarcane",
+      "groundnut",
+      "soybean"
+     ],
+     "unmatched": [
+      "perennial crops (coffee, rubber, pepper, cashew, tea, fruit) and vegetables: no provincial area in source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://istmat.org/files/uploads/50953/06_agriculture_forestry_and_fishing.pdf",
+     "confidence": "low"
+    },
+    {
+     "name": "Gia Lai",
+     "crops": [
+      "rice",
+      "cassava",
+      "maize",
+      "sugarcane",
+      "sweetpotato"
+     ],
+     "unmatched": [
+      "perennial crops (coffee, rubber, pepper, cashew, tea, fruit) and vegetables: no provincial area in source"
+     ],
+     "basis": "area",
+     "year": 2013,
+     "source_url": "https://istmat.org/files/uploads/50953/06_agriculture_forestry_and_fishing.pdf",
+     "confidence": "low"
+    }
+   ],
+   "notes": "National: FAOSTAT area harvested 2023. Regions: planted area (thousand ha, preliminary 2013) of paddy, maize, sweet potato, cassava, sugar cane, peanut and soya bean by province, tables 162-185 of the GSO Statistical Yearbook of Vietnam 2013, chapter \"Agriculture, Forestry and Fishing\", read from a third-party mirror (istmat.org) because gso.gov.vn / nso.gov.vn / pxweb.gso.gov.vn were unreachable from curl (connection failures) and the NSO PX-Web tables (e.g. https://www.nso.gov.vn/en/px-web?pxid=E0613) render only via JavaScript. DATA IS OLD (2013) and covers ONLY those seven annual crops: the yearbook has no provincial area for perennial crops or vegetables, so coffee/rubber/pepper (Dak Lak, Gia Lai, and the unlisted Lam Dong, Binh Phuoc, Dong Nai), fruit (Mekong delta) and vegetables are missing from the regional lists; Dak Lak and Gia Lai are therefore low confidence (their true leading crops by area are very likely perennials not ranked here). Province names follow the pre-2025 63-province division; the 2025 merger to 34 provinces is not reflected. Rice area counts all seasons (multi-cropping)."
+  },
+  {
+   "iso3": "PHL",
+   "name": "Philippines",
+   "national": {
+    "crops": [
+     "rice",
+     "coconut",
+     "maize",
+     "banana",
+     "sugarcane",
+     "cassava",
+     "rubber",
+     "mango"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0152E4EAHM0.px"
+   },
+   "regions": [
+    {
+     "name": "Central Luzon",
+     "crops": [
+      "rice",
+      "maize",
+      "mango",
+      "coconut",
+      "onion",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0152E4EAHM0.px",
+     "confidence": "high"
+    },
+    {
+     "name": "Cagayan Valley",
+     "crops": [
+      "rice",
+      "maize",
+      "banana",
+      "coconut",
+      "cassava",
+      "sugarcane"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0152E4EAHM0.px",
+     "confidence": "high"
+    },
+    {
+     "name": "Ilocos Region",
+     "crops": [
+      "rice",
+      "maize",
+      "mango",
+      "tobacco",
+      "coconut",
+      "bean"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0152E4EAHM0.px",
+     "confidence": "high"
+    },
+    {
+     "name": "Western Visayas",
+     "crops": [
+      "rice",
+      "coconut",
+      "maize",
+      "sugarcane",
+      "banana",
+      "coffee"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0152E4EAHM0.px",
+     "confidence": "high"
+    },
+    {
+     "name": "Negros Island Region",
+     "crops": [
+      "sugarcane",
+      "rice",
+      "coconut",
+      "maize",
+      "banana",
+      "mango"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0152E4EAHM0.px",
+     "confidence": "high"
+    },
+    {
+     "name": "Bicol Region",
+     "crops": [
+      "coconut",
+      "rice",
+      "maize",
+      "abaca",
+      "banana",
+      "cassava"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0152E4EAHM0.px",
+     "confidence": "high"
+    },
+    {
+     "name": "Northern Mindanao",
+     "crops": [
+      "maize",
+      "coconut",
+      "rice",
+      "banana",
+      "sugarcane",
+      "cassava"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0152E4EAHM0.px",
+     "confidence": "high"
+    },
+    {
+     "name": "Davao Region",
+     "crops": [
+      "coconut",
+      "maize",
+      "rice",
+      "banana",
+      "sugarcane",
+      "cocoa"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0152E4EAHM0.px",
+     "confidence": "high"
+    },
+    {
+     "name": "SOCCSKSARGEN",
+     "crops": [
+      "maize",
+      "rice",
+      "coconut",
+      "rubber",
+      "banana",
+      "coffee"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0152E4EAHM0.px",
+     "confidence": "high"
+    },
+    {
+     "name": "Bangsamoro Autonomous Region in Muslim Mindanao",
+     "crops": [
+      "coconut",
+      "maize",
+      "rice",
+      "cassava",
+      "rubber",
+      "banana"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0152E4EAHM0.px",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Area from PSA OpenSTAT 2024 annual tables: Major Crops area planted/harvested (0152E4EAHM0.px) plus Palay and Corn area harvested (https://openstat.psa.gov.ph/PXWeb/api/v1/en/DB/2E/CS/0022E4EAHC0.px). PSA \"banana\" includes saba/cooking types (FAOSTAT splits part of it as plantain). Ilocos sixth crop is mungbean (mapped to bean). Coconut/tree crop area is planted area, rice/maize is harvested area (double-cropped), so rankings mix both. Regions not listed (CAR, CALABARZON, MIMAROPA, Central/Eastern Visayas, Zamboanga Peninsula, Caraga) were available in the same table but omitted to stay within 10; psa.gov.ph main site returned 403 to curl, OpenSTAT API worked."
+  },
+  {
+   "iso3": "LKA",
+   "name": "Sri Lanka",
+   "national": {
+    "crops": [
+     "rice",
+     "coconut",
+     "tea",
+     "rubber",
+     "maize",
+     "pepper",
+     "plantain",
+     "cinnamon"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Asia.zip"
+   },
+   "regions": [
+    {
+     "name": "Eastern Province",
+     "crops": [
+      "rice",
+      "coconut",
+      "rubber"
+     ],
+     "unmatched": [
+      "maize, other field crops, cinnamon, pepper: no district extent found"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.statistics.gov.lk/abstract2024/CHAP5/5.4.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "North Central Province",
+     "crops": [
+      "rice",
+      "coconut",
+      "rubber"
+     ],
+     "unmatched": [
+      "maize, other field crops, cinnamon, pepper: no district extent found"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.statistics.gov.lk/abstract2024/CHAP5/5.4.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "North Western Province",
+     "crops": [
+      "coconut",
+      "rice",
+      "rubber",
+      "tea"
+     ],
+     "unmatched": [
+      "maize, other field crops, cinnamon, pepper: no district extent found"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.statistics.gov.lk/abstract2024/CHAP5/5.4.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Northern Province",
+     "crops": [
+      "rice",
+      "coconut"
+     ],
+     "unmatched": [
+      "maize, other field crops, cinnamon, pepper: no district extent found"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.statistics.gov.lk/abstract2024/CHAP5/5.4.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Southern Province",
+     "crops": [
+      "rice",
+      "tea",
+      "coconut",
+      "rubber"
+     ],
+     "unmatched": [
+      "maize, other field crops, cinnamon, pepper: no district extent found"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.statistics.gov.lk/abstract2024/CHAP5/5.4.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Uva Province",
+     "crops": [
+      "rice",
+      "tea",
+      "coconut",
+      "rubber"
+     ],
+     "unmatched": [
+      "maize, other field crops, cinnamon, pepper: no district extent found"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.statistics.gov.lk/abstract2024/CHAP5/5.4.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Central Province",
+     "crops": [
+      "tea",
+      "rice",
+      "coconut",
+      "rubber"
+     ],
+     "unmatched": [
+      "maize, other field crops, cinnamon, pepper: no district extent found"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.statistics.gov.lk/abstract2024/CHAP5/5.4.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Sabaragamuwa Province",
+     "crops": [
+      "tea",
+      "rubber",
+      "rice",
+      "coconut"
+     ],
+     "unmatched": [
+      "maize, other field crops, cinnamon, pepper: no district extent found"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.statistics.gov.lk/abstract2024/CHAP5/5.4.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Western Province",
+     "crops": [
+      "coconut",
+      "rice",
+      "rubber",
+      "tea"
+     ],
+     "unmatched": [
+      "maize, other field crops, cinnamon, pepper: no district extent found"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://www.statistics.gov.lk/abstract2024/CHAP5/5.4.pdf",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "National: FAOSTAT area harvested 2023 (same figures as DCS Statistical Abstract 2024 table 5.1, https://www.statistics.gov.lk/abstract2024/CHAP5/5.1.pdf; FAOSTAT also lists \"other fibre crops\" 104 thousand ha, skipped). Regions: DCS Statistical Abstract 2024. District figures were summed to the 9 provinces (Western=Colombo+Gampaha+Kalutara; Central=Kandy+Matale+Nuwara Eliya; Southern=Galle+Matara+Hambantota; Northern=Jaffna+Mannar+Vavuniya+Mullaitivu+Kilinochchi; Eastern=Batticaloa+Ampara+Trincomalee; North Western=Kurunegala+Puttalam; North Central=Anuradhapura+Polonnaruwa; Uva=Badulla+Moneragala; Sabaragamuwa=Ratnapura+Kegalle). If the target dataset uses the 25 districts as level 1, re-derive from the same tables. Rice = paddy extent harvested, Maha 2022/23 + Yala 2023 (table 5.4, source_url). Tea, rubber, coconut = cultivated extent by district from the Economic Census 2013/14 (table 5.2, https://www.statistics.gov.lk/abstract2024/CHAP5/5.2.pdf), so the ranking mixes 2023 double-season rice with 2014 perennial extents: medium confidence, and close pairs (Southern rice 111 vs tea 56; Sabaragamuwa tea 58 vs rubber 57 thousand ha) are sensitive to that. Only these four crops have district data in what I could read; maize and other seasonal crops are published nationally only."
+  },
+  {
+   "iso3": "NPL",
+   "name": "Nepal",
+   "national": {
+    "crops": [
+     "rice",
+     "maize",
+     "wheat",
+     "vegfor",
+     "mustard",
+     "potato",
+     "millet",
+     "lentil"
+    ],
+    "basis": "area",
+    "year": 2024,
+    "source_url": "https://giwmscdnone.gov.np/media/pdf_upload/URL%20Stat%20Book%20%202083%2003%2016%20_blzj7t6.pdf"
+   },
+   "regions": [
+    {
+     "name": "Koshi",
+     "crops": [
+      "rice",
+      "maize",
+      "potato",
+      "millet",
+      "vegfor",
+      "wheat"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://giwmscdnone.gov.np/media/pdf_upload/URL%20Stat%20Book%20%202083%2003%2016%20_blzj7t6.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Madhesh",
+     "crops": [
+      "rice",
+      "wheat",
+      "vegfor",
+      "lentil",
+      "mustard",
+      "maize"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://giwmscdnone.gov.np/media/pdf_upload/URL%20Stat%20Book%20%202083%2003%2016%20_blzj7t6.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Bagmati",
+     "crops": [
+      "maize",
+      "rice",
+      "millet",
+      "vegfor",
+      "wheat",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://giwmscdnone.gov.np/media/pdf_upload/URL%20Stat%20Book%20%202083%2003%2016%20_blzj7t6.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Gandaki",
+     "crops": [
+      "maize",
+      "rice",
+      "millet",
+      "vegfor",
+      "wheat",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://giwmscdnone.gov.np/media/pdf_upload/URL%20Stat%20Book%20%202083%2003%2016%20_blzj7t6.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Lumbini",
+     "crops": [
+      "rice",
+      "wheat",
+      "maize",
+      "mustard",
+      "vegfor",
+      "lentil"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://giwmscdnone.gov.np/media/pdf_upload/URL%20Stat%20Book%20%202083%2003%2016%20_blzj7t6.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Karnali",
+     "crops": [
+      "maize",
+      "wheat",
+      "rice",
+      "mustard",
+      "millet",
+      "vegfor"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://giwmscdnone.gov.np/media/pdf_upload/URL%20Stat%20Book%20%202083%2003%2016%20_blzj7t6.pdf",
+     "confidence": "high"
+    },
+    {
+     "name": "Sudurpashchim",
+     "crops": [
+      "rice",
+      "wheat",
+      "maize",
+      "mustard",
+      "vegfor",
+      "potato"
+     ],
+     "unmatched": [],
+     "basis": "area",
+     "year": 2024,
+     "source_url": "https://giwmscdnone.gov.np/media/pdf_upload/URL%20Stat%20Book%20%202083%2003%2016%20_blzj7t6.pdf",
+     "confidence": "high"
+    }
+   ],
+   "notes": "Source: MoALD \"Statistical Information on Nepalese Agriculture 2081/82 (2024/25)\" (PDF linked from https://moald.gov.np/content/500/statistics-information-on-nepalese-agriculture-2081-82/). Province areas (ha) read from the province total rows of tables 1.4 (paddy), 1.5 (maize, wheat), 1.6 (millet), 2.2 (oilseed, sugarcane, potato), 3.2 (lentil) and 7.2 (fresh vegetables). \"mustard\" stands for the source category OILSEED (all oilseeds, 248 thousand ha nationally; FAOSTAT 2023 shows mustard seed as about three quarters of Nepal oilseed area) - treat as oilseeds dominated by mustard/rapeseed. \"vegfor\" = fresh vegetables total. Madhesh maize, wheat and millet rows could not be extracted from the PDF text and were derived as national total minus the other six provinces (maize 52 thousand ha, wheat 188, millet 3), hence medium confidence there. Fruit, tea, cardamom, ginger and total pulses by province were not tabulated here. FAOSTAT 2023 national ranking agrees (rice, maize, wheat, vegetables, millet, potato, mustard, lentil)."
+  },
+  {
+   "iso3": "MYS",
+   "name": "Malaysia",
+   "national": {
+    "crops": [
+     "oilpalm",
+     "rubber",
+     "rice",
+     "tropicalnes",
+     "coconut",
+     "vegfor",
+     "banana",
+     "pineapple"
+    ],
+    "basis": "area",
+    "year": 2023,
+    "source_url": "https://bulks-faostat.fao.org/production/Production_Crops_Livestock_E_Asia.zip"
+   },
+   "regions": [
+    {
+     "name": "Sarawak",
+     "crops": [
+      "oilpalm",
+      "rice",
+      "tropicalnes",
+      "coconut",
+      "vegfor"
+     ],
+     "unmatched": [
+      "sago (about 29-43 thousand ha, industrial crop)",
+      "rubber (state area not found)",
+      "pepper (state area not found)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://bepi.mpob.gov.my/images/area/2023/Area_summary2023.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Sabah",
+     "crops": [
+      "oilpalm",
+      "rice",
+      "tropicalnes",
+      "coconut",
+      "vegfor"
+     ],
+     "unmatched": [
+      "rubber (state area not found)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://bepi.mpob.gov.my/images/area/2023/Area_summary2023.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Pahang",
+     "crops": [
+      "oilpalm",
+      "tropicalnes",
+      "vegfor",
+      "rice",
+      "coconut"
+     ],
+     "unmatched": [
+      "rubber (state area not found)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://bepi.mpob.gov.my/images/area/2023/Area_summary2023.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Johor",
+     "crops": [
+      "oilpalm",
+      "tropicalnes",
+      "vegfor",
+      "coconut",
+      "banana",
+      "pineapple"
+     ],
+     "unmatched": [
+      "rubber (state area not found)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://bepi.mpob.gov.my/images/area/2023/Area_summary2023.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Perak",
+     "crops": [
+      "oilpalm",
+      "rice",
+      "tropicalnes",
+      "coconut",
+      "vegfor"
+     ],
+     "unmatched": [
+      "rubber (state area not found)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://bepi.mpob.gov.my/images/area/2023/Area_summary2023.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kedah",
+     "crops": [
+      "rice",
+      "oilpalm",
+      "tropicalnes",
+      "coconut",
+      "vegfor"
+     ],
+     "unmatched": [
+      "rubber (state area not found)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://bepi.mpob.gov.my/images/area/2023/Area_summary2023.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Kelantan",
+     "crops": [
+      "oilpalm",
+      "rice",
+      "tropicalnes",
+      "coconut",
+      "vegfor"
+     ],
+     "unmatched": [
+      "rubber (state area not found)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://bepi.mpob.gov.my/images/area/2023/Area_summary2023.pdf",
+     "confidence": "medium"
+    },
+    {
+     "name": "Terengganu",
+     "crops": [
+      "oilpalm",
+      "rice",
+      "tropicalnes",
+      "coconut",
+      "vegfor"
+     ],
+     "unmatched": [
+      "rubber (state area not found)"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "https://bepi.mpob.gov.my/images/area/2023/Area_summary2023.pdf",
+     "confidence": "medium"
+    }
+   ],
+   "notes": "National: FAOSTAT area harvested 2023 (FAOSTAT also lists \"Other oil seeds n.e.c.\" 75 thousand ha, skipped as unidentifiable). Regions combine two official sources read directly: oil palm planted area by state at Dec 2023 from MPOB (source_url) and planted area 2023 of paddy, coconut, fruits and vegetables by state from the DOA/DOSM open dataset https://storage.data.gov.my/agriculture/crops_state.csv . That dataset only gives crop groups; \"fruits\" was mapped to tropicalnes (durian is the top fruit in every listed state in the species-level file https://storage.data.gov.my/agriculture/crops_district_area.csv, which only covers 2017) and \"vegetables\" to vegfor. GAP: rubber planted area by state was not found (DOSM/LGM publish it by region Peninsular/Sabah/Sarawak only in what I could reach), so rubber is NOT ranked in any state although it is the second national crop and is known to be substantial in Kedah, Kelantan, Pahang, Perak, Negeri Sembilan, Sarawak; treat its absence as missing data, not as zero. Same for pepper (Sarawak) and cocoa."
+  }
+ ]
+}
