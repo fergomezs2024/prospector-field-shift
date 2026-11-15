@@ -21,7 +21,7 @@
   .rot { position:absolute; top:12px; z-index:4; background:rgba(255,255,255,.93); border-radius:8px; padding:6px 12px; font-weight:600; box-shadow:0 4px 16px rgba(0,0,0,.25); } #rotA { left:12px; } #rotB { left:calc(50% + 12px); }
   #medio { position:absolute; top:0; bottom:0; left:50%; width:2px; background:rgba(255,255,255,.55); z-index:3; }
   #flot { position:absolute; left:12px; bottom:14px; z-index:5; background:rgba(255,255,255,.95); border-radius:8px; padding:8px 12px; max-width:62%; box-shadow:0 4px 16px rgba(0,0,0,.2); }
-  .oculto { display:none !important; } a { color:var(--verde); }
+  .oculto { display:none !important; } body.limpio #app { grid-template-columns:1fr; } body.limpio aside, body.limpio #flot, body.limpio .rot, body.limpio .maplibregl-control-container { display:none !important; } a { color:var(--verde); }
   input[type=range] { width:100%; accent-color:var(--verde); }
   @media (max-width:900px) { #app { grid-template-columns:1fr; grid-template-rows:55% 45%; } aside { border-left:0; border-top:1px solid var(--linea); } }
 </style>
@@ -115,6 +115,7 @@ function mostrar() { const d = datos, p = d.plataforma, fila = (a, b) => `<div c
   $('lim').innerHTML = d.limites.map(x => `<li>${x}</li>`).join(''); $('fuente').textContent = 'Relieve: ' + d.fuente + '. Mapa: OpenPlanetaryMap, con mosaicos de la NASA.'; $('res').classList.remove('oculto');
   if (!renderer) iniciar3d(); A = escena(f32(d.malla.z), d.textura); B = escena(f32(d.malla.z2), d.textura2); alturas();
   const L = Math.max(d.malla.ancho * d.malla.res_x, d.malla.alto * d.malla.res_y); camara.position.set(-L * 0.7, L * 0.75, L * 1.0); camara.far = L * 30; ctl.target.set(0, 0, 0); ver3d(); }
+if (new URLSearchParams(location.search).get('limpio')) document.body.classList.add('limpio');
 elegir('marte');
 // enlace directo para revisar:  ?c=luna&z=23,0.3,23.9,1.1
 { const q = new URLSearchParams(location.search); if (q.get('z')) { if (q.get('c')) elegir(q.get('c')); const v = q.get('z').split(',').map(Number); esquinas = [[v[0], v[1]], [v[2], v[3]]]; setTimeout(() => { pintar(); $('bVer').disabled = false; $('bVer').click(); }, 1500); } }
