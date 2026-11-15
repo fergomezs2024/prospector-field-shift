@@ -23,6 +23,8 @@ The plan is shown on the 3D terrain month by month, in a dry, a normal and a wet
 
 The interface is currently in Spanish, with a simple/technical language switch.
 
+Demo slides (7): [docs/demo/Prospector_RocketPower_demo.pdf](docs/demo/Prospector_RocketPower_demo.pdf)
+
 ## Quick start
 
 With Docker:
