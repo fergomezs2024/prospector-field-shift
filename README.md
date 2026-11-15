@@ -79,7 +79,8 @@ Weak spots: North Africa and the Middle East (55 %); peas, rice and rapeseed; so
 
 ## Known limits
 
-- Only 23 annual field crops are simulated. Fruit trees, vegetables, vines and pastures are not. A crop missing from the list is not a crop that fails.
+- Only 23 annual field crops are simulated. Fruit trees, vegetables, vines and pastures are not. A crop missing from the list is not a crop that fails. For 87 other crops (grapes, fruit, vegetables, sugar cane, coffee and more) the tool reports whether they are actually grown in the area (CROPGRIDS), without judging them.
+- Satellite land cover cannot tell a vineyard or an orchard from woodland. Where OpenStreetMap maps the parcel as vineyard, orchard or nursery, the tool treats it as an existing plantation: it is not proposed for clearing and is drawn as rows. Where the map has nothing, the farmer is asked.
 - Sowing and harvest dates are tentative: the real date depends on the variety and the year.
 - Crop parameters are general FAO values adjusted with a 55 km crop calendar, not local varieties.
 - The model does not predict tonnes per hectare or income. Yields shown are measured values for the area (GDHY), where they exist.

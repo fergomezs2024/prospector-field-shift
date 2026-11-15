@@ -30,7 +30,7 @@ Code names, comments and the interface are in Spanish.
 | `api.py` | HTTP routes, job tracking, rendering of map layers to PNG |
 | `datos.py` | Defines the field grid (10 m, local UTM) and downloads elevation, land cover, imagery, buildings, roads, soil and weather. All requests have timeouts; a failed source does not block the rest |
 | `terreno.py` | Elevation = mean of NASADEM and Copernicus GLO-30; their difference is the height margin of error. Slope, aspect, flow direction and accumulation (pysheds) |
-| `region.py` | Learns from the cultivated land of the surrounding area and classifies each cell |
+| `region.py` | Learns from the cultivated land of the surrounding area and classifies each cell. Parcels mapped as vineyard, orchard or nursery become their own class (already planted), separate from woodland |
 | `cultivos.py` | Crop engine (below), rotations, soil loss, techniques |
 | `loteo.py` | Field layout (below) |
 | `validar_mundo.py`, `informe_validacion.py` | Global validation and its report |

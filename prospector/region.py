@@ -29,7 +29,22 @@ EXPLICA = {"pendiente": ("la pendiente", "%", 1), "hand": ("la altura sobre el c
            "dist_cauce": ("la distancia al cauce", "m", 0), "arcilla": ("la arcilla del suelo", "%", 0)}
 CLASES = {1: ("Sí se puede cultivar", "#2e9e5b"), 2: ("Se puede con cuidado: pendiente moderada", "#e3c23a"), 3: ("No conviene: pendiente fuerte", "#c8553d"),
           4: ("Cauce y su franja: no se cultiva", "#3b8fd9"), 5: ("Agua, construcciones o caminos", "#7d7d7d"),
-          6: ("Terreno apto, pero hoy con árboles o matorral", "#9b7fd1")}
+          6: ("Terreno apto, pero hoy con árboles o matorral", "#9b7fd1"), 7: ("Ya plantado: viña o frutales", "#d9822b")}
+
+def plantado(d, G):
+    """Celdas que el mapa de uso del suelo marca como viña, huerto frutal o vivero, y qué tipos son. Si no hay dato, todo falso."""
+    from rasterio.features import rasterize
+    from rasterio.warp import transform_geom
+    sh = (G["alto"], G["ancho"]); out = np.zeros(sh, bool); tipos = set(); f = f"{d}/uso.geojson"
+    if not os.path.exists(f):
+        try: datos.descargar_uso(d, G)
+        except Exception: return out, []
+    gs = []
+    for x in json.load(open(f))["features"]:
+        try: gs.append(transform_geom("EPSG:4326", f"EPSG:{G['epsg']}", x["geometry"])); tipos.add(datos.PLANTADO.get(x["properties"].get("clase"), "plantación"))
+        except Exception: continue
+    if gs: out = rasterize([(g, 1) for g in gs], out_shape=sh, transform=Affine(*G["transform"]), all_touched=False).astype(bool)
+    return out, sorted(tipos)
 CDL = {1: "maíz", 2: "algodón", 3: "arroz", 4: "sorgo", 5: "soya", 6: "girasol", 10: "maní", 12: "maíz dulce", 21: "cebada", 22: "trigo candeal",
        23: "trigo de primavera", 24: "trigo de invierno", 26: "trigo de invierno/soya", 27: "centeno", 28: "avena", 31: "canola", 36: "alfalfa",
        37: "otros henos", 41: "remolacha", 42: "porotos secos", 43: "papas", 53: "arvejas", 61: "barbecho", 69: "uva", 75: "almendros", 76: "nogales"}
@@ -207,13 +222,16 @@ def analizar_region(d, registro=print, radio=7500.0, anio_fin=2025, progreso=Non
     cam = t["caminos"] if "caminos" in t.files else np.zeros(sh, bool)
     agua = np.isin(wct, [70, 80, 90, 95]); constr = (wct == 50) | edif
     cl = np.where(pend < 8, 1, np.where(pend < 15, 2, 3)).astype("uint8")
-    cl[(cl <= 2) & lenoso] = 6; cl[franja] = 4; cl[agua | constr | cam] = 5
+    cl[(cl <= 2) & lenoso] = 6
+    plant, tipos_plant = plantado(d, G); cl[np.isin(cl, (1, 2, 6)) & plant] = 7        # una viña o un huerto no es bosque: es un cultivo que ya está
+    cl[franja] = 4; cl[agua | constr | cam] = 5
     motivo = np.zeros(sh, "uint8"); motivo[agua] = 1; motivo[constr] = 2; motivo[cam] = 3
     hat = G["res"] ** 2 / 1e4
     try: mun = mundo.consultar(G["centro"][0], G["centro"][1]) if mundo.disponible() else dict(disponible=False, motivo="La tabla mundial de lugares parecidos aún se está construyendo.")
     except Exception as e: mun = dict(disponible=False, motivo=f"No se pudo consultar la tabla mundial ({e}).")
     resumen = dict(disponible=True, ha={CLASES[k][0]: round(float((cl[masc] == k).sum() * hat), 2) for k in CLASES}, total_ha=round(float(masc.sum() * hat), 2),
                    criterios=dict(pendiente_si="< 8 %", pendiente_cuidado="8-15 %", pendiente_no="> 15 %", cauce="drena ≥ 5 ha, franja de 10 m", resguardo_construcciones="10 m"),
+                   plantado=dict(ha=round(float((cl[masc] == 7).sum() * hat), 2), tipos=tipos_plant, fuente="Overture Maps, uso del suelo (OpenStreetMap)"),
                    mundo=mun, leyenda=[dict(clase=k, nombre=n, color=c) for k, (n, c) in CLASES.items()],
                    zona=(dict(disponible=True, radio_km=radio / 1000, cultivadas_cerca_ha=round(st["npos"] * ha), naturales_cerca_ha=round(st["nneg"] * ha), auc=st["auc"], acierto=st["acierto"],
                               tasa_base=round(st["npos"] / (st["npos"] + st["nneg"]), 3), percentiles=st["percentiles"], vecinos_estacion=st["vecinos_estacion"], vecinos_cdl=st["vecinos_cdl"],
@@ -237,6 +255,8 @@ def explicar_punto(d, col, fila):
     elif k == 3: tx = f"Aquí no conviene cultivar. La pendiente es fuerte ({p:.0f} %): las máquinas trabajan mal y la lluvia se lleva el suelo. Sirve mejor para pradera o árboles."
     elif k == 4: tx = "Por aquí corre el agua cuando llueve. No se cultiva: se deja una franja con vegetación a cada lado para proteger el suelo y el agua."
     elif k == 5: tx = {1: "Aquí hay agua o un humedal.", 2: "Aquí hay una construcción (o está a menos de 10 metros de una).", 3: "Por aquí pasa un camino o una calle."}.get(mot, "Aquí hay agua, una construcción o un camino.")
+    elif k == 7: tx = ("El mapa de uso del suelo marca aquí " + " o ".join(r.get("plantado", {}).get("tipos") or ["una plantación"]) + ". Ya es un cultivo plantado: no se propone despejarlo ni sembrar encima. "
+                       "Esta herramienta no simula uvas ni frutales; esta parte se deja como está.")
     else: tx = f"El terreno en sí sirve para cultivar ({p:.0f} % de pendiente), pero hoy tiene árboles o matorral. Despejarlo puede requerir permiso."
     tec = [f"Clase {k}: {CLASES[k][0]}", f"Pendiente: {p:.1f} % (umbrales: <8 sí · 8-15 con cuidado · >15 no; relieve de 30 m suavizado)",
            f"Área que drena por este punto: {dren:.2f} ha (cauce si ≥ 5 ha; franja de 10 m)", f"Índice topográfico de humedad: {float(t['twi'][fila, col]):.1f}"]

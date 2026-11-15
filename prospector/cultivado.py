@@ -4,7 +4,7 @@
 - GDHY v1.2+v1.3 (Iizumi y Sakai 2020, Scientific Data; CC-BY 4.0): rendimiento anual de maíz, arroz, trigo y soya, celdas de 0,5° (unos 55 km), 1981-2016.
 Se usan para mostrar la práctica real de la zona y para validar el motor; nunca para inventar un rendimiento.
 """
-import os, math
+import os, math, functools
 import numpy as np, rasterio
 from rasterio.windows import Window
 
@@ -44,3 +44,40 @@ def rendimiento(lon, lat):
     return out
 
 ORIENTACION_NORTE_ARRIBA = True      # comprobado con lugares conocidos: maíz de Iowa ~10 t/ha, trigo de Francia ~7 t/ha
+
+
+# ---------- cultivos que el motor no simula (uva, frutales, hortalizas, industriales): solo se informa si se siembran en la zona
+OTROS = dict(grape="uva", apple="manzana", avocado="palta (aguacate)", cherry="cereza", sourcherry="guinda", peachetc="durazno y nectarín", plum="ciruela", pear="pera", apricot="damasco", kiwi="kiwi",
+             walnut="nuez", almond="almendra", hazelnut="avellana", pistachio="pistacho", chestnut="castaña", olive="olivo", orange="naranja", lemonlime="limón", tangetc="mandarina", grapefruitetc="pomelo",
+             citrusnes="otros cítricos", blueberry="arándano", rasberry="frambuesa", strawberry="frutilla (fresa)", cranberry="cranberry", currant="grosella", fig="higo", date="dátil", persimmon="caqui",
+             quince="membrillo", banana="banano", plantain="plátano", mango="mango", papaya="papaya", pineapple="piña", coconut="coco", cashew="marañón (cajú)", coffee="café", cocoa="cacao", tea="té",
+             mate="yerba mate", oilpalm="palma aceitera", rubber="caucho", sugarcane="caña de azúcar", sugarbeet="remolacha azucarera", tobacco="tabaco", hop="lúpulo", tomato="tomate", onion="cebolla",
+             garlic="ajo", carrot="zanahoria", cabbage="repollo", lettuce="lechuga", cauliflower="coliflor", spinach="espinaca", asparagus="espárrago", artichoke="alcachofa", pumpkinetc="zapallo",
+             cucumberetc="pepino", eggplant="berenjena", chilleetc="ají y pimiento", watermelon="sandía", melonetc="melón", greenpea="arveja verde", greenbean="poroto verde", greencorn="choclo",
+             okra="okra", sweetpotato="camote (batata)", yam="ñame", taro="taro", lupin="lupino", triticale="triticale", buckwheat="trigo sarraceno", sesame="sésamo", linseed="linaza", flax="lino",
+             safflower="cártamo", mustard="mostaza", cowpea="caupí", pigeonpea="gandul", clover="trébol", vetch="vicia", ginger="jengibre", pepper="pimienta", vanilla="vainilla", sisal="sisal", jute="yute")
+F_OTROS = os.path.join(D, "cropgrids_otros.npz")
+
+def construir_otros(zip_nc, registro=print):
+    """Resume, del archivo completo de CROPGRIDS, los cultivos que el motor no simula: % de la tierra cosechada con cada uno en bloques de 0,25° (unos 28 km)."""
+    import zipfile, tempfile
+    lat = 90 - (np.arange(3600) + 0.5) * 0.05; ha_celda = (111.32 ** 2 * 0.05 ** 2 * 100 * np.maximum(np.cos(np.radians(lat)), 0.05))[:, None]; out = {}
+    with zipfile.ZipFile(zip_nc) as z, tempfile.TemporaryDirectory() as tmp:
+        for m in z.namelist():
+            nom = os.path.basename(m).replace("CROPGRIDSv1.08_", "").replace(".nc", "")
+            if nom not in OTROS: continue
+            f = os.path.join(tmp, "x.nc"); open(f, "wb").write(z.read(m))
+            with rasterio.open(f'netcdf:"{f}":harvarea') as s: a = s.read(1).astype("float32")
+            a[(a < 0) | (a > 1e6)] = 0.0
+            out[nom] = np.clip((100 * a / ha_celda).reshape(720, 5, 1440, 5).mean((1, 3)), 0, 100).astype("float16"); registro(f"{nom}: máx {float(out[nom].max()):.0f} %")
+    np.savez_compressed(F_OTROS, **out); return len(out)
+
+@functools.lru_cache(maxsize=1)
+def _otros(): return dict(np.load(F_OTROS)) if os.path.exists(F_OTROS) else {}
+
+def otros(lon, lat, minimo=0.3, tope=8):
+    """[{nombre, pct}]: cultivos NO simulados que sí se siembran en el bloque de 28 km del punto, de mayor a menor (dato observado, CROPGRIDS)."""
+    fi, co = int((90 - lat) / 0.25), int((lon + 180) / 0.25)
+    if not (0 <= fi < 720 and 0 <= co < 1440): return []
+    r = [dict(nombre=OTROS[k], pct=round(float(a[fi, co]), 1)) for k, a in _otros().items() if k in OTROS and float(a[fi, co]) >= minimo]
+    return sorted(r, key=lambda x: -x["pct"])[:tope]

@@ -99,6 +99,22 @@ def descargar_caminos(d, G, margen=0.012):
         if os.path.exists(f"{d}/{x}"): os.remove(f"{d}/{x}")
     return len(fc["features"])
 
+PLANTADO = {"vineyard": "viña", "orchard": "huerto de frutales", "plant_nursery": "vivero"}
+
+def descargar_uso(d, G, margen=0.003):
+    """Uso del suelo mapeado (Overture Maps, tema base/land_use; viene de OpenStreetMap): viñas, huertos frutales y viveros.
+    Los mapas de cobertura por satélite ven una viña o un huerto como «árboles»; este dato dice que ya es un cultivo plantado."""
+    import subprocess, sys
+    b = G["bbox"]; exe = os.path.join(os.path.dirname(sys.executable), "overturemaps")
+    subprocess.run([exe, "download", f"--bbox={b[0] - margen},{b[1] - margen},{b[2] + margen},{b[3] + margen}", "-f", "geojson", "--type=land_use", "-o", f"{d}/_uso.geojson"], check=True, timeout=240, capture_output=True)
+    fc = json.load(open(f"{d}/_uso.geojson"))
+    fc["features"] = [dict(type="Feature", geometry=f["geometry"], properties=dict(clase=f["properties"].get("class"), nombre=((f["properties"].get("names") or {}).get("primary"))))
+                      for f in fc["features"] if f.get("geometry") and f["geometry"]["type"] in ("Polygon", "MultiPolygon") and f["properties"].get("class") in PLANTADO]
+    json.dump(fc, open(f"{d}/uso.geojson", "w"))
+    for x in ("_uso.geojson", "_uso.geojson.state"):
+        if os.path.exists(f"{d}/{x}"): os.remove(f"{d}/{x}")
+    return len(fc["features"])
+
 def preparar(geo, anio_ini=2021, anio_fin=2025, clima_ini=2001, registro=print, solo_rapido=False, nombre=None, progreso=None, cancelado=None):
     an = _anillo(geo)
     ident = hashlib.sha1(json.dumps([[round(c, 6) for c in p[:2]] for p in an]).encode()).hexdigest()[:12]
@@ -149,6 +165,11 @@ def preparar(geo, anio_ini=2021, anio_fin=2025, clima_ini=2001, registro=print, 
             n = descargar_caminos(d, G); G["fuentes"]["caminos"] = f"Overture Maps, transporte (OpenStreetMap y otros): {n} tramos hasta 1,2 km alrededor"; registro(f"caminos: {n} tramos")
         except Exception as e:
             registro(f"caminos: no disponibles ({str(e)[:80]})")
+    if not os.path.exists(f"{d}/uso.geojson"):
+        try:
+            n = descargar_uso(d, G); G["fuentes"]["uso"] = f"Overture Maps, uso del suelo (OpenStreetMap): {n} viñas, huertos o viveros mapeados"; registro(f"viñas y huertos mapeados: {n}")
+        except Exception as e:
+            registro(f"uso del suelo: no disponible ({str(e)[:80]})")
     # ---- cobertura
     if not os.path.exists(f"{d}/worldcover.tif"):
         wc, nn = _mosaico(cat, "esa-worldcover", "map", G, Resampling.mode, dtype="uint8", vacio=0)

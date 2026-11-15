@@ -46,7 +46,7 @@ CULTIVOS = {
     "yuca":     _C("Yuca (mandioca)", "euforbiáceas", "raíz tropical", 13, 3200, 24, 32, 16, 38, 5, 99, (0.30, 0.80, 0.30), 0.7, 0.35, 0.70, 0.34, 0.80, 0.10, "baja", False, "alimento"),
     "alfalfa":  _C("Alfalfa", "leguminosas", "forraje permanente", 5, 99999, 15, 30, 3, 38, -8, 99, (0.4, 0.95, 0.90), 1.5, 0.55, 1.10, 0.05, 0.95, 0.80, "baja", True, "forraje"),
 }
-VERSION = 5            # subir cuando cambie el método: las copias guardadas con otra versión se recalculan
+VERSION = 7            # subir cuando cambie el método: las copias guardadas con otra versión se recalculan
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 
 def _clima(d, G):
@@ -358,5 +358,9 @@ def analizar(d, actual=None, registro=print):
     out = dict(version=VERSION, clima=clima, suelo=dict(textura=su["textura"], arcilla=su["arcilla"], arena=su["arena"], agua_util_mm_m=round(su["awc"] * 1000)), cultivos=res_c, zonas=zonas, actual=actual,
                fuentes=dict(clima="NASA POWER diario (MERRA-2, CERES) y lluvia GPM IMERG", metodo="FAO-56 (agua), FAO-33 (rendimiento por agua), suma térmica, RUSLE (erosión)",
                             observado="Superficie sembrada: CROPGRIDS v1.08 (Tang et al. 2024). Rendimiento medido: GDHY (Iizumi y Sakai 2020), 2007-2016", parametros="FAO ECOCROP, FAO-56, FAO-33; factores C de Panagos et al. 2015; largo de ciclo y fecha de siembra de la zona según el calendario mundial GGCMI (Jägermeyr et al. 2021)"))
+    try:                                   # cultivos que este motor no simula pero que sí se siembran en la zona (dato observado)
+        from . import cultivado
+        out["otros_zona"] = cultivado.otros(G["centro"][0], lat)
+    except Exception: out["otros_zona"] = []
     json.dump(out, open(f"{d}/cultivos.json", "w"), ensure_ascii=False)
     return out

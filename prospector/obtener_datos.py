@@ -36,13 +36,14 @@ def ggcmi():
 def cropgrids():
     d = os.path.join(D, "cropgrids"); os.makedirs(d, exist_ok=True)
     quiero = {f"CROPGRIDSv1.08_{n}.nc" for n in cultivado.CROPGRIDS.values()}
-    if quiero <= set(os.listdir(d)): return print("cropgrids: ya está")
+    if quiero <= set(os.listdir(d)) and os.path.exists(cultivado.F_OTROS): return print("cropgrids: ya está")
     z = _bajar("https://ndownloader.figshare.com/files/44950942", os.path.join(d, "nc.zip"))      # todos los cultivos; se guardan solo los que simula el motor
     with zipfile.ZipFile(z) as a:
         for m in a.namelist():
             if os.path.basename(m) in quiero:
                 with open(os.path.join(d, os.path.basename(m)), "wb") as f: f.write(a.read(m))
-    os.remove(z); print("cropgrids:", len(os.listdir(d)), "cultivos")
+    n = cultivado.construir_otros(z, registro=lambda m: None)      # resumen de los cultivos que el motor no simula (uva, frutales, hortalizas…)
+    os.remove(z); print("cropgrids:", len(os.listdir(d)), "cultivos simulados y", n, "solo informados")
 
 def gdhy():
     d = os.path.join(D, "gdhy"); os.makedirs(d, exist_ok=True)

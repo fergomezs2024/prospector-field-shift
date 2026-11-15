@@ -92,6 +92,7 @@ def proponer(d, plan, bosque="conservar", ladera="incluir", camino=5.0, construc
         if q.any(): fuera.append(dict(motivo=motivo, ha=ha(q)))
         resto[q] = False
     quitar(cl == 5, "Agua, construcciones o caminos"); quitar(cl == 4, "Cauce y su franja de protección"); quitar(cl == 3, "Pendiente fuerte (más de 15 %)")
+    quitar(cl == 7, "Viña o frutales que ya están plantados")
     if bosque == "conservar": quitar(cl == 6, "Árboles y matorral que se conservan")
     if ladera == "dejar": quitar(cl == 2, "Ladera que se deja con pasto")
     quitar(~np.isin(cl, (1, 2, 6)), "Sin datos suficientes")

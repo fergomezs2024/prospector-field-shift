@@ -26,7 +26,7 @@ All data are open and public. None requires an account or an API key. Check each
 | USDA Cropland Data Layer | Crops by parcel (United States) | https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php |
 | SoilGrids (ISRIC) | Soil texture and available water | https://soilgrids.org/ |
 | WorldClim 2.1 | Reference climate for the global table | https://www.worldclim.org/data/worldclim21.html |
-| Overture Maps | Buildings and roads | https://overturemaps.org/ |
+| Overture Maps | Buildings, roads, and mapped vineyards, orchards and nurseries (land use) | https://overturemaps.org/ |
 | Esri World Imagery | Satellite imagery, display only | https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9 |
 | Natural Earth | Country boundaries | https://www.naturalearthdata.com/ |
 | Esri World Boundaries and Places | City, road and border names over the imagery | https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer |

@@ -71,7 +71,7 @@ def _ejecutar(i, pedido):
         tr["terreno"] = True
         if canc(): raise datos.Cancelado()
         with _Paso(tr, "region") as ps:    # aprender de los terrenos cultivados alrededor (se guarda por zona)
-            if not os.path.exists(f"{d}/cultivo.json") or "criterios" not in json.load(open(f"{d}/cultivo.json")): region.analizar_region(d, registro=reg, progreso=ps.avance, cancelado=canc)
+            if not os.path.exists(f"{d}/cultivo.json") or "plantado" not in json.load(open(f"{d}/cultivo.json")): region.analizar_region(d, registro=reg, progreso=ps.avance, cancelado=canc)
         tr["region"] = True
         if canc(): raise datos.Cancelado()
         with _Paso(tr, "historial") as ps:   # minutos: HLS propio, suelo, clima
@@ -160,6 +160,7 @@ def get_entorno(i: str):
     veg = (wc == 10).astype("uint8")                                   # 1 = arbolado
     if os.path.exists(f"{d}/cultivo.npz") and os.path.exists(f"{d}/terreno.npz"):     # 2 = matorral o árboles dispersos dentro del terreno
         veg[(np.load(f"{d}/cultivo.npz")["clase"] == 6) & np.load(f"{d}/terreno.npz")["mascara"] & (veg == 0)] = 2
+        veg[np.load(f"{d}/cultivo.npz")["clase"] == 7] = 3              # 3 = viña o huerto frutal: plantas en hileras, no bosque
     return dict(ancho=int(wc.shape[1]), alto=int(wc.shape[0]), arboles=base64.b64encode(np.ascontiguousarray(veg).tobytes()).decode())
 
 @app.get("/api/loteo/{i}")
@@ -263,7 +264,7 @@ def get_terreno(i: str, motivo: str = "abrir"):
     fc = f"{d}/cultivo.json"
     if os.path.exists(fc):
         c = json.load(open(fc))
-        if "criterios" not in c:                       # formato anterior: se rehace con lo ya descargado si la zona está en caché
+        if "plantado" not in c:                        # formato anterior: se rehace con lo ya descargado si la zona está en caché
             try: region.analizar_region(d, registro=lambda m: None)
             except Exception: pass
         elif not c.get("mundo", {}).get("disponible") and mundo.disponible():      # la tabla mundial se construyó después
@@ -344,7 +345,7 @@ def capa(i: str, nombre: str, mes: int = 1, mezcla: float = 0.75, edif: int = 1,
         if os.path.exists(f"{d}/cultivo.npz") and not solo:
             cl = np.load(f"{d}/cultivo.npz")["clase"]
             for k, (_, hx) in region.CLASES.items():
-                if k in (4, 5, 6): m_ = (cl == k) & t["mascara"]; out[m_] = base[m_] * 0.45 + np.array([int(hx[j:j + 2], 16) for j in (1, 3, 5)]) * 0.55
+                if k in (4, 5, 6, 7): m_ = (cl == k) & t["mascara"]; out[m_] = base[m_] * 0.45 + np.array([int(hx[j:j + 2], 16) for j in (1, 3, 5)]) * 0.55
         for z in c["zonas"]:
             if not z["estrategias"]: continue
             e = z["estrategias"][_mejor(z) if est < 0 else min(est, len(z["estrategias"]) - 1)]; cu = por[e["secuencia"][anio_r % len(e["secuencia"])]]
