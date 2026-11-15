@@ -45,7 +45,7 @@ python -m prospector.obtener_datos                              # local install
 docker compose exec prospector python -m prospector.obtener_datos   # Docker
 ```
 
-Requirements: 2 CPU cores, 4 GB of RAM, about 1.5 GB of disk, and internet access to the open data services. No account or API key is needed.
+Requirements: 2 CPU cores, 4 GB of RAM, about 4 GB of disk (the Docker image is 1.7 GB), and internet access to the open data services. No account or API key is needed.
 
 ## NASA data
 

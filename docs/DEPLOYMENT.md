@@ -6,7 +6,7 @@
 |---|---|
 | CPU | 2 cores |
 | Memory | 4 GB |
-| Disk | about 1.5 GB: code and libraries, 280 MB of global reference data, and the cache of analysed fields |
+| Disk | about 4 GB: the Docker image is 1.7 GB, the global reference data 280 MB, and the cache of analysed fields grows with use (tens of MB per field) |
 | Network | outbound HTTPS to the open data services; no API key or account |
 
 ## Configuration
@@ -23,6 +23,8 @@
 docker compose up -d --build
 docker compose exec prospector python -m prospector.obtener_datos    # once
 ```
+
+The container starts in about 5 seconds. A new field takes several minutes to analyse the first time (the terrain appears within about a minute; the vegetation history is the slow part); after that it is served from the cache.
 
 Put a reverse proxy with TLS in front (Caddy, nginx or the provider's load balancer). `GET /api/salud` is the health check; the image declares it as `HEALTHCHECK`. Responses are gzip-compressed by the service.
 
