@@ -5,7 +5,7 @@ NASA Space Apps Challenge 2026 · challenge **Field Shift: Adapting Farms with N
 Prospector is a decision-support tool for farmers and advisors. You draw a field on a satellite map, anywhere in the world, and it answers four questions with open NASA data:
 
 1. **Where can I farm?** A 3D replica of the terrain, with every 10 m cell classified as suitable, suitable with care, too steep, water channel, built/road, or suitable but under trees.
-2. **What grows here?** 23 annual field crops simulated day by day against 24 years of weather (2001–2024): which grow without irrigation, a tentative sowing window, and how many years out of ten the harvest succeeds.
+2. **What grows here?** 31 annual crops simulated day by day against 24 years of weather (2001–2024): which grow without irrigation, a tentative sowing window, and how many years out of ten the harvest succeeds.
 3. **How should I rotate?** The current rotation compared with alternatives by good years, water use, soil loss and months of bare soil.
 4. **How do I lay the field out?** Plots, headlands, buffer strips and an access route from the nearest drivable road — after asking the farmer what to do with trees, slopes, roads and buildings.
 
@@ -79,7 +79,8 @@ Weak spots: North Africa and the Middle East (55 %); peas, rice and rapeseed; so
 
 ## Known limits
 
-- Only 23 annual field crops are simulated. Fruit trees, vegetables, vines and pastures are not. A crop missing from the list is not a crop that fails. For 87 other crops (grapes, fruit, vegetables, sugar cane, coffee and more) the tool reports whether they are actually grown in the area (CROPGRIDS), without judging them.
+- 31 annual crops are simulated: 23 field crops validated worldwide, plus 8 vegetable and industrial crops (tomato, pepper, onion, cabbage, watermelon, sugar beet, safflower, tobacco) added with general FAO parameters. Of those 8 only sugar beet has enough sample points to be checked; the other 7 are flagged in the app as not yet validated. Fruit trees, vines and pastures are not simulated. A crop missing from the list is not a crop that fails.
+- For 79 other crops (grapes, fruit, vegetables, sugar cane, coffee and more) the tool reports whether they are actually grown in the area (CROPGRIDS) and whether the area ranks among the top 10 % or 25 % of places in the world for that crop. That is observed practice — a sign of suitable climate, buyers and know-how — not a simulated yield.
 - Satellite land cover cannot tell a vineyard or an orchard from woodland. Where OpenStreetMap maps the parcel as vineyard, orchard or nursery, the tool treats it as an existing plantation: it is not proposed for clearing and is drawn as rows. Where the map has nothing, the farmer is asked.
 - Sowing and harvest dates are tentative: the real date depends on the variety and the year.
 - Crop parameters are general FAO values adjusted with a 55 km crop calendar, not local varieties.

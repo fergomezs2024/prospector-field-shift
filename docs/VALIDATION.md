@@ -53,11 +53,20 @@ With the local adjustment the engine knows the local date and adopts it when the
 - The verdict was too strict for low-yield rainfed farming (Oceania scored 70 %): a "grows, with a low harvest" verdict was added.
 - A bug in deep-soil water made millet "grow" with 82 mm of rain a year: fixed; false positives in arid land went to 0 %.
 
+## Crops without a global calendar
+
+Eight vegetable and industrial crops were added after the main validation, and quinoa and alfalfa were never part of it. They were measured on the same 360 points (`python -m prospector.validar_nuevos resultados_31.json`; full table in [validation/INFORME_cultivos_nuevos_es.md](validation/INFORME_cultivos_nuevos_es.md)):
+
+- In arid land with no cropland, none of them comes out as growing without irrigation (0 of 25 points).
+- Sugar beet: sown at 10 points; the engine recognises it at all 10 (7 rainfed, 3 only with irrigation).
+- Alfalfa: sown at 12 points; the engine recognises it at only 4. This is a weak spot.
+- Tomato, onion, cabbage, watermelon and tobacco have between 1 and 6 points where they are sown; pepper, safflower and quinoa have none. That is too few to say anything, so these crops are flagged in the app as not yet validated.
+
 ## What this validation does not prove
 
 - No comparison with yields in tonnes per hectare: the engine does not predict them.
 - Land cover says there is cropland, not which crop; the calendar is a 55 km grid.
-- 16 of the 23 crops are compared with the calendar and 15 with CROPGRIDS — those with data in these sources.
+- 16 of the 31 crops are compared with the calendar and 15 with CROPGRIDS — those with data in these sources.
 - Terrain classification, field layout and rotations were not validated.
 - No farmer or agronomist has reviewed the results.
 
@@ -65,7 +74,7 @@ With the local adjustment the engine knows the local date and adopts it when the
 
 ```bash
 python -m prospector.obtener_datos                 # global reference data, once
-python -m prospector.validar_mundo 30 10 31        # 30 cropland + 10 non-cropland points per region, seed 31
+python -m prospector.validar_mundo 270 90 31       # 270 cropland + 90 non-cropland points in total (30 + 10 per region), seed 31
 python -m prospector.informe_validacion resultados_31.json INFORME.md
 ```
 

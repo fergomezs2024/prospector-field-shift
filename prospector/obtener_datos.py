@@ -16,12 +16,7 @@ from . import mundo, cultivado
 
 D = mundo.D
 
-def _bajar(url, dst):
-    if os.path.exists(dst): return dst
-    r = requests.get(url, timeout=1800, stream=True); r.raise_for_status()
-    with open(dst + ".part", "wb") as f:
-        for ch in r.iter_content(1 << 20): f.write(ch)
-    os.replace(dst + ".part", dst); return dst
+_bajar = mundo._bajar            # con reintentos, sin colgarse y retomando lo ya bajado
 
 def tabla():
     if mundo.disponible(): return print("tabla mundial: ya está")
@@ -57,7 +52,22 @@ def gdhy():
                 with open(os.path.join(d, p[-2], p[-1]), "wb") as f: f.write(a.read(m))
     os.remove(z); print("gdhy:", sorted(os.listdir(d)))
 
+PASOS = dict(tabla=(tabla, "Tabla mundial de clima y suelo (WorldClim, SoilGrids, ESA CCI)", "no se compara el lugar con otros parecidos del mundo"),
+             ggcmi=(ggcmi, "Calendario local de cultivos (GGCMI)", "las fechas salen de valores generales, sin ajuste local"),
+             cropgrids=(cropgrids, "Superficie sembrada por cultivo (CROPGRIDS)", "no se informa qué se siembra de verdad en la zona"),
+             gdhy=(gdhy, "Rendimientos medidos (GDHY)", "no se muestra el rendimiento medido de maíz, arroz, trigo y soya"))
+
 if __name__ == "__main__":
-    os.makedirs(D, exist_ok=True)
-    for paso in (sys.argv[1:] or ["tabla", "ggcmi", "cropgrids", "gdhy"]):
-        print("→", paso, flush=True); dict(tabla=tabla, ggcmi=ggcmi, cropgrids=cropgrids, gdhy=gdhy)[paso]()
+    # Cada conjunto de datos se baja por separado: si uno falla (servidor caído), los demás siguen y al final se dice cuál faltó.
+    os.makedirs(D, exist_ok=True); pedidos = sys.argv[1:] or list(PASOS); fallaron = []
+    for paso in pedidos:
+        if paso not in PASOS: print(f"«{paso}» no existe. Opciones: {', '.join(PASOS)}"); continue
+        print("→", paso, flush=True)
+        try: PASOS[paso][0]()
+        except Exception as e: fallaron.append(paso); print(f"   FALLÓ: {str(e)[:200]}", flush=True)
+    print("\nResumen")
+    for paso in pedidos:
+        if paso in PASOS: print(f"  {'FALTA' if paso in fallaron else 'listo'}  {PASOS[paso][1]}" + (f" — sin esto, {PASOS[paso][2]}" if paso in fallaron else ""))
+    if fallaron:
+        print(f"\nLa aplicación funciona igual y avisa en pantalla qué dato falta. Para reintentar solo lo que faltó:\n  python -m prospector.obtener_datos {' '.join(fallaron)}")
+        sys.exit(1)

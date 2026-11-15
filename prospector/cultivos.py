@@ -44,9 +44,19 @@ CULTIVOS = {
     "mani":     _C("Maní", "leguminosas", "cultivo de verano", 10, 1500, 22, 30, 14, 38, 2, 37, (0.40, 1.15, 0.60), 0.8, 0.50, 0.70, 0.32, 0.80, 0.10, "baja", True, "grano y aceite"),
     "algodon":  _C("Algodón", "malváceas", "cultivo de verano", 15, 1300, 25, 35, 16, 42, 2, 40, (0.35, 1.18, 0.60), 1.3, 0.65, 0.85, 0.50, 0.85, 0.20, "baja", False, "fibra"),
     "yuca":     _C("Yuca (mandioca)", "euforbiáceas", "raíz tropical", 13, 3200, 24, 32, 16, 38, 5, 99, (0.30, 0.80, 0.30), 0.7, 0.35, 0.70, 0.34, 0.80, 0.10, "baja", False, "alimento"),
+    # hortalizas e industriales: Kc, raíz y p de FAO-56 (tablas 12, 17 y 22); Ky de FAO-33. Rangos térmicos generales. Sin calendario local (GGCMI no los trae).
+    "tomate":   _C("Tomate", "solanáceas", "hortaliza de verano", 10, 1400, 18, 27, 10, 35, 1, 35, (0.60, 1.15, 0.80), 1.0, 0.40, 1.05, 0.34, 0.80, 0.05, "baja", False, "alimento"),
+    "aji":      _C("Ají y pimiento", "solanáceas", "hortaliza de verano", 10, 1500, 18, 28, 10, 35, 1, 34, (0.60, 1.05, 0.90), 0.75, 0.30, 1.10, 0.34, 0.75, 0.05, "baja", False, "alimento"),
+    "cebolla":  _C("Cebolla", "aliáceas", "hortaliza de estación fría", 5, 1500, 13, 24, 5, 30, -2, 32, (0.70, 1.05, 0.75), 0.45, 0.30, 1.10, 0.34, 0.60, 0.05, "baja", False, "alimento"),
+    "repollo":  _C("Repollo", "crucíferas", "hortaliza de estación fría", 4, 1300, 13, 22, 4, 30, -3, 30, (0.70, 1.05, 0.95), 0.6, 0.45, 0.95, 0.34, 0.80, 0.05, "baja", False, "alimento"),
+    "sandia":   _C("Sandía", "cucurbitáceas", "hortaliza de verano", 10, 1200, 22, 32, 12, 38, 1, 38, (0.40, 1.00, 0.75), 1.1, 0.40, 1.10, 0.34, 0.75, 0.05, "baja", False, "alimento"),
+    "remolacha": _C("Remolacha azucarera", "amarantáceas", "raíz industrial", 3, 2400, 15, 25, 4, 35, -3, 99, (0.35, 1.20, 0.70), 1.0, 0.55, 1.00, 0.34, 0.90, 0.10, "baja", False, "azúcar"),
+    "cartamo":  _C("Cártamo", "compuestas", "oleaginosa", 5, 1900, 15, 28, 5, 38, -2, 38, (0.35, 1.10, 0.25), 1.5, 0.60, 0.80, 0.28, 0.80, 0.15, "baja", False, "aceite"),
+    "tabaco":   _C("Tabaco", "solanáceas", "cultivo industrial de verano", 10, 1300, 20, 30, 12, 36, 1, 38, (0.50, 1.15, 0.80), 0.6, 0.50, 0.90, 0.49, 0.80, 0.05, "baja", False, "hoja"),
     "alfalfa":  _C("Alfalfa", "leguminosas", "forraje permanente", 5, 99999, 15, 30, 3, 38, -8, 99, (0.4, 0.95, 0.90), 1.5, 0.55, 1.10, 0.05, 0.95, 0.80, "baja", True, "forraje"),
 }
-VERSION = 7            # subir cuando cambie el método: las copias guardadas con otra versión se recalculan
+SIN_VALIDAR = {"tomate", "aji", "cebolla", "repollo", "sandia", "cartamo", "tabaco"}      # ver validacion/INFORME_cultivos_nuevos.md
+VERSION = 10            # subir cuando cambie el método: las copias guardadas con otra versión se recalculan
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 
 def _clima(d, G):
@@ -141,8 +151,8 @@ def _suelo(d):
     try:
         cl = np.nanmedian(rasterio.open(f"{d}/suelo_clay.tif").read(1)) / 10; sa = np.nanmedian(rasterio.open(f"{d}/suelo_sand.tif").read(1)) / 10
         if not (np.isfinite(cl) and np.isfinite(sa)): raise ValueError
-    except Exception: cl, sa = 25.0, 40.0
-    return suelo_de(float(cl), float(sa))
+        return dict(suelo_de(float(cl), float(sa)), supuesto=False)
+    except Exception: return dict(suelo_de(25.0, 40.0), supuesto=True)        # sin dato de suelo: se usa un suelo medio y se avisa
 
 def suelo_de(cl, sa):
     """Agua útil y erodabilidad a partir de arcilla y arena (%)."""
@@ -355,12 +365,25 @@ def analizar(d, actual=None, registro=print):
         zonas.append(dict(clave=k, nombre=NOMZ[k][0], descripcion=NOMZ[k][1], ha=round(float(mz.sum() * ha_c), 2), pendiente_media=round(pm, 1), factor_ls=round(ls, 2),
                           recomendados=[x["nombre"] for x in usable[:5]], recomendados_claves=[x["clave"] for x in usable[:5]], evitar=evitar, tecnicas=tec, estrategias=ests))
     np.savez_compressed(f"{d}/cultivos.npz", zona=zona)
-    out = dict(version=VERSION, clima=clima, suelo=dict(textura=su["textura"], arcilla=su["arcilla"], arena=su["arena"], agua_util_mm_m=round(su["awc"] * 1000)), cultivos=res_c, zonas=zonas, actual=actual,
+    out = dict(version=VERSION, clima=clima, suelo=dict(textura=su["textura"], supuesto=su.get("supuesto", False), arcilla=su["arcilla"], arena=su["arena"], agua_util_mm_m=round(su["awc"] * 1000)), cultivos=res_c, zonas=zonas, actual=actual,
                fuentes=dict(clima="NASA POWER diario (MERRA-2, CERES) y lluvia GPM IMERG", metodo="FAO-56 (agua), FAO-33 (rendimiento por agua), suma térmica, RUSLE (erosión)",
                             observado="Superficie sembrada: CROPGRIDS v1.08 (Tang et al. 2024). Rendimiento medido: GDHY (Iizumi y Sakai 2020), 2007-2016", parametros="FAO ECOCROP, FAO-56, FAO-33; factores C de Panagos et al. 2015; largo de ciclo y fecha de siembra de la zona según el calendario mundial GGCMI (Jägermeyr et al. 2021)"))
-    try:                                   # cultivos que este motor no simula pero que sí se siembran en la zona (dato observado)
-        from . import cultivado
-        out["otros_zona"] = cultivado.otros(G["centro"][0], lat)
+    from . import cultivado, calendario, mundo
+    for x in res_c:                        # cultivos agregados sin validación mundial suficiente: se dice en la propia ficha
+        if x["clave"] in SIN_VALIDAR and x.get("porque"): x["porque"] += " Este cultivo se agregó con valores generales y todavía no tiene validación mundial suficiente: tómalo solo como orientación."
+    try: out["otros_zona"] = cultivado.otros(G["centro"][0], lat)      # cultivos que este motor no simula pero que sí se siembran en la zona (dato observado)
     except Exception: out["otros_zona"] = []
+    # ---------- qué dato faltó en este análisis y qué resultado afecta: se dice, no se disimula
+    F = []
+    if su.get("supuesto"): F.append(dict(dato="Suelo del terreno (SoilGrids)", efecto="No se pudo leer. Se usó un suelo medio supuesto (25 % de arcilla, 40 % de arena): el agua que guarda el suelo, y por eso el veredicto de cada cultivo, puede cambiar."))
+    if not calendario.disponible(): F.append(dict(dato="Calendario local de cultivos (GGCMI)", efecto="Las fechas y el largo del ciclo salen de valores generales, sin ajuste a lo que se acostumbra en la zona."))
+    if not cultivado.disponible(): F.append(dict(dato="Superficie sembrada y rendimiento medido (CROPGRIDS, GDHY)", efecto="No se muestra si cada cultivo se siembra de verdad en la zona ni su rendimiento medido."))
+    if not os.path.exists(cultivado.F_OTROS): F.append(dict(dato="Otros cultivos de la zona (CROPGRIDS)", efecto="No se informa qué frutales, viñas u hortalizas se cultivan alrededor."))
+    if not mundo.disponible(): F.append(dict(dato="Tabla mundial de clima y suelo", efecto="No se compara este lugar con otros lugares parecidos del mundo."))
+    for arch, dato, efecto in (("uso.geojson", "Viñas y huertos mapeados (Overture, OpenStreetMap)", "Una viña o un huerto de frutales puede aparecer como «árboles»."),
+                               ("caminos.geojson", "Caminos mapeados (Overture, OpenStreetMap)", "No se conoce el camino más cercano: el acceso y las franjas junto a caminos no se calculan bien."),
+                               ("edificios.geojson", "Construcciones mapeadas (Overture)", "No se descuentan las construcciones ni su resguardo.")):
+        if not os.path.exists(f"{d}/{arch}"): F.append(dict(dato=dato, efecto=efecto))
+    out["faltan"] = F
     json.dump(out, open(f"{d}/cultivos.json", "w"), ensure_ascii=False)
     return out

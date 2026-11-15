@@ -10,7 +10,8 @@ from rasterio.windows import Window
 
 D = os.environ.get("PROSPECTOR_DATOS") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "mundo_datos")
 CROPGRIDS = dict(trigo="wheat", cebada="barley", centeno="rye", avena="oats", maiz="maize", sorgo="sorghum", arroz="rice", mijo="millet", lenteja="lentil", garbanzo="chickpea", arveja="pea", haba="broadbean",
-                 poroto="bean", soya="soybean", mani="groundnut", raps="rapeseed", girasol="sunflower", papa="potato", quinoa="quinoa", alfalfa="alfalfa", algodon="cotton", yuca="cassava")
+                 poroto="bean", soya="soybean", mani="groundnut", raps="rapeseed", girasol="sunflower", papa="potato", quinoa="quinoa", alfalfa="alfalfa", algodon="cotton", yuca="cassava",
+                 tomate="tomato", aji="chilleetc", cebolla="onion", repollo="cabbage", sandia="watermelon", remolacha="sugarbeet", cartamo="safflower", tabaco="tobacco")
 GDHY = dict(trigo="wheat", maiz="maize", arroz="rice", soya="soybean")
 
 def disponible(): return os.path.isdir(os.path.join(D, "cropgrids")) and len(os.listdir(os.path.join(D, "cropgrids"))) >= 10
@@ -79,5 +80,16 @@ def otros(lon, lat, minimo=0.3, tope=8):
     """[{nombre, pct}]: cultivos NO simulados que sí se siembran en el bloque de 28 km del punto, de mayor a menor (dato observado, CROPGRIDS)."""
     fi, co = int((90 - lat) / 0.25), int((lon + 180) / 0.25)
     if not (0 <= fi < 720 and 0 <= co < 1440): return []
-    r = [dict(nombre=OTROS[k], pct=round(float(a[fi, co]), 1)) for k, a in _otros().items() if k in OTROS and float(a[fi, co]) >= minimo]
+    r = []
+    for k, a in _otros().items():
+        v = float(a[fi, co])
+        if k not in OTROS or k in CROPGRIDS.values() or v < minimo: continue
+        u = _umbrales(k); puesto = 10 if v >= u[1] else (25 if v >= u[0] else None)      # entre el 10 % o el 25 % de zonas del mundo donde más se cultiva
+        r.append(dict(nombre=OTROS[k], pct=round(v, 1), puesto=puesto))
     return sorted(r, key=lambda x: -x["pct"])[:tope]
+
+@functools.lru_cache(maxsize=None)
+def _umbrales(k):
+    """Percentiles 75 y 90 de la superficie del cultivo entre las zonas del mundo donde se cultiva (al menos 0,05 % de la tierra)."""
+    a = _otros()[k].astype("float32"); v = a[a >= 0.05]
+    return (float(np.percentile(v, 75)), float(np.percentile(v, 90))) if v.size > 50 else (1e9, 1e9)

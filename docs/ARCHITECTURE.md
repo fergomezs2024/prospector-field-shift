@@ -11,7 +11,7 @@ FastAPI service (prospector/api.py)
         ├── datos.py      download of open data for the field window (COG over HTTP, STAC, NASA POWER)
         ├── terreno.py    slope, aspect, drainage, buildings, roads
         ├── region.py     what cultivated land around the field looks like; suitability classes
-        ├── cultivos.py   crop engine: 23 crops × sowing dates × 24 years
+        ├── cultivos.py   crop engine: 31 crops × sowing dates × 24 years
         ├── calendario.py local crop calendar (GGCMI)
         ├── cultivado.py  observed harvested area (CROPGRIDS) and yields (GDHY)
         ├── loteo.py      plots, buffers, access route

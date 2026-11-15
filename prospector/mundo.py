@@ -18,16 +18,31 @@ VARS = [f"bio{b}" for b in BIOS] + ["arcilla", "arena", "ph", "carbono"]
 EXCLUIR = {"carbono"}
 NY, NX = 1080, 2160; T = from_origin(-180, 90, 1 / 6, 1 / 6)
 
-def _bajar(url, dst):
+def _bajar(url, dst, intentos=2, registro=None):
+    """Descarga con reintentos. Si el servidor no responde no se queda colgado: corta a los 12 s sin conexión o a los 2 min sin datos.
+    Lo ya bajado queda en «.part» y se retoma desde ahí la próxima vez. `url` puede ser una lista de servidores alternativos."""
+    import time
     if os.path.exists(dst): return dst
-    r = requests.get(url, timeout=900, stream=True); r.raise_for_status()
-    with open(dst + ".part", "wb") as f:
-        for ch in r.iter_content(1 << 20): f.write(ch)
-    os.replace(dst + ".part", dst); return dst
+    urls = [url] if isinstance(url, str) else list(url); ultimo = None
+    for n in range(intentos):
+        for u in urls:
+            try:
+                ya = os.path.getsize(dst + ".part") if os.path.exists(dst + ".part") else 0
+                r = requests.get(u, timeout=(12, 120), stream=True, headers={"Range": f"bytes={ya}-"} if ya else {})
+                if r.status_code == 416: os.replace(dst + ".part", dst); return dst          # ya estaba completo
+                r.raise_for_status()
+                with open(dst + ".part", "ab" if (ya and r.status_code == 206) else "wb") as f:
+                    for ch in r.iter_content(1 << 20): f.write(ch)
+                os.replace(dst + ".part", dst); return dst
+            except Exception as e:
+                ultimo = e
+                if registro: registro(f"   no respondió {u.split('/')[2]} (intento {n + 1} de {intentos}): {str(e)[:90]}")
+        time.sleep(5 * (n + 1))
+    raise RuntimeError(f"no se pudo descargar desde {', '.join(x.split('/')[2] for x in urls)}: {str(ultimo)[:120]}")
 
 def construir(registro=print):
     os.makedirs(D, exist_ok=True)
-    registro("clima WorldClim (50 MB)…"); z = zipfile.ZipFile(_bajar("https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_bio.zip", f"{D}/wc_bio.zip"))
+    registro("clima WorldClim (50 MB)…"); z = zipfile.ZipFile(_bajar(["https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_bio.zip", "https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_bio.zip"], f"{D}/wc_bio.zip", registro=registro))
     cols = {}
     for b in BIOS:
         with rasterio.open(io.BytesIO(z.read(f"wc2.1_10m_bio_{b}.tif"))) as s: a = s.read(1).astype("float32"); a[a < -1e30] = np.nan; a[a == s.nodata] = np.nan

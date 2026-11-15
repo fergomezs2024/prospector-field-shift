@@ -227,7 +227,7 @@ def analizar_region(d, registro=print, radio=7500.0, anio_fin=2025, progreso=Non
     cl[franja] = 4; cl[agua | constr | cam] = 5
     motivo = np.zeros(sh, "uint8"); motivo[agua] = 1; motivo[constr] = 2; motivo[cam] = 3
     hat = G["res"] ** 2 / 1e4
-    try: mun = mundo.consultar(G["centro"][0], G["centro"][1]) if mundo.disponible() else dict(disponible=False, motivo="La tabla mundial de lugares parecidos aún se está construyendo.")
+    try: mun = mundo.consultar(G["centro"][0], G["centro"][1]) if mundo.disponible() else dict(disponible=False, motivo="Falta la tabla mundial de lugares parecidos (se descarga una vez con «python -m prospector.obtener_datos»).")
     except Exception as e: mun = dict(disponible=False, motivo=f"No se pudo consultar la tabla mundial ({e}).")
     resumen = dict(disponible=True, ha={CLASES[k][0]: round(float((cl[masc] == k).sum() * hat), 2) for k in CLASES}, total_ha=round(float(masc.sum() * hat), 2),
                    criterios=dict(pendiente_si="< 8 %", pendiente_cuidado="8-15 %", pendiente_no="> 15 %", cauce="drena ≥ 5 ha, franja de 10 m", resguardo_construcciones="10 m"),
