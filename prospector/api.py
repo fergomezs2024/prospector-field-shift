@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from PIL import Image
 from matplotlib import colormaps
 from affine import Affine
-from . import datos, terreno, region, mundo, cultivos, loteo
+from . import datos, terreno, region, mundo, cultivos, loteo, otros_mundos
 
 AQUI = os.path.dirname(__file__); WEB = f"{AQUI}/web"
 app = FastAPI(title="Prospector")
@@ -192,6 +192,17 @@ def _mejor(z):
     return max(range(len(e)), key=lambda k: (e[k]["buenos_de_10"], e[k]["rendimiento"], -e[k]["erosion_t_ha"])) if e else 0
 
 SUELO_RGB, VERDE_RGB, SECO_RGB, RASTROJO_RGB = np.array([150, 116, 82.0]), np.array([52, 148, 58.0]), np.array([214, 186, 72.0]), np.array([196, 170, 112.0])
+
+class PedidoMundo(BaseModel):
+    geojson: dict
+    lado_km: float | None = None
+
+@app.post("/api/mundo/{cuerpo}")
+def mundo_otro(cuerpo: str, pedido: PedidoMundo):
+    """Marte o la Luna: relieve real de la zona marcada y cómo quedaría nivelada para una estación (solo geometría del terreno)."""
+    try: return otros_mundos.analizar(cuerpo, pedido.geojson, pedido.lado_km)
+    except ValueError as e: raise HTTPException(400, str(e))
+    except Exception as e: raise HTTPException(502, f"No se pudo leer el relieve en línea ({str(e)[:120]}). Intenta de nuevo en un momento.")
 
 @app.get("/api/salud")
 def salud():

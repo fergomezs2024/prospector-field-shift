@@ -27,6 +27,15 @@ The side panel is a sequence of collapsible steps; only three map layers are sho
 
 The interface is currently in Spanish, with a simple/technical language switch.
 
+### Reshaping the land, on Earth and beyond
+
+| A hillside with bench terraces | Mars: Jezero crater today and levelled for a station |
+|---|---|
+| ![terraces](docs/img/terraces.jpg) | ![Mars](docs/img/mars_jezero.jpg) |
+
+- **Terraces on Earth.** Where a field has slopes of 8 to 30 %, one button shows the same hillside cut into bench terraces and reports the number of steps, the bench width and the earth to move. It is a sizing sketch on a 30 m terrain model, not a construction plan.
+- **Mars and the Moon** (`/otros.html`). The user marks an area on a NASA-derived basemap; the tool reads the real elevation (MOLA 463 m for Mars, LOLA 118 m for the Moon), shows it in 3D and, side by side, the flattest place levelled as a platform for a station, with slopes and cut-and-fill volumes. It measures terrain shape only: no radiation, temperature, dust, water, ice or energy. Levelling a platform is not terraforming, and the page says so.
+
 Demo slides (7): [docs/demo/Prospector_RocketPower_demo.pdf](docs/demo/Prospector_RocketPower_demo.pdf)
 
 ## Quick start

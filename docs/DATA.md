@@ -13,6 +13,9 @@ All data are open and public. None requires an account or an API key. Check each
 | MERRA-2 | Reanalysis behind POWER | https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/ |
 | NASA GIBS (MODIS Terra) | Background imagery | https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/gibs-api |
 
+| MOLA MEGDR, 463 m (Mars Global Surveyor; USGS Astrogeology mosaic) | Elevation of Mars | https://astrogeology.usgs.gov/search/map/mars_mgs_mola_dem_463m |
+| LOLA LDEM, 118 m (Lunar Reconnaissance Orbiter; USGS Astrogeology mosaic) | Elevation of the Moon | https://astrogeology.usgs.gov/search/map/moon_lro_lola_dem_118m |
+
 ## Partner agencies and other sources
 
 | Data | Used for | Link |
@@ -28,6 +31,7 @@ All data are open and public. None requires an account or an API key. Check each
 | WorldClim 2.1 | Reference climate for the global table | https://www.worldclim.org/data/worldclim21.html |
 | Overture Maps | Buildings, roads, and mapped vineyards, orchards and nurseries (land use) | https://overturemaps.org/ |
 | Esri World Imagery | Satellite imagery, display only | https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9 |
+| OpenPlanetaryMap | Basemaps of Mars and the Moon (built from NASA mosaics), display only | https://github.com/openplanetary/opm |
 | Natural Earth | Country boundaries and first-level regions (1:10m admin-1) | https://www.naturalearthdata.com/ |
 | FAOSTAT (FAO) | Official harvested area by country and crop, 2019–2021 | https://www.fao.org/faostat/en/#data/QCL |
 | Esri World Boundaries and Places | City, road and border names over the imagery | https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer |

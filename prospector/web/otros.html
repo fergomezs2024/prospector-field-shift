@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prospector · Marte y la Luna</title>
+<link rel="stylesheet" href="vendor/maplibre-gl.css">
+<script type="importmap">{"imports": {"three": "./vendor/three.module.js"}}</script>
+<style>
+  :root { --bg:#f3f5f2; --panel:#ffffff; --linea:#dfe5df; --tinta:#1d2521; --tenue:#627067; --verde:#1c9459; --verde-o:#23875a; --campo:#f2f5f2; --ambar:#b87a00; }
+  * { box-sizing:border-box; } html, body { margin:0; height:100%; background:var(--bg); color:var(--tinta); font:14px/1.45 Inter, "Noto Sans", system-ui, sans-serif; }
+  #app { display:grid; grid-template-columns:1fr 410px; height:100%; }
+  #escena { position:relative; min-width:0; } #mapa, #tres { position:absolute; inset:0; } #tres { display:none; background:#10110f; }
+  aside { background:var(--panel); border-left:1px solid var(--linea); overflow-y:auto; padding:18px 18px 28px; }
+  h1 { font-size:19px; margin:0 0 4px; } h2 { font-size:15px; margin:18px 0 8px; } p { margin:0 0 8px; } .mini { font-size:12.5px; color:var(--tenue); }
+  button, select { font:inherit; color:var(--tinta); background:var(--campo); border:1px solid var(--linea); border-radius:8px; padding:8px 12px; cursor:pointer; }
+  button.pri { background:var(--verde-o); border-color:var(--verde-o); color:#fff; font-weight:600; } button:disabled { opacity:.45; cursor:default; } button.act { border-color:var(--verde); color:var(--verde); }
+  .fila { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:8px; }
+  .dato { display:grid; grid-template-columns:1fr auto; gap:2px 12px; padding:6px 0; border-bottom:1px solid var(--linea); } .dato span { color:var(--tenue); } .dato b { font-variant-numeric:tabular-nums; }
+  .aviso { border:1px solid var(--ambar); border-radius:10px; padding:8px 12px; margin-top:12px; } .aviso b { color:var(--ambar); } .aviso ul { margin:6px 0 0; padding-left:18px; font-size:12.5px; color:var(--tenue); }
+  .rot { position:absolute; top:12px; z-index:4; background:rgba(255,255,255,.93); border-radius:8px; padding:6px 12px; font-weight:600; box-shadow:0 4px 16px rgba(0,0,0,.25); } #rotA { left:12px; } #rotB { left:calc(50% + 12px); }
+  #medio { position:absolute; top:0; bottom:0; left:50%; width:2px; background:rgba(255,255,255,.55); z-index:3; }
+  #flot { position:absolute; left:12px; bottom:14px; z-index:5; background:rgba(255,255,255,.95); border-radius:8px; padding:8px 12px; max-width:62%; box-shadow:0 4px 16px rgba(0,0,0,.2); }
+  .oculto { display:none !important; } a { color:var(--verde); }
+  input[type=range] { width:100%; accent-color:var(--verde); }
+  @media (max-width:900px) { #app { grid-template-columns:1fr; grid-template-rows:55% 45%; } aside { border-left:0; border-top:1px solid var(--linea); } }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="escena">
+    <div id="mapa"></div>
+    <div id="tres"><div id="rotA" class="rot">Como es hoy</div><div id="rotB" class="rot">Nivelado para una estación</div><div id="medio"></div></div>
+    <div id="flot" class="mini">Elige Marte o la Luna, pulsa «Marcar zona» y haz clic en dos esquinas opuestas.</div>
+  </div>
+  <aside>
+    <h1>Prospector · Marte y la Luna</h1>
+    <p class="mini">Mira el relieve real de una zona y cómo quedaría nivelada para instalar una estación. <a href="./">Volver a la Tierra</a></p>
+    <h2>1 · Elegir el lugar</h2>
+    <div class="fila"><button data-c="marte" class="act">Marte</button><button data-c="luna">Luna</button></div>
+    <div class="fila"><button id="bMarcar">Marcar zona</button><button id="bBorrar" disabled>Borrar</button><span id="tam" class="mini"></span></div>
+    <div class="fila"><span class="mini">Lado de la plataforma</span><select id="lado"></select></div>
+    <div class="fila"><button id="bVer" class="pri" disabled>Ver el relieve en 3D</button><button id="bMapa" class="oculto">Volver al mapa</button></div>
+    <p id="estado" class="mini"></p>
+    <div id="res" class="oculto">
+      <h2>2 · Cómo es el terreno</h2><div id="terreno"></div>
+      <h2>3 · La plataforma para la estación</h2><p id="frase"></p><div id="plat"></div>
+      <div style="margin-top:10px" class="mini">Exageración vertical <span id="exTxt">3×</span></div><input id="exag" type="range" min="1" max="12" step="0.5" value="3">
+      <div class="aviso"><b>Qué no dice esta vista</b><ul id="lim"></ul></div>
+      <p class="mini" id="fuente" style="margin-top:10px"></p>
+    </div>
+  </aside>
+</div>
+<script src="vendor/maplibre-gl.js"></script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from './vendor/OrbitControls.js';
+const $ = id => document.getElementById(id), fmt = (v, d = 0) => Number(v).toLocaleString('es-CL', { maximumFractionDigits: d });
+// mapas base: OpenPlanetaryMap (mosaicos de NASA: Viking y MOLA para Marte, LRO para la Luna), en teselas compatibles con el mapa
+const CUERPOS = { marte: { n: 'Marte', t: 'opm-mars-basemap-v0-2', lados: [1.5, 3, 6, 12], def: 3, centro: [77.5, 18.4], zoom: 5, maxkm: 400, minkm: 6 },
+                  luna: { n: 'la Luna', t: 'opm-moon-basemap-v0-1', lados: [0.5, 1, 2, 4], def: 1, centro: [23.4, 0.7], zoom: 6, maxkm: 120, minkm: 1.5 } };
+const estilo = c => ({ version: 8, sources: { b: { type: 'raster', tileSize: 256, maxzoom: 9, tiles: [`https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/${CUERPOS[c].t}/all/{z}/{x}/{y}.png`], attribution: 'OpenPlanetaryMap · NASA / USGS' } }, layers: [{ id: 'b', type: 'raster', source: 'b' }] });
+let cuerpo = 'marte', esquinas = [], marcando = false, datos = null;
+const mapa = new maplibregl.Map({ container: 'mapa', style: estilo(cuerpo), center: CUERPOS.marte.centro, zoom: CUERPOS.marte.zoom, doubleClickZoom: false, renderWorldCopies: false });
+mapa.addControl(new maplibregl.NavigationControl(), 'bottom-right');
+const anillo = () => { const [a, b] = esquinas; return [[a[0], a[1]], [b[0], a[1]], [b[0], b[1]], [a[0], b[1]], [a[0], a[1]]]; };
+function capas() { if (mapa.getSource('z')) return; mapa.addSource('z', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+  mapa.addLayer({ id: 'zr', type: 'fill', source: 'z', paint: { 'fill-color': '#ffffff', 'fill-opacity': 0.15 } }); mapa.addLayer({ id: 'zl', type: 'line', source: 'z', paint: { 'line-color': '#ffffff', 'line-width': 2 } }); pintar(); }
+function km() { const [a, b] = esquinas, R = cuerpo === 'marte' ? 3396.19 : 1737.4, g = Math.PI * R / 180; return [Math.abs(b[0] - a[0]) * g * Math.cos((a[1] + b[1]) / 2 * Math.PI / 180), Math.abs(b[1] - a[1]) * g]; }
+function pintar() { const s = mapa.getSource('z'); if (!s) return; const ok = esquinas.length === 2;
+  s.setData({ type: 'FeatureCollection', features: ok ? [{ type: 'Feature', geometry: { type: 'Polygon', coordinates: [anillo()] } }] : esquinas.map(p => ({ type: 'Feature', geometry: { type: 'Point', coordinates: p } })) });
+  $('bBorrar').disabled = !esquinas.length; let bien = false;
+  if (ok) { const [w, h] = km(), C = CUERPOS[cuerpo]; bien = Math.max(w, h) <= C.maxkm && Math.min(w, h) >= C.minkm;
+    $('tam').textContent = `${fmt(w, 0)} × ${fmt(h, 0)} km` + (bien ? '' : Math.max(w, h) > C.maxkm ? ` · muy grande (máximo ${C.maxkm} km)` : ` · muy chica (mínimo ${C.minkm} km)`); } else $('tam').textContent = '';
+  $('bVer').disabled = !bien; }
+mapa.on('load', capas); mapa.on('styledata', capas);
+mapa.on('click', e => { if (!marcando) return; esquinas.push([e.lngLat.lng, e.lngLat.lat]); if (esquinas.length === 2) { marcando = false; $('bMarcar').classList.remove('act'); mapa.getCanvas().style.cursor = ''; $('flot').textContent = 'Zona marcada. Pulsa «Ver el relieve en 3D».'; } pintar(); });
+$('bMarcar').onclick = () => { esquinas = []; marcando = true; $('bMarcar').classList.add('act'); mapa.getCanvas().style.cursor = 'crosshair'; $('flot').textContent = 'Haz clic en una esquina de la zona y después en la esquina opuesta.'; pintar(); };
+$('bBorrar').onclick = () => { esquinas = []; pintar(); };
+function elegir(c) { cuerpo = c; document.querySelectorAll('[data-c]').forEach(b => b.classList.toggle('act', b.dataset.c === c)); esquinas = []; const C = CUERPOS[c];
+  $('lado').innerHTML = C.lados.map(v => `<option value="${v}" ${v === C.def ? 'selected' : ''}>${String(v).replace('.', ',')} km</option>`).join(''); mapa.setStyle(estilo(c)); mapa.jumpTo({ center: C.centro, zoom: C.zoom }); verMapa(); $('res').classList.add('oculto'); $('estado').textContent = ''; }
+document.querySelectorAll('[data-c]').forEach(b => b.onclick = () => elegir(b.dataset.c));
+// ---------- 3D: dos vistas con la misma cámara, a la izquierda el terreno real y a la derecha el nivelado
+let renderer, camara, ctl, A, B;
+function iniciar3d() { const c = $('tres'); renderer = new THREE.WebGLRenderer({ antialias: true }); renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.autoClear = false; c.appendChild(renderer.domElement);
+  camara = new THREE.PerspectiveCamera(45, 1, 10, 1e7); ctl = new OrbitControls(camara, renderer.domElement); ctl.maxPolarAngle = Math.PI * 0.49;
+  const anim = () => { requestAnimationFrame(anim); if (c.style.display !== 'block' || !A) return; const w = c.clientWidth, h = c.clientHeight; if (renderer.domElement.width !== Math.floor(w * renderer.getPixelRatio())) renderer.setSize(w, h);
+    ctl.update(); camara.aspect = (w / 2) / h; camara.updateProjectionMatrix(); renderer.setScissorTest(true); renderer.clear();
+    [[A, 0], [B, w / 2]].forEach(([esc, x]) => { renderer.setViewport(x, 0, w / 2, h); renderer.setScissor(x, 0, w / 2, h); renderer.clear(); renderer.render(esc, camara); }); }; anim(); }
+function f32(b64) { const b = atob(b64), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return new Float32Array(u.buffer); }
+function escena(z, tex) { const m = datos.malla, g = new THREE.BufferGeometry(), n = m.ancho * m.alto, uv = new Float32Array(n * 2), idx = [];
+  for (let r = 0, i = 0; r < m.alto; r++) for (let c = 0; c < m.ancho; c++, i++) { uv[i * 2] = c / (m.ancho - 1); uv[i * 2 + 1] = 1 - r / (m.alto - 1); }
+  for (let r = 0; r < m.alto - 1; r++) for (let c = 0; c < m.ancho - 1; c++) { const a = r * m.ancho + c; idx.push(a, a + m.ancho, a + 1, a + 1, a + m.ancho, a + m.ancho + 1); }
+  g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(n * 3), 3)); g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(idx);
+  const t = new THREE.TextureLoader().load('data:image/png;base64,' + tex); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  const e = new THREE.Scene(); e.background = new THREE.Color(0x10110f); e.add(new THREE.AmbientLight(0xffffff, 1.0)); const dl = new THREE.DirectionalLight(0xffffff, 1.4); dl.position.set(-1, 1.2, -0.6); e.add(dl);
+  e.userData = { z, malla: new THREE.Mesh(g, new THREE.MeshLambertMaterial({ map: t, side: THREE.DoubleSide })) }; e.add(e.userData.malla); return e; }
+function alturas() { const m = datos.malla, ex = +$('exag').value; $('exTxt').textContent = String(ex).replace('.', ',') + '×';
+  [A, B].forEach(e => { const p = e.userData.malla.geometry.attributes.position, z = e.userData.z; for (let r = 0, i = 0; r < m.alto; r++) for (let c = 0; c < m.ancho; c++, i++) p.setXYZ(i, (c - m.ancho / 2) * m.res_x, (z[i] - m.zmin) * ex, (r - m.alto / 2) * m.res_y);
+    p.needsUpdate = true; e.userData.malla.geometry.computeVertexNormals(); }); }
+$('exag').oninput = alturas;
+function ver3d() { $('tres').style.display = 'block'; $('mapa').style.display = 'none'; $('bMapa').classList.remove('oculto'); $('flot').textContent = 'Arrastra para girar · rueda para acercar. Las dos vistas se mueven juntas; la plataforma es el cuadrado claro de la derecha.'; }
+function verMapa() { $('tres').style.display = 'none'; $('mapa').style.display = 'block'; $('bMapa').classList.add('oculto'); $('flot').textContent = 'Pulsa «Marcar zona» y haz clic en dos esquinas opuestas.'; mapa.resize(); }
+$('bMapa').onclick = verMapa;
+$('bVer').onclick = async () => { $('bVer').disabled = true; $('estado').textContent = `Leyendo el relieve de ${CUERPOS[cuerpo].n}… puede tardar cerca de un minuto.`;
+  try { const r = await fetch('api/mundo/' + cuerpo, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ geojson: { type: 'Polygon', coordinates: [anillo()] }, lado_km: +$('lado').value }) });
+    const d = await r.json(); if (!r.ok) throw new Error(d.detail || 'no se pudo leer el relieve'); datos = d; mostrar(); $('estado').textContent = ''; }
+  catch (e) { $('estado').textContent = 'No se pudo: ' + e.message; } $('bVer').disabled = false; };
+function mostrar() { const d = datos, p = d.plataforma, fila = (a, b) => `<div class="dato"><span>${a}</span><b>${b}</b></div>`;
+  $('terreno').innerHTML = fila('Tamaño de la zona', `${fmt(d.ancho_km, 0)} × ${fmt(d.alto_km, 0)} km`) + fila('Altura', `${fmt(d.altura_min)} a ${fmt(d.altura_max)} m`) + fila('Desnivel dentro de la zona', `${fmt(d.desnivel)} m`) +
+    fila('Pendiente media', `${fmt(d.pendiente_media, 1)}°`) + fila('Terreno casi plano (menos de 5°)', `${d.pct_menos_5} %`) + fila('Terreno muy inclinado (más de 15°)', `${d.pct_mas_15} %`);
+  $('frase').innerHTML = `El lugar más parejo de la zona para una plataforma de <b>${String(p.lado_km).replace('.', ',')} km de lado</b> es ${p.juicio}.`;
+  $('plat').innerHTML = fila('Dónde queda', `${fmt(Math.abs(p.lat), 2)}° ${p.lat >= 0 ? 'N' : 'S'}, ${fmt(Math.abs(p.lon), 2)}° ${p.lon >= 0 ? 'E' : 'O'}`) + fila('Desnivel dentro de la plataforma', `${fmt(p.desnivel, 1)} m`) +
+    fila('Pendiente media y máxima', `${fmt(p.pendiente_media, 1)}° y ${fmt(p.pendiente_max, 1)}°`) + fila('Roca y suelo a cortar', `${fmt(p.corte_m3)} m³`) + fila('Roca y suelo a rellenar', `${fmt(p.relleno_m3)} m³`) + fila('Nivel en que quedaría', `${fmt(p.nivel)} m`);
+  $('lim').innerHTML = d.limites.map(x => `<li>${x}</li>`).join(''); $('fuente').textContent = 'Relieve: ' + d.fuente + '. Mapa: OpenPlanetaryMap, con mosaicos de la NASA.'; $('res').classList.remove('oculto');
+  if (!renderer) iniciar3d(); A = escena(f32(d.malla.z), d.textura); B = escena(f32(d.malla.z2), d.textura2); alturas();
+  const L = Math.max(d.malla.ancho * d.malla.res_x, d.malla.alto * d.malla.res_y); camara.position.set(-L * 0.7, L * 0.75, L * 1.0); camara.far = L * 30; ctl.target.set(0, 0, 0); ver3d(); }
+elegir('marte');
+// enlace directo para revisar:  ?c=luna&z=23,0.3,23.9,1.1
+{ const q = new URLSearchParams(location.search); if (q.get('z')) { if (q.get('c')) elegir(q.get('c')); const v = q.get('z').split(',').map(Number); esquinas = [[v[0], v[1]], [v[2], v[3]]]; setTimeout(() => { pintar(); $('bVer').disabled = false; $('bVer').click(); }, 1500); } }
+</script>
+</body>
+</html>
