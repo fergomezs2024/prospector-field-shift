@@ -29,6 +29,8 @@ All data are open and public. None requires an account or an API key. Check each
 | Overture Maps | Buildings and roads | https://overturemaps.org/ |
 | Esri World Imagery | Satellite imagery, display only | https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9 |
 | Natural Earth | Country boundaries | https://www.naturalearthdata.com/ |
+| Esri World Boundaries and Places | City, road and border names over the imagery | https://www.arcgis.com/home/item.html?id=5447e9aef0684ec391ae9381725f7370 |
+| Nominatim (OpenStreetMap) | Place search; queried only when the user presses Search | https://nominatim.org/ |
 | GGCMI Phase 3 crop calendar (Jägermeyr et al. 2021), CC-BY 4.0 | Local sowing and harvest dates | https://doi.org/10.5281/zenodo.5062513 |
 | CROPGRIDS v1.08 (Tang et al. 2024), CC-BY 4.0 | Harvested area actually sown with each crop | https://doi.org/10.6084/m9.figshare.22491997 |
 | GDHY (Iizumi and Sakai 2020), CC-BY 4.0 | Measured yields of maize, rice, wheat and soybean, 2007–2016 | https://doi.org/10.1594/PANGAEA.909132 |

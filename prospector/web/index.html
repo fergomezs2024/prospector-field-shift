@@ -128,9 +128,12 @@
 
     <h2>1 · Ubicar</h2>
     <div class="fila">
-      <input id="ir" type="text" placeholder="lat, lon  (ej. 42.03, -93.65)">
-      <button id="bIr">Ir</button>
+      <input id="ir" type="text" placeholder="Ciudad o lugar, o latitud, longitud">
+      <button id="bIr" class="pri">Buscar</button>
     </div>
+    <div id="lugares"></div>
+    <div class="fila" style="margin-top:8px"><button id="bAqui" title="Lleva el mapa al lugar donde está este equipo">Dónde estoy</button>
+      <label class="mini" style="display:flex;align-items:center;gap:6px;cursor:pointer"><input id="verNombres" type="checkbox" checked> Nombres de ciudades y caminos</label></div>
     <div class="fila" style="margin-top:8px">
       <select id="base">
         <option value="esri">Alta resolución (Esri World Imagery, &lt; 1 m)</option>
@@ -211,7 +214,11 @@ const FUENTES = {
   modis: { tiles: [`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/${hace}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`],
            maxzoom: 9, attribution: 'NASA GIBS · MODIS Terra ' + hace },
 };
-const estilo = k => ({ version: 8, sources: { base: { type: 'raster', tileSize: 256, ...FUENTES[k] } }, layers: [{ id: 'base', type: 'raster', source: 'base' }] });
+// sobre la imagen satelital van los nombres de ciudades, caminos y límites (Esri World Boundaries and Places), para saber dónde se está
+const NOMBRES = { type: 'raster', tileSize: 256, maxzoom: 18, tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}'], attribution: 'Nombres: Esri, HERE, Garmin, © OpenStreetMap' };
+const verNombres = () => localStorage.getItem('prospector_nombres') !== '0';
+const estilo = k => ({ version: 8, sources: { base: { type: 'raster', tileSize: 256, ...FUENTES[k] }, nombres: NOMBRES },
+  layers: [{ id: 'base', type: 'raster', source: 'base' }, { id: 'nombres', type: 'raster', source: 'nombres', layout: { visibility: verNombres() ? 'visible' : 'none' } }] });
 const mapa = new maplibregl.Map({ container: 'mapa', style: estilo('esri'), center: [10, 20], zoom: 1.6, doubleClickZoom: false });
 mapa.addControl(new maplibregl.NavigationControl(), 'bottom-right');
 mapa.addControl(new maplibregl.ScaleControl({ unit: 'metric' }), 'bottom-left');
@@ -268,7 +275,24 @@ mapa.on('click', e => { if (!dibujando || modo !== 'poligono') return; pts.push(
 mapa.on('dblclick', e => { if (!dibujando || modo !== 'poligono') return; e.preventDefault();
   if (pts.length >= 2) { const u = pts[pts.length - 1], v = pts[pts.length - 2]; if (Math.abs(u[0] - v[0]) < 1e-7 && Math.abs(u[1] - v[1]) < 1e-7) pts.pop(); }
   if (pts.length >= 3) { cerrado = true; terminar(); } else pintar(); });
-$('bIr').onclick = () => { const m = $('ir').value.split(/[,\s]+/).map(Number).filter(v => !isNaN(v)); if (m.length >= 2) mapa.flyTo({ center: [m[1], m[0]], zoom: 14 }); };
+// buscador: acepta «latitud, longitud» o el nombre de un lugar (Nominatim, datos de OpenStreetMap; solo se consulta al pulsar Buscar)
+$('bIr').onclick = async () => {
+  const q = $('ir').value.trim(), L = $('lugares'); if (!q) return;
+  if (/^-?\d+([.,]\d+)?[\s,;]+-?\d+([.,]\d+)?$/.test(q)) { const m = q.split(/[\s;]+|,(?=\s|-)|,(?=\d+\.)/).filter(Boolean).map(v => +v.replace(',', '.')); L.innerHTML = '';
+    if (m.length >= 2 && Math.abs(m[0]) <= 90 && Math.abs(m[1]) <= 180) return mapa.flyTo({ center: [m[1], m[0]], zoom: 14 }); }
+  L.innerHTML = '<p class="mini">Buscando…</p>';
+  try {
+    const r = await (await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&accept-language=es&q=' + encodeURIComponent(q))).json();
+    if (!r.length) return L.innerHTML = '<p class="mini">No encontré ese lugar. Prueba con la ciudad y el país.</p>';
+    const ir = x => { const b = x.boundingbox.map(Number); mapa.fitBounds([[b[2], b[0]], [b[3], b[1]]], { maxZoom: 14, padding: 40 }); };
+    L.innerHTML = ''; r.forEach(x => { const d = document.createElement('div'); d.className = 'hist'; d.style.marginTop = '6px'; d.innerHTML = `<b>${x.display_name.split(',')[0]}</b><span></span><span>${x.display_name.split(',').slice(1).join(',').trim()}</span>`; d.onclick = () => { ir(x); L.innerHTML = ''; }; L.appendChild(d); });
+    if (r.length === 1) { ir(r[0]); L.innerHTML = ''; }
+  } catch (e) { L.innerHTML = '<p class="mini">No se pudo consultar el buscador. Revisa la conexión o escribe latitud, longitud.</p>'; }
+};
+$('bAqui').onclick = () => { if (!navigator.geolocation) return $('lugares').innerHTML = '<p class="mini">Este navegador no entrega la ubicación.</p>';
+  navigator.geolocation.getCurrentPosition(p => mapa.flyTo({ center: [p.coords.longitude, p.coords.latitude], zoom: 13 }), () => $('lugares').innerHTML = '<p class="mini">No se pudo obtener la ubicación. Busca tu ciudad por nombre.</p>', { timeout: 8000 }); };
+$('verNombres').checked = verNombres();
+$('verNombres').onchange = e => { localStorage.setItem('prospector_nombres', e.target.checked ? '1' : '0'); if (mapa.getLayer('nombres')) mapa.setLayoutProperty('nombres', 'visibility', e.target.checked ? 'visible' : 'none'); };
 $('ir').addEventListener('keydown', e => { if (e.key === 'Enter') $('bIr').click(); });
 $('base').onchange = e => mapa.setStyle(estilo(e.target.value));
 
