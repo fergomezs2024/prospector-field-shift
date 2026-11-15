@@ -19,7 +19,7 @@ The side panel is a sequence of collapsible steps; only three map layers are sho
 
 | Where cultivation is possible | Field split into plots |
 |---|---|
-| ![suitability](docs/img/donde_se_puede_cultivar.jpg) | ![plots](docs/img/plan_lotes_maule.jpg) |
+| ![suitability](docs/img/donde_se_puede_cultivar.jpg) | ![plots](docs/img/plan_lotes.jpg) |
 
 | Crops growing month by month | Clearing and first sowing |
 |---|---|
@@ -81,6 +81,7 @@ Weak spots: North Africa and the Middle East (55 %); peas, rice and rapeseed; so
 
 - 31 annual crops are simulated: 23 field crops validated worldwide, plus 8 vegetable and industrial crops (tomato, pepper, onion, cabbage, watermelon, sugar beet, safflower, tobacco) added with general FAO parameters. Of those 8 only sugar beet has enough sample points to be checked; the other 7 are flagged in the app as not yet validated. Fruit trees, vines and pastures are not simulated. A crop missing from the list is not a crop that fails.
 - For 79 other crops (grapes, fruit, vegetables, sugar cane, coffee and more) the tool reports whether they are actually grown in the area (CROPGRIDS) and whether the area ranks among the top 10 % or 25 % of places in the world for that crop. That is observed practice — a sign of suitable climate, buyers and know-how — not a simulated yield.
+- For every field the tool also shows the main crops of its first-level region (4,596 regions worldwide, CROPGRIDS summed inside Natural Earth boundaries) and of its country (official FAOSTAT harvested area, 2019–2021), so the simulation can be contrasted with what the region actually grows. Across 152 countries, the five main crops from the two sources share 4.4 crops on average and the first crop is the same in 142; at country level the two sources are not independent.
 - Satellite land cover cannot tell a vineyard or an orchard from woodland. Where OpenStreetMap maps the parcel as vineyard, orchard or nursery, the tool treats it as an existing plantation: it is not proposed for clearing and is drawn as rows. Where the map has nothing, the farmer is asked.
 - Sowing and harvest dates are tentative: the real date depends on the variety and the year.
 - Crop parameters are general FAO values adjusted with a 55 km crop calendar, not local varieties.

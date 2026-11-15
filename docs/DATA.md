@@ -28,7 +28,8 @@ All data are open and public. None requires an account or an API key. Check each
 | WorldClim 2.1 | Reference climate for the global table | https://www.worldclim.org/data/worldclim21.html |
 | Overture Maps | Buildings, roads, and mapped vineyards, orchards and nurseries (land use) | https://overturemaps.org/ |
 | Esri World Imagery | Satellite imagery, display only | https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9 |
-| Natural Earth | Country boundaries | https://www.naturalearthdata.com/ |
+| Natural Earth | Country boundaries and first-level regions (1:10m admin-1) | https://www.naturalearthdata.com/ |
+| FAOSTAT (FAO) | Official harvested area by country and crop, 2019–2021 | https://www.fao.org/faostat/en/#data/QCL |
 | Esri World Boundaries and Places | City, road and border names over the imagery | https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer |
 | Nominatim (OpenStreetMap) | Place search; queried only when the user presses Search | https://nominatim.org/ |
 | GGCMI Phase 3 crop calendar (Jägermeyr et al. 2021), CC-BY 4.0 | Local sowing and harvest dates | https://doi.org/10.5281/zenodo.5062513 |
@@ -38,7 +39,7 @@ All data are open and public. None requires an account or an API key. Check each
 
 ## What is stored in this repository
 
-No dataset is redistributed here. Field data are downloaded on demand for the polygon the user draws. The global reference data (WorldClim, SoilGrids, ESA CCI, GGCMI, CROPGRIDS, GDHY) are downloaded from their original publishers by `python -m prospector.obtener_datos`.
+No dataset is redistributed here. Field data are downloaded on demand for the polygon the user draws. The global reference data (WorldClim, SoilGrids, ESA CCI, GGCMI, CROPGRIDS, GDHY, Natural Earth, FAOSTAT) are downloaded from their original publishers by `python -m prospector.obtener_datos`.
 
 ## Observed versus simulated
 

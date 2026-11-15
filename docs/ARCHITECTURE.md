@@ -35,7 +35,8 @@ Code names, comments and the interface are in Spanish.
 | `loteo.py` | Field layout (below) |
 | `validar_mundo.py`, `informe_validacion.py` | Global validation and its report |
 | `pruebas.py` | Smoke tests against a running server |
-| `obtener_datos.py` | One-time download of the global reference data |
+| `regiones.py` | Main crops of every country and first-level region: CROPGRIDS summed by region, FAOSTAT by country |
+| `obtener_datos.py` | One-time download of the global reference data. Each source is independent: if one server is down the others continue, and the summary says what is missing |
 
 An analysis runs in three steps so the user sees something quickly: terrain (seconds), comparison with the surrounding cropland, then the long history (vegetation, soil, weather). A job can be paused and resumed; what was already downloaded is kept.
 

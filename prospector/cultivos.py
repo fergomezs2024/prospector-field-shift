@@ -56,7 +56,7 @@ CULTIVOS = {
     "alfalfa":  _C("Alfalfa", "leguminosas", "forraje permanente", 5, 99999, 15, 30, 3, 38, -8, 99, (0.4, 0.95, 0.90), 1.5, 0.55, 1.10, 0.05, 0.95, 0.80, "baja", True, "forraje"),
 }
 SIN_VALIDAR = {"tomate", "aji", "cebolla", "repollo", "sandia", "cartamo", "tabaco"}      # ver validacion/INFORME_cultivos_nuevos.md
-VERSION = 10            # subir cuando cambie el método: las copias guardadas con otra versión se recalculan
+VERSION = 11            # subir cuando cambie el método: las copias guardadas con otra versión se recalculan
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 
 def _clima(d, G):
@@ -371,6 +371,10 @@ def analizar(d, actual=None, registro=print):
     from . import cultivado, calendario, mundo
     for x in res_c:                        # cultivos agregados sin validación mundial suficiente: se dice en la propia ficha
         if x["clave"] in SIN_VALIDAR and x.get("porque"): x["porque"] += " Este cultivo se agregó con valores generales y todavía no tiene validación mundial suficiente: tómalo solo como orientación."
+    try:
+        from . import regiones
+        out["region"] = regiones.consultar(G["centro"][0], lat)      # cultivos principales de la región y del país (observado y oficial)
+    except Exception: out["region"] = None
     try: out["otros_zona"] = cultivado.otros(G["centro"][0], lat)      # cultivos que este motor no simula pero que sí se siembran en la zona (dato observado)
     except Exception: out["otros_zona"] = []
     # ---------- qué dato faltó en este análisis y qué resultado afecta: se dice, no se disimula
@@ -379,6 +383,7 @@ def analizar(d, actual=None, registro=print):
     if not calendario.disponible(): F.append(dict(dato="Calendario local de cultivos (GGCMI)", efecto="Las fechas y el largo del ciclo salen de valores generales, sin ajuste a lo que se acostumbra en la zona."))
     if not cultivado.disponible(): F.append(dict(dato="Superficie sembrada y rendimiento medido (CROPGRIDS, GDHY)", efecto="No se muestra si cada cultivo se siembra de verdad en la zona ni su rendimiento medido."))
     if not os.path.exists(cultivado.F_OTROS): F.append(dict(dato="Otros cultivos de la zona (CROPGRIDS)", efecto="No se informa qué frutales, viñas u hortalizas se cultivan alrededor."))
+    if out["region"] is None: F.append(dict(dato="Cultivos principales por país y región (CROPGRIDS, FAOSTAT)", efecto="No se informa qué se cultiva en la región ni en el país del terreno."))
     if not mundo.disponible(): F.append(dict(dato="Tabla mundial de clima y suelo", efecto="No se compara este lugar con otros lugares parecidos del mundo."))
     for arch, dato, efecto in (("uso.geojson", "Viñas y huertos mapeados (Overture, OpenStreetMap)", "Una viña o un huerto de frutales puede aparecer como «árboles»."),
                                ("caminos.geojson", "Caminos mapeados (Overture, OpenStreetMap)", "No se conoce el camino más cercano: el acceso y las franjas junto a caminos no se calculan bien."),
