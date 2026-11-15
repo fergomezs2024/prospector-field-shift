@@ -89,7 +89,7 @@ def _mosaico(cat, coleccion, asset, G, resampling, dtype="float32", vacio=np.nan
 def descargar_caminos(d, G, margen=0.012):
     """Caminos, calles y vías de Overture en la ventana del terreno más ~1,2 km: sirve para saber cuál es el camino más cercano aunque quede fuera de la vista."""
     import subprocess, sys
-    b = G["bbox"]; exe = os.path.join(os.path.dirname(sys.executable), "overturemaps")
+    b = G["bbox"]; exe = _overture()
     subprocess.run([exe, "download", f"--bbox={b[0] - margen},{b[1] - margen},{b[2] + margen},{b[3] + margen}", "-f", "geojson", "--type=segment", "-o", f"{d}/_cam.geojson"], check=True, timeout=240, capture_output=True)
     fc = json.load(open(f"{d}/_cam.geojson"))
     fc["features"] = [dict(type="Feature", geometry=f["geometry"], properties=dict(tipo=f["properties"].get("subtype"), clase=f["properties"].get("class"), nombre=((f["properties"].get("names") or {}).get("primary"))))
@@ -99,13 +99,21 @@ def descargar_caminos(d, G, margen=0.012):
         if os.path.exists(f"{d}/{x}"): os.remove(f"{d}/{x}")
     return len(fc["features"])
 
+def _overture():
+    """Ruta del programa «overturemaps» que instala pip: en Linux y macOS queda junto a python; en Windows, en la carpeta Scripts con extensión .exe."""
+    import shutil, sys
+    d = os.path.dirname(sys.executable)
+    for c in (os.path.join(d, "overturemaps"), os.path.join(d, "overturemaps.exe"), os.path.join(d, "Scripts", "overturemaps.exe")):
+        if os.path.exists(c): return c
+    return shutil.which("overturemaps") or "overturemaps"
+
 PLANTADO = {"vineyard": "viña", "orchard": "huerto de frutales", "plant_nursery": "vivero"}
 
 def descargar_uso(d, G, margen=0.003):
     """Uso del suelo mapeado (Overture Maps, tema base/land_use; viene de OpenStreetMap): viñas, huertos frutales y viveros.
     Los mapas de cobertura por satélite ven una viña o un huerto como «árboles»; este dato dice que ya es un cultivo plantado."""
     import subprocess, sys
-    b = G["bbox"]; exe = os.path.join(os.path.dirname(sys.executable), "overturemaps")
+    b = G["bbox"]; exe = _overture()
     subprocess.run([exe, "download", f"--bbox={b[0] - margen},{b[1] - margen},{b[2] + margen},{b[3] + margen}", "-f", "geojson", "--type=land_use", "-o", f"{d}/_uso.geojson"], check=True, timeout=240, capture_output=True)
     fc = json.load(open(f"{d}/_uso.geojson"))
     fc["features"] = [dict(type="Feature", geometry=f["geometry"], properties=dict(clase=f["properties"].get("class"), nombre=((f["properties"].get("names") or {}).get("primary"))))
@@ -147,7 +155,7 @@ def preparar(geo, anio_ini=2021, anio_fin=2025, clima_ini=2001, registro=print, 
     # ---- edificaciones: Overture Maps (OpenStreetMap + Microsoft + Google), huellas vectoriales
     if not os.path.exists(f"{d}/edificios.geojson"):
         import subprocess, sys
-        b = G["bbox"]; exe = os.path.join(os.path.dirname(sys.executable), "overturemaps")
+        b = G["bbox"]; exe = _overture()
         try:
             subprocess.run([exe, "download", f"--bbox={b[0]},{b[1]},{b[2]},{b[3]}", "-f", "geojson", "--type=building", "-o", f"{d}/_edif.geojson"], check=True, timeout=180, capture_output=True)
             fc = json.load(open(f"{d}/_edif.geojson"))

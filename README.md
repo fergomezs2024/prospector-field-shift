@@ -60,6 +60,14 @@ python -m prospector.obtener_datos                              # local install
 docker compose exec prospector python -m prospector.obtener_datos   # Docker
 ```
 
+If a new field does not analyse, run the built-in check first. It tests the Python version, every library and each data service, and says what to fix:
+
+```bash
+python -m prospector.diagnostico
+```
+
+Common causes: opening `index.html` as a file instead of `http://localhost:8790`; a Python older than 3.12 (the pinned libraries need a recent one — use Docker if in doubt); no internet access to the open data services; on Windows, activate the virtual environment and run `python -m uvicorn prospector.api:app --port 8790` from the repository folder. The first analysis of a field takes several minutes; the terrain appears within about a minute.
+
 Requirements: 2 CPU cores, 4 GB of RAM, about 4 GB of disk (the Docker image is 1.7 GB), and internet access to the open data services. No account or API key is needed.
 
 ## NASA data
