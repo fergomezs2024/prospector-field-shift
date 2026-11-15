@@ -36,6 +36,7 @@
   body:not(.tecnico) .etq span, body:not(.tecnico) .etq .rot { display:none; }
   #simFlot:not(.oculto) ~ #ayuda { display:none; }
   details.aviso { border:1px solid var(--ambar); border-radius:10px; padding:8px 12px; margin:0 0 12px; } details.aviso > summary { color:var(--ambar); }
+  #obra.abajo { top:auto; bottom:64px; max-width:78%; }
   #masCapas { display:none; flex-wrap:wrap; gap:6px; flex-basis:100%; } #masCapas.ab { display:flex; }
   .encab { display:flex; align-items:center; gap:8px; } .encab h1 { flex:1; }
   p.sub { color:var(--tenue); margin:0 0 6px; }
@@ -912,7 +913,7 @@ $('bTerr').onclick = () => { if (!terr || !datosMalla) return; terrOn = !terrOn;
   datosMalla.z = terrOn ? terr.zt : datosMalla.z0; $('bTerr').classList.toggle('act', terrOn);
   if (terrOn) { terr.capaAntes = $('capa').value === 'terrazas' ? 'hd' : $('capa').value; $('capa').value = 'terrazas'; } else $('capa').value = terr.capaAntes || 'hd'; $('capa').onchange({ target: $('capa') }); chips(); $('bTerr').textContent = terrOn ? 'Volver a la ladera actual' : 'Ladera con terrazas';
   if ($('tres').style.display !== 'block') ver3d(); alturas(+$('exag').value); if (entorno) { escena3.remove(entorno); entorno = null; entornoClave = ''; } if (plantas && plantas.visible) { sembrar(); construirEntorno(); }
-  const o = $('obra'); if (!terrOn) return o.classList.add('oculto');
+  const o = $('obra'); o.classList.toggle('abajo', terrOn); if (!terrOn) return o.classList.add('oculto');
   o.innerHTML = `<b>Así quedaría la ladera con terrazas</b>${fmt(terr.ha, 1)} ha de ladera (pendiente media ${fmt(terr.pendiente_media, 0)} %) en ${terr.escalones} escalones de ${fmt(terr.alto_m, 1)} m de alto y unos ${fmt(terr.ancho_banco_m, 0)} m de ancho. ` +
     `Habría que mover cerca de ${fmt(terr.tierra_m3, 0)} m³ de tierra (${fmt(terr.m3_por_ha, 0)} m³ por hectárea)` + (terr.ha_hoy_no_convenia > 0 ? `; ${fmt(terr.ha_hoy_no_convenia, 1)} ha que hoy no convenía sembrar quedarían en bancos planos` : '') + (terr.con_arboles_ha > 0 ? `; ${fmt(terr.con_arboles_ha, 1)} ha hoy tienen árboles` : '') +
     `. <span class="mini">Es un esquema para dimensionar la obra: el relieve de origen es de 30 m. Una terraza necesita muros o taludes firmes, desagües y permiso; consúltalo con un técnico.</span>`; o.classList.remove('oculto'); };

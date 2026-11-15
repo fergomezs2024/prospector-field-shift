@@ -373,9 +373,10 @@ def capa(i: str, nombre: str, mes: int = 1, mezcla: float = 0.75, edif: int = 1,
     if not os.path.exists(f"{d}/terreno.npz") or "caminos" not in np.load(f"{d}/terreno.npz").files: terreno.analizar(d)
     t = np.load(f"{d}/terreno.npz"); fuera = np.where(t["mascara"], 1.0, 0.72)[:, :, None]      # fuera del terreno se atenúa
     if nombre == "terrazas":            # bancos pintados siguiendo las curvas de nivel: verde claro y verde oscuro alternados, talud en café
-        dem, nuevo, zona, pend = _terrazas(d, G, 1.5); niv = np.floor(dem / 1.5).astype("int32"); col = np.zeros(base.shape, "uint8"); col[...] = (112, 158, 84); col[(niv % 2 == 0)] = (146, 188, 108)
-        talud = np.zeros(zona.shape, bool); talud[1:, :] |= niv[1:, :] != niv[:-1, :]; talud[:, 1:] |= niv[:, 1:] != niv[:, :-1]; col[talud & (pend > 18)] = (128, 98, 66)
-        return _png(np.dstack([col, np.where(zona, 215, 0).astype("uint8")]))
+        from scipy.ndimage import zoom
+        dem, nuevo, zona, pend = _terrazas(d, G, 1.5); f = 4; fino = zoom(dem, f, order=1) / 1.5; zf = np.repeat(np.repeat(zona, f, 0), f, 1)      # a 2,5 m se distinguen el banco y su talud
+        niv = np.floor(fino).astype("int32"); frac = fino - niv; col = np.zeros(zf.shape + (3,), "uint8"); col[...] = (118, 166, 88); col[niv % 2 == 0] = (150, 192, 110); col[frac < 0.22] = (132, 100, 68)
+        return _png(np.dstack([col, np.where(zf, 225, 0).astype("uint8")]))
     if nombre == "imagen": return _png(np.dstack([_con_edif(d, (base * fuera).astype("uint8"), edif), np.full(base.shape[:2], 255, "uint8")]))
     if nombre == "plan":
         # simulación: cada zona con el cultivo que le toca ese año de la rotación, en ese mes y ese tipo de año (seco/normal/lluvioso reales)
