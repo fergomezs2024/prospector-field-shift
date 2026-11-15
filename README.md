@@ -33,7 +33,7 @@ The interface is currently in Spanish, with a simple/technical language switch.
 |---|---|
 | ![terraces](docs/img/terraces.jpg) | ![Mars](docs/img/mars_jezero.jpg) |
 
-- **Terraces on Earth.** Where a field has slopes of 8 to 30 %, one button shows the same hillside cut into bench terraces and reports the number of steps, the bench width and the earth to move. It is a sizing sketch on a 30 m terrain model, not a construction plan.
+- **Terraces on Earth.** Where a field has slopes of 8 to 30 %, one button shows the same hillside cut into bench terraces that stay connected to the rest of the field: the step height is chosen so benches are about 8 m wide (never more than 2 m high), access ramps leave from the existing roads and climb each sector across the slope, and the edges blend into the neighbouring ground over 20 m. It reports steps, bench width, earth to move and ramp length and gradient. It is a sizing sketch on a 30 m terrain model, not a construction plan.
 - **Mars and the Moon** (`/otros.html`). The user marks an area on a NASA-derived basemap; the tool reads the real elevation (MOLA 463 m for Mars, LOLA 118 m for the Moon), shows it in 3D and, side by side, the flattest place levelled as a platform for a station, with slopes and cut-and-fill volumes. It measures terrain shape only: no radiation, temperature, dust, water, ice or energy. Levelling a platform is not terraforming, and the page says so.
 
 Demo slides (7): [docs/demo/Prospector_RocketPower_demo.pdf](docs/demo/Prospector_RocketPower_demo.pdf)

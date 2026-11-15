@@ -1,5 +1,5 @@
 """Prospector · servidor local.  Uso: .venv/bin/python -m uvicorn prospector.api:app --port 8790"""
-import os, io, json, base64, threading, time, traceback, numpy as np, rasterio
+import os, io, json, math, base64, threading, time, traceback, numpy as np, rasterio
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, Response, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -302,28 +302,72 @@ def get_terreno(i: str, motivo: str = "abrir"):
                 terreno=json.load(open(f"{d}/terreno.json")), vegetacion=os.path.exists(f"{d}/hls_ndvi.npz"), completo=os.path.exists(f"{d}/clima.json"),
                 cultivo=json.load(open(f"{d}/cultivo.json")) if os.path.exists(f"{d}/cultivo.json") else None)
 
-def _terrazas(d, G, alto):
-    """Relieve actual, relieve con terrazas, zona que se escalona y pendiente. La zona es la ladera de 8 a 30 % dentro del terreno, sin cauce, agua, construcciones, caminos ni plantaciones."""
-    from scipy.ndimage import gaussian_filter
-    dem = gaussian_filter(rasterio.open(f"{d}/dem.tif").read(1).astype("float32"), sigma=max(30.0 / G["res"], 1.0) * 0.7); t = np.load(f"{d}/terreno.npz"); pend = t["pendiente_pct"]
+def _terrazas(d, G, alto=None):
+    """Ladera convertida en terrazas de banco que siguen comunicadas con el resto del terreno.
+    Devuelve dict con: dem (relieve actual), nuevo (relieve con la obra), zona (lo que se escalona), pend, alto (alto del escalón), rampa (celdas de la rampa) y sus medidas.
+      - Zona: ladera de 8 a 30 % dentro del terreno, sin cauce, agua, construcciones, caminos ni plantaciones.
+      - Alto del escalón: el que deja bancos de unos 8 m de ancho con la pendiente media, entre 0,75 y 2 m (un talud de tierra más alto no es estable sin muro).
+      - Borde: en una franja de dos celdas la obra se funde con el terreno vecino, para que no quede un corte brusco.
+      - Rampa: une el punto más cercano a un camino existente (o el más bajo) con el otro extremo de la ladera, buscando no pasar de 12 % de pendiente."""
+    from scipy.ndimage import gaussian_filter, distance_transform_edt, binary_dilation
+    from scipy.sparse import coo_matrix
+    from scipy.sparse.csgraph import dijkstra
+    res = G["res"]; dem = gaussian_filter(rasterio.open(f"{d}/dem.tif").read(1).astype("float32"), sigma=max(30.0 / res, 1.0) * 0.7); t = np.load(f"{d}/terreno.npz"); pend = t["pendiente_pct"]
     zona = t["mascara"] & (pend >= 8) & (pend <= 30) & ~t["edificios"]
     for k in ("agua", "caminos"):
         if k in t.files: zona &= ~t[k]
     if os.path.exists(f"{d}/cultivo.npz"): zona &= np.isin(np.load(f"{d}/cultivo.npz")["clase"], (2, 3, 6))
-    nuevo = dem.copy(); nuevo[zona] = (np.floor(dem[zona] / alto) + 0.5) * alto
-    return dem, nuevo, zona, pend
+    out = dict(dem=dem, nuevo=dem.copy(), zona=zona, pend=pend, alto=float(alto or 1.5), rampa=np.zeros(zona.shape, bool), rampa_m=0, rampa_media=0.0, rampa_max=0.0, desde_camino=False)
+    if zona.sum() < 20: return out
+    pm = float(pend[zona].mean()) / 100; h = float(np.clip(alto if alto else 8.0 * pm, 0.75, 2.0)); out["alto"] = round(h, 2)
+    banco = (np.floor(dem / h) + 0.5) * h; peso = np.clip(distance_transform_edt(zona) / 2.0, 0, 1); nuevo = dem * (1 - peso) + banco * peso      # empalme suave en el borde
+    # ---- rampas que comunican los bancos entre sí y con el resto del terreno. Parten de los caminos que ya existen dentro del terreno
+    # (o del punto más bajo si no hay ninguno) y suben hasta lo más alto de cada pedazo de ladera, cortándola en diagonal.
+    from scipy.ndimage import label
+    cam = (t["caminos"] if "caminos" in t.files else np.zeros(zona.shape, bool)) & t["mascara"]; paso = t["mascara"] & ~t["edificios"]
+    if "agua" in t.files: paso &= ~t["agua"]
+    idx = -np.ones(zona.shape, "int64"); n = int(paso.sum()); idx[paso] = np.arange(n); rr, cc = np.nonzero(paso); fi, co, w = [], [], []
+    for dr, dc in ((0, 1), (1, 0), (1, 1), (1, -1)):
+        r2, c2 = rr + dr, cc + dc; ok = (r2 >= 0) & (r2 < zona.shape[0]) & (c2 >= 0) & (c2 < zona.shape[1]); ok[ok] &= paso[r2[ok], c2[ok]]
+        dist = res * math.hypot(dr, dc); g = np.abs(dem[r2[ok], c2[ok]] - dem[rr[ok], cc[ok]]) / dist
+        en_cam = cam[rr[ok], cc[ok]] & cam[r2[ok], c2[ok]]
+        fi.append(idx[rr[ok], cc[ok]]); co.append(idx[r2[ok], c2[ok]]); w.append(dist * np.where(en_cam, 0.2, 1 + 4 * (g / 0.12) ** 3))      # subir de frente cuesta mucho; por un camino hecho cuesta poco
+    fi, co, w = np.concatenate(fi), np.concatenate(co), np.concatenate(w)
+    if cam.any(): origen = idx[cam & paso]; origen = origen[origen >= 0]; out["desde_camino"] = True
+    else: zr, zc = np.nonzero(zona); k0 = int(np.argmin(dem[zr, zc])); origen = np.array([idx[zr[k0], zc[k0]]])
+    fi = np.r_[fi, np.full(len(origen), n)]; co = np.r_[co, origen]; w = np.r_[w, np.full(len(origen), 1e-6)]
+    gr = coo_matrix((np.r_[w, w], (np.r_[fi, co], np.r_[co, fi])), shape=(n + 1, n + 1)).tocsr(); dd, pred = dijkstra(gr, indices=n, return_predecessors=True)
+    comp, nc = label(zona, structure=np.ones((3, 3))); largo = 0.0; pesos, grados = [], []
+    for k in range(1, nc + 1):
+        m = comp == k
+        if m.sum() < 15: continue
+        zr, zc = np.nonzero(m); alcanz = np.isfinite(dd[idx[zr, zc]])
+        if not alcanz.any(): continue
+        j = int(np.argmax(np.where(alcanz, dem[zr, zc], -1e9))); nodo = int(idx[zr[j], zc[j]]); camino = [nodo]
+        while pred[camino[-1]] >= 0 and pred[camino[-1]] != n: camino.append(int(pred[camino[-1]]))
+        if len(camino) < 3: continue
+        pr, pc = rr[camino[::-1]], cc[camino[::-1]]; zp = gaussian_filter(dem[pr, pc].astype("float64"), sigma=2.0, mode="nearest")               # rasante pareja a lo largo de la rampa
+        nueva = ~cam[pr, pc] & ~out["rampa"][pr, pc]; tramo = np.hypot(np.diff(pr), np.diff(pc)) * res; gp = np.abs(np.diff(zp)) / tramo * 100; sel = nueva[1:]
+        if sel.any(): largo += float(tramo[sel].sum()); pesos.append(tramo[sel]); grados.append(gp[sel])
+        out["rampa"][pr[nueva], pc[nueva]] = True; nuevo[pr[nueva], pc[nueva]] = zp[nueva]
+    if pesos:
+        pesos, grados = np.concatenate(pesos), np.concatenate(grados)
+        out.update(rampa_m=int(round(largo, -1)), rampa_media=round(float(np.average(grados, weights=pesos)), 1), rampa_max=round(float(grados.max()), 1))
+        lado = binary_dilation(out["rampa"], iterations=1) & ~out["rampa"] & ~cam; nuevo[lado] = 0.5 * nuevo[lado] + 0.5 * dem[lado]                 # los bancos empalman con la rampa
+    out["nuevo"] = nuevo.astype("float32"); return out
 
 @app.get("/api/terrazas/{i}")
-def terrazas(i: str, alto: float = 1.5):
+def terrazas(i: str, alto: float = 0):
     """Cómo quedaría la ladera con terrazas de banco: el mismo relieve de la vista 3D, escalonado donde la pendiente va de 8 a 30 %.
     Cada banco queda plano a media altura de su escalón, de modo que la tierra que se corta arriba es la que se rellena abajo.
     Es un esquema: el relieve de origen es de 30 m, así que sirve para dimensionar la obra, no para trazarla."""
-    d = _dir(i); G = json.load(open(f"{d}/meta.json")); alto = float(np.clip(alto, 0.5, 4.0)); dem, nuevo, zona, pend = _terrazas(d, G, alto)
-    a_celda = G["res"] ** 2; ha = float(zona.sum() * a_celda / 1e4); corte = float(np.clip(dem - nuevo, 0, None)[zona].sum() * a_celda); pm = float(pend[zona].mean()) if zona.any() else 0.0
+    d = _dir(i); G = json.load(open(f"{d}/meta.json")); X = _terrazas(d, G, float(np.clip(alto, 0.5, 2.0)) if alto else None); dem, nuevo, zona, pend, alto = X["dem"], X["nuevo"], X["zona"], X["pend"], X["alto"]
+    a_celda = G["res"] ** 2; ha = float(zona.sum() * a_celda / 1e4); corte = float(np.clip(dem - nuevo, 0, None)[zona | X["rampa"]].sum() * a_celda); pm = float(pend[zona].mean()) if zona.any() else 0.0
     paso = max(1, int(np.ceil(np.sqrt(dem.size / 160000)))); z = np.ascontiguousarray(nuevo[::paso, ::paso])
     return dict(ha=round(ha, 2), alto_m=alto, pendiente_media=round(pm, 1), ancho_banco_m=round(alto / max(pm / 100, 1e-6), 1) if ha else None,
                 escalones=int(np.ptp(np.floor(dem[zona] / alto)) + 1) if ha else 0, tierra_m3=int(round(corte, -1)), m3_por_ha=int(round(corte / max(ha, 1e-6), -1)) if ha else 0,
                 ha_hoy_no_convenia=round(float((zona & (pend > 15)).sum() * a_celda / 1e4), 2), con_arboles_ha=round(float((zona & (rasterio.open(f"{d}/worldcover.tif").read(1) == 10)).sum() * a_celda / 1e4), 2),
+                rampa_m=X["rampa_m"], rampa_pendiente_media=X["rampa_media"], rampa_pendiente_max=X["rampa_max"], rampa_desde_camino=X["desde_camino"], transicion_m=round(2 * G["res"]),
                 z=base64.b64encode(z.tobytes()).decode(), ancho=int(z.shape[1]), alto=int(z.shape[0]))
 
 @app.get("/api/malla/{i}")
@@ -385,8 +429,9 @@ def capa(i: str, nombre: str, mes: int = 1, mezcla: float = 0.75, edif: int = 1,
     t = np.load(f"{d}/terreno.npz"); fuera = np.where(t["mascara"], 1.0, 0.72)[:, :, None]      # fuera del terreno se atenúa
     if nombre == "terrazas":            # bancos pintados siguiendo las curvas de nivel: verde claro y verde oscuro alternados, talud en café
         from scipy.ndimage import zoom
-        dem, nuevo, zona, pend = _terrazas(d, G, 1.5); f = 4; fino = zoom(dem, f, order=1) / 1.5; zf = np.repeat(np.repeat(zona, f, 0), f, 1)      # a 2,5 m se distinguen el banco y su talud
+        X = _terrazas(d, G); dem, zona, h = X["dem"], X["zona"], X["alto"]; f = 4; fino = zoom(dem, f, order=1) / h; zf = np.repeat(np.repeat(zona, f, 0), f, 1)      # a 2,5 m se distinguen el banco y su talud
         niv = np.floor(fino).astype("int32"); frac = fino - niv; col = np.zeros(zf.shape + (3,), "uint8"); col[...] = (118, 166, 88); col[niv % 2 == 0] = (150, 192, 110); col[frac < 0.22] = (132, 100, 68)
+        rf = np.repeat(np.repeat(X["rampa"], f, 0), f, 1); col[rf] = (222, 204, 160); zf = zf | rf                                                            # la rampa que une los bancos, en color de camino
         return _png(np.dstack([col, np.where(zf, 225, 0).astype("uint8")]))
     if nombre == "imagen": return _png(np.dstack([_con_edif(d, (base * fuera).astype("uint8"), edif), np.full(base.shape[:2], 255, "uint8")]))
     if nombre == "plan":
