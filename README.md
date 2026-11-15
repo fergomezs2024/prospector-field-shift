@@ -2,7 +2,7 @@
 
 NASA Space Apps Challenge 2026 · challenge **Field Shift: Adapting Farms with NASA Data** · team **RocketPower** (Chile)
 
-**Demo:** [7 slides (PDF)](docs/demo/Prospector_RocketPower_demo.pdf) · [PowerPoint file](docs/demo/Prospector_RocketPower_demo.pptx) · [25-second video of the app running](docs/demo/Prospector_demo.mp4) · [validation](docs/VALIDATION.md)
+**Demo:** [7 slides (PDF)](docs/demo/Prospector_RocketPower_demo.pdf) · [PowerPoint file](docs/demo/Prospector_RocketPower_demo.pptx) · [25-second video of the app running](docs/demo/Prospector_demo.mp4) · [2-minute pitch, 5 slides](docs/demo/Prospector_pitch_2min.pdf) · [validation](docs/VALIDATION.md)
 
 Prospector is a decision-support tool for farmers and advisors. You draw a field on a satellite map, anywhere in the world, and it answers four questions with open NASA data:
 
