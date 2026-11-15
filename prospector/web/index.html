@@ -34,6 +34,7 @@
   #ficha.min > :not(h4), #probar.min > :not(h4) { display:none; } #ficha.min h4, #probar.min h4 { margin:0; } #ficha.min h4::after, #probar.min h4::after { transform:rotate(-90deg); }
   #ficha, #leyenda, #probar, #simFlot, #mesFlot, #tarjeta, #ayuda, #obra { box-shadow:var(--sombra); }
   body:not(.tecnico) .etq span, body:not(.tecnico) .etq .rot { display:none; }
+  #simFlot:not(.oculto) ~ #ayuda { display:none; }
   #masCapas { display:none; flex-wrap:wrap; gap:6px; flex-basis:100%; } #masCapas.ab { display:flex; }
   .encab { display:flex; align-items:center; gap:8px; } .encab h1 { flex:1; }
   p.sub { color:var(--tenue); margin:0 0 6px; }
@@ -114,9 +115,9 @@
         <span class="conm" style="margin:0"><button data-t="seco">Año seco</button><button data-t="normal" class="act">Normal</button><button data-t="lluvioso">Lluvioso</button></span></div>
     </div>
     <div id="mesFlot" class="oculto"><span id="mesFlotTxt">Enero</span><input id="mesF" type="range" min="1" max="12" value="1"></div>
-    <div id="ficha" class="oculto"></div>
+    <div id="ficha" class="oculto min"></div>
     <div id="leyenda" class="oculto"></div>
-    <div id="probar" class="oculto"></div>
+    <div id="probar" class="oculto min"></div>
     <div id="obra" class="oculto"></div>
     <div id="tarjeta" class="oculto"><span class="x" id="tarjX">×</span><h3 id="tarjT"></h3><p id="tarjP"></p><ul id="tarjL"></ul></div>
     <div id="ayuda" class="mini">Busca un lugar, pulsa «Marcar terreno» y haz clic en cada esquina. Doble clic para cerrar.</div>
@@ -428,7 +429,7 @@ function pintarPlan() {
       (loteo.proyeccion.despeje_ha ? `<tr><td>Árboles y matorral a despejar</td><td>${fmt(loteo.proyeccion.despeje_ha, 1)} ha</td></tr>` : '') + `<tr><td>Caminos nuevos</td><td>${fmt(loteo.proyeccion.camino_m, 0)} m</td></tr><tr><td>Agua que usan los cultivos al año</td><td>${fmt(loteo.proyeccion.agua_m3_anio, 0)} m³</td></tr><tr><td>Años en que la cosecha sale bien</td><td>${fmt(loteo.proyeccion.buenos_de_10, 0)} de cada 10</td></tr></table>` : '') +
     `<div style="margin-top:8px"><b>Lo que no se siembra</b></div><table>${loteo.fuera.map(x => `<tr><td>${x.motivo}</td><td>${fmt(x.ha, 1)} ha</td></tr>`).join('')}</table></details>`;
   $('plan').innerHTML = `<p class="frase">${clima}</p><div class="fila"><span class="mini">Hoy se cultiva aquí:</span><select id="selActual">${p.cultivos.filter(x => x.siembra_mes).map(x => `<option value="${x.clave}" ${x.clave === p.actual ? 'selected' : ''}>${x.nombre}</option>`).join('')}</select></div>` +
-    `<p class="mini" style="margin-top:10px">Se probaron ${p.cultivos.length} cultivos de campo. Existen muchos más (frutales, hortalizas, viñas, forrajeras): que uno no aparezca aquí no significa que no se dé. Las fechas de siembra y cosecha son tentativas; la fecha real depende de la variedad y del año.</p><details class="grupo" data-k="g-secano" data-def><summary>Se dan aquí sin riego (${buenos.length})</summary>${buenos.map(filaC).join('') || '<p class="mini">Ninguno de la lista se da bien sin riego.</p>'}</details>` +
+    `<p class="mini" style="margin-top:10px">Se probaron ${p.cultivos.length} cultivos de campo. Existen muchos más (frutales, hortalizas, viñas, forrajeras): que uno no aparezca aquí no significa que no se dé. Las fechas de siembra y cosecha son tentativas; la fecha real depende de la variedad y del año.</p><details class="grupo" data-k="g-secano" data-def><summary>Se dan aquí sin riego (${buenos.length})</summary>${buenos.slice(0, 3).map(filaC).join('') || '<p class="mini">Ninguno de la lista se da bien sin riego.</p>'}${buenos.length > 3 ? `<details class="grupo" data-k="g-mas" style="margin-top:6px"><summary class="mini">Ver los otros ${buenos.length - 3}</summary>${buenos.slice(3).map(filaC).join('')}</details>` : ''}</details>` +
     (riego.length ? `<details class="grupo" data-k="g-riego"><summary>Solo con riego (${riego.length})</summary>${riego.map(filaC).join('')}</details>` : '') +
     (no.length ? `<div class="mini" style="margin-top:8px">No se recomiendan: ${no.map(x => x.nombre).join(', ')}.</div>` : '') +
     reparto + `<div style="margin-top:14px"><b>Por zonas del terreno</b> <span class="mini">(toca una rotación para verla simulada en el 3D)</span> <button id="planMejor" class="herr" style="margin-top:6px">Ver en el 3D dónde va cada cultivo</button></div>${zonas}` +
@@ -813,8 +814,18 @@ async function texturaPlan(o = {}) {
   const P = (c, r) => [nw[0] + (c + .5) / Wm * (ne[0] - nw[0]) + (r + .5) / Hm * (sw[0] - nw[0]), nw[1] + (c + .5) / Wm * (ne[1] - nw[1]) + (r + .5) / Hm * (sw[1] - nw[1])];
   const pxm = Math.hypot(ne[0] - nw[0], ne[1] - nw[1]) / (Wm * metaActual.res), cams = loteo.caminos_nuevos || [], total = cams.reduce((a, c) => a + c.puntos.length, 0); let hechos = 0;
   cx.lineJoin = 'round'; cx.lineCap = 'round';
-  cams.forEach(c => { const n = Math.max(0, Math.min(c.puntos.length, Math.round(cam * total) - hechos)); hechos += c.puntos.length; if (n < 2) return; const pts = c.puntos.slice(0, n).map(([a, b]) => P(a, b));
-    [['rgba(60,45,30,.9)', (c.tipo === 'acceso' ? 6 : 4) * pxm + 4], [c.tipo === 'acceso' ? '#e9d8ae' : '#cdb98c', (c.tipo === 'acceso' ? 6 : 4) * pxm]].forEach(([col, w]) => { cx.strokeStyle = col; cx.lineWidth = Math.max(w, 3); cx.beginPath(); pts.forEach(([x, y], k) => k ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.stroke(); }); });
+  // el trazado sale de una grilla (escalonado): se suaviza y se pinta como camino de ripio, con berma, calzada y huellas
+  const suave = pts => { if (pts.length < 3) return pts; let q = pts.filter((_, k) => k % 3 === 0 || k === pts.length - 1);
+    for (let it = 0; it < 3 && q.length > 2; it++) { const r = [q[0]]; for (let k = 0; k < q.length - 1; k++) { const [a, b] = [q[k], q[k + 1]]; r.push([a[0] * .75 + b[0] * .25, a[1] * .75 + b[1] * .25], [a[0] * .25 + b[0] * .75, a[1] * .25 + b[1] * .75]); } r.push(q[q.length - 1]); q = r; } return q; };
+  const trazo = (pts, col, w, o = {}) => { cx.save(); cx.strokeStyle = col; cx.lineWidth = Math.max(w, 1); if (o.sombra) { cx.shadowColor = o.sombra; cx.shadowBlur = o.difuso || 6; } if (o.raya) cx.setLineDash(o.raya);
+    cx.beginPath(); pts.forEach(([x, y], k) => k ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.stroke(); cx.restore(); };
+  cams.forEach(c => { const n = Math.max(0, Math.min(c.puntos.length, Math.round(cam * total) - hechos)); hechos += c.puntos.length; if (n < 2) return; const pts = suave(c.puntos.slice(0, n).map(([a, b]) => P(a, b)));
+    const acc = c.tipo === 'acceso', w = Math.max((acc ? 6 : 4) * pxm, 3);
+    trazo(pts, 'rgba(70,58,40,.55)', w + 6, { sombra: 'rgba(30,22,12,.55)', difuso: 8 });        // berma y sombra blanda: el borde no queda duro
+    trazo(pts, acc ? '#d9c79c' : '#c9b78d', w);                                                  // calzada
+    trazo(pts, 'rgba(255,248,225,.35)', w * .5);                                                 // centro más claro (bombeo)
+    if (w >= 6) [-.22, .22].forEach(d => { const hu = pts.map(([x, y], k) => { const a = pts[Math.min(k + 1, pts.length - 1)], b = pts[Math.max(k - 1, 0)], L = Math.hypot(a[0] - b[0], a[1] - b[1]) || 1; return [x - (a[1] - b[1]) / L * w * d, y + (a[0] - b[0]) / L * w * d]; });
+      trazo(hu, 'rgba(120,98,66,.45)', Math.max(w * .12, 1)); }); });
   if (!planTx) { planTx = new THREE.CanvasTexture(planCv); planTx.colorSpace = THREE.SRGBColorSpace; planTx.anisotropy = 8; } planTx.needsUpdate = true; return planTx;
 }
 function ponerMapa(tx) { if (mat.map && mat.map !== tx) { if (mat.map === planTx) planTx = null; mat.map.dispose(); } mat.map = tx; mat.needsUpdate = true; }
@@ -882,6 +893,8 @@ function ver3d() { setTimeout(chips, 0); $('ficha').classList.remove('oculto'); 
 function verMapa() { setTimeout(chips, 0); $('ficha').classList.add('oculto'); $('leyenda').classList.add('oculto'); $('tarjeta').classList.add('oculto'); $('tres').style.display = 'none'; $('mapa').style.display = 'block'; $('bMapa').classList.add('act'); $('b3d').classList.remove('act');
   $('ayuda').textContent = 'Busca un lugar, pulsa «Marcar terreno» y haz clic en cada esquina. Doble clic para cerrar.'; mapa.resize(); }
 $('b3d').onclick = ver3d; $('bMapa').onclick = verMapa;
+// enlace directo a un terreno ya analizado:  ?t=<id>&capa=plan
+{ const q = new URLSearchParams(location.search); if (q.get('t')) cargar(q.get('t')).then(() => { if (q.get('capa')) setTimeout(() => { $('capa').value = q.get('capa'); ver3d(); $('capa').onchange({ target: $('capa') }); }, 3000); }).catch(() => {}); }
 </script>
 </body>
 </html>
