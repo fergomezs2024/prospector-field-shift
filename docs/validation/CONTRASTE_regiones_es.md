@@ -1,6 +1,6 @@
 # Contraste: cultivos por región según la tabla (CROPGRIDS) y según estadísticas oficiales
 
-Regiones comparadas: **377** de 53 países. Las estadísticas oficiales se recopilaron región por región, con la dirección de cada fuente (carpeta `investigacion/cultivos_por_pais/`). La tabla es CROPGRIDS v1.08 (hacia 2020) sumado dentro de cada región de Natural Earth. Se excluyen forrajes y praderas, que las estadísticas de cultivos no suelen traer.
+Regiones comparadas: **379** de 53 países. Las estadísticas oficiales se recopilaron región por región, con la dirección de cada fuente (carpeta `investigacion/cultivos_por_pais/`). La tabla es CROPGRIDS v1.08 (hacia 2020) sumado dentro de cada región de Natural Earth. Se excluyen forrajes y praderas, que las estadísticas de cultivos no suelen traer.
 
 | Qué se midió | Resultado |
 |---|---|
@@ -22,7 +22,7 @@ Regiones comparadas: **377** de 53 países. Las estadísticas oficiales se recop
 | Chile | 9 | 89 % | 76 % |
 | China | 16 | 94 % | 80 % |
 | Colombia | 10 | 90 % | 88 % |
-| Cuba | 4 | 75 % | 75 % |
+| Cuba | 6 | 67 % | 78 % |
 | Côte d'Ivoire | 5 | 100 % | 77 % |
 | Ecuador | 10 | 90 % | 75 % |
 | Egypt | 2 | 100 % | 90 % |
@@ -89,6 +89,7 @@ Regiones comparadas: **377** de 53 países. Las estadísticas oficiales se recop
 | Canada | New Brunswick | papa, cebada, avena, trigo, maíz | alfalfa, arándano, maíz, papa, avena | area, high |
 | Honduras | Cortés | caña de azúcar, maíz, palma aceitera, café, banano | palma aceitera, café, maíz, caña de azúcar, poroto (frijol) | area, high |
 | Cuba | Pinar del Río | tabaco, maíz, camote (batata), arroz, poroto (frijol) | caña de azúcar, poroto (frijol), yuca (mandioca), otras hortalizas, arroz | area, low |
+| Cuba | Mayabeque | arroz, caña de azúcar, maíz, yuca (mandioca), plátano | caña de azúcar, poroto (frijol), maíz, camote (batata), plátano | area, low |
 | Argentina | La Pampa | maíz, soya, trigo, girasol, avena | trigo, soya, girasol, maíz, avena | area, high |
 | Chile | Valparaíso | palta (aguacate), uva, nuez, mandarina, limón | uva, maíz, alfalfa, lechuga, trigo | area, medium |
 | Peru | Puno | papa, alfalfa, quinoa, cebada, café | alfalfa, quinoa, haba, palta (aguacate), maíz | production, medium |

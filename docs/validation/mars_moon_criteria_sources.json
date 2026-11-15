@@ -1,0 +1,541 @@
+{
+ "_meta": {
+  "generated": "2026-11-15",
+  "method": "Every value was read in the cited document (downloaded with curl, text extracted with pdftotext). Quotes are verbatim fragments under 15 words. Fields marked derived are arithmetic on cited values, not published numbers.",
+  "resolution_hint": "MOLA 463 m/px can only test the 200-500 m and 2-5 km slope criteria; LOLA 118 m/px matches the Artemis 100 m landing baseline. Metre-scale criteria (2-5 m) cannot be checked with these grids."
+ },
+ "mars": {
+  "landing_slope": [
+   {
+    "mission": "Mars Science Laboratory (Curiosity) - JPL engineering user guide v2 (early, 2006-era constraints)",
+    "value_deg": 3,
+    "baseline_m": "2000-5000",
+    "source_url": "https://marsoweb.nas.nasa.gov/landingsites/msl/memoranda/MSL_Eng_User_Guide_v2.pdf",
+    "quote": "three degrees or less over a 2 to 5 km length scale",
+    "note": "Radar altimetry error at start of powered descent. Testable with MOLA 463 m."
+   },
+   {
+    "mission": "Mars Science Laboratory (Curiosity) - JPL engineering user guide v2",
+    "value_deg": 5,
+    "baseline_m": "200-500",
+    "source_url": "https://marsoweb.nas.nasa.gov/landingsites/msl/memoranda/MSL_Eng_User_Guide_v2.pdf",
+    "quote": "five degrees or less over a 200 to 500 m length scale",
+    "note": "Altimetry before sky-crane maneuver. This is the criterion that matches one MOLA pixel (463 m)."
+   },
+   {
+    "mission": "Mars Science Laboratory (Curiosity) - JPL engineering user guide v2",
+    "value_deg": 15,
+    "baseline_m": "20-40",
+    "source_url": "https://marsoweb.nas.nasa.gov/landingsites/msl/memoranda/MSL_Eng_User_Guide_v2.pdf",
+    "quote": "fifteen degrees or less over a 20 to 40 m length scale",
+    "note": "Altimetry before rover release. Below MOLA resolution."
+   },
+   {
+    "mission": "Mars Science Laboratory (Curiosity) - JPL engineering user guide v2",
+    "value_deg": 15,
+    "baseline_m": 5,
+    "source_url": "https://marsoweb.nas.nasa.gov/landingsites/msl/memoranda/MSL_Eng_User_Guide_v2.pdf",
+    "quote": "fifteen degrees or less over a 5 m length scale",
+    "note": "Landing stability and trafficability (early value; final paper relaxed it to 30 deg, next entry)."
+   },
+   {
+    "mission": "Mars Science Laboratory (Curiosity) - final selection paper, Golombek et al. 2012 (abstract)",
+    "value_deg": 30,
+    "baseline_m": "2-5",
+    "source_url": "https://authors.library.caltech.edu/35374",
+    "quote": "slopes of <30° at baselines of 2–5 m for rover stability at touchdown",
+    "note": "Final constraint. Same abstract: relief <100-130 m at baselines of 1-1000 m for powered descent."
+   },
+   {
+    "mission": "Mars 2020 (Perseverance) - Golombek et al. LPSC 2015 #1653",
+    "value_deg": "25-30",
+    "baseline_m": "2-5",
+    "source_url": "https://www.hou.usra.edu/meetings/lpsc2015/pdf/1653.pdf",
+    "quote": "than 25°-30° slopes at length scales of 2-5 m to ensure",
+    "note": "Rover stability/trafficability. Also: less than ~100 m of relief at baseline lengths of 1-1000 m."
+   },
+   {
+    "mission": "InSight - Golombek et al. 2017 (author manuscript, Smithsonian repository)",
+    "value_deg": 15,
+    "baseline_m": "1-5 and 84",
+    "source_url": "https://repository.si.edu/server/api/core/bitstreams/7ee1f701-fc36-44e6-8989-91f342ec00b5/content",
+    "quote": "1-5 m and 84 m length slopes <15° for touchdown stability",
+    "note": "Legged lander: touchdown stability, SEIS leveling and radar tracking. Closest analogue to a legged crewed lander."
+   }
+  ],
+  "landing_elevation": [
+   {
+    "mission": "Mars Science Laboratory - design capability (user guide v2)",
+    "value_km_mola": 2.0,
+    "limit": "max",
+    "source_url": "https://marsoweb.nas.nasa.gov/landingsites/msl/memoranda/MSL_Eng_User_Guide_v2.pdf",
+    "quote": "allowing the landing site altitude to be as high as +2 km",
+    "note": "EDL design capability. Reason: low elevation gives adequate atmospheric density column for drag."
+   },
+   {
+    "mission": "Mars Science Laboratory - constraint actually applied (Golombek et al. 2012 abstract)",
+    "value_km_mola": -1.0,
+    "limit": "max",
+    "source_url": "https://authors.library.caltech.edu/35374",
+    "quote": "elevation (< −1 km) for sufficient atmosphere to slow the spacecraft",
+    "note": "Final selection constraint; latitude within ±30° for thermal management."
+   },
+   {
+    "mission": "Mars 2020 - first workshop constraints (LPSC 2015 #1653)",
+    "value_km_mola": 0.5,
+    "limit": "max",
+    "source_url": "https://www.hou.usra.edu/meetings/lpsc2015/pdf/1653.pdf",
+    "quote": "Elevation: Below +0.5 km elevation, with respect to the MOLA geoid",
+    "note": "Latitude within ±30°. Ellipse 16 x 14 km with range trigger."
+   },
+   {
+    "mission": "Mars 2020 - map in Grant et al. EPSC 2018-578",
+    "value_km_mola": -0.5,
+    "limit": "max",
+    "source_url": "https://meetingorganizer.copernicus.org/EPSC2018/EPSC2018-578.pdf",
+    "quote": "Excluded elevations (above -500 m) are black",
+    "note": "DISCREPANCY with the LPSC 2015 abstract (+0.5 km). Both read directly; use -0.5 km as the conservative screen."
+   },
+   {
+    "mission": "InSight",
+    "value_km_mola": -2.5,
+    "limit": "max",
+    "source_url": "https://repository.si.edu/server/api/core/bitstreams/7ee1f701-fc36-44e6-8989-91f342ec00b5/content",
+    "quote": "elevation below -2.5 km for sufficient atmosphere to slow the spacecraft",
+    "note": "Ballistic entry with 130 x 27 km ellipse; latitude 3°N-5°N final."
+   }
+  ],
+  "rock_abundance": [
+   {
+    "mission": "Mars Science Laboratory (user guide v2)",
+    "value_pct": 10,
+    "source_url": "https://marsoweb.nas.nasa.gov/landingsites/msl/memoranda/MSL_Eng_User_Guide_v2.pdf",
+    "quote": "this translates to a rock abundance (cumulative area covered by rocks) of around 10%",
+    "note": "From <0.25% chance of a rock taller than 0.6 m in 4 m2 (belly pan). Final paper abstract only says 'moderate rock abundance'."
+   },
+   {
+    "mission": "Mars 2020 (LPSC 2015 #1653)",
+    "value_pct": 12,
+    "source_url": "https://www.hou.usra.edu/meetings/lpsc2015/pdf/1653.pdf",
+    "quote": "which corresponds to about 12% rock abundance",
+    "note": "From <0.5% probability of a rock taller than 0.6 m under the belly pan."
+   },
+   {
+    "mission": "InSight",
+    "value_pct": 10,
+    "source_url": "https://repository.si.edu/server/api/core/bitstreams/7ee1f701-fc36-44e6-8989-91f342ec00b5/content",
+    "quote": "rock abundance <10%   for low probability of impacting a rock",
+    "note": "Also thermal inertia >100-140 J m-2 K-1 s-1/2 for a load-bearing, non-dusty surface."
+   }
+  ],
+  "human_ez": {
+   "source": "Bussey & Hoffman, 'Human Mars Landing Site and Impacts on Mars Surface Operations', IEEE Aerospace 2016 slides (NTRS 20160002370), summarising the Oct 2015 first EZ workshop",
+   "latitude_band_deg": {
+    "value": "+/-50",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20160002370/downloads/20160002370.pdf",
+    "quote": "Preliminary latitude boundaries set at +/- 50 degrees",
+    "note": "Preliminary; trade between landing/ascent performance and access to water ice."
+   },
+   "elevation_limit_km_mola": {
+    "value": 2.0,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20160002370/downloads/20160002370.pdf",
+    "quote": "Preliminary elevation boundary set at no higher than +2 km",
+    "note": "MOLA reference."
+   },
+   "ez_radius_km": {
+    "value": 100,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20160002370/downloads/20160002370.pdf",
+    "quote": "approximately 100 kilometers of a centralized landing site",
+    "note": "Derived from ~400 km odometer range, two-week traverse, factor 2 for path vs straight line."
+   },
+   "landing_zone_diameter_m": {
+    "value": 100,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20160002370/downloads/20160002370.pdf",
+    "quote": "100 meter diameter circle inside of which the ALHAT system is targeting",
+    "note": "Per-lander designated landing site (precision landing within 100 m, 3-sigma)."
+   },
+   "landing_hazard_slope_deg": {
+    "value": 5,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20160002370/downloads/20160002370.pdf",
+    "quote": "Avoid 30 centimeter hazards and 5 degree slopes",
+    "note": "ALHAT hazard-avoidance requirement (lunar heritage) used in the Mars field-station layout; lander-footprint scale, not a workshop site criterion."
+   },
+   "plume_debris_max_range_m": {
+    "value": 700,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20160002370/downloads/20160002370.pdf",
+    "quote": "700 meter diameter circle that analysis indicates will be the maximum range of debris",
+    "note": "Slide says 'diameter' for the 700 m and 1000 m circles but another slide labels '1000 m radius plume ejecta hazard zone'. Ambiguous radius/diameter; use 1000 m as separation to be safe."
+   },
+   "infrastructure_safe_distance_m": {
+    "value": 1000,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20160002370/downloads/20160002370.pdf",
+    "quote": "1000 m radius plume ejecta hazard zone",
+    "note": "Outside this, surface infrastructure should be safe from terminal-descent thruster debris."
+   },
+   "landing_zone_area_and_workshop_slope_criterion": null,
+   "note": "A workshop-issued numeric slope limit and landing-zone area (e.g. km2) were NOT found in the documents read; see not_found."
+  },
+  "pad_and_excavation": [
+   {
+    "item": "Human Mars designated landing site",
+    "value": 100,
+    "unit": "m diameter",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20160002370/downloads/20160002370.pdf",
+    "quote": "100 m dia designated landing site",
+    "note": "No engineered/paved pad dimension for Mars was found; this is a targeting circle. Habitation, power and landing zones are laid out ~1 km apart in the example field station."
+   },
+   {
+    "item": "RASSOR 2.0 minimum excavation rate (Mars ISRU design case)",
+    "value": 2700,
+    "unit": "kg/day",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20210011366/downloads/ASCE%202016%20RASSOR%202%20Final%20%206_8_2016.pdf.txt",
+    "quote": "can excavate a minimum of 2.7 metric tons of regolith per day",
+    "note": "66 kg robot; 16 h mining + 8 h recharge per day; 35 trips/day."
+   },
+   {
+    "item": "RASSOR 2.0 annual Mars regolith requirement",
+    "value": 1000000,
+    "unit": "kg/Earth-year",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20210011366/downloads/ASCE%202016%20RASSOR%202%20Final%20%206_8_2016.pdf.txt",
+    "quote": "1,000,000 kg of regolith per Earth-year",
+    "note": "For 10,000 kg O2/year at 1% yield, 4-person architecture. ISRU feedstock, not grading."
+   },
+   {
+    "item": "RASSOR 2.0 payload per trip (derived)",
+    "value": 77,
+    "unit": "kg/trip",
+    "derived": true,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20210011366/downloads/ASCE%202016%20RASSOR%202%20Final%20%206_8_2016.pdf.txt",
+    "quote": "this equates to 35 mining trips per day",
+    "note": "DERIVED: 2700 kg/day / 35 trips. Not stated in the paper."
+   },
+   {
+    "item": "RASSOR 2.0 volume rate on Mars (derived)",
+    "value": "1.7-2.7",
+    "unit": "m3/day",
+    "derived": true,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20210011366/downloads/ASCE%202016%20RASSOR%202%20Final%20%206_8_2016.pdf.txt",
+    "quote": "can excavate a minimum of 2.7 metric tons of regolith per day",
+    "note": "DERIVED: 2700 kg/day divided by 1600 and 1000 kg/m3 (Mars bulk density range below). One robot moves ~2 m3/day: flattening km-scale areas is not feasible."
+   }
+  ]
+ },
+ "moon": {
+  "landing_slope": [
+   {
+    "mission": "Apollo Lunar Module - design surface specification (NASA TN D-6850)",
+    "value_deg": 6,
+    "baseline_m": "landing-gear footprint (general/mean slope)",
+    "source_url": "https://ntrs.nasa.gov/api/citations/19720018253/downloads/19720018253.txt",
+    "quote": "mean surface slope of 6 [deg] or less and an effective slope of 12",
+    "note": "OCR of the scan renders the degree sign as a quote mark; bracketed [deg] inserted. Effective 12 deg includes depressions, protuberances and footpad penetration; 24 in max relief within footprint."
+   },
+   {
+    "mission": "Apollo Lunar Module - effective slope used for stability certification",
+    "value_deg": 12,
+    "baseline_m": "landing-gear footprint (length not stated in source)",
+    "source_url": "https://ntrs.nasa.gov/api/citations/19730010151/downloads/19730010151.txt",
+    "quote": "unstable landing on slopes of 12° or less was two in a thousand",
+    "note": "Rogers 1973. Footprint length in metres is not stated in the text read. Apollo 15 actually touched down on 11 deg."
+   },
+   {
+    "mission": "Apollo LM 'Doghouse' design envelope (2026 NASA HLS V&V paper)",
+    "value_deg": 12,
+    "baseline_m": null,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20260001760/downloads/Apollo%2011%20LM%20Touchdown%20Dynamics%20VnV%20HLS.pdf",
+    "quote": "The LM Doghouse assumes a relatively steep 12° slope",
+    "note": "Modern NASA confirmation of the 12 deg certification slope."
+   },
+   {
+    "mission": "Artemis III / HLS - landing requirement",
+    "value_deg": 10,
+    "baseline_m": 100,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20240009596/downloads/ArtemisHLSUpdate_2024.pdf",
+    "quote": "Surface slope for landing (100m): <10 deg",
+    "note": "NASA HLS update 2024. Directly testable with LOLA 118 m/px. Also: land within 100 m of target, within 6 deg latitude of the South Pole."
+   },
+   {
+    "mission": "Artemis HLS - vehicle slope tolerance",
+    "value_deg": 8,
+    "baseline_m": null,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20210026296/downloads/Scoville%20Final%20presentation%20-%20compressed.pptx.pdf",
+    "quote": "Human Landing System will have slope tolerance that is at least 8 degrees",
+    "note": "Inferred by the author from HLS-S-R-0071 (Surface Operations Vertical Orientation). Same deck used a 100 m radius landing circle with slope <5 deg as its own site filter."
+   },
+   {
+    "mission": "Artemis III - EVA slope limit",
+    "value_deg": 20,
+    "baseline_m": 2000,
+    "source_url": "https://ntrs.nasa.gov/api/citations/20240009596/downloads/ArtemisHLSUpdate_2024.pdf",
+    "quote": "Surface slope limit for EVA (2km): <20 deg",
+    "note": "Walking area around the lander, not the landing spot."
+   }
+  ],
+  "pad": [
+   {
+    "item": "Landing pad inner zone radius (Metzger & Autry cost study)",
+    "value": 12,
+    "unit": "m radius",
+    "source_url": "https://arxiv.org/pdf/2205.00378",
+    "quote": "𝑟inner = 12 m for the radius of the inner pad",
+    "note": "Zone that must resist plume heat; ~40 t multi-engine lander incl. 5 m landing-accuracy margin."
+   },
+   {
+    "item": "Landing pad outer zone radius (Metzger & Autry)",
+    "value": 27,
+    "unit": "m radius",
+    "source_url": "https://arxiv.org/pdf/2205.00378",
+    "quote": "𝑟outer = 27 m for the radius of the outer pad",
+    "note": "Erosion-control apron; total pad diameter 54 m. Original van Susante & Metzger values were 5 m and 20 m."
+   },
+   {
+    "item": "Single-use landing zone (NASA KSC Lunar Innovation Park, 2026)",
+    "value": 15,
+    "unit": "m diameter",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20260002816/downloads/329%20-%20Site%20Plan%20and%20Bulk%20Presentation.pdf",
+    "quote": "15 m LZ diameter based on 5 m landing accuracy",
+    "note": "Small (CLPS-class, 5 m) lander; excavated 0.8 m below grade to balance cut and fill."
+   },
+   {
+    "item": "Reusable pad foundation (Lunar Innovation Park)",
+    "value": 20,
+    "unit": "m diameter",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20260002816/downloads/329%20-%20Site%20Plan%20and%20Bulk%20Presentation.pdf",
+    "quote": "20 m diameter flat, level, rock free regolith foundation, 1.6 m below grade",
+    "note": "Compacted to 80% relative density, with a 15 m diameter durable pad surface on top."
+   },
+   {
+    "item": "Berm height",
+    "value": 2.5,
+    "unit": "m",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20260002816/downloads/329%20-%20Site%20Plan%20and%20Bulk%20Presentation.pdf",
+    "quote": "Height is 2.5 m which is the assumed lander height",
+    "note": "Crest 1 m, side wall 52 deg, base width 4.9 m, bulk density 1.4 g/cm3."
+   },
+   {
+    "item": "Berm-to-lander standoff",
+    "value": 8,
+    "unit": "m",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20260002816/downloads/329%20-%20Site%20Plan%20and%20Bulk%20Presentation.pdf",
+    "quote": "8 m standoff distance from ejecta impacted face of berm to landed lander",
+    "note": "Landing-zone centre spacing 19.9 m."
+   },
+   {
+    "item": "Safe standoff distance without berm",
+    "value": null,
+    "unit": "m",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20260002816/downloads/329%20-%20Site%20Plan%20and%20Bulk%20Presentation.pdf",
+    "quote": "No safe scientific or operational standoff distances have been defined for various landers",
+    "note": "NASA states no agreed keep-out distance exists; simulation assumed ejecta at 1 km/s and 3 deg."
+   },
+   {
+    "item": "Ejecta angle (basis for berms)",
+    "value": 3,
+    "unit": "deg above surface",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20090022252/downloads/20090022252.pdf",
+    "quote": "ejected at an angle of less than 3 degrees above the surface",
+    "note": "Metzger et al., KSC: a modest berm blocks the low-angle sheet."
+   },
+   {
+    "item": "Effect of natural slope on berm volume",
+    "value": 2.6,
+    "unit": "x volume at 4 deg vs level",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20260002816/downloads/329%20-%20Site%20Plan%20and%20Bulk%20Presentation.pdf",
+    "quote": "4° sloped site and yielded 2.6x increase in berm volume",
+    "note": "Quantifies why a nearly level site is worth choosing rather than grading."
+   }
+  ],
+  "excavation": [
+   {
+    "item": "IPEx (ISRU Pilot Excavator) demonstration target",
+    "value": 10000,
+    "unit": "kg total in 11 days",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20240008162/downloads/ASCEND24_IPEx%20TRL%205%20Design%20Overview.pdf",
+    "quote": "excavating up to 10,000 kg of regolith, at a rate of 42 kg/hr",
+    "note": "30 kg-class robot, 70 km driven, lunar South Pole notional mission."
+   },
+   {
+    "item": "IPEx excavation rate",
+    "value": 42,
+    "unit": "kg/hour",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20240008162/downloads/ASCEND24_IPEx%20TRL%205%20Design%20Overview.pdf",
+    "quote": "at a rate of 42 kg/hr, and covering a total distance of 70 km",
+    "note": "About 0.03 m3/h at 1500 kg/m3 (derived)."
+   },
+   {
+    "item": "RASSOR 2.0 (TRL 4 predecessor)",
+    "value": 2700,
+    "unit": "kg/day",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20210011366/downloads/ASCE%202016%20RASSOR%202%20Final%20%206_8_2016.pdf.txt",
+    "quote": "can excavate a minimum of 2.7 metric tons of regolith per day",
+    "note": "Stated for the Mars case; same machine class as IPEx."
+   },
+   {
+    "item": "Grading rate (model input, Metzger & Autry)",
+    "value": 0.1,
+    "unit": "m2/s (=360 m2/h)",
+    "source_url": "https://arxiv.org/pdf/2205.00378",
+    "quote": "Grading Rate 0.1 m2/s",
+    "note": "Area rate for a 1.5 m blade, assumed model input, not a measured performance. No published m3/h grading rate found."
+   },
+   {
+    "item": "Compacting rate (model input, Metzger & Autry)",
+    "value": 0.05,
+    "unit": "m2/s (=180 m2/h)",
+    "source_url": "https://arxiv.org/pdf/2205.00378",
+    "quote": "Compacting Rate 0.05 m2/s",
+    "note": "Model input. Their table lists 3.8 h operating hours for inner zone and 15.3 h for outer zone grading+compacting."
+   },
+   {
+    "item": "Feedstock excavation rate (model input, Metzger & Autry)",
+    "value": 2.286,
+    "unit": "kg/s",
+    "source_url": "https://arxiv.org/pdf/2205.00378",
+    "quote": "Feedstock Excavation Rate 2.286 kg/s",
+    "note": "Assumed for a larger construction system; ~200x IPEx. Treat as optimistic upper bound."
+   },
+   {
+    "item": "Compaction achieved by robot trafficking",
+    "value": 61,
+    "unit": "% relative density",
+    "source_url": "https://ntrs.nasa.gov/api/citations/20260002816/downloads/329%20-%20Site%20Plan%20and%20Bulk%20Presentation.pdf",
+    "quote": "average RD of 61% achieved by repeated trafficking",
+    "note": "RASSOR 2.0 berm test in Earth ambient with Black Point-1 simulant."
+   }
+  ]
+ },
+ "regolith_density": [
+  {
+   "body": "Moon",
+   "value_kg_m3": 1500,
+   "uncertainty": 50,
+   "depth": "top 15 cm",
+   "source_url": "https://www.lpi.usra.edu/publications/books/lunar_sourcebook/pdf/Chapter09.pdf",
+   "quote": "lunar soil is 1.50 ± 0.05 g/cm3 for the top 15 cm",
+   "note": "Lunar Sourcebook ch. 9 (Carrier, Olhoeft, Mendell 1991), recommended average for intercrater areas."
+  },
+  {
+   "body": "Moon",
+   "value_kg_m3": 1660,
+   "uncertainty": 50,
+   "depth": "top 60 cm",
+   "source_url": "https://www.lpi.usra.edu/publications/books/lunar_sourcebook/pdf/Chapter09.pdf",
+   "quote": "1.66 ± 0.05 g/cm3 for the top 60 cm",
+   "note": "Use this for cut volumes deeper than ~0.2 m."
+  },
+  {
+   "body": "Moon",
+   "value_kg_m3": "1300 surface, 1520 at 10 cm, 1830 at 100 cm, 1920 asymptote",
+   "depth": "profile",
+   "source_url": "https://ntrs.nasa.gov/api/citations/20220014634/downloads/Final%20IEEE%20paper%20formatted%20footnote%20added.pdf",
+   "quote": "approximately 1.30 g/cm at the surface, increases rapidly to 1.52 g/cm",
+   "note": "Connolly & Carrier, NASA JSC engineering guide (2022); superscript 3 lost in text extraction."
+  },
+  {
+   "body": "Moon (loose, re-deposited fill/berm)",
+   "value_kg_m3": 1400,
+   "depth": "dumped and lightly trafficked",
+   "source_url": "https://ntrs.nasa.gov/api/citations/20260002816/downloads/329%20-%20Site%20Plan%20and%20Bulk%20Presentation.pdf",
+   "quote": "50% relative bulk density (1.4 g/cm3)",
+   "note": "Use for fill volume; excavated regolith bulks up relative to in-situ."
+  },
+  {
+   "body": "Mars",
+   "value_kg_m3": "1000-1600",
+   "depth": "surficial soils, upper tens of cm",
+   "source_url": "https://link.springer.com/article/10.1007/s11214-018-0537-y",
+   "quote": "with bulk densities of ∼1000 to 1600 kg/m3",
+   "note": "Morgan et al. 2018, Space Sci. Rev., pre-landing assessment at InSight site (LaTeX markup removed from quote)."
+  },
+  {
+   "body": "Mars",
+   "value_kg_m3": "1100-1300",
+   "depth": "surficial sand and sandy soil at earlier landers/rovers",
+   "source_url": "https://link.springer.com/article/10.1007/s11214-018-0537-y",
+   "quote": "bulk densities in the range of 1100–1300 kg/m3",
+   "note": "Same paper; 1300 kg/m3 used for the InSight surficial layer. A single value of ~1300 kg/m3 is a reasonable default."
+  }
+ ],
+ "mobility_and_foundation_slope": [
+  {
+   "context": "Moon - Apollo Lunar Roving Vehicle climbing limit",
+   "value_deg": "19-23",
+   "source_url": "https://www.lpi.usra.edu/publications/books/lunar_sourcebook/pdf/Chapter09.pdf",
+   "quote": "The steepest slope that the LRV could climb was 19°–23°",
+   "note": "Measured capability in loose regolith; not a road design grade."
+  },
+  {
+   "context": "Moon - suited astronaut walking (Artemis EVA)",
+   "value_deg": 20,
+   "source_url": "https://ntrs.nasa.gov/api/citations/20210026296/downloads/Scoville%20Final%20presentation%20-%20compressed.pptx.pdf",
+   "quote": "Astronaut in suit must be able to walk up, down, across a 20-degree slope",
+   "note": "Consistent with the <20 deg EVA limit over 2 km in the HLS deck."
+  },
+  {
+   "context": "Moon - cargo accessway/ramp to reusable pad",
+   "value_deg": 5,
+   "source_url": "https://ntrs.nasa.gov/api/citations/20260002816/downloads/329%20-%20Site%20Plan%20and%20Bulk%20Presentation.pdf",
+   "quote": "Two 9 m wide accessways with 5°slope for cargo",
+   "note": "Closest published 'road grade' for heavy cargo or spent-lander transport."
+  },
+  {
+   "context": "Moon - small robot accessways and overburden ramps",
+   "value_deg": 20,
+   "source_url": "https://ntrs.nasa.gov/api/citations/20260002816/downloads/329%20-%20Site%20Plan%20and%20Bulk%20Presentation.pdf",
+   "quote": "1 m wide 20°sloped accessways between the landing surface and natural grade",
+   "note": "For IPEx-class robots, not crewed vehicles."
+  },
+  {
+   "context": "Moon - foundations",
+   "value_deg": 0,
+   "source_url": "https://ntrs.nasa.gov/api/citations/20260002816/downloads/329%20-%20Site%20Plan%20and%20Bulk%20Presentation.pdf",
+   "quote": "Foundations: Flat, level, rock free, compacted locations",
+   "note": "Qualitative: foundations are built level and compacted to 80% relative density. No numeric natural-slope tolerance for habitats found."
+  },
+  {
+   "context": "Mars - rover nominal tilt limit (MSL)",
+   "value_deg": 30,
+   "source_url": "https://marsoweb.nas.nasa.gov/landingsites/msl/memoranda/MSL_Eng_User_Guide_v2.pdf",
+   "quote": "usually be kept at vehicle tilt angles below 30 degrees",
+   "note": "Static stability designed to 45 deg; slope classes: low <5, moderate 5-15, high >15 deg."
+  },
+  {
+   "context": "Mars - traversability in granular material (MSL)",
+   "value_deg": 10,
+   "source_url": "https://marsoweb.nas.nasa.gov/landingsites/msl/memoranda/MSL_Eng_User_Guide_v2.pdf",
+   "quote": "Low / Moderate slope angle (< 10 degrees tilt)",
+   "note": "10-17 deg: 25-80% slip; >17 deg: >80% slip; ~20 deg in sand can stop upslope motion. Good basis for a mobility cost map."
+  }
+ ],
+ "caveats": [
+  "Slope limits are tied to a baseline length: a 463 m MOLA pixel or 118 m LOLA pixel averages out metre-scale slopes, craters and rocks, so passing the screen at grid scale does not certify a site (missions used HiRISE / LROC NAC DTMs at 1-5 m).",
+  "Robotic Mars numbers (MSL, Mars 2020, InSight) are for 0.4-1 t landed mass; a crewed Mars lander is tens of tonnes and has no published flight-proven slope/rock limits.",
+  "The human Mars EZ limits (+/-50 deg, +2 km) are explicitly preliminary workshop boundaries, not requirements.",
+  "The Mars 2020 elevation limit differs between two primary abstracts (+0.5 km in 2015, -0.5 km map in 2018).",
+  "Radiation shielding (regolith overburden thickness), thermal environment, and dust (toxicity, perchlorates on Mars, abrasion, electrostatic lofting) are not covered.",
+  "Illumination/solar power, permanently shadowed regions, direct-to-Earth communications visibility and Earth-visibility constraints at the lunar poles are not covered, although they drive Artemis site selection.",
+  "Water ice and other ISRU resource availability, and planetary protection (Mars Special Regions), are not covered.",
+  "Bearing capacity, thermal inertia, dust thickness and radar reflectivity constraints are not derivable from elevation alone.",
+  "Winds, atmospheric density variability and dust storms (Mars) and landing-ellipse size are not covered.",
+  "Excavation rates are design targets or model inputs from Earth tests with simulant; none has been demonstrated on the Moon or Mars. Rates are for loose regolith, not rock, ice-cemented or densely compacted ground below ~0.3 m.",
+  "Plume-ejecta distances depend strongly on lander mass and engine layout; NASA states no safe standoff distance has been defined.",
+  "Pad sizes found are for the Moon; no dimensioned engineered landing pad for Mars was found."
+ ],
+ "not_found": [
+  "Human Mars EZ workshop: numeric landing-zone slope limit and landing-site area (km2) from the original 2015 workshop criteria/rubric - not present in the documents read (only the ALHAT 5 deg / 30 cm hazard rule and 100 m landing circle).",
+  "Mars 2020: a slope limit at 100 m - km baselines (only 2-5 m slopes and <100 m relief over 1-1000 m found).",
+  "MSL final numeric rock-abundance limit from the 2012 paper full text (paywalled; abstract says 'moderate'); the 10% value is from the earlier JPL guide.",
+  "A dimensioned engineered landing pad or habitat-zone area for Mars.",
+  "Lunar grading/compaction rate in m3 per hour from a measured study (only area rates in m2/s as model inputs and mass rates in kg/h).",
+  "Numeric acceptable natural slope for habitat foundations on Moon or Mars (only 'flat, level' qualitative guidance).",
+  "Apollo LM landing-gear footprint length as the slope baseline was not stated in the texts read.",
+  "RASSOR payload per trip is not stated explicitly in the paper read (77 kg/trip is derived)."
+ ],
+ "unreachable_sources": [
+  "https://sharad.psi.edu/~ibsmith/pubs/Golombek_SSR_2016.pdf (404; same paper read from the Smithsonian repository)",
+  "https://www.nasa.gov/wp-content/uploads/static/history/alsj/tnD6850LMLandingGearSubsytem.pdf (empty response; same report read from NTRS text)",
+  "https://nebula.esa.int/sites/default/files/neb_tec_study/1492/public/C4000134104ExS.pdf (returned an HTML page, not the PDF; ESA 54 m pad / 370 h compaction figure NOT verified and not used)",
+  "https://hal.science/hal-01901608v1/document (HTML wrapper only; paper read on link.springer.com instead)",
+  "https://ntrs.nasa.gov/citations/20150019636 (record has no downloadable file; companion slides 20160002370 used)"
+ ]
+}

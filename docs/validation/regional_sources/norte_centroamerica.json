@@ -1455,6 +1455,43 @@
      "confidence": "low"
     },
     {
+     "name": "Holguín",
+     "crops": [
+      "maize",
+      "cassava",
+      "bean",
+      "pumpkinetc",
+      "plantain",
+      "sweetpotato"
+     ],
+     "unmatched": [
+      "no sugar cane table found in this yearbook, so cane is not ranked"
+     ],
+     "basis": "area",
+     "year": 2023,
+     "source_url": "http://www.onei.gob.cu/aep-holguin-2023",
+     "confidence": "low"
+    },
+    {
+     "name": "Mayabeque",
+     "crops": [
+      "rice",
+      "sugarcane",
+      "maize",
+      "cassava",
+      "plantain",
+      "sweetpotato"
+     ],
+     "unmatched": [
+      "2021 used (cane: zafra 2020/2021): the 2022-2023 columns collapse to a few hundred ha",
+      "tomato 2.5k ha and potato 1.5k ha follow"
+     ],
+     "basis": "area",
+     "year": 2021,
+     "source_url": "http://www.onei.gob.cu/aep-mayabeque-2023",
+     "confidence": "low"
+    },
+    {
      "name": "Ciego de Ávila",
      "crops": [],
      "unmatched": [],
@@ -1482,25 +1519,7 @@
      "confidence": "low"
     },
     {
-     "name": "Holguín",
-     "crops": [],
-     "unmatched": [],
-     "basis": "qualitative",
-     "year": null,
-     "source_url": "",
-     "confidence": "low"
-    },
-    {
      "name": "Artemisa",
-     "crops": [],
-     "unmatched": [],
-     "basis": "qualitative",
-     "year": null,
-     "source_url": "",
-     "confidence": "low"
-    },
-    {
-     "name": "Mayabeque",
      "crops": [],
      "unmatched": [],
      "basis": "qualitative",
@@ -1509,7 +1528,7 @@
      "confidence": "low"
     }
    ],
-   "notes": "National: FAOSTAT \"Crops and livestock products\" (QCL, https://www.fao.org/faostat/en/#data/QCL), Americas bulk file dated Dec 2025, element Area harvested: sugar cane 270k ha (FAO estimate), cassava 124k, maize 115k (external), plantains 70k, tomatoes 43k, rice 41k, dry beans 40k, sweet potatoes 36k; all estimated/imputed, no official flags. Regions: ONEI (Oficina Nacional de Estadistica e Informacion) provincial statistical yearbooks 2023 (PDF \"Archivo completo\" linked from each page), chapter 7, tables \"Superficie cosechada y en produccion de cultivos seleccionados de la agricultura no canera\" (ha) and \"Superficie cosechada ... cana de azucar por zafras\" (zafra 2022/2023; 2020/2021 for Sancti Spiritus). Harvested-area series in these yearbooks jump by up to an order of magnitude between years and some columns exclude the non-state sector, so rankings are indicative only (confidence low/medium). Fruit trees are reported only as selected items and coffee/cocoa are not in these tables. FAO GIEWS brief (https://www.fao.org/giews/countrybrief/country.jsp?code=CUB) names Granma, Sancti Spiritus, Camaguey and Pinar del Rio as the main paddy-producing areas. Access: https://www.onei.gob.cu has an EXPIRED TLS certificate (not bypassed); the site was read over its plain-HTTP address, which answers only intermittently (connection refused most of the time), so provinces with empty crop lists are those whose yearbook could not be downloaded."
+   "notes": "National: FAOSTAT \"Crops and livestock products\" (QCL, https://www.fao.org/faostat/en/#data/QCL), Americas bulk file dated Dec 2025, element Area harvested: sugar cane 270k ha (FAO estimate), cassava 124k, maize 115k (external), plantains 70k, tomatoes 43k, rice 41k, dry beans 40k, sweet potatoes 36k; all estimated/imputed, no official flags. Regions: ONEI (Oficina Nacional de Estadistica e Informacion) provincial statistical yearbooks 2023 (PDF \"Archivo completo\" linked from each page), chapter 7, tables \"Superficie cosechada y en produccion de cultivos seleccionados de la agricultura no canera\" (ha) and \"Superficie cosechada ... cana de azucar por zafras\" (zafra 2022/2023; 2020/2021 for Sancti Spiritus and Mayabeque, whose non-cane figures are for 2021). Harvested-area series in these yearbooks jump by up to an order of magnitude between years and some columns exclude the non-state sector, so rankings are indicative only (confidence low/medium). Fruit trees are reported only as selected items and coffee/cocoa are not in these tables. FAO GIEWS brief (https://www.fao.org/giews/countrybrief/country.jsp?code=CUB) names Granma, Sancti Spiritus, Camaguey and Pinar del Rio as the main paddy-producing areas. Access: https://www.onei.gob.cu has an EXPIRED TLS certificate (not bypassed); the site was read over its plain-HTTP address, which answers only intermittently (connection refused most of the time), so provinces with empty crop lists are those whose yearbook could not be downloaded."
   },
   {
    "iso3": "DOM",

@@ -30,21 +30,22 @@
 <div id="app">
   <div id="escena">
     <div id="mapa"></div>
-    <div id="tres"><div id="rotA" class="rot">Como es hoy</div><div id="rotB" class="rot">Nivelado para una estación</div><div id="medio"></div></div>
+    <div id="tres"><div id="rotA" class="rot">Como es hoy</div><div id="rotB" class="rot">Plan del sitio para una estación</div><div id="medio"></div></div>
     <div id="flot" class="mini">Elige Marte o la Luna, pulsa «Marcar zona» y haz clic en dos esquinas opuestas.</div>
   </div>
   <aside>
     <h1>Prospector · Marte y la Luna</h1>
-    <p class="mini">Mira el relieve real de una zona y cómo quedaría nivelada para instalar una estación. <a href="./">Volver a la Tierra</a></p>
+    <p class="mini">Mira el relieve real de una zona y dónde convendría instalar una estación, con los criterios que usan las misiones. <a href="./">Volver a la Tierra</a></p>
     <h2>1 · Elegir el lugar</h2>
     <div class="fila"><button data-c="marte" class="act">Marte</button><button data-c="luna">Luna</button></div>
     <div class="fila"><button id="bMarcar">Marcar zona</button><button id="bBorrar" disabled>Borrar</button><span id="tam" class="mini"></span></div>
-    <div class="fila"><span class="mini">Lado de la plataforma</span><select id="lado"></select></div>
     <div class="fila"><button id="bVer" class="pri" disabled>Ver el relieve en 3D</button><button id="bMapa" class="oculto">Volver al mapa</button></div>
     <p id="estado" class="mini"></p>
     <div id="res" class="oculto">
       <h2>2 · Cómo es el terreno</h2><div id="terreno"></div>
-      <h2>3 · La plataforma para la estación</h2><p id="frase"></p><div id="plat"></div>
+      <h2>3 · Dónde aterrizar</h2><p id="frase"></p><div id="plat"></div><p id="vale" style="margin-top:8px"></p>
+      <h2>4 · La estación y su acceso</h2><div id="estacion"></div>
+      <h2>5 · Criterios usados y sus fuentes</h2><ul id="crit" class="mini" style="padding-left:18px;margin:0"></ul>
       <div style="margin-top:10px" class="mini">Exageración vertical <span id="exTxt">3×</span></div><input id="exag" type="range" min="1" max="12" step="0.5" value="3">
       <div class="aviso"><b>Qué no dice esta vista</b><ul id="lim"></ul></div>
       <p class="mini" id="fuente" style="margin-top:10px"></p>
@@ -54,11 +55,12 @@
 <script src="vendor/maplibre-gl.js"></script>
 <script type="module">
 import * as THREE from 'three';
+if (new URLSearchParams(location.search).get('limpio')) document.body.classList.add('limpio');
 import { OrbitControls } from './vendor/OrbitControls.js';
 const $ = id => document.getElementById(id), fmt = (v, d = 0) => Number(v).toLocaleString('es-CL', { maximumFractionDigits: d });
 // mapas base: OpenPlanetaryMap (mosaicos de NASA: Viking y MOLA para Marte, LRO para la Luna), en teselas compatibles con el mapa
-const CUERPOS = { marte: { n: 'Marte', t: 'opm-mars-basemap-v0-2', lados: [1.5, 3, 6, 12], def: 3, centro: [77.5, 18.4], zoom: 5, maxkm: 400, minkm: 6 },
-                  luna: { n: 'la Luna', t: 'opm-moon-basemap-v0-1', lados: [0.5, 1, 2, 4], def: 1, centro: [23.4, 0.7], zoom: 6, maxkm: 120, minkm: 1.5 } };
+const CUERPOS = { marte: { n: 'Marte', t: 'opm-mars-basemap-v0-2', centro: [77.5, 18.4], zoom: 5, maxkm: 400, minkm: 6 },
+                  luna: { n: 'la Luna', t: 'opm-moon-basemap-v0-1', centro: [23.4, 0.7], zoom: 6, maxkm: 120, minkm: 1.5 } };
 const estilo = c => ({ version: 8, sources: { b: { type: 'raster', tileSize: 256, maxzoom: 9, tiles: [`https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/${CUERPOS[c].t}/all/{z}/{x}/{y}.png`], attribution: 'OpenPlanetaryMap · NASA / USGS' } }, layers: [{ id: 'b', type: 'raster', source: 'b' }] });
 let cuerpo = 'marte', esquinas = [], marcando = false, datos = null;
 const mapa = new maplibregl.Map({ container: 'mapa', style: estilo(cuerpo), center: CUERPOS.marte.centro, zoom: CUERPOS.marte.zoom, doubleClickZoom: false, renderWorldCopies: false });
@@ -78,7 +80,7 @@ mapa.on('click', e => { if (!marcando) return; esquinas.push([e.lngLat.lng, e.ln
 $('bMarcar').onclick = () => { esquinas = []; marcando = true; $('bMarcar').classList.add('act'); mapa.getCanvas().style.cursor = 'crosshair'; $('flot').textContent = 'Haz clic en una esquina de la zona y después en la esquina opuesta.'; pintar(); };
 $('bBorrar').onclick = () => { esquinas = []; pintar(); };
 function elegir(c) { cuerpo = c; document.querySelectorAll('[data-c]').forEach(b => b.classList.toggle('act', b.dataset.c === c)); esquinas = []; const C = CUERPOS[c];
-  $('lado').innerHTML = C.lados.map(v => `<option value="${v}" ${v === C.def ? 'selected' : ''}>${String(v).replace('.', ',')} km</option>`).join(''); mapa.setStyle(estilo(c)); mapa.jumpTo({ center: C.centro, zoom: C.zoom }); verMapa(); $('res').classList.add('oculto'); $('estado').textContent = ''; }
+  mapa.setStyle(estilo(c)); mapa.jumpTo({ center: C.centro, zoom: C.zoom }); verMapa(); $('res').classList.add('oculto'); $('estado').textContent = ''; }
 document.querySelectorAll('[data-c]').forEach(b => b.onclick = () => elegir(b.dataset.c));
 // ---------- 3D: dos vistas con la misma cámara, a la izquierda el terreno real y a la derecha el nivelado
 let renderer, camara, ctl, A, B;
@@ -99,24 +101,32 @@ function alturas() { const m = datos.malla, ex = +$('exag').value; $('exTxt').te
   [A, B].forEach(e => { const p = e.userData.malla.geometry.attributes.position, z = e.userData.z; for (let r = 0, i = 0; r < m.alto; r++) for (let c = 0; c < m.ancho; c++, i++) p.setXYZ(i, (c - m.ancho / 2) * m.res_x, (z[i] - m.zmin) * ex, (r - m.alto / 2) * m.res_y);
     p.needsUpdate = true; e.userData.malla.geometry.computeVertexNormals(); }); }
 $('exag').oninput = alturas;
-function ver3d() { $('tres').style.display = 'block'; $('mapa').style.display = 'none'; $('bMapa').classList.remove('oculto'); $('flot').textContent = 'Arrastra para girar · rueda para acercar. Las dos vistas se mueven juntas; la plataforma es el cuadrado claro de la derecha.'; }
+function ver3d() { $('tres').style.display = 'block'; $('mapa').style.display = 'none'; $('bMapa').classList.remove('oculto'); $('flot').textContent = 'Arrastra para girar · rueda para acercar. Las dos vistas se mueven juntas. A la derecha: verde apto, amarillo con reparos, rojo no sirve; círculo blanco la plataforma, azul la estación.'; }
 function verMapa() { $('tres').style.display = 'none'; $('mapa').style.display = 'block'; $('bMapa').classList.add('oculto'); $('flot').textContent = 'Pulsa «Marcar zona» y haz clic en dos esquinas opuestas.'; mapa.resize(); }
 $('bMapa').onclick = verMapa;
 $('bVer').onclick = async () => { $('bVer').disabled = true; $('estado').textContent = `Leyendo el relieve de ${CUERPOS[cuerpo].n}… puede tardar cerca de un minuto.`;
-  try { const r = await fetch('api/mundo/' + cuerpo, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ geojson: { type: 'Polygon', coordinates: [anillo()] }, lado_km: +$('lado').value }) });
+  try { const r = await fetch('api/mundo/' + cuerpo, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ geojson: { type: 'Polygon', coordinates: [anillo()] } }) });
     const d = await r.json(); if (!r.ok) throw new Error(d.detail || 'no se pudo leer el relieve'); datos = d; mostrar(); $('estado').textContent = ''; }
   catch (e) { $('estado').textContent = 'No se pudo: ' + e.message; } $('bVer').disabled = false; };
-function mostrar() { const d = datos, p = d.plataforma, fila = (a, b) => `<div class="dato"><span>${a}</span><b>${b}</b></div>`;
+function mostrar() { const d = datos, p = d.plataforma, fila = (a, b) => `<div class="dato"><span>${a}</span><b>${b}</b></div>`, cuad = c => `<i style="display:inline-block;width:11px;height:11px;border-radius:3px;background:${c};margin-right:6px"></i>`;
   $('terreno').innerHTML = fila('Tamaño de la zona', `${fmt(d.ancho_km, 0)} × ${fmt(d.alto_km, 0)} km`) + fila('Altura', `${fmt(d.altura_min)} a ${fmt(d.altura_max)} m`) + fila('Desnivel dentro de la zona', `${fmt(d.desnivel)} m`) +
-    fila('Pendiente media', `${fmt(d.pendiente_media, 1)}°`) + fila('Terreno casi plano (menos de 5°)', `${d.pct_menos_5} %`) + fila('Terreno muy inclinado (más de 15°)', `${d.pct_mas_15} %`);
-  $('frase').innerHTML = `El lugar más parejo de la zona para una plataforma de <b>${String(p.lado_km).replace('.', ',')} km de lado</b> es ${p.juicio}.`;
-  $('plat').innerHTML = fila('Dónde queda', `${fmt(Math.abs(p.lat), 2)}° ${p.lat >= 0 ? 'N' : 'S'}, ${fmt(Math.abs(p.lon), 2)}° ${p.lon >= 0 ? 'E' : 'O'}`) + fila('Desnivel dentro de la plataforma', `${fmt(p.desnivel, 1)} m`) +
-    fila('Pendiente media y máxima', `${fmt(p.pendiente_media, 1)}° y ${fmt(p.pendiente_max, 1)}°`) + fila('Roca y suelo a cortar', `${fmt(p.corte_m3)} m³`) + fila('Roca y suelo a rellenar', `${fmt(p.relleno_m3)} m³`) + fila('Nivel en que quedaría', `${fmt(p.nivel)} m`);
+    fila(cuad('#46aa69') + `Apto para aterrizar (hasta ${d.limite_ok}°)`, `${d.pct_apto} %`) + fila(cuad('#e0b84a') + `Con reparos (${d.limite_ok}° a ${d.limite_tope}°)`, `${d.pct_reparos} %`) + fila(cuad('#c8553c') + `No sirve (más de ${d.limite_tope}°)`, `${d.pct_no} %`);
+  $('frase').textContent = p.frase;
+  $('plat').innerHTML = fila('Plataforma de aterrizaje (círculo blanco)', `${fmt(p.diametro_m)} m de diámetro`) + fila('Dónde queda', `${fmt(Math.abs(p.lat), 2)}° ${p.lat >= 0 ? 'N' : 'S'}, ${fmt(Math.abs(p.lon), 2)}° ${p.lon >= 0 ? 'E' : 'O'}`) +
+    fila('Pendiente ahí y en su vecindad', `${fmt(p.pendiente, 1)}° y ${fmt(p.pendiente_vecindad, 1)}°`) + fila('Material a mover para dejarla a nivel', `${fmt(p.volumen_m3)} m³ (${fmt(p.masa_t)} t)`) + fila('Días de un excavador robótico', fmt(p.dias_excavador)) +
+    d.condiciones.map(c => fila(c.que + (c.cumple ? ' · cumple' : ' · no cumple'), c.valor)).join('');
+  $('vale').innerHTML = `<b>¿Vale la pena nivelar?</b> ${p.vale}` + d.condiciones.map(c => ` <span class="mini">${c.que}: ${c.nota}.</span>`).join('');
+  $('estacion').innerHTML = d.estacion ? fila('Zona de la estación (punto azul)', `a ${fmt(d.estacion.distancia_m)} m de la plataforma`) + fila('Pendiente ahí', `${fmt(d.estacion.pendiente, 1)}°`) +
+      (d.acceso ? fila('Acceso (línea clara)', `${fmt(d.acceso.largo_m)} m`) + fila(`Pendiente media y máxima del acceso (límite ${d.limite_acceso}°)`, `${fmt(d.acceso.pendiente_media, 1)}° y ${fmt(d.acceso.pendiente_max, 1)}°` + (d.acceso.cumple ? '' : ' · se pasa')) : '') +
+      `<p class="mini" style="margin-top:6px">${d.distancia_pedida_m ? `La estación va a más de ${fmt(d.distancia_pedida_m)} m de la plataforma para quedar fuera del alcance de los escombros que levanta el motor.` : 'En la Luna no hay una distancia segura definida: los estudios proponen bermas de 2,5 m alrededor de la plataforma. Aquí la estación se ubica a varias celdas de distancia.'}</p>`
+    : '<p class="mini">En esta zona no hay un lugar apto para la estación a la distancia que piden los estudios.</p>';
+  $('crit').innerHTML = d.criterios.map(c => `<li style="margin-bottom:5px">${c.que}. <a href="${c.url}" target="_blank" rel="noopener">${c.fuente}</a></li>`).join('');
   $('lim').innerHTML = d.limites.map(x => `<li>${x}</li>`).join(''); $('fuente').textContent = 'Relieve: ' + d.fuente + '. Mapa: OpenPlanetaryMap, con mosaicos de la NASA.'; $('res').classList.remove('oculto');
-  if (!renderer) iniciar3d(); A = escena(f32(d.malla.z), d.textura); B = escena(f32(d.malla.z2), d.textura2); alturas();
+  if (!renderer) iniciar3d(); A = escena(f32(d.malla.z), d.textura); B = escena(f32(d.malla.z), d.textura2); alturas();
   const L = Math.max(d.malla.ancho * d.malla.res_x, d.malla.alto * d.malla.res_y); camara.position.set(-L * 0.7, L * 0.75, L * 1.0); camara.far = L * 30; ctl.target.set(0, 0, 0); ver3d(); }
-if (new URLSearchParams(location.search).get('limpio')) document.body.classList.add('limpio');
 elegir('marte');
+window.P = { get camara() { return camara; }, get ctl() { return ctl; }, largo: () => Math.max(datos.malla.ancho * datos.malla.res_x, datos.malla.alto * datos.malla.res_y), listo: () => !!A,
+  orbita: (ang, radio, alto) => { camara.position.set(radio * Math.cos(ang), alto, radio * Math.sin(ang)); camara.lookAt(0, 0, 0); ctl.update(); }, cuadro: () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))) };
 // enlace directo para revisar:  ?c=luna&z=23,0.3,23.9,1.1
 { const q = new URLSearchParams(location.search); if (q.get('z')) { if (q.get('c')) elegir(q.get('c')); const v = q.get('z').split(',').map(Number); esquinas = [[v[0], v[1]], [v[2], v[3]]]; setTimeout(() => { pintar(); $('bVer').disabled = false; $('bVer').click(); }, 1500); } }
 </script>

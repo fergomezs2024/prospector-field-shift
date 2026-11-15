@@ -88,7 +88,7 @@ The table of main crops by region (CROPGRIDS summed inside Natural Earth regions
 
 | Measured | Result |
 |---|---|
-| Regions compared | 377, in 53 countries |
+| Regions compared | 379, in 53 countries |
 | The main crop in the official statistics is among the table's top three | 93 % |
 | The main crop is exactly the same | 72 % |
 | Crops listed by the official statistics that are among the table's top eight | 82 % |

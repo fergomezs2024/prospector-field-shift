@@ -36,10 +36,12 @@
   body:not(.tecnico) .etq span, body:not(.tecnico) .etq .rot { display:none; }
   #simFlot:not(.oculto) ~ #ayuda { display:none; }
   details.aviso { border:1px solid var(--ambar); border-radius:10px; padding:8px 12px; margin:0 0 12px; } details.aviso > summary { color:var(--ambar); }
+  #flot #bTerr { margin-left:auto; border-color:var(--verde); color:var(--verde); font-weight:600; white-space:nowrap; } #flot #bTerr.act { background:var(--verde-o); border-color:var(--verde-o); color:#fff; }
   #obra.abajo { top:auto; bottom:64px; max-width:78%; }
   body.limpio #app { grid-template-columns:1fr; } body.limpio aside, body.limpio #flot, body.limpio #ficha, body.limpio #leyenda, body.limpio #probar, body.limpio #ayuda, body.limpio #simFlot, body.limpio #obra, body.limpio #tarjeta, body.limpio .etq, body.limpio .maplibregl-control-container { display:none !important; }
   #masCapas { display:none; flex-wrap:wrap; gap:6px; flex-basis:100%; } #masCapas.ab { display:flex; }
   .encab { display:flex; align-items:center; gap:8px; } .encab h1 { flex:1; }
+  .bMundos { text-decoration:none; font-size:12.5px; font-weight:600; padding:5px 10px; border-radius:8px; border:1px solid #c47c56; color:#b4623a; background:transparent; white-space:nowrap; } .bMundos:hover { background:#c47c56; color:#fff; }
   p.sub { color:var(--tenue); margin:0 0 6px; }
   button, select, input[type=text] { font:inherit; color:var(--tinta); background:var(--campo); border:1px solid var(--linea); border-radius:8px; padding:8px 12px; }
   button { cursor:pointer; }
@@ -68,7 +70,7 @@
   #flot button.act, button.herr.act { border-color:var(--verde); color:var(--verde); }
   #ficha { position:absolute; left:14px; top:60px; z-index:5; width:300px; background:var(--flot); border:1px solid var(--linea); border-radius:10px; padding:10px 14px; font-size:13px; }
   #ficha h4 { margin:0 0 6px; font-size:14.5px; } #ficha .dato { padding:3px 0; border-bottom:0; } #ficha .sep { border-top:1px solid var(--linea); margin:6px 0; }
-  #ayuda { position:absolute; left:14px; bottom:14px; z-index:5; background:var(--flot); padding:8px 12px; border-radius:8px; border:1px solid var(--linea); max-width:60%; }
+  #ayuda { position:absolute; left:14px; bottom:44px; z-index:5; background:var(--flot); padding:8px 12px; border-radius:8px; border:1px solid var(--linea); max-width:min(520px, calc(100% - 90px)); pointer-events:none; }   /* sobre la línea de créditos del mapa y lejos de los botones de acercar; no intercepta clics */
   input[type=range] { width:100%; accent-color: var(--verde); }
   .oculto { display:none !important; }
   #leyenda { position:absolute; right:14px; top:60px; z-index:5; background:var(--flot); border:1px solid var(--linea); border-radius:10px; padding:10px 14px; font-size:13.5px; }
@@ -109,9 +111,9 @@
     <div id="flot">
       <button id="bMapa" class="act">Mapa satelital</button>
       <button id="b3d" disabled>Terreno 3D</button>
-      <button id="bTerr" class="oculto" title="Muestra cómo quedaría la ladera escalonada en terrazas para poder sembrarla">Ladera con terrazas</button>
       <span class="sepv"></span>
       <div id="capas"></div>
+      <button id="bTerr" class="oculto" title="Muestra cómo quedaría la ladera escalonada en terrazas para poder sembrarla. Púlsalo de nuevo para volver al terreno actual.">Ladera con terrazas</button>
     </div>
     <div id="simFlot" class="oculto">
       <div id="simTit"></div><div id="simTxt"></div>
@@ -127,8 +129,8 @@
     <div id="ayuda" class="mini">Busca un lugar, pulsa «Marcar terreno» y haz clic en cada esquina. Doble clic para cerrar.</div>
   </div>
   <aside>
-    <div class="encab"><h1>Prospector</h1><button id="bTema" title="Cambiar entre fondo claro y oscuro" style="padding:5px 10px;font-size:12.5px">Oscuro</button></div>
-    <p class="sub">Marca un terreno en cualquier parte del mundo y mira dónde y qué se puede cultivar. <a href="otros.html" style="color:var(--verde)">Explorar Marte y la Luna</a></p>
+    <div class="encab"><h1>Prospector</h1><a href="otros.html" class="bMundos" title="Relieve real de Marte y la Luna, y dónde convendría instalar una estación">Marte y Luna</a><button id="bTema" title="Cambiar entre fondo claro y oscuro" style="padding:5px 10px;font-size:12.5px">Oscuro</button></div>
+    <p class="sub">Marca un terreno en cualquier parte del mundo y mira dónde y qué se puede cultivar.</p>
     <div class="conm" title="Cómo se explican los resultados" style="margin-bottom:14px"><button id="mSim" class="act">Simple</button><button id="mTec">Técnico</button></div>
 
     <h2>1 · Ubicar</h2>
@@ -205,6 +207,7 @@
 <script src="vendor/maplibre-gl.js"></script>
 <script type="module">
 import * as THREE from 'three';
+if (new URLSearchParams(location.search).get('limpio')) document.body.classList.add('limpio');     // vista sin paneles, para capturas y grabaciones
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { GLTFLoader } from './vendor/loaders/GLTFLoader.js';
 
@@ -907,12 +910,12 @@ $('mes').oninput = () => { $('mesTxt').textContent = MESES[$('mes').value - 1]; 
 $('exag').oninput = () => { $('exTxt').textContent = $('exag').value + '×'; if (malla) alturas(+$('exag').value); if (plantas && plantas.visible) { sembrar(); construirEntorno(); } };
 // ---- ladera con terrazas: antes y después sobre el mismo terreno 3D
 let terr = null, terrOn = false;
-async function prepararTerrazas(id) { terr = null; terrOn = false; $('bTerr').classList.add('oculto'); $('bTerr').classList.remove('act'); $('bTerr').textContent = 'Ladera con terrazas';
+async function prepararTerrazas(id) { terr = null; terrOn = false; $('bTerr').classList.add('oculto'); $('bTerr').classList.remove('act');
   try { const t = await (await fetch('api/terrazas/' + id)).json(); if (!t.ha || t.ha < 0.2 || actual !== id) return;
     const b = atob(t.z), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); t.zt = new Float32Array(u.buffer); terr = t; $('bTerr').classList.remove('oculto'); } catch (e) {} }
 $('bTerr').onclick = () => { if (!terr || !datosMalla) return; terrOn = !terrOn; if (!datosMalla.z0) datosMalla.z0 = datosMalla.z;
   datosMalla.z = terrOn ? terr.zt : datosMalla.z0; $('bTerr').classList.toggle('act', terrOn);
-  if (terrOn) { terr.capaAntes = $('capa').value === 'terrazas' ? 'hd' : $('capa').value; $('capa').value = 'terrazas'; } else $('capa').value = terr.capaAntes || 'hd'; $('capa').onchange({ target: $('capa') }); chips(); $('bTerr').textContent = terrOn ? 'Volver a la ladera actual' : 'Ladera con terrazas';
+  if (terrOn) { terr.capaAntes = $('capa').value === 'terrazas' ? 'hd' : $('capa').value; $('capa').value = 'terrazas'; } else $('capa').value = terr.capaAntes || 'hd'; $('capa').onchange({ target: $('capa') }); chips();
   if ($('tres').style.display !== 'block') ver3d(); alturas(+$('exag').value); if (entorno) { escena3.remove(entorno); entorno = null; entornoClave = ''; } if (plantas && plantas.visible) { sembrar(); construirEntorno(); }
   const o = $('obra'); o.classList.toggle('abajo', terrOn); if (!terrOn) return o.classList.add('oculto');
   o.innerHTML = `<b>Así quedaría la ladera con terrazas</b>${fmt(terr.ha, 1)} ha de ladera (pendiente media ${fmt(terr.pendiente_media, 0)} %) en ${terr.escalones} escalones de ${fmt(terr.alto_m, 1)} m de alto y unos ${fmt(terr.ancho_banco_m, 0)} m de ancho. ` +
@@ -925,7 +928,10 @@ function ver3d() { setTimeout(chips, 0); $('ficha').classList.remove('oculto'); 
 function verMapa() { setTimeout(chips, 0); $('ficha').classList.add('oculto'); $('leyenda').classList.add('oculto'); $('tarjeta').classList.add('oculto'); $('tres').style.display = 'none'; $('mapa').style.display = 'block'; $('bMapa').classList.add('act'); $('b3d').classList.remove('act');
   $('ayuda').textContent = 'Busca un lugar, pulsa «Marcar terreno» y haz clic en cada esquina. Doble clic para cerrar.'; mapa.resize(); }
 $('b3d').onclick = ver3d; $('bMapa').onclick = verMapa;
-if (new URLSearchParams(location.search).get('limpio')) document.body.classList.add('limpio');     // vista sin paneles, para capturas
+// controles para grabar una demostración cuadro a cuadro (los usa el guion de grabación; no cambian nada en el uso normal)
+window.P = { get camara() { return camara; }, get ctl() { return ctl; }, mapa, cargar, ver3d, verMapa, pasoSim, capa: k => { $('capa').value = k; $('capa').onchange({ target: $('capa') }); }, terrazas: () => $('bTerr').click(),
+  orbita: (ang, radio, alto) => { const t = ctl.target; camara.position.set(t.x + radio * Math.cos(ang), alto, t.z + radio * Math.sin(ang)); camara.lookAt(t); ctl.update(); }, largo: () => Math.max(datosMalla.ancho, datosMalla.alto) * datosMalla.res,
+  cuadro: () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))) };
 // enlace directo a un terreno ya analizado:  ?t=<id>&capa=plan
 { const q = new URLSearchParams(location.search); if (q.get('t')) cargar(q.get('t')).then(() => { if (q.get('capa')) setTimeout(() => { $('capa').value = q.get('capa'); ver3d(); $('capa').onchange({ target: $('capa') }); }, 3000);
   if (q.get('terrazas')) setTimeout(() => $('bTerr').click(), 6000); }).catch(() => {}); }

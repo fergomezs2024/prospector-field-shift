@@ -2,7 +2,7 @@
 
 NASA Space Apps Challenge 2026 · challenge **Field Shift: Adapting Farms with NASA Data** · team **RocketPower** (Chile)
 
-**Demo:** [7 slides (PDF)](docs/demo/Prospector_RocketPower_demo.pdf) · [PowerPoint file](docs/demo/Prospector_RocketPower_demo.pptx) · [validation](docs/VALIDATION.md)
+**Demo:** [7 slides (PDF)](docs/demo/Prospector_RocketPower_demo.pdf) · [PowerPoint file](docs/demo/Prospector_RocketPower_demo.pptx) · [25-second video of the app running](docs/demo/Prospector_demo.mp4) · [validation](docs/VALIDATION.md)
 
 Prospector is a decision-support tool for farmers and advisors. You draw a field on a satellite map, anywhere in the world, and it answers four questions with open NASA data:
 
@@ -31,12 +31,12 @@ The interface is currently in Spanish, with a simple/technical language switch.
 
 ### Reshaping the land, on Earth and beyond
 
-| A hillside with bench terraces | Mars: Jezero crater today and levelled for a station |
+| A hillside with bench terraces | Mars: Jezero crater today and with the site plan |
 |---|---|
 | ![terraces](docs/img/terraces.jpg) | ![Mars](docs/img/mars_jezero.jpg) |
 
 - **Terraces on Earth.** Where a field has slopes of 8 to 30 %, one button shows the same hillside cut into bench terraces that stay connected to the rest of the field: the step height is chosen so benches are about 8 m wide (never more than 2 m high), access ramps leave from the existing roads and climb each sector across the slope, and the edges blend into the neighbouring ground over 20 m. It reports steps, bench width, earth to move and ramp length and gradient. It is a sizing sketch on a 30 m terrain model, not a construction plan.
-- **Mars and the Moon** (`/otros.html`). The user marks an area on a NASA-derived basemap; the tool reads the real elevation (MOLA 463 m for Mars, LOLA 118 m for the Moon), shows it in 3D and, side by side, the flattest place levelled as a platform for a station, with slopes and cut-and-fill volumes. It measures terrain shape only: no radiation, temperature, dust, water, ice or energy. Levelling a platform is not terraforming, and the page says so.
+- **Mars and the Moon** (`/otros.html`). The user marks an area on a NASA-derived basemap; the tool reads the real elevation (MOLA 463 m for Mars, LOLA 118 m for the Moon) and, instead of flattening it, sites a station the way mission studies do: slopes are classed with the limits real missions used (5° and 15° on Mars, 6° and 10° on the Moon), the flattest place gets a landing pad of published size (100 m on Mars, 54 m on the Moon), the tool computes the material to level that pad and the days a real robotic excavator (RASSOR 2.0, 2,700 kg a day) would need, says whether levelling is worth it, places the station outside the reach of engine debris and traces a cargo access under 5°. Every limit links to its source on the page. It measures terrain shape only: no radiation, temperature, dust, light, water, ice or energy; preparing a site is not terraforming, and the page says so.
 
 ## Quick start
 
