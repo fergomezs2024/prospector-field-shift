@@ -15,6 +15,8 @@ All data are open and public. None requires an account or an API key. Check each
 
 | MOLA MEGDR, 463 m (Mars Global Surveyor; USGS Astrogeology mosaic) | Elevation of Mars | https://astrogeology.usgs.gov/search/map/mars_mgs_mola_dem_463m |
 | LOLA LDEM, 118 m (Lunar Reconnaissance Orbiter; USGS Astrogeology mosaic) | Elevation of the Moon | https://astrogeology.usgs.gov/search/map/moon_lro_lola_dem_118m |
+| Viking MDIM 2.1 colour mosaic, 232 m (NASA / USGS, via NASA Mars Trek) | Real photograph draped over the Mars relief | https://trek.nasa.gov/mars/ |
+| LRO WAC global mosaic, 100 m (NASA / GSFC / ASU, via NASA Moon Trek) | Real photograph draped over the Moon relief | https://trek.nasa.gov/moon/ |
 
 ## Partner agencies and other sources
 

@@ -19,14 +19,16 @@ import numpy as np, rasterio
 from rasterio.windows import Window
 from . import datos
 
-VERSION = 2
+VERSION = 4
 NTRS = "https://ntrs.nasa.gov/api/citations/"
 CUERPOS = {
     "marte": dict(nombre="Marte", radio=3396190.0, url="https://planetarymaps.usgs.gov/mosaic/Mars_MGS_MOLA_DEM_mosaic_global_463m.tif", escala=1.0, max_km=400.0,
                   fuente="MOLA MEGDR 463 m (NASA Mars Global Surveyor; USGS Astrogeology)", tinte=(196, 124, 86),
+                  foto="https://trek.nasa.gov/tiles/Mars/EQ/Mars_Viking_MDIM21_ClrMosaic_global_232m/1.0.0/default/default028mm/{z}/{r}/{c}.jpg", foto_z=7, foto_nombre="mosaico en color Viking MDIM 2.1, 232 m (NASA / USGS, vía NASA Mars Trek)",
                   pend_ok=5.0, pend_tope=15.0, plataforma_m=100.0, densidad=1200.0, excav_kg_dia=2700.0, dist_estacion_m=1000.0, pend_acceso=5.0, altura_max=2000.0, lat_max=50.0),
     "luna": dict(nombre="la Luna", radio=1737400.0, url="https://planetarymaps.usgs.gov/mosaic/Lunar_LRO_LOLA_Global_LDEM_118m_Mar2014.tif", escala=0.5, max_km=120.0,
                  fuente="LOLA LDEM 118 m (NASA Lunar Reconnaissance Orbiter; USGS Astrogeology)", tinte=(176, 176, 172),
+                 foto="https://trek.nasa.gov/tiles/Moon/EQ/LRO_WAC_Mosaic_Global_303ppd_v02/1.0.0/default/default028mm/{z}/{r}/{c}.jpg", foto_z=8, foto_nombre="mosaico LRO WAC, 100 m (NASA / GSFC / ASU, vía NASA Moon Trek)",
                  pend_ok=6.0, pend_tope=10.0, plataforma_m=54.0, densidad=1500.0, excav_kg_dia=2700.0, dist_estacion_m=None, pend_acceso=5.0, altura_max=None, lat_max=None),
 }
 CRITERIOS = {
@@ -63,6 +65,43 @@ def _sombra(z, res, tinte):
     h = (z - z.min()) / max(float(np.ptp(z)), 1e-6); luz = (0.35 + 0.65 * s) * (0.8 + 0.3 * h)
     return np.clip(luz[:, :, None] * np.array(tinte, "float32")[None, None, :] * 1.15, 0, 255)
 
+def _foto(C, lon0, lon1, lat0, lat1, alto, ancho):
+    """Fotografía orbital real de la ventana (mosaico de NASA Trek, teselas equirrectangulares), remuestreada al tamaño pedido. None si no se pudo bajar."""
+    import requests
+    from PIL import Image
+    from concurrent.futures import ThreadPoolExecutor
+    z = C["foto_z"]; ppg = 2 ** (z + 1) * 256 / 360.0                          # píxeles por grado en ese nivel
+    x0, x1 = (lon0 + 180) * ppg, (lon1 + 180) * ppg; y0, y1 = (90 - lat1) * ppg, (90 - lat0) * ppg
+    c0, c1, r0, r1 = int(x0 // 256), int(x1 // 256), int(y0 // 256), int(y1 // 256)
+    if (c1 - c0 + 1) * (r1 - r0 + 1) > 120: return None
+    def una(rc):
+        r, c = rc
+        try:
+            q = requests.get(C["foto"].format(z=z, r=r, c=c % (2 ** (z + 1))), timeout=(10, 30))
+            if q.status_code == 200: return rc, Image.open(io.BytesIO(q.content)).convert("RGB")
+        except Exception: pass
+        return rc, None
+    with ThreadPoolExecutor(8) as ex: res = list(ex.map(una, [(r, c) for r in range(r0, r1 + 1) for c in range(c0, c1 + 1)]))
+    if sum(1 for _, im in res if im is None) > len(res) * 0.2: return None
+    lienzo = Image.new("RGB", ((c1 - c0 + 1) * 256, (r1 - r0 + 1) * 256), (90, 90, 90))
+    for (r, c), im in res:
+        if im is not None: lienzo.paste(im, ((c - c0) * 256, (r - r0) * 256))
+    rec = lienzo.crop((int(x0 - c0 * 256), int(y0 - r0 * 256), int(math.ceil(x1 - c0 * 256)), int(math.ceil(y1 - r0 * 256))))
+    return np.asarray(rec.resize((ancho, alto), Image.LANCZOS), "float32")
+
+def _rotulos(rgb, res_px_m, intervalo, evitar=(0.5, 0.5)):
+    """Barra de escala y leyenda de curvas de nivel dibujadas sobre la textura, para apreciar las dimensiones."""
+    from PIL import Image, ImageDraw, ImageFont
+    im = Image.fromarray(rgb); d = ImageDraw.Draw(im, "RGBA"); H, W = rgb.shape[:2]
+    km = next((k for k in (1, 2, 5, 10, 20, 50, 100) if k * 1000 / res_px_m >= W * 0.14), 100); largo = km * 1000 / res_px_m
+    try: f = ImageFont.truetype("/usr/share/fonts/noto/NotoSans-Bold.ttf", max(int(H * 0.028), 11))
+    except Exception: f = ImageFont.load_default()
+    # la barra va en la esquina más lejana de la plataforma, para no taparla
+    izq = evitar[0] > 0.5; arr = evitar[1] > 0.5; x = W * 0.04 if izq else W * 0.96 - largo; y = H * 0.09 if arr else H * 0.93; d.rectangle((x - 6, y - H * 0.05, x + largo + 6, y + 8), fill=(0, 0, 0, 120)); d.line((x, y, x + largo, y), fill=(255, 255, 255, 255), width=max(int(H * 0.006), 2))
+    for xx in (x, x + largo): d.line((xx, y - H * 0.012, xx, y), fill=(255, 255, 255, 255), width=max(int(H * 0.004), 2))
+    d.text((x, y - H * 0.047), f"{km} km · curvas cada {intervalo:g} m", font=f, fill=(255, 255, 255, 255))
+    return np.asarray(im)
+
 def _disco(shape, r, c, radio):
     yy, xx = np.ogrid[:shape[0], :shape[1]]; return (yy - r) ** 2 + (xx - c) ** 2 <= radio ** 2
 
@@ -77,12 +116,20 @@ def analizar(cuerpo, geo, lado_km=None):
     x0, x1, y0, y1 = lon.min() * mpg, lon.max() * mpg, lat.min() * mpg, lat.max() * mpg
     ancho_km, alto_km = (x1 - x0) / 1000 * math.cos(math.radians(latm)), (y1 - y0) / 1000
     if max(ancho_km, alto_km) > C["max_km"]: raise ValueError(f"La zona es muy grande: marca menos de {C['max_km']:.0f} km de lado.")
-    with rasterio.Env(GDAL_HTTP_TIMEOUT="60", GDAL_HTTP_MAX_RETRY="2", CPL_VSIL_CURL_ALLOWED_EXTENSIONS=".tif"):
-        with rasterio.open("/vsicurl/" + C["url"]) as s:
-            res = s.res[0]; c0, r0 = ~s.transform * (x0, y1); c1, r1 = ~s.transform * (x1, y0)
-            c0, r0 = int(max(math.floor(c0), 0)), int(max(math.floor(r0), 0)); c1, r1 = int(min(math.ceil(c1), s.width)), int(min(math.ceil(r1), s.height))
-            if c1 - c0 < 12 or r1 - r0 < 12: raise ValueError(f"La zona es muy chica para el relieve disponible ({res:.0f} m por celda): marca al menos {12 * res / 1000:.0f} km de lado.")
-            z = s.read(1, window=Window(c0, r0, c1 - c0, r1 - r0)).astype("float32") * C["escala"]; T = s.transform
+    import time
+    ultimo = None
+    for intento in range(3):                 # la lectura en línea puede fallar por un corte breve: se reintenta, sin guardar el error en la memoria de GDAL
+        try:
+            with rasterio.Env(GDAL_HTTP_TIMEOUT="60", GDAL_HTTP_MAX_RETRY="2", CPL_VSIL_CURL_ALLOWED_EXTENSIONS=".tif", CPL_VSIL_CURL_NON_CACHED="/vsicurl/https://planetarymaps.usgs.gov", VSI_CACHE="FALSE"):
+                with rasterio.open("/vsicurl/" + C["url"]) as s:
+                    res = s.res[0]; c0, r0 = ~s.transform * (x0, y1); c1, r1 = ~s.transform * (x1, y0)
+                    c0, r0 = int(max(math.floor(c0), 0)), int(max(math.floor(r0), 0)); c1, r1 = int(min(math.ceil(c1), s.width)), int(min(math.ceil(r1), s.height))
+                    if c1 - c0 < 12 or r1 - r0 < 12: raise ValueError(f"La zona es muy chica para el relieve disponible ({res:.0f} m por celda): marca al menos {12 * res / 1000:.0f} km de lado.")
+                    z = s.read(1, window=Window(c0, r0, c1 - c0, r1 - r0)).astype("float32") * C["escala"]; T = s.transform
+            ultimo = None; break
+        except ValueError: raise
+        except Exception as e: ultimo = e; time.sleep(3 + 4 * intento)
+    if ultimo is not None: raise ultimo
     z[z < -30000] = np.nan
     if not np.isfinite(z).all(): z = np.where(np.isfinite(z), z, np.nanmedian(z))
     alto, ancho = z.shape; res_x = res * math.cos(math.radians(latm))
@@ -141,11 +188,26 @@ def analizar(cuerpo, geo, lado_km=None):
     if C["lat_max"] is not None:
         cond.append(dict(que="Latitud", valor=f"{es(abs(p_lat))}° {'N' if p_lat >= 0 else 'S'}", cumple=bool(abs(p_lat) <= C["lat_max"]), nota=f"entre {C['lat_max']:g}° S y {C['lat_max']:g}° N"))
     # ---- malla y texturas: a la izquierda el relieve; a la derecha el mismo relieve con el plan del sitio pintado encima
-    paso = max(1, int(math.ceil(max(alto, ancho) / 220))); zs = z[::paso, ::paso]; base = _sombra(zs, res * paso, C["tinte"]); plan = base.copy()
-    cs, ds = clase[::paso, ::paso], dentro[::paso, ::paso]
-    for k, col in ((1, (70, 170, 105)), (2, (224, 184, 74)), (3, (200, 85, 60))): m = (cs == k) & ds; plan[m] = plan[m] * 0.6 + np.array(col) * 0.4
-    grueso = lambda m, t=3: maximum_filter(m.astype("uint8"), size=t)[::paso, ::paso] > 0
-    plan[grueso(ruta)] = (240, 230, 200); plan[grueso(estm)] = (90, 150, 230); plan[grueso(plat | _disco(z.shape, pr, pc, 1.5))] = (255, 255, 255)
+    paso = max(1, int(math.ceil(max(alto, ancho) / 220))); zs = z[::paso, ::paso]
+    # textura: la fotografía orbital real del lugar, con un sombreado suave del relieve y curvas de nivel; si no se pudo bajar, relieve sombreado
+    from scipy.ndimage import zoom as _zoom
+    k = max(1, int(round(1100 / max(alto, ancho)))); Ht, Wt = alto * k, ancho * k; zt = _zoom(z, k, order=1) if k > 1 else z
+    lonA, latA = (Tv * (0, 0))[0] / mpg, (Tv * (0, 0))[1] / mpg; lonB, latB = (Tv * (ancho, alto))[0] / mpg, (Tv * (ancho, alto))[1] / mpg
+    foto = None
+    try: foto = _foto(C, lonA, lonB, latB, latA, Ht, Wt)
+    except Exception: foto = None
+    luz = _sombra(zt, res / k, (255, 255, 255)) / 255.0
+    if foto is not None: foto = foto * min(150.0 / max(float(np.percentile(foto, 90)), 1.0), 2.2) if np.percentile(foto, 90) < 150 else foto      # los mosaicos lunares vienen muy oscuros: se aclaran sin cambiar el contraste
+    base = np.clip(foto * (0.55 + 0.6 * luz), 0, 255) if foto is not None else _sombra(zt, res / k, C["tinte"])
+    paso_c = next(v for v in (5, 10, 20, 50, 100, 200, 500, 1000) if float(np.ptp(z)) / v <= 14); niv = np.floor(zt / paso_c)
+    curva = np.zeros(zt.shape, bool); curva[1:, :] |= niv[1:, :] != niv[:-1, :]; curva[:, 1:] |= niv[:, 1:] != niv[:, :-1]
+    base[curva] = base[curva] * 0.72 + 255 * 0.28
+    plan = base.copy(); arriba = lambda m: np.repeat(np.repeat(m, k, 0), k, 1)
+    cs, ds = arriba(clase), arriba(dentro)
+    for kk, col in ((1, (70, 190, 110)), (2, (236, 190, 70)), (3, (220, 80, 55))): m = (cs == kk) & ds; plan[m] = plan[m] * 0.68 + np.array(col) * 0.32
+    grueso = lambda m, t=3: arriba(maximum_filter(m.astype("uint8"), size=t) > 0)
+    plan[grueso(ruta)] = (250, 240, 205); plan[grueso(estm)] = (70, 140, 240); plan[grueso(plat | _disco(z.shape, pr, pc, 1.5))] = (255, 255, 255)
+    ev = (pc / max(ancho - 1, 1), pr / max(alto - 1, 1)); base = _rotulos(base.astype("uint8"), res / k, paso_c, ev); plan = _rotulos(plan.astype("uint8"), res / k, paso_c, ev)
     out = dict(id=ident, cuerpo=cuerpo, nombre=C["nombre"], fuente=C["fuente"], res_m=round(res, 1), ancho_km=round(float(ancho_km), 1), alto_km=round(float(alto_km), 1),
                altura_min=round(float(z[dentro].min())), altura_max=round(float(z[dentro].max())), desnivel=round(float(np.ptp(z[dentro]))), pendiente_media=round(float(pz.mean()), 1),
                pct_apto=round(100 * float((pz <= C["pend_ok"]).mean())), pct_reparos=round(100 * float(((pz > C["pend_ok"]) & (pz <= C["pend_tope"])).mean())), pct_no=round(100 * float((pz > C["pend_tope"]).mean())),
@@ -154,7 +216,7 @@ def analizar(cuerpo, geo, lado_km=None):
                                volumen_m3=int(round(vol)), masa_t=int(round(masa / 1000)), dias_excavador=int(round(dias)), vale=vale),
                estacion=est, distancia_pedida_m=C["dist_estacion_m"], acceso=acceso, limite_acceso=C["pend_acceso"], condiciones=cond, criterios=CRITERIOS[cuerpo],
                malla=dict(ancho=int(zs.shape[1]), alto=int(zs.shape[0]), res_x=round(res_x * paso, 1), res_y=round(res * paso, 1), zmin=float(zs.min()), z=base64.b64encode(np.ascontiguousarray(zs).tobytes()).decode()),
-               textura=_png(base.astype("uint8")), textura2=_png(plan.astype("uint8")),
+               textura=_png(base), textura2=_png(plan), foto=(C["foto_nombre"] if foto is not None else None), curvas_m=paso_c,
                limites=[f"El relieve tiene {res:.0f} m por celda: no ve rocas, cráteres chicos ni grietas, y la pendiente real en tramos de 5 a 20 m puede ser mayor que la medida aquí.",
                         "El material a mover supone que la plataforma es un círculo sobre un plano con la pendiente medida; el terreno real es más irregular.",
                         "El tiempo de excavación es el de un solo robot trabajando sin detenerse; no incluye compactar, levantar bermas ni fallas.",

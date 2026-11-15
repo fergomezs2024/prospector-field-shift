@@ -121,7 +121,7 @@ function mostrar() { const d = datos, p = d.plataforma, fila = (a, b) => `<div c
       `<p class="mini" style="margin-top:6px">${d.distancia_pedida_m ? `La estación va a más de ${fmt(d.distancia_pedida_m)} m de la plataforma para quedar fuera del alcance de los escombros que levanta el motor.` : 'En la Luna no hay una distancia segura definida: los estudios proponen bermas de 2,5 m alrededor de la plataforma. Aquí la estación se ubica a varias celdas de distancia.'}</p>`
     : '<p class="mini">En esta zona no hay un lugar apto para la estación a la distancia que piden los estudios.</p>';
   $('crit').innerHTML = d.criterios.map(c => `<li style="margin-bottom:5px">${c.que}. <a href="${c.url}" target="_blank" rel="noopener">${c.fuente}</a></li>`).join('');
-  $('lim').innerHTML = d.limites.map(x => `<li>${x}</li>`).join(''); $('fuente').textContent = 'Relieve: ' + d.fuente + '. Mapa: OpenPlanetaryMap, con mosaicos de la NASA.'; $('res').classList.remove('oculto');
+  $('lim').innerHTML = d.limites.map(x => `<li>${x}</li>`).join(''); $('fuente').textContent = 'Relieve: ' + d.fuente + '. ' + (d.foto ? 'Fotografía sobre el relieve: ' + d.foto + '. ' : 'No se pudo bajar la fotografía orbital: se muestra el relieve sombreado. ') + `Curvas de nivel cada ${d.curvas_m} m. Mapa: OpenPlanetaryMap, con mosaicos de la NASA.`; $('res').classList.remove('oculto');
   if (!renderer) iniciar3d(); A = escena(f32(d.malla.z), d.textura); B = escena(f32(d.malla.z), d.textura2); alturas();
   const L = Math.max(d.malla.ancho * d.malla.res_x, d.malla.alto * d.malla.res_y); camara.position.set(-L * 0.7, L * 0.75, L * 1.0); camara.far = L * 30; ctl.target.set(0, 0, 0); ver3d(); }
 elegir('marte');
